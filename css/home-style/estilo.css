@@ -112,7 +112,7 @@ p {
 .div .aba {
     position: absolute;
     right: 0;
-    width: 5%;
+    width: 35px;
     height: 100%;
     background-color: var(--blue-color);
     transition: var(--tran-03);

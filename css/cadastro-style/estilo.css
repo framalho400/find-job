@@ -257,6 +257,8 @@ body {
 
 
 .jaTem a {
+    color: var(--text-color);
+    text-decoration: none;
     cursor: pointer;
     font-size: 10px;
 }
