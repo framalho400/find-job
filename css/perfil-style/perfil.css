@@ -19,15 +19,15 @@
     --tran-03: all 0.3s ease;
     --tran-04: all 0.3s ease;
     --tran-05: all 0.3s ease;
-  }
-  
+}
+
 
 body {
     background-color: var(--body-color);
 }
 
 .nav-left.close~.home {
-    left: 10%;
+    left: 20%;
     height: 100vh;
     width: 70%;
 }
@@ -44,7 +44,7 @@ body {
     margin: 0 auto;
     display: flex;
     transition: var(--tran-05);
-    top: 5%;
+ /*    top: 5%; */
 }
 
 .home .principal {
