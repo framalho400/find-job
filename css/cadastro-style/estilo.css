@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+body {
+    display: flex;
+    flex-direction: row;
+    background: rgb(237,122,17);
+    background: linear-gradient(122deg, rgba(237,122,17,0.5914740896358543) 0%, rgba(66,122,170,0.7707457983193278) 62%);
+}
+
+
+:root {
+    /* ===== Cores ===== */
+    --body-color: rgb(245, 243, 243);
+    --blue-color: #427AAA;
+    --orange-color: #ED7A11;
+    --white-color: #ffffff;
+    --text-color: #ffffff;
+    --gray-color: #BDBDBD;
+    /* ====== Transições ====== */
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+}
+
+
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+
+/* logo find jobs */
+.logo {
+    background-color: var(--text-color);
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    box-shadow: 2px 1px 5px rgba(70, 70, 70, 0.493);
+    width: 80px;
+    border-radius: 35px;
+    height: 80px;
+}
+
+
+
+.logo .logo_principal {
+    width: 100%;
+}
+
+
+
+
+.principal {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    height: 100vh;
+
+
+
+}
+
+
+
+.cadastro {
+    color: #ffffff;
+    z-index: 100;
+    border-radius: 15px;
+    position: absolute;
+    width: 400px;
+    height: 500px;
+    background-color: #427AAA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: var(--tran-05);
+    box-shadow: 2px 1px 5px rgba(70, 70, 70, 0.493);
+}
+
+
+
+
+.title {
+    font-size: 20px;
+    position: absolute;
+    top: 5%;
+    border-bottom: solid var(--orange-color) 2px;
+
+
+
+}
+
+
+
+.voltar {
+    width: 100%;
+    justify-content: flex-start;
+    cursor: pointer;
+}
+
+
+
+.voltar .circle {
+    position: relative;
+    left: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background-color: var(--orange-color);
+    border-radius: 30px;
+
+
+
+
+}
+
+
+
+
+
+.cadastroP {
+    
+    color: #ffffff;
+    border-radius: 15px;
+    position: absolute;
+    width: 400px;
+    height: 500px;
+    background-color: var(--blue-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: var(--tran-05);
+}
+
+
+
+.cadastroP.open {
+    z-index: 100;
+}
+
+
+
+.imagem img {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    border-radius: 0px 0px 0px 400px;
+    width: 45%;
+    height: 90%;
+    box-shadow: 2px 1px 20px rgba(70, 70, 70, 0.493);
+}
+
+
+
+.logoSenai img {
+    border-radius: 5px;
+    position: fixed;
+    bottom: 10px;
+    right: 30px;
+
+
+
+
+}
+
+
+
+.imagem {
+    height: 100%;
+}
+
+
+
+.inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+
+
+
+}
+
+
+
+.inputs span input {
+    width: 250px;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+    outline: 0;
+
+}
+
+
+
+.inputs span {
+    padding: 10px;
+}
+
+
+
+.proximo input {
+    cursor: pointer;
+    background-color: var(--orange-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+
+
+.concluir input {
+    cursor: pointer;
+    background-color: var(--orange-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+
+
+
+}
+
+
+
+.jaTem {
+    margin-top: 5%;
+    border-bottom: 1px solid var(--text-color);
+}
+
+
+
+.jaTem a {
+    cursor: pointer;
+    font-size: 10px;
+}
+
+
+
+.bolinhas {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+
+
+
+.bolinhas .c1,
+.c2 {
+    margin: 3px;
+    width: 7px;
+    height: 7px;
+    border-radius: 10px;
+    background-color: #DDD;
+
+
+
+}
+.cadastro .c1{background-color: var(--orange-color);}
+.cadastro .c2{background-color: var(--body-color);}
+.cadastroP .c1{background-color: var(--body-color);}
+.cadastroP .c2{background-color: var(--orange-color);}

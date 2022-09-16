@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+body {
+    display: flex;
+    flex-direction: row;
+    background: rgb(237,122,17);
+    background: linear-gradient(122deg, rgba(237,122,17,0.5914740896358543) 0%, rgba(66,122,170,0.7707457983193278) 62%);
+}
+
+
+
+:root {
+    /* ===== Cores ===== */
+    --body-color: #FFFFFF;
+    --nav-lateral-color: #427AAA;
+    --nav-topo-color: #ED7A11;
+    --toggle-color: #DDD;
+    --text-color: #ffffff;
+
+
+
+   /* ====== Transições ====== */
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+}
+
+
+
+.container {
+    width: 100%;
+}
+
+
+/* logo find jobs */
+.logo {
+    background-color: var(--text-color);
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    box-shadow: 2px 1px 5px rgba(70, 70, 70, 0.493);
+    width: 80px;
+    border-radius: 35px;
+    height: 80px;
+}
+
+
+
+.logo .logo_principal {
+    width: 100%;
+}
+
+
+
+.principal {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    height: 100vh;
+}
+
+.login {
+    color: #ffffff;
+    z-index: 100;
+    border-radius: 15px;
+    position: absolute;
+    width: 400px;
+    height: 500px;
+    background-color: #427AAA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: var(--tran-05);
+    box-shadow: 2px 1px 5px rgba(70, 70, 70, 0.493);
+}
+.title {
+    font-size: 20px;
+    position: absolute;
+    top: 5%;
+    border-bottom: solid var(--nav-topo-color) 2px;
+
+
+
+}
+.imagem img {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    border-radius: 0px 0px 0px 400px;
+    width: 45%;
+    height: 90%;
+    box-shadow: 2px 1px 20px rgba(70, 70, 70, 0.493);
+}
+.logoSenai img {
+    border-radius: 5px;
+    position: fixed;
+    bottom: 10px;
+    right: 30px;
+
+}
+
+.inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+.inputs span input {
+    width: 250px;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+    outline: 0;
+}
+.inputs span {
+    padding: 10px;
+}
+.entrar input {
+    cursor: pointer;
+    background-color: #ED7A11;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+
+
+.entrar input:hover {
+    background-color: #DA6A04;
+}
+
+
+
+.naoTem {
+    margin-top: 5%;
+    border-bottom: 1px solid var(--text-color);
+}
+
+
+
+.naoTem a {
+    cursor: pointer;
+    font-size: 10px;
+}
