@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/navbar-style/estilo.css">
- 
+
     <link rel="stylesheet" href="../../css/perfil-style/perfil.css">
     <title>Find Job | Perfil</title>
     <!----===== Boxicons CSS ===== -->
@@ -19,12 +19,18 @@
         <div class="buscar" style="display:none ;">
             <input type="text" name="txtBusca" id="" placeholder="Buscar">
         </div>
-        <div class="user">
-            <span class="user-img">
+        <div class="user" >
+            <span class="user-img" style="display:none ;" >
                 <img src="../../img/user.png" alt="" srcset="">
             </span>
-            <div class="user-text">
+            <div class="user-text" style="display:none ;">
                 <h4>Olá, Luccas Mello</h4>
+            </div>
+            <div class="sair">
+                <li><a href="../login/login.html">
+                    <i class='bx bx-log-out bx-flip-horizontal icon'></i>
+                </a>
+                </li>
             </div>
         </div>
     </nav>
@@ -49,10 +55,10 @@
                 </ul>
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#"> 
+                        <a href="#">
 
                             <i class='bx bx-user icon'></i>
-                            <span class="text nav-text" >Perfil</span>
+                            <span class="text nav-text">Perfil</span>
                         </a>
                     </li>
 
@@ -69,7 +75,9 @@
                             <span class="text nav-text">Curriculo</span>
                         </a>
                     </li>
-
+                    <li class="img-logo">
+                        <img src="../../img/logo_senai.png" alt="">
+                    </li>
 
                 </ul>
 
@@ -85,7 +93,7 @@
 
         <div class="principal">
             <div class="loginAndSenha">
-                
+
                 <div class="ft">
                     <span>
                         <img src="../../img/user.png" alt="">

@@ -82,7 +82,7 @@ p {
 
     position: relative;
     width: 90%;
-    height: 40%;
+    height: 50%;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
@@ -160,7 +160,7 @@ h4 {
     -webkit-line-clamp: 2;
     /*  // Quantidade de linhas */
     -webkit-box-orient: vertical;
-    margin-right: 60px;
+    margin-right: 30px;
 
 }
 

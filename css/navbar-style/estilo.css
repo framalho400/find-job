@@ -24,12 +24,8 @@
 
 
 
-body {
-    min-height: 100vh;
-    background-color: var(--body-color);
-    transition: var(--tran-05);
 
-}
+
 .todo {
     position: absolute;
     width: 100%;
@@ -66,7 +62,8 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-right: 10px;
+    margin-right: 5%;
+    list-style: none; 
 
 }
 
@@ -75,6 +72,14 @@ body {
     width: 50px;
     margin-right: 10px;
     align-items: center;
+}
+.sair a{
+    border-radius: 15px;
+    padding: 15px;
+    font-size: 20px;
+    text-decoration: none;
+    color: var(--text-color);
+  
 }
 
 .nav-top .buscar {
@@ -175,9 +180,10 @@ body {
 
 }
 
-.nav-left .menu-bar {
 
-    height: calc(100% - 55px);
+.nav-left .menu-bar {
+    
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -190,10 +196,10 @@ body {
     display: none;
 }
 
-.nav-left li,
+    .nav-left li,
 a {
 
-    margin-top: 30%;
+    padding: 20%;
     list-style: none;
     height: 100%;
     background-color: transparent;
@@ -206,8 +212,18 @@ a {
     transition: var(--tran-03);
     flex-direction: column;
     font-size: 15px;
+
 }
 
+
+
+.nav-left li img {
+    position: absolute;
+    bottom: 2%;
+    width: 60%;
+    border-radius: 2px;
+
+}
 
 .nav-left .icon {
     min-width: 60px;
@@ -225,6 +241,7 @@ a {
     color: var(--text-color);
     transition: var(--tran-05);
 }
+
 
 .nav-left li a:hover {
     margin-left: 10%;
@@ -247,14 +264,9 @@ a {
     transform: rotate(180deg);
 
 }
-.nav-left .sair{
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
-}   
 
- .nav-left.close~.home {
+
+.nav-left.close~.home {
     left: 20%;
     height: 100vh;
 
