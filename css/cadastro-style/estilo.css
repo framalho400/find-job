@@ -166,22 +166,19 @@ body {
     position: fixed;
     top: 0px;
     right: 0px;
-    border-radius: 0px 0px 0px 400px;
+    border-radius: 0px 0px 0px 50%;
     width: 45%;
     height: 90%;
     box-shadow: 2px 1px 20px rgba(70, 70, 70, 0.493);
 }
 
 
-
 .logoSenai img {
+    width: 10%;
     border-radius: 5px;
     position: fixed;
-    bottom: 10px;
-    right: 30px;
-
-
-
+    bottom: 3%;   
+    right: 3%;
 
 }
 

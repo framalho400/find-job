@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -8,10 +10,8 @@
 
 
 body {
-    display: flex;
-    flex-direction: row;
-    background: rgb(237,122,17);
-    background: linear-gradient(122deg, rgba(237,122,17,0.5914740896358543) 0%, rgba(66,122,170,0.7707457983193278) 62%);
+    background: rgb(237, 122, 17);
+    background: linear-gradient(122deg, rgba(237, 122, 17, 0.5914740896358543) 0%, rgba(66, 122, 170, 0.7707457983193278) 62%);
 }
 
 
@@ -26,7 +26,7 @@ body {
 
 
 
-   /* ====== Transições ====== */
+    /* ====== Transições ====== */
     --tran-03: all 0.2s ease;
     --tran-03: all 0.3s ease;
     --tran-04: all 0.3s ease;
@@ -67,6 +67,7 @@ body {
     justify-content: center;
     flex-wrap: nowrap;
     height: 100vh;
+
 }
 
 .login {
@@ -84,6 +85,7 @@ body {
     transition: var(--tran-05);
     box-shadow: 2px 1px 5px rgba(70, 70, 70, 0.493);
 }
+
 .title {
     font-size: 20px;
     position: absolute;
@@ -103,11 +105,12 @@ body {
     height: 90%;
     box-shadow: 2px 1px 20px rgba(70, 70, 70, 0.493);
 }
+
 .logoSenai img {
     width: 10%;
     border-radius: 5px;
     position: fixed;
-    bottom: 3%;   
+    bottom: 3%;
     right: 3%;
 
 }
@@ -119,6 +122,7 @@ body {
     flex-direction: column;
     width: 100%;
 }
+
 .inputs span input {
     width: 250px;
     border: none;
@@ -127,9 +131,11 @@ body {
     cursor: pointer;
     outline: 0;
 }
+
 .inputs span {
     padding: 10px;
 }
+
 .entrar input {
     cursor: pointer;
     background-color: #ED7A11;
