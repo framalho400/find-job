@@ -56,6 +56,6 @@ function mCPF(cpf) {
 }
 
 cpfCheck = function (el) {
-    document.getElementById('cpfResponse').innerHTML = is_cpf(el.value) ? '<span style="color:green">Valido</span>' : '<span style="color:red">inválido</span>';
-    if (el.value == '') document.getElementById('cpfResponse').innerHTML = '';
+    document.getElementById('cpf').innerHTML = is_cpf(el.value) ? cpf.style.borderBottom ="solid 5px green" : cpf.style.borderBottom ="solid 5px red";
+    if (el.value == '') document.getElementById('cpf').innerHTML = '';
 }

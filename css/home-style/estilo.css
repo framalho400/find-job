@@ -24,32 +24,10 @@
 
 
 body {
-   
     background-color: var(--body-color);
-    
-
 }
 
-
-h3 {
-    font-size: 15px;
-}
-
-h4 {
-    font-size: 15px;
-}
-
-h5 {
-    font-size: 15px;
-}
-
-p {
-    font-size: 15px;
-
-}
-
-
-.home{
+.home {
     width: 60%;
 }
 
@@ -58,31 +36,25 @@ p {
     left: 25%;
     height: 100%;
     background-color: var(--body-color);
-    margin: 0 auto;
     display: flex;
     transition: var(--tran-05);
     top: 5%;
 
 }
 
-
 /* Divs */
 
 .home .principal {
     width: 80%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    overflow: hidden;
     position: relative;
     top: 12%;
 }
 
 .div {
-
+    max-width: 90%;
     position: relative;
-    width: 90%;
-    height: 50%;
+    width: auto;
+    height: auto;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
@@ -99,14 +71,22 @@ p {
 .local,
 .exigencias {
     padding: 3%;
+
 }
 
 .bVerMais {
+    position: relative;
     margin: 0 auto;
-    padding-bottom: 10px;
+    bottom: 10px;
     cursor: pointer;
 
+}
 
+.bVerMais input:hover {
+    padding: 5px;
+    background-color: #ed7b11e0;
+    cursor: pointer;
+    transition: var(--tran-05);
 }
 
 .div .aba {
@@ -136,9 +116,9 @@ p {
     cursor: pointer;
     transition: var(--tran-03);
 }
-.aba .contatos {
-    display: none;
 
+.aba .contatos {
+    opacity: 0;
 }
 
 .aba i {
@@ -148,9 +128,19 @@ p {
 
 }
 
-.bVerMais {
+
+.bVerMais input {
     position: relative;
+    cursor: pointer;
+    border: none;
+    padding: 4px;
+    border-radius: 15px;
+    background-color: var(--orange-color);
+    color: var(--white-color);
+    box-shadow: 0px 2px 5px rgba(70, 70, 70, 0.418);
+    font-size: 15px;
 }
+
 
 
 
@@ -169,57 +159,52 @@ h4 {
 
 }
 
-.div input {
-    padding: 1%;
-    cursor: pointer;
-    border: none;
-    padding: 5px;
-    border-radius: 15px;
-    background-color: var(--orange-color);
-    color: var(--white-color);
-    box-shadow: 0px 2px 5px rgba(70, 70, 70, 0.418);
-    font-size: 15px;
-}
 
 .aba.close .contatos {
-    
-    display: block;
+    max-width: 80%;
     position: relative;
-    margin: 0 auto;
     display: flex;
-    flex-wrap: wrap;
     color: var(--white-color);
     flex-direction: column;
-
-}
-.aba.close .contatos h4, span{
+    margin: 0 auto;
     opacity: 1;
-    transition: var(--tran-05);
+    -webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
 
 
-.naoSelecionavel {
-    -webkit-touch-callout: none;
-    /* iPhone OS, Safari */
-    -webkit-user-select: none;
-    /* Chrome, Safari 3 */
-    -khtml-user-select: none;
-    /* Safari 2 */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* IE10+ */
-    user-select: none;
-    /* Possível implementação no futuro */
-    /* cursor: default; */
+@-webkit-keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+
 
 .divFiltro {
     position: fixed;
-    top: 17%;
-    right: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 0px;
     width: 20%;
-    height: 60%;
+    height: 100%;
 }
 
 
@@ -227,6 +212,7 @@ h4 {
     height: 100%;
     top: 15%;
     width: 80%;
+    height: 60%;
     box-shadow: 2px 1px 5px rgba(70, 70, 70, 0.493);
     background-color: var(--gray-color);
     border-radius: 2%;
