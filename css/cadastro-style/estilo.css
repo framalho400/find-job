@@ -47,6 +47,7 @@ body {
 
 /* logo find jobs */
 .logo {
+  z-index: 100;
     background-color: var(--text-color);
     position: fixed;
     top: 10px;
@@ -81,7 +82,7 @@ body {
 
 
 .cadastro {
-
+  z-index: 100;
     color: #ffffff;
     border-radius: 15px;
     position: absolute;
@@ -223,6 +224,7 @@ body {
 
 
 .cadastroP {
+  z-index: 100;
     color: #ffffff;
     border-radius: 15px;
     position: absolute;
@@ -276,14 +278,15 @@ body {
   
 
   
-
-.imagem img {
+  .imagem {
+    background-size: cover;
     position: fixed;
     top: 0px;
     right: 0px;
-    width: 50%;
+    width: 800px;
     height: 100%;
-    box-shadow: 2px 1px 20px rgba(70, 70, 70, 0.493);
+    background-image: url(../../img/image\ 5.svg);
+   
 }
 
 
@@ -414,4 +417,18 @@ body {
 
 .cadastroP .c2 {
     background-color: var(--orange-color);
+}
+
+
+@media (max-width: 1024px) {
+  .imagem {
+      width: 100%;
+  }
+
+  .principal {
+      width: 100%;
+
+  }
+
+
 }
