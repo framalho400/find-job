@@ -111,12 +111,12 @@ body {
 
 }
 
-
+/* 
 .cadastroP h3{
     -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
     animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
 
-}
+} */
 
 /* Animação de texto */
  @-webkit-keyframes tracking-in-expand {
@@ -175,19 +175,23 @@ body {
   }
   
   
-  
-
-
-.title {
+  .title {
+    width: 100%;
     font-size: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     position: absolute;
     top: 5%;
-    border-bottom: solid var(--orange-color) 2px;
-
-
 
 }
 
+.title span {
+    width: 15%;
+    height: 2px;
+    background-color: #DA6A04;
+}
 
 
 .voltar {
@@ -277,9 +281,8 @@ body {
     position: fixed;
     top: 0px;
     right: 0px;
-    border-radius: 0px 0px 0px 50%;
-    width: 45%;
-    height: 90%;
+    width: 800px;
+    height: 100%;
     box-shadow: 2px 1px 20px rgba(70, 70, 70, 0.493);
 }
 

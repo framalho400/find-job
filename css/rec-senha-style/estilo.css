@@ -23,7 +23,7 @@ body {
     --nav-topo-color: #ED7A11;
     --toggle-color: #DDD;
     --text-color: #ffffff;
-
+    --black-color: #434343;
 
 
     /* ====== Transições ====== */
@@ -61,6 +61,7 @@ body {
 
 
 .principal {
+
     width: 50%;
     display: flex;
     align-items: center;
@@ -70,21 +71,52 @@ body {
 
 }
 
-.login {
-    color: #ffffff;
+.recuperacao_senha {
+    color: var(--black-color);
     z-index: 100;
     border-radius: 15px;
     position: absolute;
     width: 400px;
     height: 500px;
-    background-color: #427AAA;
+    background-color: var(--toggle-color);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     transition: var(--tran-05);
     box-shadow: 2px 1px 5px rgba(70, 70, 70, 0.493);
+    border-bottom: #427AAA 11px solid;
 }
+
+.recuperacao_senha a{
+    text-decoration: none;
+}
+
+
+.voltar {
+    width: 100%;
+    justify-content: flex-start;
+    cursor: pointer;
+    text-decoration: none;
+    
+}
+
+.voltar .circle {
+    position: relative;
+    left: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background-color: var(--nav-topo-color);
+    border-radius: 30px;
+    color: #FFFFFF;
+}
+
+
+
+
 
 .title {
     width: 100%;
@@ -98,65 +130,50 @@ body {
 
 }
 
-.title span {
-    width: 15%;
-    height: 2px;
-    background-color: #DA6A04;
-}
-
-.title h3{
+.title h3 {
     -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
     animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
 
 
 }
 
+.title span {
+    width: 30%;
+    height: 2px;
+    background-color: #DA6A04;
+}
 
 
 
 /* Animação de texto */
 @-webkit-keyframes tracking-in-expand {
     0% {
-      letter-spacing: -0.5em;
-      opacity: 0;
+        letter-spacing: -0.5em;
+        opacity: 0;
     }
-    40% {
-      opacity: 0.6;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  @keyframes tracking-in-expand {
-    0% {
-      letter-spacing: -0.5em;
-      opacity: 0;
-    }
-    40% {
-      opacity: 0.6;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
 
-.imagem img {
-    position: fixed;
-    top: 0px;
-    right: 0px;
- 
-    width: 800pxs;
-    height: 100%;
-   
+    40% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
-.logoSenai img {
-    width: 10%;
-    border-radius: 5px;
-    position: fixed;
-    bottom: 3%;
-    right: 3%;
+@keyframes tracking-in-expand {
+    0% {
+        letter-spacing: -0.5em;
+        opacity: 0;
+    }
 
+    40% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .inputs {
@@ -180,33 +197,57 @@ body {
     padding: 10px;
 }
 
-.entrar input {
+.enviar {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding: 10%;
+    justify-content: center;
+}
+
+.enviar a input {
+    position: relative;
+    bottom: 10px;
     cursor: pointer;
     background-color: #ED7A11;
     color: #ffffff;
     border: none;
     border-radius: 15px;
     padding: 10px;
+    top: 30%;
 }
 
 
 
-.entrar input:hover {
+.enviae input:hover {
     background-color: #DA6A04;
 }
 
 
+.inputs .texto {
+    width: 90%;
+    font-size: 15px;
+    text-align: center;
 
-.naoTem {
-    margin-top: 5%;
-    border-bottom: 1px solid var(--text-color);
+
 }
 
+.imagem img {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    width: 900px;
+    height: 100%;
+    box-shadow: 2px 1px 20px rgba(70, 70, 70, 0.493);
 
 
-.naoTem a {
-    color: var(--text-color);
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 10px;
+}
+
+.logoSenai img {
+    width: 10%;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 3%;
+    right: 3%;
+
 }
