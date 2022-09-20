@@ -248,6 +248,19 @@ body {
     background-color: #DA6A04;
 }
 
+.rec {
+    margin-bottom: 5%;
+    border-bottom: 1px solid var(--text-color);
+}
+
+
+
+.rec a {
+    color: var(--text-color);
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 10px;
+}
 
 
 .naoTem {
