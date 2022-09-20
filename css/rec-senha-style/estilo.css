@@ -42,6 +42,7 @@ body {
 
 /* logo find jobs */
 .logo {
+    z-index: 100;
     background-color: var(--text-color);
     position: fixed;
     top: 10px;
@@ -88,7 +89,7 @@ body {
     border-bottom: #427AAA 11px solid;
 }
 
-.recuperacao_senha a{
+.recuperacao_senha a {
     text-decoration: none;
 }
 
@@ -98,7 +99,7 @@ body {
     justify-content: flex-start;
     cursor: pointer;
     text-decoration: none;
-    
+
 }
 
 .voltar .circle {
@@ -229,18 +230,17 @@ body {
     font-size: 15px;
     text-align: center;
 
-
 }
 
-.imagem img {
+.imagem {
+    background-size: cover;
     position: fixed;
     top: 0px;
     right: 0px;
-    width: 50%;
+    width: 800px;
     height: 100%;
-    box-shadow: 2px 1px 20px rgba(70, 70, 70, 0.493);
-
-
+    background-image: url(../../img/image\ 5.svg);
+   
 }
 
 .logoSenai img {
@@ -249,5 +249,19 @@ body {
     position: fixed;
     bottom: 3%;
     right: 3%;
+
+}
+
+
+@media (max-width: 1024px) {
+    .imagem {
+        width: 100%;
+    }
+
+    .principal {
+        width: 100%;
+
+    }
+
 
 }
