@@ -3,77 +3,77 @@
 
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 
 
 body {
-    display: flex;
-    flex-direction: row;
-    background: rgb(237, 122, 17);
-    background: linear-gradient(122deg, rgba(237, 122, 17, 0.5914740896358543) 0%, rgba(66, 122, 170, 0.7707457983193278) 62%);
+  display: flex;
+  flex-direction: row;
+  background: rgb(237, 122, 17);
+  background: linear-gradient(122deg, rgba(237, 122, 17, 0.5914740896358543) 0%, rgba(66, 122, 170, 0.7707457983193278) 62%);
 }
 
 
 :root {
-    /* ===== Cores ===== */
-    --body-color: rgb(245, 243, 243);
-    --blue-color: #427AAA;
-    --orange-color: #ED7A11;
-    --white-color: #ffffff;
-    --text-color: #ffffff;
-    --gray-color: #BDBDBD;
-    /* ====== Transições ====== */
-    --tran-03: all 0.2s ease;
-    --tran-03: all 0.3s ease;
-    --tran-04: all 0.3s ease;
-    --tran-05: all 0.3s ease;
+  /* ===== Cores ===== */
+  --body-color: rgb(245, 243, 243);
+  --blue-color: #427AAA;
+  --orange-color: #ED7A11;
+  --white-color: #ffffff;
+  --text-color: #ffffff;
+  --gray-color: #BDBDBD;
+  /* ====== Transições ====== */
+  --tran-03: all 0.2s ease;
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.3s ease;
+  --tran-05: all 0.3s ease;
 }
 
 
 
 .container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    flex-direction: row;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  flex-direction: row;
 }
 
 
 /* logo find jobs */
 .logo {
   z-index: 100;
-    background-color: var(--text-color);
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    box-shadow: 2px 1px 5px rgba(70, 70, 70, 0.493);
-    width: 80px;
-    border-radius: 35px;
-    height: 80px;
+  background-color: var(--text-color);
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  box-shadow: 2px 1px 5px rgba(70, 70, 70, 0.493);
+  width: 80px;
+  border-radius: 35px;
+  height: 80px;
 }
 
 
 
 .logo .logo_principal {
-    width: 100%;
+  width: 100%;
 }
 
 
 
 
 .principal {
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap;
-    height: 100vh;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  height: 100vh;
 
 
 
@@ -83,32 +83,32 @@ body {
 
 .cadastro {
   z-index: 100;
-    color: #ffffff;
-    border-radius: 15px;
-    position: absolute;
-    width: 400px;
-    height: 500px;
-    background-color: #427AAA;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    transition: var(--tran-05);
-    box-shadow: 2px 1px 5px rgba(70, 70, 70, 0.493);
-    -webkit-animation: fade-in-bck 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-    animation: fade-in-bck 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  color: #ffffff;
+  border-radius: 15px;
+  position: absolute;
+  width: 400px;
+  height: 500px;
+  background-color: #427AAA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: var(--tran-05);
+  box-shadow: 2px 1px 5px rgba(70, 70, 70, 0.493);
+  -webkit-animation: fade-in-bck 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  animation: fade-in-bck 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
 
 
 
 .cadastro.close {
-    display: none;
+  display: none;
 
 }
 
-.cadastro h3{
-    -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-    animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+.cadastro h3 {
+  -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+  animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
 
 }
 
@@ -120,99 +120,107 @@ body {
 } */
 
 /* Animação de texto */
- @-webkit-keyframes tracking-in-expand {
-    0% {
-      letter-spacing: -0.5em;
-      opacity: 0;
-    }
-    40% {
-      opacity: 0.6;
-    }
-    100% {
-      opacity: 1;
-    }
+@-webkit-keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
   }
-  @keyframes tracking-in-expand {
-    0% {
-      letter-spacing: -0.5em;
-      opacity: 0;
-    }
-    40% {
-      opacity: 0.6;
-    }
-    100% {
-      opacity: 1;
-    }
+
+  40% {
+    opacity: 0.6;
   }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 0.6;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
 
 
 
 
 
 /* Animação do cadastre-se 1 */
- @-webkit-keyframes fade-in-bck {
-    0% {
-      -webkit-transform: translateZ(80px);
-              transform: translateZ(80px);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: translateZ(0);
-              transform: translateZ(0);
-      opacity: 1;
-    }
+@-webkit-keyframes fade-in-bck {
+  0% {
+    -webkit-transform: translateZ(80px);
+    transform: translateZ(80px);
+    opacity: 0;
   }
-  @keyframes fade-in-bck {
-    0% {
-      -webkit-transform: translateZ(80px);
-              transform: translateZ(80px);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: translateZ(0);
-              transform: translateZ(0);
-      opacity: 1;
-    }
+
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
   }
-  
-  
-  .title {
-    width: 100%;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    top: 5%;
+}
+
+@keyframes fade-in-bck {
+  0% {
+    -webkit-transform: translateZ(80px);
+    transform: translateZ(80px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+
+
+.title {
+  width: 100%;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 5%;
 
 }
 
 .title span {
-    width: 15%;
-    height: 2px;
-    background-color: #DA6A04;
+  width: 15%;
+  height: 2px;
+  background-color: #DA6A04;
 }
 
 
 .voltar {
-    width: 100%;
-    justify-content: flex-start;
-    cursor: pointer;
+  width: 100%;
+  justify-content: flex-start;
+  cursor: pointer;
 }
 
 
 
 .voltar .circle {
-    position: relative;
-    left: 3%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30px;
-    height: 30px;
-    background-color: var(--orange-color);
-    border-radius: 30px;
+  position: relative;
+  left: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: var(--orange-color);
+  border-radius: 30px;
 
 
 
@@ -225,94 +233,97 @@ body {
 
 .cadastroP {
   z-index: 100;
-    color: #ffffff;
-    border-radius: 15px;
-    position: absolute;
-    width: 400px;
-    height: 500px;
-    background-color: var(--blue-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  color: #ffffff;
+  border-radius: 15px;
+  position: absolute;
+  width: 400px;
+  height: 500px;
+  background-color: var(--blue-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
 }
 
-.cadastroP.close{
-    display: none;
+.cadastroP.close {
+  display: none;
 }
 
 .cadastroP.open {
-   display: flex;
-   -webkit-animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-	        animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  display: flex;
+  -webkit-animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
 
 
- 
-/* Animação do cadastre-se 2 */
- @-webkit-keyframes fade-in-fwd {
-    0% {
-      -webkit-transform: translateZ(-80px);
-              transform: translateZ(-80px);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: translateZ(0);
-              transform: translateZ(0);
-      opacity: 1;
-    }
-  }
-  @keyframes fade-in-fwd {
-    0% {
-      -webkit-transform: translateZ(-80px);
-              transform: translateZ(-80px);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: translateZ(0);
-              transform: translateZ(0);
-      opacity: 1;
-    }
-  }
-  
 
-  
-  .imagem {
-    background-size: cover;
-    position: fixed;
-    top: 0px;
-    right: 0px;
-    width: 800px;
-    height: 100%;
-    background-image: url(../../img/image\ 5.svg);
-   
+/* Animação do cadastre-se 2 */
+@-webkit-keyframes fade-in-fwd {
+  0% {
+    -webkit-transform: translateZ(-80px);
+    transform: translateZ(-80px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-fwd {
+  0% {
+    -webkit-transform: translateZ(-80px);
+    transform: translateZ(-80px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+
+
+
+.imagem {
+  background-size: cover;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 800px;
+  height: 100%;
+  background-image: url(../../img/image\ 5.svg);
+
 }
 
 
 .logoSenai img {
-    width: 10%;
-    border-radius: 5px;
-    position: fixed;
-    bottom: 3%;
-    right: 3%;
+  width: 150px;
+  border-radius: 5px;
+  position: fixed;
+  bottom: 3%;
+  right: 3%;
 
 }
 
 
 
 .imagem {
-    height: 100%;
+  height: 100%;
 }
 
 
 
 .inputs {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
 
 
 
@@ -321,41 +332,41 @@ body {
 
 
 .inputs span input {
-    width: 250px;
-    border: none;
-    border-radius: 15px;
-    padding: 10px;
-    cursor: pointer;
-    outline: 0;
+  width: 250px;
+  border: none;
+  border-radius: 15px;
+  padding: 10px;
+  cursor: pointer;
+  outline: 0;
 
 }
 
 
 
 .inputs span {
-    padding: 10px;
+  padding: 10px;
 }
 
 
 
 .proximo input {
-    cursor: pointer;
-    background-color: var(--orange-color);
-    color: #ffffff;
-    border: none;
-    border-radius: 15px;
-    padding: 10px;
+  cursor: pointer;
+  background-color: var(--orange-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 15px;
+  padding: 10px;
 }
 
 
 
 .concluir input {
-    cursor: pointer;
-    background-color: var(--orange-color);
-    color: #ffffff;
-    border: none;
-    border-radius: 15px;
-    padding: 10px;
+  cursor: pointer;
+  background-color: var(--orange-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 15px;
+  padding: 10px;
 
 
 
@@ -364,69 +375,69 @@ body {
 
 
 .jaTem {
-    margin-top: 5%;
-    border-bottom: 1px solid var(--text-color);
+  margin-top: 5%;
+  border-bottom: 1px solid var(--text-color);
 }
 
 
 
 .jaTem a {
-    color: var(--text-color);
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 10px;
+  color: var(--text-color);
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 10px;
 }
 
 
 
 .bolinhas {
-    width: 100%;
-    justify-content: center;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 25px;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
 }
 
 
 
 .bolinhas .c1,
 .c2 {
-    margin: 3px;
-    width: 7px;
-    height: 7px;
-    border-radius: 10px;
-    background-color: #DDD;
+  margin: 3px;
+  width: 7px;
+  height: 7px;
+  border-radius: 10px;
+  background-color: #DDD;
 
 
 
 }
 
 .cadastro .c1 {
-    background-color: var(--orange-color);
+  background-color: var(--orange-color);
 }
 
 .cadastro .c2 {
-    background-color: var(--body-color);
+  background-color: var(--body-color);
 }
 
 .cadastroP .c1 {
-    background-color: var(--body-color);
+  background-color: var(--body-color);
 }
 
 .cadastroP .c2 {
-    background-color: var(--orange-color);
+  background-color: var(--orange-color);
 }
 
 
 @media (max-width: 1024px) {
   .imagem {
-      width: 100%;
+    width: 100%;
   }
 
   .principal {
-      width: 100%;
+    width: 100%;
 
   }
 
