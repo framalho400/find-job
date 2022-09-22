@@ -13,7 +13,9 @@
 
 
 
- <body>
+
+
+<body>
     <div class="container">
       <div class="logo">
         <img src="../../img/logo_principal.png" class="logo_principal" />
@@ -21,8 +23,10 @@
 
 
 
-     <div class="principal">
-        <form class="cadastro">
+
+
+    <form class="principal" action="">
+        <div class="cadastro">
           <div class="title">
             <h3>CADASTRE<strong style="color: #ed7a11">-</strong>SE</h3>
             <span></span>
@@ -35,11 +39,7 @@
           <div class="inputs">
             <span class="nomeC">
               <h4>NOME:</h4>
-              <input type="text" placeholder="Nome completo" />
-            </span>
-            <span class="apelido">
-              <h4>APELIDO:</h4>
-              <input type="text" placeholder="Apelido" />
+              <input type="text" placeholder="Nome completo" id="nome" />
             </span>
             <span class="cpf">
               <h4>CPF:</h4>
@@ -57,11 +57,11 @@
             <a href="../login/login.html">Já possui uma conta ?</a>
           </span>
           
-        </form>
+        </div>
 
 
 
-       <form class="cadastroP close">
+      <div class="cadastroP close">
           <div class="title">
             <h3>CADASTRE<strong style="color: #ed7a11">-</strong>SE</h3>
             <span></span>
@@ -74,20 +74,20 @@
           <div class="inputs">
             <span class="nomeC">
               <h4>E-MAIL:</h4>
-              <input type="email" placeholder="E-mail" />
+              <input type="email" placeholder="E-mail" id="email" />
             </span>
             <span class="apelido">
               <h4>SENHA:</h4>
-              <input type="text" placeholder="Senha:" />
+              <input type="text" placeholder="Senha:" id="senha"/>
             </span>
             <span class="cpf">
               <h4>CONFIRMAR SENHA:</h4>
-              <input type="text" placeholder="Confirmar senha:" />
+              <input type="text" placeholder="Confirmar senha:" id="confirme a senha" />
             </span>
           </div>
           <span class="concluir">
             <a href="../usuario/home.html">
-            <input type="button" value="Concluir" />
+           <input type="submit" name=""value='Concluir' class="concluir">
             </a>
           </span>
           <span class="bolinhas">
@@ -97,12 +97,14 @@
 
 
 
-         <span class="jaTem">
+
+
+        <span class="jaTem">
             <a href="../login/login.html">Já possui uma conta ?</a>
           </span>
            
-        </form>
-      </div>
+        </div>
+      </form>
       <div class="imagem">
       </div>
       <div class="logoSenai">
@@ -110,6 +112,7 @@
       </div>
       
     </div>
+    <script src="../../js/API/script.js"></script>
     <script src="../../js/login-js/script.js"></script>
     <script src="../../js/cadastro-js/script.js"></script>
   </body>

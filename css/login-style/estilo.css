@@ -154,8 +154,8 @@ body {
     width: 800px;
     height: 100%;
     background-image: url(../../img/image\ 5.svg);
- /*    -webkit-animation: kenburns-right 5s ease-out alternate-reverse backwards;
-    animation: kenburns-right 5s ease-out alternate-reverse backwards; */
+     -webkit-animation: kenburns-right 5s ease-out alternate-reverse backwards;
+    animation: kenburns-right 5s ease-out alternate-reverse backwards; 
 }
 
 /* ----------------------------------------------
@@ -172,7 +172,7 @@ body {
  */
 
 
- /* 
+ 
  @-webkit-keyframes kenburns-right {
     0% {
       -webkit-transform: scale(1) translate(0, 0);
@@ -201,7 +201,7 @@ body {
               transform-origin: right;
     }
   }
-   */
+   
 
 .logoSenai img {
     width: 150px;
