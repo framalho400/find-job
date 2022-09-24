@@ -290,13 +290,17 @@ body {
 
 
 .imagem {
+  padding: 10px;
   background-size: cover;
   position: fixed;
   top: 0px;
   right: 0px;
-  width: 800px;
+  width: 50%;
   height: 100%;
+  border-radius: 0px 0px 0px 250px;
   background-image: url(../../img/image\ 5.svg);
+  box-shadow: 2px 1px 5px rgba(70, 70, 70, 0.493);
+ 
 
 }
 
@@ -344,6 +348,8 @@ body {
 
 
 .inputs span {
+  display: flex;
+  flex-direction: column;
   padding: 10px;
 }
 

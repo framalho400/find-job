@@ -182,7 +182,7 @@
 
 
 .nav-left .menu-bar {
-    
+   
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -192,13 +192,18 @@
 
 }
 
+/* para tirar o padding left do bootstrat */
+.nav-left dl, ol, ul{
+    padding-left: 0px !important;
+}
+
 .menu-bar::-webkit-scrollbar {
     display: none;
 }
 
     .nav-left li,
 a {
-
+     
     padding: 20%;
     list-style: none;
     height: 100%;
