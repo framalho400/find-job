@@ -30,7 +30,11 @@ body {
 .home {
     width: 60%;
 }
+.nav-left.close~.home {
+    left: 20%;
+    height: 100vh;
 
+}
 .home {
     position: absolute;
     left: 25%;

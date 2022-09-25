@@ -282,6 +282,18 @@ a {
 
 }
 
+/* modal  */
+.modal-content{
+    border-bottom: 11px solid var(--orange-color);
+}
+/* Botoes laranja  */
+.btn{
+    background-color: var(--orange-color) !important;
+    border: none !important;
+    border-radius: 20px !important;
+}
+
+
 /* @media screen and (max-width: 1200px) {
     .nav-top {
         width: calc(100% - 150px);
