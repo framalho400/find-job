@@ -1,107 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
- <!----===== Bootstrap ===== -->
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
- integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <link rel="stylesheet" href="../../css/cadastro-style/estilo.css" />
-    <link
-      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
-      rel="stylesheet"/>
+  <!----===== Bootstrap ===== -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
+  <link rel="stylesheet" href="../../css/cadastro-style/estilo.css" />
+  <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
 
 
-      
-    <title>Find Job | Cadastro</title>
-  </head>
+
+
+  <title>Find Job | Cadastro</title>
+</head>
 
 
 
 
 
 <body>
-    <div class="container">
-      <div class="logo">
-        <img src="../../img/logo_principal.png" class="logo_principal" />
-      </div>
+  <div class="container">
+    <div class="logo">
+      <img src="../../img/logo_principal.png" class="logo_principal" />
+    </div>
 
 
 
 
 
     <form class="principal" action="">
-        <div class="cadastro">
-          <div class="title">
-            <h3>CADASTRE<strong style="color: #ed7a11">-</strong>SE</h3>
-            <span></span>
-          </div>
-          <span class="voltar" style="opacity: 0">
-            <div class="circle">
-              <i class="bx bx-chevron-left contats" id="contats"></i>
-            </div>
-          </span>
-          <div class="inputs">
-            <span class="nomeC">
-              <label >NOME:</label>
-              <input type="text" placeholder="Nome completo" id="nome" />
-              
-            </span>
-            <span class="cpf">
-              <label>CPF:</label>
-              <input placeholder="CPF" id="cpf" type="text" onkeyup="cpfCheck(this)" maxlength="18" onkeydown="javascript: fMasc( this, mCPF );">
-            </span>
-          </div>
-          <span class="proximo">
-            <input type="button" value="Próximo" id="proximo" />
-          </span>
-          <span class="bolinhas">
-            <div class="c1"></div>
-            <div class="c2"></div>
-        </span>
-          <span class="jaTem">
-            <a href="../login/login.html">Já possui uma conta ?</a>
-          </span>
-          
+      <div class="cadastro">
+        <div class="title">
+          <h3>CADASTRE<strong style="color: #ed7a11">-</strong>SE</h3>
+          <span></span>
         </div>
+        <span class="voltar" style="opacity: 0">
+          <div class="circle">
+            <i class="bx bx-chevron-left contats" id="contats"></i>
+          </div>
+        </span>
+        <div class="inputs">
+          <span class="nomeC">
+            <label>NOME:</label>
+            <input type="text" placeholder="Nome completo" id="nome" />
+
+          </span>
+          <span class="cpf">
+            <label>CPF:</label>
+            <input placeholder="CPF" id="cpf" type="text" onkeyup="cpfCheck(this)" maxlength="18"
+              onkeydown="javascript: fMasc( this, mCPF );">
+          </span>
+        </div>
+        <span class="proximo">
+          <input type="button" value="Próximo" id="proximo" />
+        </span>
+        <span class="bolinhas">
+          <div class="c1"></div>
+          <div class="c2"></div>
+        </span>
+        <span class="jaTem">
+          <a href="../login/login.html">Já possui uma conta ?</a>
+        </span>
+
+      </div>
 
 
 
       <div class="cadastroP close">
-          <div class="title">
-            <h3>CADASTRE<strong style="color: #ed7a11">-</strong>SE</h3>
-            <span></span>
+        <div class="title">
+          <h3>CADASTRE<strong style="color: #ed7a11">-</strong>SE</h3>
+          <span></span>
+        </div>
+        <span class="voltar" id="voltar">
+          <div class="circle">
+            <i class="bx bx-chevron-left contats" id="contats"></i>
           </div>
-          <span class="voltar" id="voltar">
-            <div class="circle">
-              <i class="bx bx-chevron-left contats" id="contats"></i>
-            </div>
+        </span>
+        <div class="inputs">
+          <span class="email">
+            <label>E-MAIL:</label>
+            <input type="email" placeholder="E-mail" id="email" />
           </span>
-          <div class="inputs">
-            <span class="email">
-              <label>E-MAIL:</label>
-              <input type="email" placeholder="E-mail" id="email" />
-            </span>
-            <span class="senha">
-              <label>SENHA:</label>
-              <input type="text" placeholder="Senha:" id="senha"/>
-            </span>
-            <span class="cpf">
-              <label>CONFIRMAR SENHA:</label>
-              <input type="text" placeholder="Confirmar senha:" id="confirme a senha" />
-            </span>
-          </div>
-          <span class="concluir">
-            <a href="../usuario/home.html">
-           <input type="submit" name=""value='Concluir' class="concluir">
-            </a>
+          <span class="senha">
+            <label>SENHA:</label>
+            <input type="text" placeholder="Senha:" id="senha" />
           </span>
-          <span class="bolinhas">
-            <div class="c1"></div>
-            <div class="c2"></div>
+          <span class="cpf">
+            <label>CONFIRMAR SENHA:</label>
+            <input type="text" placeholder="Confirmar senha:" id="confirme a senha" />
+          </span>
+        </div>
+        <span class="concluir">
+          <a href="../usuario/home.html">
+            <input type="submit" name="" value='Concluir' class="concluir">
+          </a>
+        </span>
+        <span class="bolinhas">
+          <div class="c1"></div>
+          <div class="c2"></div>
         </span>
 
 
@@ -109,27 +109,28 @@
 
 
         <span class="jaTem">
-            <a href="../login/login.html">Já possui uma conta ?</a>
-          </span>
-           
-        </div>
-      </form>
-      <div class="imagem">
+          <a href="../login/login.html">Já possui uma conta ?</a>
+        </span>
+
       </div>
-      
+    </form>
+    <div class="imagem">
     </div>
 
+  </div>
 
-    <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
-        crossorigin="anonymous"></script>
 
-    <script src="../../js/API/script.js"></script>
-    <script src="../../js/login-js/script.js"></script>
-    <script src="../../js/cadastro-js/script.js"></script>
-  </body>
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+    crossorigin="anonymous"></script>
+
+  <script src="../../js/API/script.js"></script>
+  <script src="../../js/login-js/script.js"></script>
+  <script src="../../js/cadastro-js/script.js"></script>
+</body>
+
 </html>

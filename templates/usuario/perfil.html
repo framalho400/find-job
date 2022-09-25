@@ -9,6 +9,13 @@
 
     <link rel="stylesheet" href="../../css/perfil-style/perfil.css">
     <title>Find Job | Perfil</title>
+
+
+    <!----===== Bootstrap ===== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -19,8 +26,8 @@
         <div class="buscar" style="display:none ;">
             <input type="text" name="txtBusca" id="" placeholder="Buscar">
         </div>
-        <div class="user" >
-            <span class="user-img" style="display:none ;" >
+        <div class="user">
+            <span class="user-img" style="display:none ;">
                 <img src="../../img/user.png" alt="" srcset="">
             </span>
             <div class="user-text" style="display:none ;">
@@ -28,8 +35,8 @@
             </div>
             <div class="sair">
                 <li><a href="../login/login.html">
-                    <i class='bx bx-log-out bx-flip-horizontal icon'></i>
-                </a>
+                        <i class='bx bx-log-out bx-flip-horizontal icon'></i>
+                    </a>
                 </li>
             </div>
         </div>
@@ -92,55 +99,100 @@
     <div class="home">
 
         <div class="principal">
-            <div class="loginAndSenha">
-
+            <div class="fotoAndSenha">
                 <div class="ft">
-                    <span>
-                        <img src="../../img/user.png" alt="">
-                    </span>
-                    <span>
-                        <label for="name">Lucas Mello</label>
-                    </span>
-                    <span class="edit">
-                        <input type="button" value="EDITAR">
-                    </span>
+                    <div class="header-ft"></div>
+                    <div class="body-ft">
+                        <div>
+                            <img src="../../img/user.png" alt="">
+                        </div>
+                        <div>
+                            <label for="name">Lucas Mello</label>
+                        </div>
+                    </div>
+                    <div class="footer-ft">
+                        <button class="btn btn-primary" data-bs-toggle="modal" href="#staticBackdrop5"
+                            role="button">Editar</button>
+                    </div>
                 </div>
                 <div class="senha">
-
+                    <div class="header-s"></div>
                     <span>
                         <label>Senha:</label>
                         <p>*******</p>
                     </span>
-                    <span class="edit">
-                        <input type="button" value="EDITAR">
-                    </span>
+                    <div class="body-ft">
+
+                    </div>
+                    <div class="footer-s">
+                        <button class="btn btn-primary" data-bs-toggle="modal" href="#staticBackdrop5"
+                            role="button">Editar</button>
+                    </div>
                 </div>
 
             </div>
+            <div class="dadosC">
+                <div class="header-d">
+                    <h3>DADOS CADASTRAIS</h3>
+                    <span></span>
+                </div>
+                <div class="body-d">
+                    <span>
+                        <label>E-mail:</label>
+                        <p>isabel@gmail.com</p>
+                    </span>
+                    <span>
+                        <label>Celular:</label>
+                        <p>(11)3003-2580</p>
+                    </span>
+                    <span>
+                        <label>CPF:</label>
+                        <p>493.155.177-08</p>
+                    </span>
+                </div>
+                <div class="footer-d">
+                    <button class="btn btn-primary" data-bs-toggle="modal" href="#staticBackdrop5"
+                    role="button">Editar</button>
+                </div>
+            </div>
             <div class="dadosP">
-                <span>
-                    <label>E-mail:</label>
-                    <p>isabel@gmail.com</p>
-                </span>
-                <span>
-                    <label>Celular:</label>
-                    <p>(11)3003-2580</p>
-                </span>
-                <span>
-                    <label>CPF:</label>
-                    <p>493.155.177-08</p>
-                </span>
-                <span class="edit">
-                    <input type="button" value="EDITAR">
-                </span>
+                <div class="d1">
+                    <div class="header-p">
+                        <h3 class="title">DADOS </h3>
+                        <h3 class="title">PESSOAIS</h3>
+                        <span></span>
+                    </div>
+                    <div class="footer-p">
+                        <button class="btn btn-primary" data-bs-toggle="modal" href="#staticBackdrop4"
+                            role="button">Editar</button>
+                    </div>
+                </div>
+                <div class="d2">
+                    <div class="header-p">
+                        <h3 class="title">DADOS </h3>
+                        <h3 class="title">PROFISSIONAIS</h3>
+                        <span></span>
+                    </div>
+                    <div class="footer-p">
+                        <button class="btn btn-primary" data-bs-toggle="modal" href="#staticBackdrop5"
+                            role="button">Editar</button>
+                    </div>
+                </div>
+
             </div>
 
+
         </div>
+        <!-- Bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+            integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+            crossorigin="anonymous"></script>
 
 
-    </div>
-
-    <script src="../../js/navbar-js/script.js"></script>
+        <script src="../../js/navbar-js/script.js"></script>
 </body>
 
 </html>

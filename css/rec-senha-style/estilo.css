@@ -37,6 +37,9 @@ body {
 
 .container {
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 
@@ -66,7 +69,7 @@ body {
     width: 50%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: nowrap;
     height: 100vh;
 
@@ -75,10 +78,10 @@ body {
 .recuperacao_senha {
     color: var(--black-color);
     z-index: 100;
-    border-radius: 15px;
+    border-radius: 0px 15px 15px 0px;
     position: absolute;
     width: 400px;
-    height: 500px;
+    height: 550px;
     background-color: var(--toggle-color);
     display: flex;
     justify-content: center;
@@ -86,7 +89,7 @@ body {
     flex-direction: column;
     transition: var(--tran-05);
     box-shadow: 2px 1px 5px rgba(70, 70, 70, 0.493);
-    border-bottom: #427AAA 11px solid;
+
 }
 
 .recuperacao_senha a {
@@ -195,6 +198,8 @@ body {
 }
 
 .inputs span {
+    display: flex;
+    flex-direction: column;
     padding: 10px;
 }
 
@@ -231,15 +236,17 @@ body {
     text-align: center;
 
 }
-
-.imagem {
+.imagem{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+.img {
+    border-radius: 15px 0px 0px 15px;
     background-size: cover;
-    position: fixed;
-    top: 0px;
-    right: 0px;
-    width: 800px;
-    height: 100%;
-    background-image: url(../../img/image\ 5.svg);
+    width: 400px;
+    height: 550px;
+    background-image: url(../../img/trabalhando2.jpg);
    
 }
 
@@ -254,14 +261,27 @@ body {
 
 
 @media (max-width: 1024px) {
-    .imagem {
-        width: 100%;
-    }
-
-    .principal {
-        width: 100%;
-
-    }
-
-
+    .container {
+        justify-content: center;
+    
+    
+      }
+    
+      .recuperacao_senha {
+        width: 400px;
+        border-radius: 15px;
+        border-bottom:var(--nav-lateral-color) 11px solid;
+      }
+    
+      .imagem {
+        display: none;
+      }
+    
+      body {
+        width: 100% !important;
+        background-size: cover  !important;
+        justify-content: center;
+        background-image: url(../../img/image\ 5.svg) !important; ;
+    
+      }
 }

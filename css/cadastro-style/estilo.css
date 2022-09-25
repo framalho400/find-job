@@ -12,10 +12,13 @@
 
 
 body {
+/*   background: #f1f1f1 !important; */
   display: flex;
   flex-direction: row;
-  background: rgb(237, 122, 17);
+
+ background: rgb(237, 122, 17);
   background: linear-gradient(122deg, rgba(237, 122, 17, 0.5914740896358543) 0%, rgba(66, 122, 170, 0.7707457983193278) 62%);
+
 }
 
 
@@ -37,11 +40,13 @@ body {
 
 
 .container {
+
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   flex-wrap: nowrap;
   flex-direction: row;
+  height: 100vh;
 }
 
 
@@ -71,9 +76,8 @@ body {
   width: 50%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   flex-wrap: nowrap;
-  height: 100vh;
 
 
 
@@ -84,10 +88,10 @@ body {
 .cadastro {
   z-index: 100;
   color: #ffffff;
-  border-radius: 15px;
+  border-radius: 15px 0px 0px 15px;
   position: absolute;
   width: 400px;
-  height: 500px;
+  height: 550px;
   background-color: #427AAA;
   display: flex;
   justify-content: center;
@@ -234,10 +238,10 @@ body {
 .cadastroP {
   z-index: 100;
   color: #ffffff;
-  border-radius: 15px;
+  border-radius: 15px 0px 0px 15px;
   position: absolute;
   width: 400px;
-  height: 500px;
+  height: 550px;
   background-color: var(--blue-color);
   display: flex;
   justify-content: center;
@@ -290,36 +294,16 @@ body {
 
 
 .imagem {
-  padding: 10px;
+  display: flex;
+  width: 400px;
+  height: 550px;
   background-size: cover;
-  position: fixed;
-  top: 0px;
-  right: 0px;
-  width: 50%;
-  height: 100%;
-  border-radius: 0px 0px 0px 250px;
-  background-image: url(../../img/image\ 5.svg);
+  border-radius: 0px 15px 15px 0px;
+  background-image: url(../../img/trabalhando2.jpg);
   box-shadow: 2px 1px 5px rgba(70, 70, 70, 0.493);
- 
+
 
 }
-
-
-.logoSenai img {
-  width: 150px;
-  border-radius: 5px;
-  position: fixed;
-  bottom: 3%;
-  right: 3%;
-
-}
-
-
-
-.imagem {
-  height: 100%;
-}
-
 
 
 .inputs {
@@ -438,12 +422,27 @@ body {
 
 
 @media (max-width: 1024px) {
-  .imagem {
-    width: 100%;
+  .container {
+    justify-content: center;
+
+
   }
 
-  .principal {
-    width: 100%;
+  .cadastro,
+  .cadastroP {
+    width: 400px;
+    border-radius: 15px;
+  }
+
+  .imagem {
+    display: none;
+  }
+
+  body {
+    width: 100% !important;
+    background-size: cover  !important;
+    justify-content: center;
+    background-image: url(../../img/image\ 5.svg) !important; ;
 
   }
 

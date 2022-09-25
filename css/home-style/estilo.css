@@ -23,24 +23,46 @@
 }
 
 
-body {
-    background-color: var(--body-color) !important;
+body{
+    background-color: var(--body-color);
+}
+p::selection,
+h3::selection,
+h4::selection,
+h2::selection,
+h5::selection,
+i::selection,
+a::selection,
+ul::selection,
+li::selection,
+span::selection,
+label::selection,
+input::selection,
+button::selection,
+strong::selection,
+img::selection {
+    background-color: var(--orange-color) !important;
+    color: #ffffff;
+
 }
 
 .home {
-    width: 60%;
+    width: 80%;
 }
+
 .nav-left.close~.home {
-    left: 20%;
+
+    left: 7% !important;
     height: 100vh;
 
 }
+
 .home {
     position: absolute;
-    left: 25%;
+    left: 15%;
     height: 100%;
-    
     display: flex;
+    justify-content: center;
     transition: var(--tran-05);
     top: 5%;
 
@@ -51,13 +73,18 @@ body {
 .home .principal {
     width: 80%;
     position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
     top: 12%;
 }
 
 .div {
-    max-width: 90%;
+    max-width: 80%;
+    min-width: 400px;
     position: relative;
-    width: auto;
+    width: 45%;
     height: auto;
     display: flex;
     justify-content: flex-start;
@@ -75,12 +102,12 @@ body {
 .local,
 .exigencias {
     padding: 3%;
-    
+
 }
 
 .bVerMais {
     background-color: var(--orange-color) !important;
-    border: none    !important;
+    border: none !important;
     position: relative;
     margin: 0 auto;
     bottom: 10px;
@@ -90,10 +117,11 @@ body {
 
 .bVerMais input:hover {
     padding: 5px;
-    background-color: #ed7b11e0 !important; 
+    background-color: #ed7b11e0 !important;
     cursor: pointer;
     transition: var(--tran-05);
 }
+
 .bVerMais input {
     position: relative !important;
     cursor: pointer;
@@ -113,7 +141,7 @@ body {
     height: 100%;
     background-color: var(--blue-color);
     border-radius: 0px 15px 15px 0px;
-    
+
 }
 
 .aba.close {
@@ -135,7 +163,7 @@ body {
 }
 
 .aba .contatos {
-    opacity: 0;
+    display: none;
 }
 
 .aba i {
@@ -167,7 +195,9 @@ h4 {
 
 
 .aba.close .contatos {
+    font-size: 15px;
     max-width: 80%;
+    max-height: 90%;
     position: relative;
     display: flex;
     color: var(--white-color);
@@ -177,7 +207,14 @@ h4 {
     -webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
     animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
-
+.aba.close .contatos button i {
+    font-size: 15px;
+    
+}
+.aba.close .contatos h5 {
+    font-size: 8px;
+    
+}
 @-webkit-keyframes fade-in {
     0% {
         opacity: 0;
