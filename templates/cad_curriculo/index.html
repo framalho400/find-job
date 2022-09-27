@@ -126,6 +126,7 @@
                                 <div class="b1"></div>
                                 <div class="b2"></div>
                             </span>
+                            <button class="btn btn-primary" data-bs-toggle="modal" href="#staticBackdrop" role="button">Primeiro acesso</button>
                             <input class="btn btn-primary" type="button" id="proximo" value="Proximo">
                         </div>
                     </div>
@@ -165,6 +166,7 @@
                         <span></span>
                     </div>
                     <div class="footer-d">
+                        
                     <button class="btn btn-primary" data-bs-toggle="modal" href="#staticBackdrop4"
                         role="button">Editar</button>
                     </div>
@@ -186,16 +188,17 @@
         </div>
 
         <!-- Formulário de cadastro de currículo com Apresentação -->
-        <form action="">
+       
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog modal-xl">
+                <div class="modal-dialog modal-dialog-centered modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="staticBackdrop">Apresentação</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+                            
                             Aqui vai ficar a Apresentação
                         </div>
                         <div class="modal-footer">
@@ -208,14 +211,161 @@
             </div>
             <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog modal-xl">
+                <div class="modal-dialog modal-dialog-centered modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdrop2">Modal 2</h5>
+                            <h5 class="modal-title" id="staticBackdrop2">DADOS PESSOAIS</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Hide this modal and show the first with the button below.
+                            <form class="row g-3">
+                                <div class="col-md-4">
+                                  <label for="inputDate4" class="form-label">Data de Nascimento</label>
+                                  <input type="date" class="form-control" id="inputData">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="inputState" class="form-label">Estado Civil</label>
+                                    <select id="inputState" class="form-select">
+                                        <option value="escolha_opcao" disabled selected>Escolha uma opção</option>
+                                        <option value="solteiro">Solteiro</option>
+                                        <option value="casado">Casado</option>
+                                        <option value="separado">Separado</option>
+                                        <option value="divorciado">Divorciado</option>
+                                        <option value="viuvo">Viúvo</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="inputState" class="form-label">Nacionalidade</label>
+                                    <select id="inputState" class="form-select">
+                                        <option value="escolha_opcao" disabled selected>Escolha uma opção</option>
+                                        <option value="afegao">Afegão</option>
+                                        <option value="angolano">Angolano</option>
+                                        <option value="argentino">Argentino</option>
+                                        <option value="australiano">Australiano</option>
+                                        <option value="austriaco">Austríaco</option>
+                                        <option value="boliviano">Boliviano</option>
+                                        <option value="brasileiro">Brasileiro</option>
+                                        <option value="bulgaro">Búlgaro</option>
+                                        <option value="canadense">Canadense</option>
+                                        <option value="chines">Chinês</option>
+                                        <option value="chileno">Chileno</option>
+                                        <option value="colombiano">Colombiano</option>
+                                        <option value="croata">Croata</option>
+                                        <option value="cubano">Cubano</option>
+                                        <option value="dinamarques">Dinamarquês</option>
+                                        <option value="dominicano">Dominicano</option>
+                                        <option value="equatoriano">Equatoriano</option>
+                                        <option value="egipcio">Egípcio</option>
+                                        <option value="ingles">Inglês</option>
+                                        <option value="finlandes">Finlandês</option>
+                                        <option value="frances">Francês</option>
+                                        <option value="alemao">Alemão</option>
+                                        <option value="grego">Grego</option>
+                                        <option value="guineano">Guineano</option>
+                                        <option value="haitiano">Haitiano</option>
+                                        <option value="holandes">Holandês</option>
+                                        <option value="hungaro">Húngaro</option>
+                                        <option value="islandes">Islandês</option>
+                                        <option value="indiano">Indiano</option>
+                                        <option value="indonesio">Indonésio</option>
+                                        <option value="iraniano">Iraniano</option>
+                                        <option value="irlandes">Irlandês</option>
+                                        <option value="israelita">Israelita</option>
+                                        <option value="italiano">Italiano</option>
+                                        <option value="jamaicano">Jamaicano</option>
+                                        <option value="japones">Japonês</option>
+                                        <option value="queniano">Queniano</option>
+                                        <option value="kuwaitiano">Kuwaitiano</option>
+                                        <option value="letoniano">Letoniano</option>
+                                        <option value="libanes">Libanês</option>
+                                        <option value="lituano">Lituano</option>
+                                        <option value="libio">Líbio</option>
+                                        <option value="malaio">Malaio</option>
+                                        <option value="maltes">Maltês</option>
+                                        <option value="mexicano">Mexicano</option>
+                                        <option value="marroquino">Marroquino</option>
+                                        <option value="mocambicano">Moçambicano</option>
+                                        <option value="namibiano">Namibiano</option>
+                                        <option value="neozelandes">Neozelandês</option>
+                                        <option value="nigeriano">Nigeriano</option>
+                                        <option value="norte_coreano">Norte-coreano</option>
+                                        <option value="noruegues">Norueguês</option>
+                                        <option value="palestino">Palestino</option>
+                                        <option value="paquistanes">Paquistanês</option>
+                                        <option value="panamenho">Panamenho</option>
+                                        <option value="paraguaio">Paraguaio</option>
+                                        <option value="peruano">Peruano</option>
+                                        <option value="polones">Polonês</option>
+                                        <option value="portugues">Português</option>
+                                        <option value="catarense">Catarense</option>
+                                        <option value="russo">Russo</option>
+                                        <option value="ruandes">Ruandês</option>
+                                        <option value="escoces">Escocês</option>
+                                        <option value="singapurense">Singapurense</option>
+                                        <option value="eslovaco">Eslovaco</option>
+                                        <option value="sul_africano">Sul-africano</option>
+                                        <option value="espanhol">Espanhol</option>
+                                        <option value="sueco">Sueco</option>
+                                        <option value="suico">Suíço</option>
+                                        <option value="sirio">Sírio</option>
+                                        <option value="tailandes">Tailandês</option>
+                                        <option value="turco">Turco</option>
+                                        <option value="ucraniano">Ucraniano</option>
+                                        <option value="uruguaio">Uruguaio</option>
+                                        <option value="britanico">Britânico</option>
+                                        <option value="americano">Americano</option>
+                                        <option value="venezuelano">Venezuelano</option>
+                                        <option value="vietnamita">Vietnamita</option>
+                                        <option value="iemenita">Iemenita</option>
+                                        <option value="zambiano">Zambiano</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="inputDate4" class="form-label">Telefone</label>
+                                    <input type="text" class="form-control" id="tel">
+                                  </div>
+                                  <div class="col-md-4">
+                                    <label for="inputDate4" class="form-label">Telefone Celular</label>
+                                    <input type="text" class="form-control" id="telC">
+                                  </div>
+                                  <div class="col-md-4">
+                                    <label for="inputDate4" class="form-label">Telefone Recado</label>
+                                    <input type="text" class="form-control" id="telR">
+                                  </div>
+                                <div class="col-6">
+                                  <label for="inputAddress" class="form-label">Endereço</label>
+                                  <input type="text" class="form-control" id="endereco" placeholder="">
+                                </div>
+                                <div class="col-2">
+                                    <label for="inputAddress" class="form-label">Numero</label>
+                                    <input type="text" class="form-control" id="numero" placeholder="">
+                                  </div>
+                                  <div class="col-4">
+                                    <label for="inputAddress" class="form-label">CEP</label>
+                                    <input type="text" class="form-control" id="cep" placeholder="">
+                                  </div>
+                                <div class="col-6">
+                                  <label for="inputAddress2" class="form-label">Bairro</label>
+                                  <input type="text" class="form-control" id="inputAddress2" placeholder="">
+                                </div>
+                                <div class="col-md-4">
+                                  <label for="inputCity" class="form-label">Cidade</label>
+                                  <input type="text" class="form-control" id="inputCity">
+                                </div>
+                                <div class="col-md-2">
+                                  <label for="inputState" class="form-label">UF</label>
+                                  <input type="text" class="form-control" id="uf">
+                                </div>
+                                <div class="col-12">
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                    <label class="form-check-label" for="gridCheck">
+                                      PCD
+                                    </label>
+                                  </div>
+                                </div>
+                               
+                              </form>
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-primary" data-bs-target="#staticBackdrop"
@@ -228,7 +378,7 @@
             </div>
             <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog modal-xl">
+                <div class="modal-dialog modal-dialog-centered modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="staticBackdrop3">Modal 3</h5>
@@ -246,8 +396,8 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" data-bs-toggle="modal" href="#staticBackdrop" role="button"></button>
-        </form>
+          
+   
 
 
         <!-- edicao de dados pessoais e profissionais -->
