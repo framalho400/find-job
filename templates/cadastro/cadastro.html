@@ -51,8 +51,9 @@
           </span>
           <span class="cpf">
             <label>CPF:</label>
-            <input placeholder="CPF" id="cpf" type="text" onkeyup="cpfCheck(this)" maxlength="18"
-              onkeydown="javascript: fMasc( this, mCPF );">
+            <input placeholder="CPF" type="text" id="cpf" >
+            <!-- type="text" onkeyup="cpfCheck(this)" maxlength="18"
+              onkeydown="javascript: fMasc( this, mCPF );" -->
           </span>
         </div>
         <span class="proximo">
@@ -91,12 +92,12 @@
           </span>
           <span class="cpf">
             <label>CONFIRMAR SENHA:</label>
-            <input type="text" placeholder="Confirmar senha:" id="confirme a senha" />
+            <input type="text" placeholder="Confirmar senha:" id="repitaSenha" />
           </span>
         </div>
         <span class="concluir">
           <a href="../usuario/home.html">
-            <input type="submit" name="" value='Concluir' class="concluir">
+            <input type="submit" name=""  value='Concluir' class="concluir">
           </a>
         </span>
         <span class="bolinhas">
@@ -128,9 +129,8 @@
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
     crossorigin="anonymous"></script>
 
-  <script src="../../js/API/script.js"></script>
-  <script src="../../js/login-js/script.js"></script>
-  <script src="../../js/cadastro-js/script.js"></script>
+    <script src="../../js/cadastro-js/script.js"></script>
+    <script src="../../js/login-js/script.js"></script>
 </body>
 
 </html>

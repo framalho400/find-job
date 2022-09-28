@@ -51,11 +51,12 @@ img::selection {
 }
 
 .nav-left.close~.home {
-
+    width: 90%;
     left: 7% !important;
     height: 100vh;
 
 }
+
 
 .home {
     position: absolute;
@@ -82,7 +83,7 @@ img::selection {
 
 .div {
     max-width: 80%;
-    min-width: 400px;
+    min-width: 20%;
     position: relative;
     width: 45%;
     height: auto;
@@ -277,6 +278,30 @@ h4 {
 
 } */
 
+@media screen and (max-width: 1000px) {
+    .home{
+        left: 22% !important;
+    }
+
+    .principal{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.div {
+    
+    width: 100%;
+}
+
+.nav-left.close~.home {
+
+    left: 15% !important;
+    height: 100vh;
+
+}
+}
 /* @media screen and (max-width: 1200px) {
     h3 {
         font-size: 13px;
