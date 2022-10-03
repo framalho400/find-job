@@ -7,7 +7,8 @@ const cadastro = document.querySelector('.cadastro')
 proximo.addEventListener('click', () => {
 
   if (Inome.value == '' || Icpf.value == '') {
-    alert('Preencha todos os campos')
+    let msgText = "Preencha todos os campos!";
+    msgErro(msgText);
   }
     else {
     cadastro.classList.add('close')
@@ -39,8 +40,8 @@ function cadastrar() {
 
 
 
-  fetch('http://localhost:8080/usuario', {
-
+  /* fetch('http://10.92.198.19:8080/usuario', { */
+    fetch('http://localhost:8080/usuario', {
 
 
     headers: {
@@ -92,6 +93,7 @@ function limpar() {
 
   Isenha.value = '';
 
+  IrepitaSenha.value = '';
 
 }
 
@@ -99,17 +101,38 @@ function limpar() {
 
 formulario.addEventListener('submit', function (event) {
   event.preventDefault();
-  if (Inome.value == '' || Icpf.value == '' || Iemail.value == '' || Isenha.value == '') {
-    alert('Preencha todos os campos!');
+   if (Inome.value == '' || Icpf.value == '' || Iemail.value == '' || Isenha.value == '') {
+    let msgText = "Preencha todos os campos!";
+    msgErro(msgText);
 
   }
   else if (Isenha.value != IrepitaSenha.value) {
-    alert('As senhas não coincidem!');
-
-  }
-  else {
-    window.location.href = "../../templates/login/login.html";
+        let msgText = "As senhas não coincidem";
+        msgErro(msgText);
+      }
+  else { 
+    let msgText = "Cadastrado com sucesso!";
+    msgErro(msgText);
     cadastrar();
     limpar();
-  }
+    window.location.href = "../../templates/usuario/home.html";
+   }
+   msgErro(msgText);
 });
+
+  
+  
+  
+  
+  function msgErro(msgText) {
+      const msg = document.querySelector('.msg');
+
+      msg.innerHTML = msgText;
+  
+      msg.classList.add('active');
+      setTimeout(function(){
+          msg.classList.remove('active');
+      
+        }, 5000);
+  
+  }
