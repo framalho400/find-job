@@ -168,7 +168,7 @@
                     </div>
                     <div class="footer-d">
 
-                        <button class="btn btn-primary" data-bs-toggle="modal" href="#staticBackdropEditP"
+                        <button class="btn btn-primary" data-bs-toggle="modal" href="#staticBackdropEditEP"
                             role="button">Editar</button>
                     </div>
                 </div>
@@ -396,131 +396,31 @@
                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                 </div>
                                 <legend>Expêriencias Profissionais</legend>
-                                <div class="col-md-4">
-                                    <label for="inputDate4" class="form-label">Nome da Empresa</label>
-                                    <input type="text" class="form-control" id="empresaNome">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="inputDate4" class="form-label">Cargo</label>
-                                    <input type="text" class="form-control" id="emresaCargo">
-                                </div>
-                                <div class="col-4">
-                                    <label for="inputAddress" class="form-label">Area Profissional</label>
-                                    <input type="text" class="form-control" id="areaProfissional" placeholder="">
-                                </div>
-                                <div class="col-6">
-                                    <label for="inputAddress" class="form-label">Cidade</label>
-                                    <input type="text" class="form-control" id="expCidade" placeholder="">
-                                </div>
-                                <div class="col-2">
-                                    <label for="inputAddress" class="form-label">UF</label>
-                                    <input type="text" class="form-control" id="expUf" placeholder="">
-                                </div>
-                                <div class="col-2">
-                                    <label for="inputAddress2" class="form-label">Data Inicio</label>
-                                    <input type="date" class="form-control" id="dtInicio" placeholder="">
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="inputCity" class="form-label">Data Saida</label>
-                                    <input type="date" class="form-control" id="dtSaida">
-                                </div>
-                                <div class="col-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="checkExp">
-                                        <label class="form-check-label" for="gridCheck">
-                                            Emprego Atual
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="mb-2">
-                                    <label for="exampleFormControlTextarea1" class="form-label">Principais
-                                        atividades</label>
-                                    <textarea class="form-control" id="principaisAtv" rows="3"></textarea>
-                                </div>
+                           
+                                <div class="col-12" >
+                                    <button class="btn btn-primary" data-bs-toggle="modal" href="#staticBackdropEditEP"
+                                    role="button">+</button>
+                                    <div id="expProf">
 
+
+                                    </div>
+
+                                </div>
+                                <legend>Formação Academica</legend>
+                                <div class="col-12" id="formAcad">
+                                    <i class='bx bx-add-to-queue' style="font-size:35px ;" id="buttonFormAcad"></i>
+                                </div>
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-primary" data-bs-target="#staticBackdrop2"
                                 data-bs-toggle="modal">Voltar</button>
                             <button class="btn btn-primary" data-bs-target="#staticBackdrop4"
-                                data-bs-toggle="modal">Proximo</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false"
-                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdrop3">DADOS PROFISSIONAIS</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="row g-3">
-                                <legend>Formação Academica</legend>
-                                <div class="col-md-6">
-                                    <label for="inputDate4" class="form-label">Nome do curso</label>
-                                    <input type="text" class="form-control" id="nomeCurso">
-                                </div>
-                                <div class="col-6">
-                                    <label for="inputAddress" class="form-label">Nome da Instituição</label>
-                                    <input type="text" class="form-control" id="nomeInstituicao" placeholder="">
-                                </div>
-                                <div class="col-6">
-                                    <label for="inputAddress" class="form-label">Cidade</label>
-                                    <input type="text" class="form-control" id="CursoCidade" placeholder="">
-                                </div>
-                                <div class="col-2">
-                                    <label for="inputAddress" class="form-label">UF</label>
-                                    <input type="text" class="form-control" id="CursoUf" placeholder="">
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label for="inputState" class="form-label">Estado do Curso</label>
-                                    <select id="inputEstadoCurso" class="form-select">
-                                        <option value="escolha_opcao" disabled selected>Escolha uma opção</option>
-                                        <option ></option>
-                                    </select>
-                                </div>
-                                    <div class="col-4">
-                                        <label for="inputAddress2" class="form-label">Data Inicio</label>
-                                        <input type="date" class="form-control" id="dtInicioCurso" placeholder="">
-                                    </div>
-                                    <div class="col-4">
-                                        <label for="inputCity" class="form-label">Data Saida</label>
-                                        <input type="date" class="form-control" id="dtSaidaCurso">
-                                    </div>
-                                    <div class="row-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="checkCurso">
-                                            <label class="form-check-label" for="gridCheck">
-                                                Cursando
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <label for="inputIdioma" class="form-label">Idioma</label>
-                                        <input type="text" class="form-control" id="idiomaCurso" >
-                                    </div>
-                                    <div class="col-4">
-                                        <label for="inputIdioma" class="form-label">Nivel Idioma</label>
-                                        <input type="text" class="form-control" id="nivelIdioma" >
-                                    </div>
-
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" data-bs-target="#staticBackdrop2"
-                                data-bs-toggle="modal">Voltar</button>
-                            <button class="btn btn-primary" data-bs-target="close"
                                 data-bs-toggle="modal">Concluir</button>
                         </div>
                     </div>
                 </div>
             </div>
-
 
 
 
@@ -544,6 +444,11 @@
                     </div>
                 </div>
             </div>
+
+
+
+
+
             <div class="modal fade" id="staticBackdropEditPR" tabindex="-1" aria-labelledby="staticBackdrop"
                 aria-hidden="true">
 
@@ -554,12 +459,152 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Hide this modal and show the first with the button below.
+
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-primary" data-bs-target="close"
                                 data-bs-toggle="modal">Salvar</button>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal para dados exp  profissionais e formação academ -->
+        <div class="modal fade" id="staticBackdropEditEP" tabindex="-1" aria-labelledby="staticBackdrop"
+            aria-hidden="true">
+
+            <div class="modal-dialog modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdrop4">EXPERIENCIA PROFISSIONAL</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row g-3">
+                            <legend>Expêriencias Profissionais</legend>
+                            <div class="col-md-4">
+                                <label for="inputDate4" class="form-label">Nome da Empresa</label>
+                                <input type="text" class="form-control" id="empresaNome">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="inputDate4" class="form-label">Cargo</label>
+                                <input type="text" class="form-control" id="emresaCargo">
+                            </div>
+                            <div class="col-4">
+                                <label for="inputAddress" class="form-label">Area Profissional</label>
+                                <input type="text" class="form-control" id="areaProfissional" placeholder="">
+                            </div>
+                            <div class="col-6">
+                                <label for="inputAddress" class="form-label">Cidade</label>
+                                <input type="text" class="form-control" id="expCidade" placeholder="">
+                            </div>
+                            <div class="col-2">
+                                <label for="inputAddress" class="form-label">UF</label>
+                                <input type="text" class="form-control" id="expUf" placeholder="">
+                            </div>
+                            <div class="col-2">
+                                <label for="inputAddress2" class="form-label">Data Inicio</label>
+                                <input type="date" class="form-control" id="dtInicio" placeholder="">
+                            </div>
+                            <div class="col-md-2">
+                                <label for="inputCity" class="form-label">Data Saida</label>
+                                <input type="date" class="form-control" id="dtSaida">
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="checkExp">
+                                    <label class="form-check-label" for="gridCheck">
+                                        Emprego Atual
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <label for="exampleFormControlTextarea1" class="form-label">Principais
+                                    atividades</label>
+                                <textarea class="form-control" id="principaisAtv" rows="3"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-bs-target="#staticBackdrop3"
+                            data-bs-toggle="modal" id="addExp">Salvar</button>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="staticBackdropEditEP" tabindex="-1" aria-labelledby="staticBackdrop"
+            aria-hidden="true">
+
+            <div class="modal-dialog modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdrop4">FORMAÇÃO ACADEMICA</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row g-3">
+                            <legend>Formação Academica</legend>
+                            <div class="col-md-6">
+                                <label for="inputDate4" class="form-label">Nome do curso</label>
+                                <input type="text" class="form-control" id="nomeCurso">
+                            </div>
+                            <div class="col-6">
+                                <label for="inputAddress" class="form-label">Nome da Instituição</label>
+                                <input type="text" class="form-control" id="nomeInstituicao" placeholder="">
+                            </div>
+                            <div class="col-6">
+                                <label for="inputAddress" class="form-label">Cidade</label>
+                                <input type="text" class="form-control" id="CursoCidade" placeholder="">
+                            </div>
+                            <div class="col-2">
+                                <label for="inputAddress" class="form-label">UF</label>
+                                <input type="text" class="form-control" id="CursoUf" placeholder="">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="inputState" class="form-label">Estado do Curso</label>
+                                <select id="inputEstadoCurso" class="form-select">
+                                    <option value="escolha_opcao" disabled selected>Escolha uma opção</option>
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <label for="inputAddress2" class="form-label">Data Inicio</label>
+                                <input type="date" class="form-control" id="dtInicioCurso" placeholder="">
+                            </div>
+                            <div class="col-4">
+                                <label for="inputCity" class="form-label">Data Saida</label>
+                                <input type="date" class="form-control" id="dtSaidaCurso">
+                            </div>
+                            <div class="row-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="checkCurso">
+                                    <label class="form-check-label" for="gridCheck">
+                                        Cursando
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label for="inputIdioma" class="form-label">Idioma</label>
+                                <input type="text" class="form-control" id="idiomaCurso">
+                            </div>
+                            <div class="col-4">
+                                <label for="inputIdioma" class="form-label">Nivel Idioma</label>
+                                <input type="text" class="form-control" id="nivelIdioma">
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-bs-target="#staticBackdrop3"
+                            data-bs-toggle="modal">Salvar</button>
+
+
                     </div>
                 </div>
             </div>

@@ -40,8 +40,8 @@ function cadastrar() {
 
 
 
-  /* fetch('http://10.92.198.19:8080/usuario', { */
-    fetch('http://localhost:8080/usuario', {
+   fetch('http://10.92.198.19:8080/usuario', {
+/*     fetch('http://localhost:8080/usuario', { */
 
 
     headers: {
