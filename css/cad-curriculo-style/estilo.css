@@ -336,7 +336,7 @@ body {
 }
 
 
-.exp {
+.exp{
   margin-top: 10px;
   flex-direction: row;
   background-color: #ED7A11 !important;
@@ -347,8 +347,10 @@ body {
   justify-content: center;
   align-items: center;
   color: #ffffff;
+
 }
-#editexp{
-
-
+#expProf, #formAcad{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }

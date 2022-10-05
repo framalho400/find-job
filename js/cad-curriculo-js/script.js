@@ -15,14 +15,21 @@ voltar.addEventListener('click', () => {
 
 
 const checkbox = document.querySelector('#checkExp')
-const dtInicio = document.querySelector('#dtInicio')
 const dtSaida = document.querySelector('#dtSaida')
 
 const checkboxCurso = document.querySelector('#checkCurso')
-const dtInicioCurso = document.querySelector('#dtInicioCurso')
 const dtSaidaCurso = document.querySelector('#dtSaidaCurso')
 
 //quando o checkbox for marcado, o campo de data de saida será desabilitado
+checkbox.addEventListener('click', () => {
+  if (checkbox.checked) {
+    dtSaida.disabled = true;
+  } else {
+    dtSaida.disabled = false;
+  }
+}
+)
+
 checkboxCurso.addEventListener('click', () => {
   if (checkboxCurso.checked) {
     dtSaidaCurso.disabled = true;
@@ -32,13 +39,43 @@ checkboxCurso.addEventListener('click', () => {
 }
 )
 
-const Prof = "MC Donalds"
-addExp.addEventListener('click', () => {
-  var exp = document.createElement('div')
-  var texto = document.createTextNode(Prof)
-  exp.classList.add('exp')
-  exp.appendChild(texto)
 
-  const expProfissional = document.getElementById('expProf')
-  expProfissional.appendChild(exp)
+
+
+
+
+
+/* Função para adicionar  */
+const formExpProf = document.querySelector('#formExpProf')
+const nameEmpresa = document.querySelector('#empresaNome')
+
+addExp.addEventListener('click', () => {
+  if (nameEmpresa.value == "") {
+  }
+  else {
+    var exp = document.createElement('div')
+    exp.classList.add('exp')
+    var texto = document.createTextNode(nameEmpresa.value)
+    exp.appendChild(texto)
+
+    const expProfissional = document.getElementById('expProf')
+    expProfissional.appendChild(exp)
+  }
+})
+
+const formFA = document.querySelector('#FormfromaAcad')
+const nameFA = document.querySelector('#nomeCurso')
+
+addFM.addEventListener('click', () => {
+  if (nameFA.value == "") {
+  }
+  else {
+    var exp = document.createElement('div')
+    exp.classList.add('exp')
+    var texto = document.createTextNode(nameFA.value)
+    exp.appendChild(texto)
+
+    const expProfissional = document.getElementById('formAcad')
+    expProfissional.appendChild(exp)
+  }
 })

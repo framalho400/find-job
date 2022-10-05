@@ -168,7 +168,7 @@
                     </div>
                     <div class="footer-d">
 
-                        <button class="btn btn-primary" data-bs-toggle="modal" href="#staticBackdropEditEP"
+                        <button class="btn btn-primary" data-bs-toggle="modal" href="#staticBackdrop2"
                             role="button">Editar</button>
                     </div>
                 </div>
@@ -179,7 +179,7 @@
                         <span></span>
                     </div>
                     <div class="footer-d">
-                        <button class="btn btn-primary" data-bs-toggle="modal" href="#staticBackdropEditPR"
+                        <button class="btn btn-primary" data-bs-toggle="modal" href="#staticBackdrop3"
                             role="button">Editar</button>
                     </div>
                 </div>
@@ -190,7 +190,7 @@
             </div>
 
             <!-- Formulário de cadastro de currículoe com Apresentação -->
-
+            <!-- Apresentação -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog modal-xl">
@@ -202,7 +202,7 @@
                         <div class="modal-body">
 
                             Aqui vai ficar a Apresentação
-                            <img src="..." class="img-fluid" alt="...">
+
                         </div>
                         <div class="modal-footer">
 
@@ -212,6 +212,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Dados Pessoais -->
             <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog modal-xl">
@@ -379,6 +380,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Dados Profissionais -->
             <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog modal-xl">
@@ -388,18 +390,17 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="row g-3">
-
+                           
                                 <div class="mb-3">
                                     <label for="exampleFormControlTextarea1" class="form-label">Objetivo
                                         Profissional</label>
                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                 </div>
                                 <legend>Expêriencias Profissionais</legend>
-                           
-                                <div class="col-12" >
+                                <div class="col-12">
                                     <button class="btn btn-primary" data-bs-toggle="modal" href="#staticBackdropEditEP"
-                                    role="button">+</button>
+                                        role="button" id="AddModalexpProf">+</button>
+
                                     <div id="expProf">
 
 
@@ -407,10 +408,15 @@
 
                                 </div>
                                 <legend>Formação Academica</legend>
-                                <div class="col-12" id="formAcad">
-                                    <i class='bx bx-add-to-queue' style="font-size:35px ;" id="buttonFormAcad"></i>
+                                <div class="col-12" >
+                                    <button class="btn btn-primary" data-bs-toggle="modal" href="#staticBackdropEditFA"
+                                        role="button">+</button>
+                                    <div id="formAcad">
+
+
+                                    </div>
                                 </div>
-                            </form>
+                    
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-primary" data-bs-target="#staticBackdrop2"
@@ -423,66 +429,19 @@
             </div>
 
 
-
-            <!-- edicao de dados pessoais e profissionais -->
-            <div class="modal fade" id="staticBackdropEditP" tabindex="-1" aria-labelledby="staticBackdrop"
-                aria-hidden="true">
-
-                <div class="modal-dialog modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdrop4">DADOS PESSOAIS</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            Hide this modal and show the first with the button below.
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" data-bs-target="#staticBackdrop3"
-                                data-bs-toggle="modal">Salvar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-            <div class="modal fade" id="staticBackdropEditPR" tabindex="-1" aria-labelledby="staticBackdrop"
-                aria-hidden="true">
-
-                <div class="modal-dialog modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdrop5">DADOS PROFISSIONAIS</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" data-bs-target="close"
-                                data-bs-toggle="modal">Salvar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
         <!-- Modal para dados exp  profissionais e formação academ -->
+        <!-- Exp Profissional -->
         <div class="modal fade" id="staticBackdropEditEP" tabindex="-1" aria-labelledby="staticBackdrop"
             aria-hidden="true">
 
             <div class="modal-dialog modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdrop4">EXPERIENCIA PROFISSIONAL</h5>
+                        <h5 class="modal-title" id="staticBackdropEditEP">EXPERIENCIA PROFISSIONAL</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="row g-3">
+                        <form class="row g-3" id="formExpProf">
                             <legend>Expêriencias Profissionais</legend>
                             <div class="col-md-4">
                                 <label for="inputDate4" class="form-label">Nome da Empresa</label>
@@ -528,26 +487,26 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" data-bs-target="#staticBackdrop3"
-                            data-bs-toggle="modal" id="addExp">Salvar</button>
+                        <button class="btn btn-primary" data-bs-target="#staticBackdrop3" data-bs-toggle="modal"
+                            id="addExp">Salvar</button>
 
 
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="modal fade" id="staticBackdropEditEP" tabindex="-1" aria-labelledby="staticBackdrop"
+        <!-- Formação Academica -->
+        <div class="modal fade" id="staticBackdropEditFA" tabindex="-1" aria-labelledby="staticBackdrop"
             aria-hidden="true">
 
             <div class="modal-dialog modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdrop4">FORMAÇÃO ACADEMICA</h5>
+                        <h5 class="modal-title" id="staticBackdropEditFA">FORMAÇÃO ACADEMICA</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="row g-3">
+                        <form class="row g-3" id="FormfromaAcad">
                             <legend>Formação Academica</legend>
                             <div class="col-md-6">
                                 <label for="inputDate4" class="form-label">Nome do curso</label>
@@ -602,7 +561,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary" data-bs-target="#staticBackdrop3"
-                            data-bs-toggle="modal">Salvar</button>
+                            data-bs-toggle="modal" id="addFM">Salvar</button>
 
 
                     </div>

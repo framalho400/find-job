@@ -116,6 +116,7 @@ formulario.addEventListener('submit', function (event) {
     cadastrar();
     limpar();
     window.location.href = "../../templates/usuario/home.html";
+    
    }
    msgErro(msgText);
 });
