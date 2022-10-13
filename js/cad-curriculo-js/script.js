@@ -1,4 +1,9 @@
 
+$(window).on('load',function(){
+  $('#staticBackdrop').modal('show'); });
+
+
+/* paginação do curriculo */
 const proximo = document.querySelector('#proximo')
 const voltar = document.querySelector('#voltar')
 const c1 = document.querySelector('.c1')
@@ -14,13 +19,13 @@ voltar.addEventListener('click', () => {
 })
 
 
+//quando o checkbox for marcado, o campo de data de saida será desabilitado
 const checkbox = document.querySelector('#checkExp')
 const dtSaida = document.querySelector('#dtSaida')
 
 const checkboxCurso = document.querySelector('#checkCurso')
 const dtSaidaCurso = document.querySelector('#dtSaidaCurso')
 
-//quando o checkbox for marcado, o campo de data de saida será desabilitado
 checkbox.addEventListener('click', () => {
   if (checkbox.checked) {
     dtSaida.disabled = true;
@@ -41,10 +46,6 @@ checkboxCurso.addEventListener('click', () => {
 
 
 
-
-
-
-
 /* Função para adicionar  */
 const formExpProf = document.querySelector('#formExpProf')
 const nameEmpresa = document.querySelector('#empresaNome')
@@ -60,8 +61,22 @@ addExp.addEventListener('click', () => {
 
     const expProfissional = document.getElementById('expProf')
     expProfissional.appendChild(exp)
+     nameEmpresa.value = ""
+
+
+    //criando o botão de remover
+    var btnExcluir = document.createElement('button')
+    btnExcluir.classList.add('btnExcluir')
+    btnExcluir.innerHTML = "<i class='bx bx-x-circle'></i>"
+    exp.appendChild(btnExcluir)
+
+    btnExcluir.addEventListener('click', () => {
+      expProfissional.removeChild(exp)
+    })
   }
+
 })
+{/* <i class='bx bx-pencil'></i> */}
 
 const formFA = document.querySelector('#FormfromaAcad')
 const nameFA = document.querySelector('#nomeCurso')
@@ -79,3 +94,4 @@ addFM.addEventListener('click', () => {
     expProfissional.appendChild(exp)
   }
 })
+

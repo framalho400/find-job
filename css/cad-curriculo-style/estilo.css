@@ -354,3 +354,15 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+.btnExcluir{
+  display: flex;
+  flex-direction: row;
+  justify-self: end;
+  align-items: center;
+  width: 30%;
+  background-color: transparent !important;
+  border: none;
+  font-size: 35px;
+  color: #ffffff;
+}

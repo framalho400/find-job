@@ -12,3 +12,11 @@ toggle.addEventListener("click", () => {
     ;
 })
 
+
+
+/* const buscar = document.getElementById('buscar');
+const divbuscar = document.getElementById('divbuscar');
+buscar.addEventListener('', function() {
+    divbuscar.classList.toggle('active');
+}) */
+

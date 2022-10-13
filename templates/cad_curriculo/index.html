@@ -26,24 +26,19 @@
     <div class="todo">
         <nav class="nav-top">
 
-            <div class="buscar" style="display:none ;">
-                <input type="text" name="txtBusca" id="" placeholder="Buscar">
+            <div class="buscar" id="divbuscar">
+                <input class="buscar" type="text" placeholder="Buscar" id="buscar">
+                <div type="button" class="icone">
+                    <i class='bx bx-search icon'></i>
+                </div>
             </div>
             <div class="user" href="perfil.html">
-
                 <span class="user-img">
                     <img src="../../img/user.png" alt="" srcset="">
                 </span>
                 <div class="user-text">
                     <label>Olá, Luccas Mello</label>
                 </div>
-                <div class="sair">
-                    <li><a href="../login/login.html">
-                            <i class='bx bx-log-out bx-flip-horizontal icon'></i>
-                        </a>
-                    </li>
-                </div>
-            </div>
 
 
         </nav>
@@ -88,8 +83,10 @@
                                 <span class="text nav-text">Curriculo</span>
                             </a>
                         </li>
-                        <li class="img-logo">
-
+                        <li class="sair">
+                            <a href="../login/login.html">
+                                <i class='bx bx-log-out icon sair'></i>
+                            </a>
                         </li>
 
                 </div>

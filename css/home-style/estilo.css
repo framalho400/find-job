@@ -95,7 +95,7 @@ img::selection {
     max-height:60%;
     position: relative;
     width: 45%;
-    height: auto;
+    height: 400px;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;

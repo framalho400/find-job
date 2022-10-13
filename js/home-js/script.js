@@ -21,54 +21,6 @@ function copiarTexto() {
 }
 
 
-/*  <div class="div">
-
- <div class="empresa">
-     <h3>Nome de empresa</h3>
- </div>
- <div class="local">
-     <h4>Local:</h4>
-     <p>São paulo - SP</p>
- </div>
- <div class="exigencias">
-     <h4>Exigencias:</h4>
-     <p> Lorem ipsum quis pretium morbi praesent nec integer sagittis curabitur, etiam euismod diam
-         semper sit suspendisse nam fermentum quisque mattis, nec et torquent nunc eleifend semper
-     </p>
- </div>
- <button type="button" class="btn btn-primary bVerMais" data-bs-toggle="modal"
-     data-bs-target="#exampleModal">
-     Ver Mais..
- </button>
-
-
- <!-- Aba Laterl esquerda -->
- <div class="aba">
-     <i class='bx bx-chevron-left contats ' id="contats"></i>
-     <div class="contatos ">
-         <h4>Entre em contato conosco:</h4>
-         <span>
-             <label>Contato</label>
-             <p>(11) 3003-2580</p>
-         </span>
-         <span>
-             <label>Whatsapp</label>
-             <p>(11) 3003-2580</p>
-
-
-         </span>
-         <span>
-             <label>Email</label>
-             <p>Emaiaqui@gmail.com</p>
-
-
-         </span>
-
-
-     </div>
- </div>
-</div> */
-
 
 add.addEventListener('click', () => {
   nome = "Felipe";
@@ -145,13 +97,13 @@ add.addEventListener('click', () => {
 
   
   
-  const abas = document.querySelectorAll('.aba');
-  
-  abas.forEach((aba) =>
-    aba.addEventListener('click', (event) => {
-      aba.classList.toggle('close')
-    })
-  );
 })
 
+const abas = document.querySelectorAll('.aba');
+
+abas.forEach((aba) =>
+  aba.addEventListener('click', (event) => {
+    aba.classList.toggle('close')
+  })
+);
  
