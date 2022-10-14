@@ -24,8 +24,9 @@ voltar.addEventListener('click', () => {
 
 
 
-//api 
-const url = "http://localhost:8080/usuario";
+//api 'http://localhost:8080/usuario' 
+const url = 'http://10.92.198.19:8080/usuario';
+
 const formulario = document.querySelector('form');
 const Icpf = document.querySelector('#cpf');
 const Inome = document.querySelector('#nome');
@@ -114,8 +115,10 @@ formulario.addEventListener('submit', function (event) {
     msgErro(msgText);
   }
   else {
+    
     let msgText = "Cadastrado com sucesso!";
-    msgErro(msgText);
+    let color = "green";
+    msgErro(msgText, color);
     cadastrar();
     limpar();
     /*   window.location.href = "../../templates/usuario/home.html"; */
@@ -124,15 +127,13 @@ formulario.addEventListener('submit', function (event) {
   msgErro(msgText);
 });
 
-function msgErro(msgText) {
+function msgErro(msgText, color) {
   const msg = document.querySelector('.msg');
-
   msg.innerHTML = msgText;
-
   msg.classList.add('active');
   setTimeout(function () {
     msg.classList.remove('active');
-
+    msg.style.borderLeft = `10px solid black ${color}` ;
   }, 5000);
 
 }
