@@ -6,15 +6,15 @@ const cadastro = document.querySelector('.cadastro')
 
 proximo.addEventListener('click', () => {
 
-  if (Inome.value == '' || Icpf.value == '') {
-    let msgText = "Preencha todos os campos!";
-    msgErro(msgText);
-  }
-  else {
-    cadastro.classList.add('close')
-    cadastroP.classList.add('open');
-  }
-
+  cadastro.classList.add('close')
+  cadastroP.classList.add('open');
+  /*   if (Inome.value == '' || Icpf.value == '') {
+      let msgText = "Preencha todos os campos!";
+      msgErro(msgText);
+    }
+    else {
+    }
+   */
 })
 voltar.addEventListener('click', () => {
   cadastro.classList.remove('close')
@@ -104,36 +104,39 @@ function limpar() {
 }
 
 formulario.addEventListener('submit', function (event) {
-  event.preventDefault();
+  event.preventDefault(event);
   if (Inome.value == '' || Icpf.value == '' || Iemail.value == '' || Isenha.value == '') {
-    let msgText = "Preencha todos os campos!";
-    msgErro(msgText);
-
+    msgErro(msgText = "Preencha todos os campos!", color = "red");
   }
   else if (Isenha.value != IrepitaSenha.value) {
-    let msgText = "As senhas não coincidem";
-    msgErro(msgText);
+    msgErro(msgText = "As senhas não coincidem!");
   }
   else {
-    
-    let msgText = "Cadastrado com sucesso!";
-    let color = "green";
-    msgErro(msgText, color);
+    msgErro(msgText = "Cadastrado com sucesso!", color = "green");
     cadastrar();
     limpar();
-    /*   window.location.href = "../../templates/usuario/home.html"; */
+   /*  window.location.href = "../../templates/usuario/home.html";  */
 
   }
-  msgErro(msgText);
+  
 });
 
+
 function msgErro(msgText, color) {
+
   const msg = document.querySelector('.msg');
-  msg.innerHTML = msgText;
-  msg.classList.add('active');
-  setTimeout(function () {
-    msg.classList.remove('active');
-    msg.style.borderLeft = `10px solid black ${color}` ;
-  }, 5000);
+
+  div = document.createElement('div');
+  div.classList.add('msg');
+  div.style.borderLeft  = `solid 10px ${color}`;
+  div.innerText = msgText;
+  document.body.appendChild(div); 
+setTimeout(function () {
+    div.classList.add('close')
+}, 3000); // 5 segundos
+setTimeout(function () {
+  div.remove();
+}, 40000); // 6 segundos
+
 
 }

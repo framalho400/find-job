@@ -1,7 +1,6 @@
 
-$(window).on('load',function(){
-  $('#staticBackdrop').modal('show'); });
-
+var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+myModal.show();
 
 /* paginação do curriculo */
 const proximo = document.querySelector('#proximo')

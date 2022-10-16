@@ -1,3 +1,30 @@
+const url = "http://localhost:8080/usuario/especifico/1";
+
+
+//Essa função é responsável por fazer a requisição para o servidor
+function getUser() {
+  axios.get(url,{
+    
+  })
+    .then((response) => {
+      const data = response.data;
+      const nome = data.nome;
+      const email = data.email;
+      //Aqui é onde você vai fazer o que quiser com os dados
+
+      console.log(data);
+
+      
+      document.getElementById("user").innerHTML = JSON.stringify(data.nome);
+      
+
+    })
+    .catch((error) => console.log(error));
+}
+//aqui estou chamando a função getUser() para que ela seja executada assim que a página for carregada
+ getUser(); 
+
+/* 
 
 //função para abrir a aba da contatos 
 
@@ -19,13 +46,13 @@ function copiarTexto() {
 
 
 //função para criar vaga
-function CriaVaga() {
-  nome = "Casa de Massagem";
+function CriaVaga(nome, email) {
+/*   nome = "Casa de Massagem"; */
   local = 'Rua Algusta, 123';
   contato = '123456789';
   wpp = '123456789';
-  email ='@gmail.com' 
-    const principal = document.querySelector('.principal');
+  /* email = '@gmail.com' */
+  const principal = document.querySelector('.principal');
   const div = document.createElement('div');
   div.classList.add('div');
   div.innerHTML = `
@@ -90,3 +117,5 @@ abas.forEach((aba) =>
     aba.classList.toggle('close')
   })
 );
+
+
