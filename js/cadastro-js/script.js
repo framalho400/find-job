@@ -115,7 +115,7 @@ formulario.addEventListener('submit', function (event) {
     msgErro(msgText = "Cadastrado com sucesso!", color = "green");
     cadastrar();
     limpar();
-   /*  window.location.href = "../../templates/usuario/home.html";  */
+    /*   window.location.href = "../../templates/usuario/home.html"; */
 
   }
   
@@ -131,8 +131,12 @@ function msgErro(msgText, color) {
   div.style.borderLeft  = `solid 10px ${color}`;
   div.innerText = msgText;
   document.body.appendChild(div); 
+  
+
 setTimeout(function () {
     div.classList.add('close')
+
+
 }, 3000); // 5 segundos
 setTimeout(function () {
   div.remove();

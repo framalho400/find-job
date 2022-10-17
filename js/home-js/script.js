@@ -117,5 +117,3 @@ abas.forEach((aba) =>
     aba.classList.toggle('close')
   })
 );
-
-
