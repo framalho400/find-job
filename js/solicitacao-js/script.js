@@ -109,5 +109,7 @@ function criaEmpresa() {
 
 }
 criaEmpresa();
+criaEmpresa();
+criaEmpresa();
 
 
