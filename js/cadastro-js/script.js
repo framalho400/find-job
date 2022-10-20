@@ -24,8 +24,8 @@ voltar.addEventListener('click', () => {
 
 
 
-//api 'http://localhost:8080/usuario' 
-const url = 'http://10.92.198.19:8080/usuario';
+
+const url = 'http://10.92.198.19:8080/usuario/especifico/';
 
 const formulario = document.querySelector('form');
 const Icpf = document.querySelector('#cpf');
@@ -45,48 +45,10 @@ function cadastrar() {
   })
     .then((response) => {
       alert(JSON.stringify(response.data));
+      msgErro(msgText = "Cadastrado com sucesso!", color = "green");
     })
     .catch((error) => console.log(error));
-
-
-  /*    fetch('http://10.92.198.19:8080/usuario', { */
-  /*   fetch('http://localhost:8080/usuario', { 
-
-
-    headers: {
-
-      'Accept': 'application/json',
-
-      'Content-Type': 'application/json'
-
-    },
-
-    method: 'POST',
-
-    body: JSON.stringify({
-
-      nome: Inome.value,
-
-      cpf: Icpf.value,
-
-      email: Iemail.value,
-
-      senha: Isenha.value,
-
-    }),
-
-  })
-
-    .then(function (res) {
-      console.log(res);
-
-    })
-
-    .catch(function (res) {
-      console.log(res);
-
-    });
- */
+    msgErro(msgText = `Usuario não cadastrado` , color = "red");
 };
 
 function limpar() {
@@ -112,7 +74,7 @@ formulario.addEventListener('submit', function (event) {
     msgErro(msgText = "As senhas não coincidem!");
   }
   else {
-    msgErro(msgText = "Cadastrado com sucesso!", color = "green");
+   
     cadastrar();
     limpar();
     /*   window.location.href = "../../templates/usuario/home.html"; */

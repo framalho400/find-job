@@ -1,334 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
 
-    <link rel="stylesheet" href="../../../css/navbar-style/estilo.css">
-    <link rel="stylesheet" href="../../../css/listagem-style/estilo.css" />
-    <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../../css/listagem-style/estilo.css" />
+  <link rel="stylesheet" href="../../../css/navbar-style/estilo.css">
+  <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
-    <title>Find Job | Listagem</title>
+  <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <title>Find Job | Listagem</title>
 </head>
-<body>
-    <div class="todo">
-      <nav class="nav-top">
 
-        <div class="buscar" id="divbuscar">
-            <input class="buscar" type="text" placeholder="Buscar" id="buscar">
-            <div type="button" class="icone">
-                <i class='bx bx-search icon'></i>
-            </div>
+<body>
+  <div class="todo">
+    <nav class="nav-top">
+
+      <div class="buscar" id="divbuscar">
+        <input class="buscar" type="text" placeholder="Buscar" id="buscar">
+        <div type="button" class="icone">
+          <i class='bx bx-search icon'></i>
         </div>
-        <div class="user" href="perfil.html">
-            <span class="user-img">
-                <img src="../../img/user.png" alt="" srcset="">
-            </span>
-            <div class="user-text">
-                <label>Olá, Luccas Mello</label>
-            </div>
+      </div>
+      <div class="user" href="perfil.html">
+        <span class="user-img">
+          <img src="../../img/user.png" alt="" srcset="">
+        </span>
+        <div class="user-text">
+          <label>Olá, Luccas Mello</label>
         </div>
+      </div>
 
 
     </nav>
 
     <nav class="nav-left">
 
-        <header class="header">
-            <span class="img">
-                <img src="../../../img/logo.png" alt="" srcset="">
-            </span>
+      <header class="header">
+        <span class="img">
+          <img src="../../../img/logo.png" alt="" srcset="">
+        </span>
 
-            <i class='bx bx-menu toggle'></i>
+        <i class='bx bx-menu toggle'></i>
 
-        </header>
+      </header>
 
 
-        <div class="menu-bar">
-            <div class="menu">
-                <ul class="tlogo">
+      <div class="menu-bar">
+        <div class="menu">
+          <ul class="tlogo">
 
-                    <span class="text nav-text"><strong>FIND JOB</strong></span>
-                </ul>
-                <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="../perfil.html">
+            <span class="text nav-text"><strong>FIND JOB</strong></span>
+          </ul>
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="../perfil.html">
 
-                            <i class='bx bx-user icon'></i>
-                            <span class="text nav-text">Perfil</span>
-                        </a>
-                    </li>
+                <i class='bx bx-user icon'></i>
+                <span class="text nav-text">Perfil</span>
+              </a>
+            </li>
 
-                    <li class="nav-link">
-                        <a href="../home.html">
-                            <i class='bx bx-home-alt icon'></i>
-                            <span class="text nav-text">Home</span>
-                        </a>
-                    </li>
+            <li class="nav-link">
+              <a href="../home.html">
+                <i class='bx bx-home-alt icon'></i>
+                <span class="text nav-text">Home</span>
+              </a>
+            </li>
 
-                    <li class="nav-link">
-                        <a href="../solicitacao.html">
+            <li class="nav-link">
+              <a href="../solicitacao.html">
 
-                            <i class='bx bx-bell icon'></i>
-                            <span class="text nav-text">Solicitações</span>
-                        </a>
-                    </li>
+                <i class='bx bx-bell icon'></i>
+                <span class="text nav-text">Solicitações</span>
+              </a>
+            </li>
 
-                    <li class="nav-link">
-                        <a href="#">
+            <li class="nav-link">
+              <a href="#">
 
-                            <i class='bx bx-user-plus icon'></i>
-                            <span class="text nav-text">Cadastro</span>
-                        </a>
-                    </li>
-                    <li class="sair">
-                        <a href="../../login/login/login.html">
-                            <i class='bx bx-log-out icon sair'></i>
-                        </a>
-                    </li>
+                <i class='bx bx-user-plus icon'></i>
+                <span class="text nav-text">Cadastro</span>
+              </a>
+            </li>
+            <li class="sair">
+              <a href="../../login/login/login.html">
+                <i class='bx bx-log-out icon sair'></i>
+              </a>
+            </li>
 
-            </div>
         </div>
+      </div>
 
 
     </nav>
-        <nav class="nav-bootom"></nav>
+    <nav class="nav-bootom"></nav>
 
 
-        <div class="home">
-            <div class="container ">
+    <div class="home">
+      <div class="principal">
+        <div class="container ">
 
-              <div class="botao">
-                <div class="listaUser" id="user">
-                    <li>Usuários</li>
-                </div>
-                <div class="listaAdm close" id="adm">
-                    <li>Administradores</li>
-                </div>
+          <div class="botao">
+            <div class="listaUser" id="user">
+              <li>Usuários</li>
             </div>
+            <div class="listaAdm close" id="adm">
+              <li>Administradores</li>
+            </div>
+          </div>
 
 
-            <div class="card usuario" id="usuariosListagem">                
-              <table>
-                 
-                  <thead>
-                    <tr>  
-                      <th scope="col" class="col-1">ID</th>
-                      <th scope="col" class="col-2">Foto</th>
-                      <th scope="col"class="col-2">Nome</th>
-                      <th scope="col"class="col-2">E-mail</th>
-                      <th scope="col" class="col-2">Celular</th>
-                      <th scope="col" class="col-1">Excluir</th>
-                    </tr>
-                  </thead>
-                  
-                  <tbody id="bodyUser">
-                   <!--  <tr>
-                      <th scope="row">1</th>
-                      <td><img src="../../../img/user.png" alt="" srcset=""></td>
-                      <td>Luccas</td>
-                      <td>Isabel@gmail.com</td>
-                      <td>(11)3003-2580</td>
-                      <td><button type="button"><i class='bx bx-trash icon'></i></button></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td><img src="../../../img/user.png" alt="" srcset=""></td>
-                      <td>Luccas</td>
-                      <td>Isabel@gmail.com</td>
-                      <td>(11)3003-2580</td>
-                      <td><button type="button"><i class='bx bx-trash icon'></i></button></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td><img src="../../../img/user.png" alt="" srcset=""></td>
-                      <td>Luccas</td>
-                      <td>Isabel@gmail.com</td>
-                      <td>(11)3003-2580</td>
-                      <td><button type="button"><i class='bx bx-trash icon'></i></button></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">4</th>
-                      <td><img src="../../../img/user.png" alt="" srcset=""></td>
-                      <td>Luccas</td>
-                      <td>Isabel@gmail.com</td>
-                      <td>(11)3003-2580</td>
-                      <td><button type="button"><i class='bx bx-trash icon'></i></button></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">5</th>
-                      <td><img src="../../../img/user.png" alt="" srcset=""></td>
-                      <td>Luccas</td>
-                      <td>Isabel@gmail.com</td>
-                      <td>(11)3003-2580</td>
-                      <td><button type="button"><i class='bx bx-trash icon'></i></button></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">6</th>
-                      <td><img src="../../../img/user.png" alt="" srcset=""></td>
-                      <td>Luccas</td>
-                      <td>Isabel@gmail.com</td>
-                      <td>(11)3003-2580</td>
-                      <td><button type="button"><i class='bx bx-trash icon'></i></button></td>
-                    </tr> -->
-                  </tbody>                
-                </table>
-                <nav aria-label="Page navigation example">
-                  <ul class="pagination justify-content-center" id="demo">
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#" tabindex="-1">&laquo;</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">&raquo;</a>
-                    </li>
-                  </ul>
-                </nav>
+          <div class="card usuario" id="usuariosListagem">
+            <table>
+
+              <thead>
+                <tr>
+                  <th scope="col" class="col-1">ID</th>
+
+                  <th scope="col" class="col-2">Nome</th>
+                  <th scope="col" class="col-2">E-mail</th>
+                  <th scope="col" class="col-1">Excluir</th>
+                </tr>
+              </thead>
+
+              <tbody id="bodyUser">
+
+              </tbody>
+            </table>
+            <nav class="listagem">
+              <div class="first">&#171;</div>
+              <div class="prev">&lt;</div>
+              <div class="numbers">
+                <div>1</div>
               </div>
+              <div class="next">&gt;</div>
+              <div class="last">&#187;</div>
+            </nav>
+          </div>
 
 
-            
-            <div class="card administrador close" id="administradoresListagem">
-              <table>               
 
-                <thead>
-                  <tr>  
-                    <th scope="col" class="col-1">ID</th>
-                    <th scope="col" class="col-2">Foto</th>
-                    <th scope="col"class="col-2">Nome</th>
-                    <th scope="col"class="col-2">E-mail</th>
-                    <th scope="col" class="col-2">Celular</th>
-                    <th scope="col" class="col-1">Excluir</th>
-                  </tr>
-                </thead>
-                
-                <tbody >
-                  <tr>
-                    <th scope="row">1</th>
-                    <td><img src="../../../img/user.png" alt="" srcset=""></td>
-                    <td>Pedro</td>
-                    <td>Isabel@gmail.com</td>
-                    <td>(11)3003-2580</td>
-                    <td><button type="button"><i class='bx bx-trash icon'></i></button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td><img src="../../../img/user.png" alt="" srcset=""></td>
-                    <td>Pedro</td>
-                    <td>Isabel@gmail.com</td>
-                    <td>(11)3003-2580</td>
-                    <td><button type="button"><i class='bx bx-trash icon'></i></button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td><img src="../../../img/user.png" alt="" srcset=""></td>
-                    <td>Pedro</td>
-                    <td>Isabel@gmail.com</td>
-                    <td>(11)3003-2580</td>
-                    <td><button type="button"><i class='bx bx-trash icon'></i></button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td><img src="../../../img/user.png" alt="" srcset=""></td>
-                    <td>Pedro</td>
-                    <td>Isabel@gmail.com</td>
-                    <td>(11)3003-2580</td>
-                    <td><button type="button"><i class='bx bx-trash icon'></i></button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td><img src="../../../img/user.png" alt="" srcset=""></td>
-                    <td>Pedro</td>
-                    <td>Isabel@gmail.com</td>
-                    <td>(11)3003-2580</td>
-                    <td><button type="button"><i class='bx bx-trash icon'></i></button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">6</th>
-                    <td><img src="../../../img/user.png" alt="" srcset=""></td>
-                    <td>Pedro</td>
-                    <td>Isabel@gmail.com</td>
-                    <td>(11)3003-2580</td>
-                    <td><button type="button"><i class='bx bx-trash icon'></i></button></td>
-                  </tr>
-                </tbody>                
-              </table>
-              <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center" id="demo">
-                  <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">&laquo;</a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">&raquo;</a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
+          <div class="card administrador close" id="administradoresListagem">
+            <table>
 
-           
+              <thead>
+                <tr>
+                  <th scope="col" class="col-1">ID</th>
+                  <th scope="col" class="col-2">Nome</th>
+                  <th scope="col" class="col-2">E-mail</th>
+                  <th scope="col" class="col-1">Excluir</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+
+                  <td>Pedro</td>
+                  <td>Isabel@gmail.com</td>
+                  <td><button type="button" ><i class='bx bx-trash icon'></i></button></td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+
+                  <td>Pedro</td>
+                  <td>Isabel@gmail.com</td>
+                  <td><button type="button"><i class='bx bx-trash icon'></i></button></td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+
+                  <td>Pedro</td>
+                  <td>Isabel@gmail.com</td>
+                  <td><button type="button"><i class='bx bx-trash icon'></i></button></td>
+                </tr>
+                <tr>
+                  <th scope="row">4</th>
+
+                  <td>Pedro</td>
+                  <td>Isabel@gmail.com</td>
+                  <td><button type="button"><i class='bx bx-trash icon'></i></button></td>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+
+                  <td>Pedro</td>
+                  <td>Isabel@gmail.com</td>
+                  <td><button type="button"><i class='bx bx-trash icon'></i></button></td>
+                </tr>
+                <tr>
+                  <th scope="row">6</th>
+
+                  <td>Pedro</td>
+                  <td>Isabel@gmail.com</td>
+                  <td><button type="button"><i class='bx bx-trash icon'></i></button></td>
+                </tr>
+              </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-center" id="demo">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1">&laquo;</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">&raquo;</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
 
 
-           <!--  <div class="elementos">
-                <div class="botao">
-                    <button type="button" class="troca_user">Administradores</button>
-                </div>
-                <div class="listagem">
-                    <div class="busca">
-                        <div class="icone">      
-                            <i class='bx bx-search icon'></i>
-                        </div>
-                        <input class="buscar" type="text" placeholder="Buscar">    
-                    </div>   
-                    <div class="lista">
-                        <div>
-                            <div class="foto">
-                                <img src="../../img/user.png" alt="" srcset="">
-                                <h4>Luccas</h4>
-                            </div>
-                            <div class="info">
-                                <p>E-mail: Isabel@gmail.com</p>
-                                <p>Celular: (11)3003-2580</p>
-                            </div>
-                            <div class="excluir">
-                                <button type="button">
-                                    <i class='bx bx-trash icon'></i>
-                                </button>
-                            </div>
-                        </div>
-                     
-                    </div>                     
-                </div>
-            </div>             -->           
 
-          
+
         </div>
-        </div>
+      </div>
 
-        
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
         crossorigin="anonymous"></script>
 
-        <script src="../../../js/navbar-js/script.js"></script>   
-        <script src="../../../js/listagem-js/script.js"></script>    
- 
+      <script src="../../../js/navbar-js/script.js"></script>
+      <script src="../../../js/listagem-js/script.js"></script>
+
 </body>
+
 </html>
