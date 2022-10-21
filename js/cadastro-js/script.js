@@ -25,7 +25,7 @@ voltar.addEventListener('click', () => {
 
 
 
-const url = 'http://10.92.198.19:8080/usuario/especifico/';
+const url = "http://10.92.198.21:8080/administrador/";
 
 const formulario = document.querySelector('form');
 const Icpf = document.querySelector('#cpf');
@@ -40,8 +40,6 @@ function cadastrar() {
     cpf: Icpf.value,
     email: Iemail.value,
     senha: Isenha.value
-
-
   })
     .then((response) => {
       alert(JSON.stringify(response.data));
@@ -67,7 +65,7 @@ function limpar() {
 
 formulario.addEventListener('submit', function (event) {
   event.preventDefault(event);
-  if (Inome.value == '' || Icpf.value == '' || Iemail.value == '' || Isenha.value == '') {
+  /* if (Inome.value == '' || Icpf.value == '' || Iemail.value == '' || Isenha.value == '') {
     msgErro(msgText = "Preencha todos os campos!", color = "red");
   }
   else if (Isenha.value != IrepitaSenha.value) {
@@ -77,10 +75,11 @@ formulario.addEventListener('submit', function (event) {
    
     cadastrar();
     limpar();
-    /*   window.location.href = "../../templates/usuario/home.html"; */
+    
 
-  }
-  
+  } */
+  cadastrar();
+
 });
 
 

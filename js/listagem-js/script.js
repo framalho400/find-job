@@ -102,8 +102,43 @@ getUser();
 
 
 
+
+
+function criarlinhaAdm(id, nome, email, celular) {
+    const tbody = document.querySelector('#bodyAdm');
+    let tr = document.createElement('tr');
+    tr.id = id;
+    let tdID = document.createElement('td');
+    let tdNome = document.createElement('td');
+    let tdEmail = document.createElement('td');
+    let tdCelular = document.createElement('td');
+    let tdExcluir = document.createElement('td');
+    let tdButton = document.createElement('button');
+
+
+
+    tdID.innerHTML = id;
+    tdNome.innerHTML = nome;
+    tdEmail.innerHTML = email;
+    tdCelular.innerHTML = celular;
+    tdButton.innerHTML = `<i class='bx bx-trash icon'></i>`;
+
+
+    tbody.appendChild(tr);
+    tr.appendChild(tdID);
+    tr.appendChild(tdNome);
+    tr.appendChild(tdEmail);
+    tr.appendChild(tdExcluir);
+    tdExcluir.appendChild(tdButton);
+
+}
+
+
+
+
+
 function getAdm() {
-    axios.get("http://localhost:8080/administrador", {
+    axios.get("http://10.92.198.21:8080/administrador", {
 
     })
         .then((response) => {
@@ -115,7 +150,8 @@ function getAdm() {
                 id = data.id;
                 foto = data.foto;
                 email = data.email;
-                criarlinha(id, nome, foto, email);
+                
+                criarlinhaAdm(id, nome, email);
 
                 
 
