@@ -19,13 +19,8 @@ user.addEventListener('click', function () {
     adm.classList.add('close');
 })
 
-id = 0;
-nome = "Felipe"
-foto = "foto"
-email = "framalho400@gmail.com"
-celular = "11999999999"
-button = ""
-function criarlinha(id, nome, foto, email, celular) {
+
+function criarlinha(id, nome, email, celular) {
     const tbody = document.querySelector('#bodyUser');
     let tr = document.createElement('tr');
     tr.id = id;
@@ -34,12 +29,15 @@ function criarlinha(id, nome, foto, email, celular) {
     let tdEmail = document.createElement('td');
     let tdCelular = document.createElement('td');
     let tdExcluir = document.createElement('td');
+    let tdButton = document.createElement('button');
+
+
 
     tdID.innerHTML = id;
     tdNome.innerHTML = nome;
     tdEmail.innerHTML = email;
     tdCelular.innerHTML = celular;
-    tdExcluir.innerHTML = `<button type="button"><i class='bx bx-trash icon'></i>`;
+    tdButton.innerHTML = `<i class='bx bx-trash icon'></i>`;
 
 
     tbody.appendChild(tr);
@@ -47,7 +45,7 @@ function criarlinha(id, nome, foto, email, celular) {
     tr.appendChild(tdNome);
     tr.appendChild(tdEmail);
     tr.appendChild(tdExcluir);
-
+    tdExcluir.appendChild(tdButton);
 
 }
 
@@ -55,10 +53,10 @@ function criarlinha(id, nome, foto, email, celular) {
 
 
 
-const url = "http://localhost:8080/usuario/especifico/";
+/* const url = "http://localhost:8080/usuario/especifico/";
 
 
-//Essa função é responsável por fazer a requisição para o servidor
+//===== Essa função é responsável por fazer a requisição para o servidor e fazer a listagem dos usuários =====//
 function getUser() {
     axios.get(url, {
 
@@ -75,17 +73,104 @@ function getUser() {
                 criarlinha(id, nome, foto, email);
 
 
+
             });
 
-        
+
+        })
+        .catch((error) => console.log(error));
+}
+getUser();
+
+ */
+
+
+//============= Deletar Usuario ================== //
+/* function deleteUser(id) {
+    axios.delete(url + id, {
+
+    })
+        .then((response) => {
+            const data = response.data;
+            console.log(data);
+            location.reload();
+        })
+        .catch((error) => console.log(error));
+}
+ */
+
+
+
+
+
+
+function criarlinhaAdm(id, nome, email, celular) {
+    const tbody = document.querySelector('#bodyAdm');
+    let tr = document.createElement('tr');
+    tr.id = id;
+    let tdID = document.createElement('td');
+    let tdNome = document.createElement('td');
+    let tdEmail = document.createElement('td');
+    let tdCelular = document.createElement('td');
+    let tdExcluir = document.createElement('td');
+    let tdButton = document.createElement('button');
+
+
+
+    tdID.innerHTML = id;
+    tdNome.innerHTML = nome;
+    tdEmail.innerHTML = email;
+    tdCelular.innerHTML = celular;
+    tdButton.innerHTML = `<i class='bx bx-trash icon'></i>`;
+
+
+    tbody.appendChild(tr);
+    tr.appendChild(tdID);
+    tr.appendChild(tdNome);
+    tr.appendChild(tdEmail);
+    tr.appendChild(tdExcluir);
+    tdExcluir.appendChild(tdButton);
+
+}
+
+
+
+
+
+function getAdm() {
+    axios.get("http://10.92.198.21:8080/administrador", {
+
+    })
+        .then((response) => {
+            const data = response.data;
+
+            //popula a tabela com os dados do servidor
+            data.map((data) => {
+                nome = data.nome;
+                id = data.id;
+                foto = data.foto;
+                email = data.email;
+                
+                criarlinhaAdm(id, nome, email);
+
+                
+
+            });
+
+
         })
         .catch((error) => console.log(error));
 }
 
-const state = getUser();
-console.log(state);
+
+getAdm();
+
+
+
+//================================================================================================== Paginação ==================================================================================================
 /* 
 }
+
 /*  const data = getUser()
     let perPage = 5;
     const state ={

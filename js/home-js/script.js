@@ -47,7 +47,7 @@ function copiarTexto() {
 
 //função para criar vaga
 function CriaVaga(nome, email) {
-/*   nome = "Casa de Massagem"; */
+ nome = "Casa de Massagem"; 
   local = 'Rua Algusta, 123';
   contato = '123456789';
   wpp = '123456789';
