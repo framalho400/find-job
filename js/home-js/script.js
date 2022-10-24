@@ -1,76 +1,48 @@
-const url = "http://localhost:8080/usuario/especifico/1";
 
 
-//Essa função é responsável por fazer a requisição para o servidor
-function getUser() {
-  axios.get(url,{
-    
-  })
-    .then((response) => {
-      const data = response.data;
-      const nome = data.nome;
-      const email = data.email;
-      //Aqui é onde você vai fazer o que quiser com os dados
 
-      console.log(data);
 
-      
-      document.getElementById("user").innerHTML = JSON.stringify(data.nome);
-      
 
-    })
-    .catch((error) => console.log(error));
-}
-//aqui estou chamando a função getUser() para que ela seja executada assim que a página for carregada
- getUser(); 
-
-/* 
-
-//função para abrir a aba da contatos 
-
-/* aba = document.querySelector(".aba") 
-aba.addEventListener("click", () => {
-aba.classList.toggle('close')
-
-;}) */
-/* Função para copiar texto  */
-/* 
-function copiarTexto() {
-  let textoCopiado = document.getElementById("texto");
-  textoCopiado.select();
-  textoCopiado.setSelectionRange(0, 99999)
-  document.execCommand("copy");
-  alert("O texto é: " + textoCopiado.value);
-}
- */
 
 
 //função para criar vaga
-function CriaVaga(nome, email) {
- nome = "Casa de Massagem"; 
+function CriaVaga() {
+  vaga  = "Massagista"
+  empresa = "Casa de Massagem"; 
   local = 'Rua Algusta, 123';
+  salario = "R$ 1.000,00";
   contato = '123456789';
   wpp = '123456789';
-  /* email = '@gmail.com' */
+  email = '@gmail.com'
   const principal = document.querySelector('.principal');
   const div = document.createElement('div');
   div.classList.add('div');
   div.innerHTML = `
-    <div class="empresa">
-        <h3>${nome}</h3>
+  <div class="vaga">
+        <h3>${vaga}</h3>
     </div>
+    <div class="empresa">
+        <h4>${empresa}</h4>
+    </div>
+    <div class="r">
     <div class="local">
-        <h4>Local:</h4>
+        <h6>Local:</h6>
         <p>${local}</p>
     </div>
-    <div class="exigencias">
-        <h4>Exigencias:</h4>
-        <p> Lorem ipsum quis pretium morbi praesent nec integer sagittis curabitur, etiam euismod diam
-            semper sit suspendisse nam fermentum quisque mattis, nec et torquent nunc eleifend semper
-        </p>
+    <div class="salario">
+        <h6>Salario:</h6>
+        <p>${salario}</p>
     </div>
-    <button type="button" class="btn btn-primary bVerMais" data-bs-toggle="modal"
-        data-bs-target="#exampleModal">
+    </div>
+    <div class="requisitos">
+        <h6>Requisitos:</h6>
+        <ul>
+            <li>Experiência com massagem</li>
+            <li>Disponibilidade de horário</li>
+            <li>Boa comunicação</li>
+        </ul>
+    </div>
+    <button type="button" class="btn btn-primary bVerMais">
         Ver Mais..
     </button>
 
@@ -117,3 +89,16 @@ abas.forEach((aba) =>
     aba.classList.toggle('close')
   })
 );
+
+const div = document.querySelector('.div');
+const modalLocal = document.querySelector('.modalLocal');
+
+div.addEventListener('click', (e) => {
+  local = 'Rua Algusta, 123';	
+  var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+  modalLocal.innerHTML = `${local}`;
+  
+myModal.show();
+
+})
+

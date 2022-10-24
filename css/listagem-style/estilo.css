@@ -106,6 +106,8 @@ img::selection {
     display: flex !important;
     justify-content: center !important;
     border-bottom: 5px solid #427AAA !important;
+    width: 20%  !important  ;
+
  
 }
 .listaUser.close{
@@ -117,7 +119,7 @@ img::selection {
     display: flex !important;
     justify-content: center !important;
     border-bottom: 5px solid #427AAA !important;
-    
+    width: 20%  !important;
 
 }
 .listaAdm.close{
