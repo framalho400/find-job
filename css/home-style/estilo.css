@@ -113,6 +113,7 @@ img::selection {
 
 .div:hover{
     box-shadow: 2px 1px 5px rgba(70, 70, 70, 0.993);
+ 
 
 
 }
@@ -329,11 +330,4 @@ h4 {
         height: 100vh;
 
     }
-}
-
- @media screen and (max-width: 1400px) {
-    .bVerMais{
-        display: none;
-    }
-
 }

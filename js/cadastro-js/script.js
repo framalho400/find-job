@@ -86,8 +86,6 @@ formulario.addEventListener('submit', function (event) {
 
 function msgErro(msgText, color) {
 
-  const msg = document.querySelector('.msg');
-
   div = document.createElement('div');
   div.classList.add('msg');
   div.style.borderLeft  = `solid 10px ${color}`;
@@ -97,12 +95,10 @@ function msgErro(msgText, color) {
 
 setTimeout(function () {
     div.classList.add('close')
-
-
 }, 3000); // 5 segundos
 setTimeout(function () {
   div.remove();
-}, 40000); // 6 segundos
-
+}, 6000); // 6 segundos
+  
 
 }

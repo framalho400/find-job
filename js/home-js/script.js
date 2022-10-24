@@ -1,24 +1,33 @@
+/* const url = 'https://api.github.com/users/luizotavio/repos';
 
+function getVagas() {
+  axios.get(url, {
+    headers: {
+      'Accept': 'application/vnd.github.v3+json'
+    }
 
+  }).then(response => {
+    console.log(response.data);
+    response.data.forEach(vaga => {
+      console.log(vaga.name);
+      CriaVaga();
+    });
 
+  }).catch(error => {
+    console.log(error);
 
-
-
+    
+  })
+} */
 
 //função para criar vaga
-function CriaVaga() {
-  vaga  = "Massagista"
-  empresa = "Casa de Massagem"; 
-  local = 'Rua Algusta, 123';
-  salario = "R$ 1.000,00";
-  contato = '123456789';
-  wpp = '123456789';
-  email = '@gmail.com'
+function CriaVaga(vaga, empresa, local, salario, descricao, requisitos, beneficios, contato, wpp, email) {
+
   const principal = document.querySelector('.principal');
   const div = document.createElement('div');
   div.classList.add('div');
   div.innerHTML = `
-  <div class="vaga">
+    <div class="vaga">
         <h3>${vaga}</h3>
     </div>
     <div class="empresa">
@@ -42,12 +51,22 @@ function CriaVaga() {
             <li>Boa comunicação</li>
         </ul>
     </div>
-    <button type="button" class="btn btn-primary bVerMais">
-        Ver Mais..
-    </button>
+
+
+    `;
+    button =  document.createElement('button');
+    button.classList.add('btn');
+    button.classList.add('btn-primary');
+    button.classList.add('bVerMais');
+    button.innerHTML = 'Ver Mais..';
+
+    button.addEventListener('click', function(){
+      var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+  myModal.show();
 
     
-    `;
+    })
+    div.appendChild(button);
   principal.appendChild(div);
   const div2 = document.createElement('div');
   div2.classList.add('aba');
@@ -74,15 +93,22 @@ function CriaVaga() {
 }
 
 
-CriaVaga();
+
+
+CriaVaga(vaga = "Atendente", empresa = 'Casa de Massagens', local = 'Rua Algusta', salario = '12200R$', requisitos = 'Excel', beneficios = 'dasdsa', contato = 'dsds');
 CriaVaga();
 CriaVaga();
 CriaVaga();
 
+//função para abrir a modal
 
 
 //função para abrir a aba da contatos
 const abas = document.querySelectorAll('.aba');
+const div = document.querySelectorAll('.div');
+const modalLocal = document.querySelector('.modalLocal');
+
+
 
 abas.forEach((aba) =>
   aba.addEventListener('click', (event) => {
@@ -90,15 +116,11 @@ abas.forEach((aba) =>
   })
 );
 
-const div = document.querySelector('.div');
-const modalLocal = document.querySelector('.modalLocal');
+/* div.forEach((div) => {
+  div.addEventListener('click', (e) => {
 
-div.addEventListener('click', (e) => {
-  local = 'Rua Algusta, 123';	
-  var myModal = new bootstrap.Modal(document.getElementById('myModal'));
-  modalLocal.innerHTML = `${local}`;
-  
-myModal.show();
 
-})
+  })
+});
 
+ */

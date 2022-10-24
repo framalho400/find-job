@@ -339,7 +339,9 @@ img::selection {
 
 }
 
-
+.btn:hover{
+    box-shadow: 2px 1px 6px rgba(70, 70, 70, 0.171);
+}
 /* @media screen and (max-width: 1200px) {
     .nav-top {
         width: calc(100% - 150px);
