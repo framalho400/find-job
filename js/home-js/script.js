@@ -21,7 +21,7 @@ function getVagas() {
 } */
 
 //função para criar vaga
-function CriaVaga(vaga, empresa, local, salario, descricao, requisitos, beneficios, contato, wpp, email) {
+function criaVaga(vaga, empresa, local, salario, descricao, requisitos, beneficios, contato, wpp, email) {
 
   const principal = document.querySelector('.principal');
   const div = document.createElement('div');
@@ -54,19 +54,59 @@ function CriaVaga(vaga, empresa, local, salario, descricao, requisitos, benefici
 
 
     `;
-    button =  document.createElement('button');
-    button.classList.add('btn');
-    button.classList.add('btn-primary');
-    button.classList.add('bVerMais');
-    button.innerHTML = 'Ver Mais..';
+  button = document.createElement('button');
+  button.classList.add('btn');
+  button.classList.add('btn-primary');
+  button.classList.add('bVerMais');
+  button.innerHTML = 'Ver Mais..';
 
-    button.addEventListener('click', function(){
-      var myModal = new bootstrap.Modal(document.getElementById('myModal'));
-  myModal.show();
+  div.appendChild(button);
+    button.addEventListener('click', function () {
+        
+      var modal = new bootstrap.Modal(document.querySelector('#modalVaga'));
+        modal.show();
 
-    
+        const conteudoModal = document.querySelector('#modalBody');
+        conteudoModal.innerHTML = `<div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <span>
+                    <h5>Local:</h5>
+                    <p>${local}</p>
+                </span>
+                <span>
+                    <h5>Requisitos:</h5>
+                    <p>Experiência com logística
+                        Experiência com sistema totvs fly01</p>
+                </span>
+                <span>
+                    <h5>Regime de Contratação:</h5>
+                    <p>CLT (efetivo), prestador de serviços (PJ)</p>
+                </span>
+            </div>
+            <div class="col-md-4 ms-auto">
+                <span>
+                    <h5>Salario:</h5>
+                    <p>São Paulo - SP</p>
+
+                </span>
+                <span>
+                    <h5>Beneficios:</h5>
+                    <p>Tíquete Refeição, Tíquete Alimentação,
+                        Vale Transporte, Vale Alimentação</p>
+                </span>
+                <span>
+                    <h5>Horarios:</h5>
+                    <p> 08:00 ás 17:00 Seg a Sex
+                        <br> 08:00 ás 16:00 Sábado
+                    </p>
+                </span>
+
+            </div>
+        </div>
+    </div>`
     })
-    div.appendChild(button);
+
   principal.appendChild(div);
   const div2 = document.createElement('div');
   div2.classList.add('aba');
@@ -90,15 +130,19 @@ function CriaVaga(vaga, empresa, local, salario, descricao, requisitos, benefici
   div.appendChild(div2);
 
 
+  
+  
+ 
+
 }
 
 
 
 
-CriaVaga(vaga = "Atendente", empresa = 'Casa de Massagens', local = 'Rua Algusta', salario = '12200R$', requisitos = 'Excel', beneficios = 'dasdsa', contato = 'dsds');
-CriaVaga();
-CriaVaga();
-CriaVaga();
+criaVaga(vaga = "Atendente", empresa = 'Casa de Massagens', local = 'Rua Algusta', salario = '12200R$', requisitos = 'Excel', beneficios = 'dasdsa', contato = 'dsds');
+criaVaga();
+criaVaga();
+criaVaga();
 
 //função para abrir a modal
 

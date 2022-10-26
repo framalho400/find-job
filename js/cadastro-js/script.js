@@ -25,7 +25,7 @@ voltar.addEventListener('click', () => {
 
 
 
-const url = "http://localhost:8080/usuario/especifico";
+const url = "http://localhost:8080/api/usuario/";
 
 const formulario = document.querySelector('form');
 const Icpf = document.querySelector('#cpf');
@@ -43,11 +43,11 @@ function cadastrar() {
     senha: Isenha.value
   })
     .then((response) => {
-      alert(JSON.stringify(response.data));
+      console.log(JSON.stringify(response.data));
       msgErro(msgText = "Cadastrado com sucesso!", color = "green");
     })
-    .catch((error) => console.log(error));
-    msgErro(msgText = `Usuario não cadastrado` , color = "red");
+    .catch((error) => console.log(error) + msgErro(msgText = "Erro ao cadastrar!", color = "red"));
+
 };
 
 function limpar() {
@@ -66,7 +66,7 @@ function limpar() {
 
 formulario.addEventListener('submit', function (event) {
   event.preventDefault(event);
-  /* if (Inome.value == '' || Icpf.value == '' || Iemail.value == '' || Isenha.value == '') {
+if (Inome.value == '' || Icpf.value == '' || Iemail.value == '' || Isenha.value == '') {
     msgErro(msgText = "Preencha todos os campos!", color = "red");
   }
   else if (Isenha.value != IrepitaSenha.value) {
@@ -78,21 +78,22 @@ formulario.addEventListener('submit', function (event) {
     limpar();
     
 
-  } */
-  cadastrar();
+  } 
+ 
 
 });
 
 
 function msgErro(msgText, color) {
-
+  
   div = document.createElement('div');
   div.classList.add('msg');
   div.style.borderLeft  = `solid 10px ${color}`;
   div.innerText = msgText;
   document.body.appendChild(div); 
-  
 
+
+  
 setTimeout(function () {
     div.classList.add('close')
 }, 3000); // 5 segundos
