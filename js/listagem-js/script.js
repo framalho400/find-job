@@ -1,26 +1,44 @@
+/* var token = sessionStorage.getItem("token")
+if (token == null) {
+    window.location.replace('../login/login/login.html')
+} */
 
+//paginação do user para o admin
 const user = document.getElementById('user');
 const adm = document.getElementById('adm');
+const empresa = document.getElementById('empresa');
 const usuariosListagem = document.getElementById('usuariosListagem');
 const administradoresListagem = document.getElementById('administradoresListagem');
-
-
+const empresasListagem = document.getElementById('empresasListagem');
 adm.addEventListener('click', function () {
     user.classList.add('close');
     usuariosListagem.classList.add('close');
     administradoresListagem.classList.remove('close');
     adm.classList.remove('close');
-
+    empresa.classList.add('close');
+    empresasListagem.classList.add('close');
 })
 user.addEventListener('click', function () {
     user.classList.remove('close');
     usuariosListagem.classList.remove('close');
     administradoresListagem.classList.add('close');
     adm.classList.add('close');
+    empresa.classList.add('close');
+    empresasListagem.classList.add('close');
+})
+empresa.addEventListener('click', function () {
+    user.classList.add('close');
+    usuariosListagem.classList.add('close');
+    administradoresListagem.classList.add('close');
+    adm.classList.add('close');
+    empresa.classList.remove('close');
+    empresasListagem.classList.remove('close');
 })
 
 
+//função para criar a linha da tabela de user
 function criarlinha(id, nome, email, celular) {
+
     const tbody = document.querySelector('#bodyUser');
     let tr = document.createElement('tr');
     tr.id = id;
@@ -31,7 +49,22 @@ function criarlinha(id, nome, email, celular) {
     let tdExcluir = document.createElement('td');
     let tdButton = document.createElement('button');
 
-
+    //abre a modal de deletar
+    var modalDelete = new bootstrap.Modal(document.querySelector('#deleteModal'));
+    tdButton.addEventListener('click', function () {
+        modalDelete.show(nome);
+        const text = document.querySelector('#text');
+        /*   text.innerHTML = `Deseja excluir o usuário ${nome}?`; */
+        text.innerHTML = `<h4>Deseja mesmo excluir o usuário ${nome}?</h4>`;
+        document.getElementById('deletConfirm').addEventListener('click', function () {
+            deleteUser(id);
+            modalDelete.hide();
+        })
+    })
+    var cancel = document.querySelector('#cancelar');
+    cancel.addEventListener('click', function () {
+        modalDelete.hide();
+    })
 
     tdID.innerHTML = id;
     tdNome.innerHTML = nome;
@@ -49,14 +82,8 @@ function criarlinha(id, nome, email, celular) {
 
 }
 
-
-
-
-
-/* const url = "http://localhost:8080/usuario/especifico/";
-
-
-//===== Essa função é responsável por fazer a requisição para o servidor e fazer a listagem dos usuários =====//
+//Pega o usuario e chama a função para criar a linha da tabela
+const url = "http://10.92.198.40:8080/api/usuario/";
 function getUser() {
     axios.get(url, {
 
@@ -68,9 +95,9 @@ function getUser() {
             data.map((data) => {
                 nome = data.nome;
                 id = data.id;
-                foto = data.foto;
                 email = data.email;
-                criarlinha(id, nome, foto, email);
+                criarlinha(id, nome, email);
+
 
 
 
@@ -81,13 +108,9 @@ function getUser() {
         .catch((error) => console.log(error));
 }
 getUser();
-
- */
-
-
-//============= Deletar Usuario ================== //
-/* function deleteUser(id) {
-    axios.delete(url + id, {
+const urlDel = "http://localhost:8080/api/usuario/excluir/";
+function deleteUser(id) {
+    axios.delete(urlDel + id, {
 
     })
         .then((response) => {
@@ -97,13 +120,13 @@ getUser();
         })
         .catch((error) => console.log(error));
 }
- */
+deleteUser(id = 5)
 
 
 
 
 
-
+/* função de listagem de adm */
 function criarlinhaAdm(id, nome, email, celular) {
     const tbody = document.querySelector('#bodyAdm');
     let tr = document.createElement('tr');
@@ -132,13 +155,8 @@ function criarlinhaAdm(id, nome, email, celular) {
     tdExcluir.appendChild(tdButton);
 
 }
-
-
-
-
-
 function getAdm() {
-    axios.get("http://10.92.198.21:8080/administrador", {
+    axios.get("http://10.92.198.40:8080/administrador", {
 
     })
         .then((response) => {
@@ -150,10 +168,10 @@ function getAdm() {
                 id = data.id;
                 foto = data.foto;
                 email = data.email;
-                
+
                 criarlinhaAdm(id, nome, email);
 
-                
+
 
             });
 
@@ -161,9 +179,61 @@ function getAdm() {
         })
         .catch((error) => console.log(error));
 }
-
-
 getAdm();
+
+
+
+
+/* função de listagem de empresa */
+function criarlinhaEmpresa(id, nome, email, celular) {
+    const tbody = document.querySelector('#bodyEmpresa');
+    let tr = document.createElement('tr');
+    tr.id = id;
+    let tdID = document.createElement('td');
+    let tdNome = document.createElement('td');
+    let tdEmail = document.createElement('td');
+    let tdCelular = document.createElement('td');
+    let tdExcluir = document.createElement('td');
+    let tdButton = document.createElement('button');
+
+
+
+    tdID.innerHTML = id;
+    tdNome.innerHTML = nome;
+    tdEmail.innerHTML = email;
+    tdCelular.innerHTML = celular;
+    tdButton.innerHTML = `<i class='bx bx-trash icon'></i>`;
+
+
+    tbody.appendChild(tr);
+    tr.appendChild(tdID);
+    tr.appendChild(tdNome);
+    tr.appendChild(tdEmail);
+    tr.appendChild(tdExcluir);
+    tdExcluir.appendChild(tdButton);
+
+}
+function getEmpresa() {
+    axios.get("http://10.92.198.40:8080/api/empresa", {
+
+    })
+        .then((response) => {
+            const data = response.data;
+
+            //popula a tabela com os dados do servidor
+            data.map((data) => {
+                nome = data.nome;
+                id = data.id;
+                email = data.email;
+                criarlinhaEmpresa(id, nome, email);
+
+            });
+
+
+        })
+        .catch((error) => console.log(error));
+}
+getEmpresa();
 
 
 
@@ -221,3 +291,29 @@ getAdm();
 
     }
  */
+
+
+
+
+
+
+function msgErro(msgText, color) {
+
+    var div = document.querySelector('.msg');
+    duv.classList.add('active');
+    div.style.borderLeft = `solid 10px ${color}`;
+    div.innerText = msgText;
+
+
+
+    setTimeout(function () {
+        div.classList.add('close')
+    }, 3000); // 5 segundos
+    setTimeout(function () {
+        div.remove();
+    }, 6000); // 6 segundos
+
+
+}
+
+

@@ -1,81 +1,112 @@
-const url = "http://localhost:8080/usuario/especifico/1";
+/* const url = 'https://api.github.com/users/luizotavio/repos';
 
+function getVagas() {
+  axios.get(url, {
+    headers: {
+      'Accept': 'application/vnd.github.v3+json'
+    }
 
-//Essa função é responsável por fazer a requisição para o servidor
-function getUser() {
-  axios.get(url,{
+  }).then(response => {
+    console.log(response.data);
+    response.data.forEach(vaga => {
+      console.log(vaga.name);
+      CriaVaga();
+    });
+
+  }).catch(error => {
+    console.log(error);
+
     
   })
-    .then((response) => {
-      const data = response.data;
-      const nome = data.nome;
-      const email = data.email;
-      //Aqui é onde você vai fazer o que quiser com os dados
-
-      console.log(data);
-
-      
-      document.getElementById("user").innerHTML = JSON.stringify(data.nome);
-      
-
-    })
-    .catch((error) => console.log(error));
-}
-//aqui estou chamando a função getUser() para que ela seja executada assim que a página for carregada
- getUser(); 
-
-/* 
-
-//função para abrir a aba da contatos 
-
-/* aba = document.querySelector(".aba") 
-aba.addEventListener("click", () => {
-aba.classList.toggle('close')
-
-;}) */
-/* Função para copiar texto  */
-/* 
-function copiarTexto() {
-  let textoCopiado = document.getElementById("texto");
-  textoCopiado.select();
-  textoCopiado.setSelectionRange(0, 99999)
-  document.execCommand("copy");
-  alert("O texto é: " + textoCopiado.value);
-}
- */
-
+} */
 
 //função para criar vaga
-function CriaVaga(nome, email) {
- nome = "Casa de Massagem"; 
-  local = 'Rua Algusta, 123';
-  contato = '123456789';
-  wpp = '123456789';
-  /* email = '@gmail.com' */
+function criaVaga(vaga, empresa, local, salario, descricao, requisitos, beneficios, contato, wpp, email) {
+
   const principal = document.querySelector('.principal');
   const div = document.createElement('div');
   div.classList.add('div');
   div.innerHTML = `
-    <div class="empresa">
-        <h3>${nome}</h3>
+    <div class="vaga">
+        <h3>${vaga}</h3>
     </div>
+    <div class="empresa">
+        <h4>${empresa}</h4>
+    </div>
+    <div class="r">
     <div class="local">
-        <h4>Local:</h4>
+        <h6>Local:</h6>
         <p>${local}</p>
     </div>
-    <div class="exigencias">
-        <h4>Exigencias:</h4>
-        <p> Lorem ipsum quis pretium morbi praesent nec integer sagittis curabitur, etiam euismod diam
-            semper sit suspendisse nam fermentum quisque mattis, nec et torquent nunc eleifend semper
-        </p>
+    <div class="salario">
+        <h6>Salario:</h6>
+        <p>${salario}</p>
     </div>
-    <button type="button" class="btn btn-primary bVerMais" data-bs-toggle="modal"
-        data-bs-target="#exampleModal">
-        Ver Mais..
-    </button>
+    </div>
+    <div class="requisitos">
+        <h6>Requisitos:</h6>
+        <ul>
+            <li>Experiência com massagem</li>
+            <li>Disponibilidade de horário</li>
+            <li>Boa comunicação</li>
+        </ul>
+    </div>
 
-    
+
     `;
+  button = document.createElement('button');
+  button.classList.add('btn');
+  button.classList.add('btn-primary');
+  button.classList.add('bVerMais');
+  button.innerHTML = 'Ver Mais..';
+
+  div.appendChild(button);
+    button.addEventListener('click', function () {
+        
+      var modal = new bootstrap.Modal(document.querySelector('#modalVaga'));
+        modal.show();
+
+        const conteudoModal = document.querySelector('#modalBody');
+        conteudoModal.innerHTML = `<div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <span>
+                    <h5>Local:</h5>
+                    <p>${local}</p>
+                </span>
+                <span>
+                    <h5>Requisitos:</h5>
+                    <p>Experiência com logística
+                        Experiência com sistema totvs fly01</p>
+                </span>
+                <span>
+                    <h5>Regime de Contratação:</h5>
+                    <p>CLT (efetivo), prestador de serviços (PJ)</p>
+                </span>
+            </div>
+            <div class="col-md-4 ms-auto">
+                <span>
+                    <h5>Salario:</h5>
+                    <p>São Paulo - SP</p>
+
+                </span>
+                <span>
+                    <h5>Beneficios:</h5>
+                    <p>Tíquete Refeição, Tíquete Alimentação,
+                        Vale Transporte, Vale Alimentação</p>
+                </span>
+                <span>
+                    <h5>Horarios:</h5>
+                    <p> 08:00 ás 17:00 Seg a Sex
+                        <br> 08:00 ás 16:00 Sábado
+                    </p>
+                </span>
+
+            </div>
+        </div>
+    </div>`
+    })
+
   principal.appendChild(div);
   const div2 = document.createElement('div');
   div2.classList.add('aba');
@@ -99,21 +130,41 @@ function CriaVaga(nome, email) {
   div.appendChild(div2);
 
 
+  
+  
+ 
+
 }
 
 
-CriaVaga();
-CriaVaga();
-CriaVaga();
-CriaVaga();
 
+
+criaVaga(vaga = "Atendente", empresa = 'Casa de Massagens', local = 'Rua Algusta', salario = '12200R$', requisitos = 'Excel', beneficios = 'dasdsa', contato = 'dsds' );
+criaVaga();
+criaVaga();
+criaVaga();
+
+//função para abrir a modal
 
 
 //função para abrir a aba da contatos
 const abas = document.querySelectorAll('.aba');
+const div = document.querySelectorAll('.div');
+const modalLocal = document.querySelector('.modalLocal');
+
+
 
 abas.forEach((aba) =>
   aba.addEventListener('click', (event) => {
     aba.classList.toggle('close')
   })
 );
+
+/* div.forEach((div) => {
+  div.addEventListener('click', (e) => {
+
+
+  })
+});
+
+ */

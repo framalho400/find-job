@@ -81,52 +81,6 @@ body {
 
 
 
-.ft {
-    border-top: solid 10px var(--blue-color);
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 5px;
-    text-align: center;
-    width: 100%;
-    height: 60%;
-    background-color: var(--white-color);
-    box-shadow: 2px 1px 5px rgba(70, 70, 70, 0.493);
-
-}
-
-.fotoAndSenha {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    top: 25%;
-    width: 30%;
-    height: 100%;
-    flex-direction: column;
-}
-
-.ft span img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-}
-
-.senha {
-
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 5px;
-    width: 100%;
-    height: 30%;
-    background-color: var(--white-color);
-    box-shadow: 2px 1px 5px rgba(70, 70, 70, 0.493);
-}
-
 .header-d {
     width: 100%;
     height: 20%;
@@ -152,7 +106,7 @@ body {
     justify-content: space-evenly;
     flex-direction: column;
     align-items: center;
-    width: 30%;
+    width: 50%;
     height: 100%;
     background-color: var(--white-color);
     box-shadow: 2px 1px 5px rgba(70, 70, 70, 0.493);
@@ -164,7 +118,6 @@ body {
     display: flex;
     justify-content: flex-end;
 }
-
 .loginAndSenha .edit {
     width: 90%;
     display: flex;
@@ -195,7 +148,7 @@ body {
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
-    width: 20%;
+    width: 30%;
     height: 100%;
     background-color: var(--body-color);
 }
@@ -227,6 +180,13 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.d1.adm{
+height: 30%    !important;
+}
+.d2.adm{
+    height: 60%   !important;
+    }
 
 .header-p {
     width: 100%;

@@ -37,9 +37,7 @@
                 </div>
             </div>
             <div class="user" href="perfil.html">
-                <span class="user-img">
-                    <img src="../../img/user.png" alt="" srcset="">
-                </span>
+             
                 <div class="user-text">
                     <label>Olá, Luccas Mello</label>
                 </div>
@@ -91,10 +89,10 @@
                         </li>
 
                         <li class="nav-link">
-                            <a href="#">
+                            <a href="listagem.html">
 
-                                <i class='bx bx-user-plus icon'></i>
-                                <span class="text nav-text">Cadastro</span>
+                                <i class='bx bx-spreadsheet icon'></i>
+                                <span class="text nav-text">Usuarios</span>
                             </a>
                         </li>
                         <li class="sair">
@@ -119,56 +117,19 @@
 
                 <!-- Modal -->
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="modalVaga" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
                     <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
-                        <div class="modal-content">
+                        <div class="modal-content" >
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Nome da Vaga</h5>
+                                <h5 class="modal-title" id="exampleModalLabel" id="nomeVaga">Nome da Vaga</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <span>
-                                                <h5>Local:</h5>
-                                                <p>São Paulo - SP</p>
-                                            </span>
-                                            <span>
-                                                <h5>Requisitos:</h5>
-                                                <p>Experiência com logística
-                                                    Experiência com sistema totvs fly01</p>
-                                            </span>
-                                            <span>
-                                                <h5>Regime de Contratação:</h5>
-                                                <p>CLT (efetivo), prestador de serviços (PJ)</p>
-                                            </span>
-                                        </div>
-                                        <div class="col-md-4 ms-auto">
-                                            <span>
-                                                <h5>Salario:</h5>
-                                                <p>São Paulo - SP</p>
-
-                                            </span>
-                                            <span>
-                                                <h5>Beneficios:</h5>
-                                                <p>Tíquete Refeição, Tíquete Alimentação,
-                                                    Vale Transporte, Vale Alimentação</p>
-                                            </span>
-                                            <span>
-                                                <h5>Horarios:</h5>
-                                                <p> 08:00 ás 17:00 Seg a Sex
-                                                    <br> 08:00 ás 16:00 Sábado
-                                                </p>
-                                            </span>
-
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="modal-body" id="modalBody">
+                                
                             </div>
                             <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">PDF</button>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="button" class="btn btn-primary">Candidatar-se</button>
                             </div>

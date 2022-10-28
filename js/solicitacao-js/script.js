@@ -113,3 +113,42 @@ criaEmpresa();
 criaEmpresa();
 
 
+const adiconaVaga = document.querySelectorAll('#adiconaVaga')
+
+var addVaga = new bootstrap.Modal(document.getElementById('modalAddVaga1'));
+var addVaga2 = new bootstrap.Modal(document.getElementById('modalAddVaga2'));
+
+adiconaVaga.forEach(function (adiconaVaga) {
+    adiconaVaga.addEventListener('click', function () {
+        addVaga.show();
+
+        document.getElementById('proximoVaga').addEventListener('click', function () {
+            addVaga.hide();
+            addVaga2.show();
+            document.getElementById('salvarVaga').addEventListener('click', function () {
+                addVaga2.hide();
+           /*      criaVaga(); */
+            })
+        })
+    })
+})
+
+const adiconaEmpresa = document.querySelectorAll('#adiconaEmpresa')
+
+var addEmpresa = new bootstrap.Modal(document.getElementById('modalAddEmpresa1'));
+var addEmpresa2 = new bootstrap.Modal(document.getElementById('modalAddEmpresa2'));
+
+adiconaEmpresa.forEach(function (adiconaEmpresa) {
+    adiconaEmpresa.addEventListener('click', function () {
+        addEmpresa.show();
+
+        document.getElementById('proximoEmpresa').addEventListener('click', function () {
+            addEmpresa.hide();
+            addEmpresa2.show();
+            document.getElementById('salvarVaga').addEventListener('click', function () {
+                addEmpresa2.hide();
+            /*     criaEmpresa();
+ */            })
+        })
+    })
+})

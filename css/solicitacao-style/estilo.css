@@ -93,8 +93,12 @@ img::selection {
 
 }
 .card{
+    display: block;
+    width: 100%;
     position: absolute  !important;
-    
+    overflow: scroll  !important;
+    height: 80vh  !important;
+    scroll-behavior: smooth  !important;
 }
 
 .card.empresa.close{
@@ -203,4 +207,8 @@ button {
 
 .btn-verMais button {
     background-color: var(--blue-color) !important;
+}
+#vagasGroup{
+    height: 500px   !important;
+
 }
