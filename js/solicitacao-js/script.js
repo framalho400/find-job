@@ -145,10 +145,89 @@ adiconaEmpresa.forEach(function (adiconaEmpresa) {
         document.getElementById('proximoEmpresa').addEventListener('click', function () {
             addEmpresa.hide();
             addEmpresa2.show();
-            document.getElementById('salvarVaga').addEventListener('click', function () {
+            document.getElementById('salvarEmpresa').addEventListener('click', function () {
                 addEmpresa2.hide();
             /*     criaEmpresa();
  */            })
+            document.getElementById('voltarEmpresa').addEventListener('click', function () {
+                addEmpresa2.hide();
+                addEmpresa.show();
+            })
         })
     })
 })
+
+
+const InomeEmpresa = document.getElementById('nomeEmpresa');
+const IemailEmpresa = document.getElementById('emailEmpresa');
+const ItelEmpresa = document.getElementById('telEmpresa');
+const IcnpjEmpresa = document.getElementById('cnpjEmpresa');
+const IcepEmpresa = document.getElementById('cepEmpresa')
+const Iendereco = document.getElementById('ruaEmpresa')
+const IcidadeEmpresa = document.getElementById('cidadeEmpresa')
+const IbairroEmpresa = document.getElementById('bairroEmpresa')
+const IufEmpresa = document.getElementById('ufEmpresa')
+const InEmpresa = document.getElementById('nEmpresa')
+const IsenhaEmpresa = document.getElementById('senhaEmpresa');
+const IconfSenhaEmpresa = document.getElementById('confSenhaEmpresa');
+const salvarEmpresa = document.getElementById('salvarEmpresa');
+
+url = 'http://localhost:8080/api/empresa    '
+function cadEmpresa() {
+   axios.post(url, {
+        nome: InomeEmpresa.value,
+        email: IemailEmpresa.value,
+        telefone: ItelEmpresa.value,
+        cnpj: IcnpjEmpresa.value,
+        cep: IcepEmpresa.value,
+        endereco: Iendereco.value,
+        cidade: IcidadeEmpresa.value,
+        bairro: IbairroEmpresa.value,
+        uf: IufEmpresa.value,
+        numero: InEmpresa.value,
+        senha: IsenhaEmpresa.value,
+        confSenha: IconfSenhaEmpresa.value
+
+
+   })
+   .then((response) => {
+      console.log(JSON.stringify(response.data));
+      msgErro(msgText = "Cadastrada com Sucesso !!", color = "green");
+    })
+    .catch((error) =>{ console.log(error) 
+        msgErro(msgText = "Empresa não Cadastrada!", color = "red");
+    });
+
+
+}
+
+salvarEmpresa.addEventListener('click', function(){
+    cadEmpresa();
+});
+
+
+
+
+
+
+
+function msgErro(msgText, color) {
+  
+    div = document.createElement('div');
+    div.classList.add('msg');
+    div.style.borderLeft  = `solid 10px ${color}`;
+    div.innerText = msgText;
+    document.body.appendChild(div); 
+  
+  
+    
+  setTimeout(function () {
+      div.classList.add('close')
+  }, 3000); // 5 segundos
+  setTimeout(function () {
+    div.remove();
+  }, 6000); // 6 segundos
+    
+  
+  }
+  
