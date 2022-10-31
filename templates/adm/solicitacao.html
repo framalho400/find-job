@@ -15,7 +15,8 @@
     <!--   <link rel="stylesheet" href="../../css/modal-style/estilo.css">
  -->
 
-
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Find Job | Home</title>
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
@@ -155,8 +156,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="empresaGroup">
-                            </div>
+                            <div id="empresaGroup"></div>
                         </div>
                     </div>
 
@@ -174,9 +174,37 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="row g-3" id="formExpProf">
-
+                            <form class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">NOME DA VAGA:</label>
+                                    <input type="text" class="form-control" placeholder="Nome da vaga">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">NOME DA EMPRESA:</label>
+                                    <input type="text" class="form-control" placeholder="Nome da empresa">
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label">DESCRIÇÃO DA VAGA:</label>
+                                    <textarea class="form-control" rows="2" placeholder="Descrição da vaga"></textarea>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label">EXIGÊNCIAS:</label>
+                                    <textarea class="form-control" rows="3" placeholder="Exigências"></textarea>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label">DESEJÁVEL:</label>
+                                    <textarea class="form-control" rows="2" placeholder="Desejável"></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">AOS CUIDADOS DE:</label>
+                                    <input type="text" class="form-control" placeholder="Nome do superior">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">DATA DE EXPIRAÇÃO:</label>
+                                    <input type="date" class="form-control">
+                                </div>
                             </form>
+
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-primary" id="proximoVaga">Proximo</button>
@@ -195,7 +223,89 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="row g-3" id="formExpProf">
+                            <form class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">LINKEDIN:</label>
+                                    <input type="text" class="form-control" placeholder="Linkedin">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">SITE DA EMPRESA:</label>
+                                    <input type="text" class="form-control" placeholder="Site da empresa">
+                                </div>
+                                <div class="col-md-12">
+                                    <h5 class="beneficiosEmpresa">Benefícios da empresa:</h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="checkbox" class="form-check-input" id="valeTransporte">
+                                    <label class="form-check-label" for="valeTransporte">Vale Transporte</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="checkbox" class="form-check-input" id="valeCombustivel">
+                                    <label class="form-check-label" for="valeCombustivel">Vale Combustível</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="checkbox" class="form-check-input" id="valeRefeicao">
+                                    <label class="form-check-label" for="valeRefeicao">Vale Refeição</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="checkbox" class="form-check-input" id="planoSaude">
+                                    <label class="form-check-label" for="planoSaude">Plano de Saúde</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="checkbox" class="form-check-input" id="valeAlimentacao">
+                                    <label class="form-check-label" for="valeAlimentacao">Vale Alimetação</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Outros">
+                                </div>
+
+                                <div class="col-md-12">
+                                    <h5 class="facilidades">Facilidades:</h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="checkbox" class="form-check-input" id="habilitacao">
+                                    <label class="form-check-label" for="habilitacao">Habilitação</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="checkbox" class="form-check-input" id="bolsaEstudo">
+                                    <label class="form-check-label" for="bolsaEstudo">Bolsa de Estudos</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="checkbox" class="form-check-input" id="estacionamento">
+                                    <label class="form-check-label" for="estacionamento">Estacionamento</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="checkbox" class="form-check-input" id="bancoHoras">
+                                    <label class="form-check-label" for="bancoHoras">Banco de Horas Extras</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="checkbox" class="form-check-input" id="flexibilidadeHorario">
+                                    <label class="form-check-label" for="flexibilidadeHorario">Flexibilidade de
+                                        Horário</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Outros">
+                                </div>
+
+                                <div class="col-md-12">
+                                    <h5 class="salario">Salário da vaga:</h5>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">SALÁRIO PRETENDIDO DA VAGA:</label>
+                                    <input type="text" class="form-control" placeholder="Salário pretendido da vaga"
+                                        id="salario" maxlength="9" onkeyup="formatarMoeda()">
+                                </div>
+                                <div class="col-md-6" style="display: flex; align-items: center;">
+                                    <input type="checkbox" class="form-check-input" id="combinar">
+                                    <label class="form-check-label" for="combinar" style="margin-left: 5px;">A
+                                        Combinar</label>
+                                </div>
+
+
+
+
+
 
                             </form>
                         </div>
@@ -219,8 +329,36 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="row g-3" id="formExpProf">
-
+                            <form class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">NOME DA EMPRESA:</label>
+                                    <input type="text" class="form-control" placeholder="Nome da empresa"
+                                        id="nomeEmpresa">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">E-MAIL:</label>
+                                    <input type="email" class="form-control" placeholder="E-mail" id="emailEmpresa">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">TELEFONE:</label>
+                                    <input type="text" class="form-control"  maxlength="15"
+                                        onkeypress="return onlynumber();" placeholder="Telefone" id="telEmpresa">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">CNPJ:</label>
+                                    <input type="text" class="form-control"  placeholder="CNPJ"
+                                        id="cnpjEmpresa">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">CEP:</label>
+                                    <input type="text" class="form-control" id="cepEmpresa" maxlength="9"
+                                        onblur="pesquisacep(this.value);" placeholder="CEP">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">ENDEREÇO:</label>
+                                    <input type="text" class="form-control" id="ruaEmpresa" placeholder="Endereço">
+                                </div>
+                               
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -240,13 +378,39 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="row g-3" id="formExpProf">
-
+                            <form class="row g-3">
+                                
+                                <div class="col-md-6">
+                                    <label class="form-label">CIDADE:</label>
+                                    <input type="text" class="form-control" id="cidadeEmpresa" placeholder="Cidade">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">BAIRRO:</label>
+                                    <input type="text" class="form-control" id="bairroEmpresa" placeholder="Bairro">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">UF:</label>
+                                    <input type="text" class="form-control" id="ufEmpresa" placeholder="UF">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputState" class="form-label">NÚMERO:</label>
+                                    <input type="text" class="form-control" onkeypress="return onlynumber();"
+                                        placeholder="Número" id="nEmpresa">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">SENHA:</label>
+                                    <input type="password" class="form-control" placeholder="Senha" id="senhaEmpresa">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputState" class="form-label">CONFIRMAR SENHA:</label>
+                                    <input type="password" class="form-control" placeholder="Confirmar senha"
+                                        id="confSenhaEmpresa">
+                                </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-primary" data-bs-target="#staticBackdrop3" data-bs-toggle="modal"
-                                id="salvarEmpresa">Salvar</button>
+                            <button class="btn btn-primary" id="voltarEmpresa">Voltar</button>
+                            <button type="submit" class="btn btn-primary" id="salvarEmpresa">Salvar</button>
 
 
                         </div>

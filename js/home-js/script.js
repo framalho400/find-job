@@ -139,7 +139,7 @@ function criaVaga(vaga, empresa, local, salario, descricao, requisitos, benefici
 
 
 
-criaVaga(vaga = "Atendente", empresa = 'Casa de Massagens', local = 'Rua Algusta', salario = '12200R$', requisitos = 'Excel', beneficios = 'dasdsa', contato = 'dsds');
+criaVaga(vaga = "Atendente", empresa = 'Casa de Massagens', local = 'Rua Algusta', salario = '12200R$', requisitos = 'Excel', beneficios = 'dasdsa', contato = 'dsds' );
 criaVaga();
 criaVaga();
 criaVaga();
@@ -168,3 +168,25 @@ abas.forEach((aba) =>
 });
 
  */
+
+
+
+/*modal para criar vagas  */
+
+const adiconaVaga = document.getElementById('adiconaVaga');
+
+var addVaga = new bootstrap.Modal(document.getElementById('modalAddVaga1'));
+var addVaga2 = new bootstrap.Modal(document.getElementById('modalAddVaga2'));
+
+adiconaVaga.addEventListener('click', function () {
+  addVaga.show();
+
+  document.getElementById('proximoVaga').addEventListener('click', function () {
+      addVaga.hide();
+      addVaga2.show();
+      document.getElementById('salvarVaga').addEventListener('click', function () {
+          addVaga2.hide();
+     /*      criaVaga(); */
+      })
+  })
+})

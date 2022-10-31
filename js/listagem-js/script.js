@@ -1,3 +1,6 @@
+
+
+
 /* var token = sessionStorage.getItem("token")
 if (token == null) {
     window.location.replace('../login/login/login.html')
@@ -6,22 +9,34 @@ if (token == null) {
 //paginação do user para o admin
 const user = document.getElementById('user');
 const adm = document.getElementById('adm');
+const empresa = document.getElementById('empresa');
 const usuariosListagem = document.getElementById('usuariosListagem');
 const administradoresListagem = document.getElementById('administradoresListagem');
+const empresasListagem = document.getElementById('empresasListagem');
 adm.addEventListener('click', function () {
     user.classList.add('close');
     usuariosListagem.classList.add('close');
     administradoresListagem.classList.remove('close');
     adm.classList.remove('close');
-
+    empresa.classList.add('close');
+    empresasListagem.classList.add('close');
 })
 user.addEventListener('click', function () {
     user.classList.remove('close');
     usuariosListagem.classList.remove('close');
     administradoresListagem.classList.add('close');
     adm.classList.add('close');
+    empresa.classList.add('close');
+    empresasListagem.classList.add('close');
 })
-
+empresa.addEventListener('click', function () {
+    user.classList.add('close');
+    usuariosListagem.classList.add('close');
+    administradoresListagem.classList.add('close');
+    adm.classList.add('close');
+    empresa.classList.remove('close');
+    empresasListagem.classList.remove('close');
+})
 
 
 //função para criar a linha da tabela de user
@@ -40,12 +55,13 @@ function criarlinha(id, nome, email, celular) {
     //abre a modal de deletar
     var modalDelete = new bootstrap.Modal(document.querySelector('#deleteModal'));
     tdButton.addEventListener('click', function () {
-        modalDelete.show( nome);
+        modalDelete.show(nome);
         const text = document.querySelector('#text');
-      /*   text.innerHTML = `Deseja excluir o usuário ${nome}?`; */
-      text.innerHTML = `<h4>Deseja mesmo excluir o usuário ${nome}?</h4>`;
+        /*   text.innerHTML = `Deseja excluir o usuário ${nome}?`; */
+        text.innerHTML = `<h4>Deseja mesmo excluir o usuário ${nome}?</h4>`;
         document.getElementById('deletConfirm').addEventListener('click', function () {
             deleteUser(id);
+            modalDelete.hide();
         })
     })
     var cancel = document.querySelector('#cancelar');
@@ -53,151 +69,176 @@ function criarlinha(id, nome, email, celular) {
         modalDelete.hide();
     })
 
-        tdID.innerHTML = id;
-        tdNome.innerHTML = nome;
-        tdEmail.innerHTML = email;
-        tdCelular.innerHTML = celular;
-        tdButton.innerHTML = `<i class='bx bx-trash icon'></i>`;
+    tdID.innerHTML = id;
+    tdNome.innerHTML = nome;
+    tdEmail.innerHTML = email;
+    tdCelular.innerHTML = celular;
+    tdButton.innerHTML = `<i class='bx bx-trash icon'></i>`;
 
 
-        tbody.appendChild(tr);
-        tr.appendChild(tdID);
-        tr.appendChild(tdNome);
-        tr.appendChild(tdEmail);
-        tr.appendChild(tdExcluir);
-        tdExcluir.appendChild(tdButton);
+    tbody.appendChild(tr);
+    tr.appendChild(tdID);
+    tr.appendChild(tdNome);
+    tr.appendChild(tdEmail);
+    tr.appendChild(tdExcluir);
+    tdExcluir.appendChild(tdButton);
 
-    }
+}
 
 //Pega o usuario e chama a função para criar a linha da tabela
-const url = "http://localhost:8080/api/usuario/";
-    function getUser() {
-        axios.get(url, {
+const url = "http://192.168.3.106:8080/api/usuario/";
+function getUser() {
+    axios.get(url, {
+
+    })
+        .then((response) => {
+            const data = response.data;
+
+            //popula a tabela com os dados do servidor
+            data.map((data) => {
+                nome = data.nome;
+                id = data.id;
+                email = data.email;
+                criarlinha(id, nome, email);
+
+
+
+
+            });
+
 
         })
-            .then((response) => {
-                const data = response.data;
+        .catch((error) => console.log(error));
+}
+getUser();
+const urlDel = "http://192.168.3.106/api/usuario/excluir/";
+function deleteUser(id) {
+    axios.delete(urlDel + id, {
 
-                //popula a tabela com os dados do servidor
-                data.map((data) => {
-                    nome = data.nome;
-                    id = data.id;
-                    email = data.email;
-                    criarlinha(id, nome, email);
-                    
+    })
+        .then((response) => {
+            const data = response.data;
+            console.log(data);
+            location.reload();
+        })
+        .catch((error) => console.log(error));
+}
+deleteUser(id = 5)
 
 
 
-                });
 
 
-            })
-            .catch((error) => console.log(error));
-    }
-    getUser();
+/* função de listagem de adm */
+function criarlinhaAdm(id, nome, email, celular) {
+    const tbody = document.querySelector('#bodyAdm');
+    let tr = document.createElement('tr');
+    tr.id = id;
+    let tdID = document.createElement('td');
+    let tdNome = document.createElement('td');
+    let tdEmail = document.createElement('td');
+    let tdCelular = document.createElement('td');
+    let tdExcluir = document.createElement('td');
+    let tdButton = document.createElement('button');
 
-    const urlDel = "http://localhost:8080/api/usuario/";
-    function deleteUser(id) {
-        axios.delete(url + id, {
+
+
+    tdID.innerHTML = id;
+    tdNome.innerHTML = nome;
+    tdEmail.innerHTML = email;
+    tdCelular.innerHTML = celular;
+    tdButton.innerHTML = `<i class='bx bx-trash icon'></i>`;
+
+
+    tbody.appendChild(tr);
+    tr.appendChild(tdID);
+    tr.appendChild(tdNome);
+    tr.appendChild(tdEmail);
+    tr.appendChild(tdExcluir);
+    tdExcluir.appendChild(tdButton);
+
+}
+function getAdm() {
+    /* 10.92.198.40 */
+    axios.get("http://192.168.3.106:8080/administrador", {
+
+    })
+        .then((response) => {
+            const data = response.data;
+
+            //popula a tabela com os dados do servidor
+            data.map((data) => {
+                nome = data.nome;
+                id = data.id;
+                foto = data.foto;
+                email = data.email;
+
+                criarlinhaAdm(id, nome, email);
+
+
+
+            });
+
 
         })
-            .then((response) => {
-                const data = response.data;
-                console.log(data);
-                location.reload();
-            })
-            .catch((error) => console.log(error));
-    }
-
-    deleteUser(id = 1) 
+        .catch((error) => console.log(error));
+}
+getAdm();
 
 
-    //função para deletar o usuario
- /*    function deleteUser(id) {
-        axios.delete(url + id, {
+
+
+/* função de listagem de empresa */
+function criarlinhaEmpresa(id, nome, email, celular) {
+    const tbody = document.querySelector('#bodyEmpresa');
+    let tr = document.createElement('tr');
+    tr.id = id;
+    let tdID = document.createElement('td');
+    let tdNome = document.createElement('td');
+    let tdEmail = document.createElement('td');
+    let tdCelular = document.createElement('td');
+    let tdExcluir = document.createElement('td');
+    let tdButton = document.createElement('button');
+
+
+
+    tdID.innerHTML = id;
+    tdNome.innerHTML = nome;
+    tdEmail.innerHTML = email;
+    tdCelular.innerHTML = celular;
+    tdButton.innerHTML = `<i class='bx bx-trash icon'></i>`;
+
+
+    tbody.appendChild(tr);
+    tr.appendChild(tdID);
+    tr.appendChild(tdNome);
+    tr.appendChild(tdEmail);
+    tr.appendChild(tdExcluir);
+    tdExcluir.appendChild(tdButton);
+
+}
+function getEmpresa() {
+    /* 10.92.198.40 */
+    axios.get("http://192.168.3.106:8080/api/empresa", {
+
+    })
+        .then((response) => {
+            const data = response.data;
+
+            //popula a tabela com os dados do servidor
+            data.map((data) => {
+                nome = data.nome;
+                id = data.id;
+                email = data.email;
+                criarlinhaEmpresa(id, nome, email);
+
+            });
+
 
         })
-            .then((response) => {
-                const data = response.data;
-                console.log(data);
-                location.reload();
-            })
-            .catch((error) => console.log(error));
-    }
- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-    function criarlinhaAdm(id, nome, email, celular) {
-        const tbody = document.querySelector('#bodyAdm');
-        let tr = document.createElement('tr');
-        tr.id = id;
-        let tdID = document.createElement('td');
-        let tdNome = document.createElement('td');
-        let tdEmail = document.createElement('td');
-        let tdCelular = document.createElement('td');
-        let tdExcluir = document.createElement('td');
-        let tdButton = document.createElement('button');
-
-
-
-        tdID.innerHTML = id;
-        tdNome.innerHTML = nome;
-        tdEmail.innerHTML = email;
-        tdCelular.innerHTML = celular;
-        tdButton.innerHTML = `<i class='bx bx-trash icon'></i>`;
-
-
-        tbody.appendChild(tr);
-        tr.appendChild(tdID);
-        tr.appendChild(tdNome);
-        tr.appendChild(tdEmail);
-        tr.appendChild(tdExcluir);
-        tdExcluir.appendChild(tdButton);
-
-    }
-
-
-
-
-
-    function getAdm() {
-        axios.get("http://10.92.198.21:8080/administrador", {
-
-        })
-            .then((response) => {
-                const data = response.data;
-
-                //popula a tabela com os dados do servidor
-                data.map((data) => {
-                    nome = data.nome;
-                    id = data.id;
-                    foto = data.foto;
-                    email = data.email;
-
-                    criarlinhaAdm(id, nome, email);
-
-
-
-                });
-
-
-            })
-            .catch((error) => console.log(error));
-    }
-
-
-    getAdm();
+        .catch((error) => console.log(error));
+}
+getEmpresa();
 
 
 
@@ -260,22 +301,38 @@ const url = "http://localhost:8080/api/usuario/";
 
 
 
-    
+
 function msgErro(msgText, color) {
 
-  var div = document.querySelector('.msg');
-  duv.classList.add('active');
-  div.style.borderLeft  = `solid 10px ${color}`;
-  div.innerText = msgText;
-  
-  
+    var div = document.querySelector('.msg');
+    duv.classList.add('active');
+    div.style.borderLeft = `solid 10px ${color}`;
+    div.innerText = msgText;
 
-setTimeout(function () {
-    div.classList.add('close')
-}, 3000); // 5 segundos
-setTimeout(function () {
-  div.remove();
-}, 6000); // 6 segundos
-  
+
+
+    setTimeout(function () {
+        div.classList.add('close')
+    }, 3000); // 5 segundos
+    setTimeout(function () {
+        div.remove();
+    }, 6000); // 6 segundos
+
 
 }
+
+
+
+
+$(document).ready(function () {
+    $('#example').DataTable({
+        "language": {
+            "lengthMenu": "Display _MENU_ records per page",
+            "zeroRecords": "Nothing found - sorry",
+            "info": "Showing page _PAGE_ of _PAGES_",
+            "infoEmpty": "No records available",
+            "infoFiltered": "(filtered from _MAX_ total records)"
+        }
+    });
+});
+
