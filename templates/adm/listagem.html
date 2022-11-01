@@ -128,7 +128,7 @@
 
 
           <div class="card usuario" id="usuariosListagem">
-            <table id="example" class="table table-striped" style="width:100%">
+            <table id="tableUser" class="table table-striped" style="width:100%">
 
               <thead>
                 <tr>
@@ -243,7 +243,7 @@
         src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
       <script>
         $(document).ready(function () {
-          $('#example').DataTable({
+          $('#tableUser').DataTable({
             "language": {
               "lengthMenu": "Exibir _MENU_ por pagina",
               "zeroRecords": "Nothing found - sorry",
@@ -286,9 +286,9 @@
           $('#tableAdm').DataTable({
             "language": {
               "lengthMenu": "Exibir _MENU_ por pagina",
-              "zeroRecords": "Nothing found - sorry",
+              "zeroRecords": "Não Encontrado - Desculpe",
               "info": "Mostrando pagina _PAGE_ de _PAGES_",
-              "infoEmpty": "No records available",
+              "infoEmpty": "Nenhum administrador cadastrado",
               "infoFiltered": "(filtered from _MAX_ total records)",
               "search": "Buscar:",
               "paginate": {
