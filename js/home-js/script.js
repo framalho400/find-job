@@ -25,21 +25,6 @@ function getVagas() {
 data = {
   "vagas": [
     {
-      "id": 1,
-      "nome": "Vaga 1",
-      "requisitos": ["Descrição da vaga 1", "Descrição da vaga 2", "Descrição da vaga 3"],
-      "empresa": "Empresa 1",
-      "local": "Local 1",
-      "salario": "Salário 1",
-      "tipo": "Tipo 1",
-      "data": "Data 1",
-      "email": "Email 1",
-      "contato": "Telefone 1",
-      "link": "Link 1",
-      "wpp": "wpp 1",
-        "beneficios":["Beneficios 1", "Beneficios 2", "Beneficios 3", "Beneficios 4"] 
-    },
-    {
       "id": 2,
       "nome": "Vaga 2",
       "requisitos": ["Descrição da vaga 1", "Descrição da vaga 2", "Descrição da vaga 3"],
@@ -55,6 +40,22 @@ data = {
       "beneficios":["Beneficios 1", "Beneficios 2", "Beneficios 3", "Beneficios 4"] 
       
     },
+    {
+      "id": 1,
+      "nome": "Vaga 1",
+      "requisitos": ["Descrição da vaga 1", "Descrição da vaga 2", "Descrição da vaga 3"],
+      "empresa": "Empresa 1",
+      "local": "Local 1",
+      "salario": "Salário 1",
+      "tipo": "Tipo 1",
+      "data": "Data 1",
+      "email": "Email 1",
+      "contato": "Telefone 1",
+      "link": "Link 1",
+      "wpp": "wpp 1",
+        "beneficios":["Beneficios 1", "Beneficios 2", "Beneficios 3", "Beneficios 4"] 
+    },
+    
     {
       "id": 3,
       "nome": "Vaga 3",
@@ -99,6 +100,21 @@ data = {
       "link": "Link 5",
       "wpp": "wpp 5", 
       "beneficios":["Beneficios 1", "Beneficios 2", "Beneficios 3", "Beneficios 4"] 
+    },
+    {
+      "id": 6,
+      "nome": "Vaga 6",
+      "requisitos": ["Descrição da vaga 1", "Descrição da vaga 2", "Descrição da vaga 3"],
+      "empresa": "Empresa 6",
+      "local": "Local 5",
+      "salario": "Salário 5",
+      "tipo": "Tipo 5",
+      "data": "Data 5",
+      "email": "Email 5",
+      "contato": "Telefone 5",
+      "link": "Link 5",
+      "wpp": "wpp 5", 
+      "beneficios":["Beneficios 1", "Beneficios 2", "Beneficios 3", "Beneficios 4"] 
     }
 
 
@@ -109,8 +125,12 @@ data = {
 }
 
 vagas = data.vagas;
+vagas.sort(function (b, a) {
+  return a.id - b.id;
+});
+
 vagas.forEach(vaga => {
-    criaVaga(vaga.nome, vaga.empresa, vaga.local, vaga.salario, vaga.descricao, vaga.requisitos, vaga.beneficios, vaga.contato, vaga.wpp, vaga.email); 
+    criaVaga(vaga.nome, vaga.empresa, vaga.local, vaga.salario, vaga.requisitos, vaga.beneficios, vaga.contato, vaga.wpp, vaga.email); 
  
 });
 
@@ -122,7 +142,7 @@ const filterVagas = vagas.filter((valorAtual) => {
 
 
 //função para criar vaga
-function criaVaga(vaga, empresa, local, salario, descricao, requisitos, beneficios, contato, wpp, email) {
+function criaVaga(vaga, empresa, local, salario, requisitos, beneficios, contato, wpp, email) {
 
 
   const principal = document.querySelector('.principal');
