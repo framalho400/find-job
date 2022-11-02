@@ -242,66 +242,6 @@ getEmpresa();
 
 
 
-//================================================================================================== Paginação ==================================================================================================
-/* 
-}
-
-/*  const data = getUser()
-    let perPage = 5;
-    const state ={
-        page: 1,
-        perPage,
-        totalPage: Math.ceil(data.length / perPage)
-    }
-    const controles ={
-    next(){
-        state.page++;
-        const lastPage = state.page > state.totalPage;
-        if(lastPage){
-            state.page--;
-        }
-    },
-    prev(){
-        state.page--;
-        if(state.page < 1){
-            state.page++;
-        }
-    },
-    goTo(page){
-        if(page < 1){
-            page = 1;
-        }
-        state.page = +page;
-        if(page > state.totalPage){
-            state.page = state.totalPage;
-        }
-    },
-    createListeners(){
-        html.get('.first').addEventListener('click', () => {
-            controles.goTo(1);
-            update();
-        })
-        html.get('.last').addEventListener('click', () => {
-            controles.goTo(state.totalPage);
-            update();
-        })
-        html.get('.next').addEventListener('click', () => {
-            controles.next();
-            update();
-        })
-        html.get('.prev').addEventListener('click', () => {
-            controles.prev();
-            update();
-        })
-
-    }
- */
-
-
-
-
-
-
 function msgErro(msgText, color) {
 
     var div = document.querySelector('.msg');
