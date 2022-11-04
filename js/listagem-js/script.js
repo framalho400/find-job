@@ -1,3 +1,6 @@
+
+
+
 /* var token = sessionStorage.getItem("token")
 if (token == null) {
     window.location.replace('../login/login/login.html')
@@ -83,7 +86,7 @@ function criarlinha(id, nome, email, celular) {
 }
 
 //Pega o usuario e chama a função para criar a linha da tabela
-const url = "http://10.92.198.40:8080/api/usuario/";
+const url = "http://localhost:8080/api/usuario/";
 function getUser() {
     axios.get(url, {
 
@@ -108,7 +111,7 @@ function getUser() {
         .catch((error) => console.log(error));
 }
 getUser();
-const urlDel = "http://localhost:8080/api/usuario/excluir/";
+const urlDel = "http://192.168.3.106/api/usuario/excluir/";
 function deleteUser(id) {
     axios.delete(urlDel + id, {
 
@@ -156,7 +159,8 @@ function criarlinhaAdm(id, nome, email, celular) {
 
 }
 function getAdm() {
-    axios.get("http://10.92.198.40:8080/administrador", {
+    /* 10.92.198.40 */
+    axios.get("http://localhost:8080/administrador", {
 
     })
         .then((response) => {
@@ -214,7 +218,8 @@ function criarlinhaEmpresa(id, nome, email, celular) {
 
 }
 function getEmpresa() {
-    axios.get("http://10.92.198.40:8080/api/empresa", {
+    /* 10.92.198.40 */
+    axios.get("http://localhost:8080/api/empresa", {
 
     })
         .then((response) => {
@@ -237,66 +242,6 @@ getEmpresa();
 
 
 
-//================================================================================================== Paginação ==================================================================================================
-/* 
-}
-
-/*  const data = getUser()
-    let perPage = 5;
-    const state ={
-        page: 1,
-        perPage,
-        totalPage: Math.ceil(data.length / perPage)
-    }
-    const controles ={
-    next(){
-        state.page++;
-        const lastPage = state.page > state.totalPage;
-        if(lastPage){
-            state.page--;
-        }
-    },
-    prev(){
-        state.page--;
-        if(state.page < 1){
-            state.page++;
-        }
-    },
-    goTo(page){
-        if(page < 1){
-            page = 1;
-        }
-        state.page = +page;
-        if(page > state.totalPage){
-            state.page = state.totalPage;
-        }
-    },
-    createListeners(){
-        html.get('.first').addEventListener('click', () => {
-            controles.goTo(1);
-            update();
-        })
-        html.get('.last').addEventListener('click', () => {
-            controles.goTo(state.totalPage);
-            update();
-        })
-        html.get('.next').addEventListener('click', () => {
-            controles.next();
-            update();
-        })
-        html.get('.prev').addEventListener('click', () => {
-            controles.prev();
-            update();
-        })
-
-    }
- */
-
-
-
-
-
-
 function msgErro(msgText, color) {
 
     var div = document.querySelector('.msg');
@@ -315,5 +260,3 @@ function msgErro(msgText, color) {
 
 
 }
-
-

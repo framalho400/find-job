@@ -20,8 +20,56 @@ function getVagas() {
   })
 } */
 
+
+
+
+
+data = {
+  "vagas": [
+    {
+      "id": 1,
+      "vaga": "Vaga 1",
+      "empresa": "Empresa 1",
+      "endereco": "Rua roque soares",
+      "n": "163",
+      "cep": "06730-000",
+      "cidade": "VGP",
+      "data": "Data 2",
+      "uf": "SP",
+      "requisitos": "Requisitos 1, Requisitos 2, Requisitos 3",
+      "requisitos": "Desejaveis 1, Desejaveis 2, Desejaveis 3",
+      "contato": "Telefone 2",
+      "link": "Link 2",
+      "wpp": "wpp 2",
+      "beneficios": "Beneficios 1, Beneficios 2, Beneficios 3, Beneficios 4"
+
+    },
+  ]
+}
+
+vagas = data.vagas;
+vagas.sort(function (b, a) {
+  return a.id - b.id;
+});
+
+vagas.forEach(vaga => {
+  criaVaga(vaga.nome, vaga.empresa, vaga.local, vaga.salario, vaga.requisitos, vaga.beneficios, vaga.contato, vaga.wpp, vaga.email);
+
+});
+
+/* 
+const filterVagas = vagas.filter((valorAtual) => {
+  return valorAtual.nome.includes('Vaga 1'); 
+});
+ */
+
+
 //função para criar vaga
-function criaVaga(vaga, empresa, local, salario, descricao, requisitos, beneficios, contato, wpp, email) {
+function criaVaga(
+vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desejaveis, contratacao, descricao, salario, beneficios, periodo, contato, wpp, email,
+
+) {
+
 
   const principal = document.querySelector('.principal');
   const div = document.createElement('div');
@@ -36,7 +84,7 @@ function criaVaga(vaga, empresa, local, salario, descricao, requisitos, benefici
     <div class="r">
     <div class="local">
         <h6>Local:</h6>
-        <p>${local}</p>
+        <p>${endereco}, ${n}, ${cep},${cidade}, ${uf} </p>
     </div>
     <div class="salario">
         <h6>Salario:</h6>
@@ -46,14 +94,15 @@ function criaVaga(vaga, empresa, local, salario, descricao, requisitos, benefici
     <div class="requisitos">
         <h6>Requisitos:</h6>
         <ul>
-            <li>Experiência com massagem</li>
-            <li>Disponibilidade de horário</li>
-            <li>Boa comunicação</li>
+       ${requisitos.split(",").map(requisito => `<li>${requisito}</li>`).join('')}
         </ul>
     </div>
 
 
     `;
+
+
+  /* ${requisitos.map(requisito => `<li>${requisito}</li>`).join('')} */
   button = document.createElement('button');
   button.classList.add('btn');
   button.classList.add('btn-primary');
@@ -61,51 +110,66 @@ function criaVaga(vaga, empresa, local, salario, descricao, requisitos, benefici
   button.innerHTML = 'Ver Mais..';
 
   div.appendChild(button);
-    button.addEventListener('click', function () {
-        
-      var modal = new bootstrap.Modal(document.querySelector('#modalVaga'));
-        modal.show();
+  button.addEventListener('click', function () {
 
-        const conteudoModal = document.querySelector('#modalBody');
-        conteudoModal.innerHTML = `<div class="container-fluid">
+    var modal = new bootstrap.Modal(document.querySelector('#modalVaga'));
+    modal.show();
+
+    const conteudoModal = document.querySelector('#modalBody');
+    conteudoModal.innerHTML = `<div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
-                <span>
+            <span>
+                    <h4>Empresa:</h4>
+                    <p>${empresa}</p>
+                </span>    
+            <span>
                     <h5>Local:</h5>
-                    <p>${local}</p>
+                    <p>${endereco}, ${n}, ${cep},${cidade}, ${uf} </p>
                 </span>
                 <span>
                     <h5>Requisitos:</h5>
-                    <p>Experiência com logística
-                        Experiência com sistema totvs fly01</p>
+                    <ul> 
+                    ${requisitos.split(",").map(requisito => `<li>${requisito}</li>`).join('')}
+                    </ul>
+                </span>
+                <span>
+                    <h5>Desejavel:</h5>
+                    <ul>
+                    ${desejaveis.split(",").map(desejavel => `<li>${desejavel}</li>`).join('')}
+                    </ul>
                 </span>
                 <span>
                     <h5>Regime de Contratação:</h5>
-                    <p>CLT (efetivo), prestador de serviços (PJ)</p>
+                    <p>${contratacao}</p>
                 </span>
+               
             </div>
             <div class="col-md-4 ms-auto">
                 <span>
                     <h5>Salario:</h5>
-                    <p>São Paulo - SP</p>
+                    <p>${salario}</p>
 
                 </span>
                 <span>
                     <h5>Beneficios:</h5>
-                    <p>Tíquete Refeição, Tíquete Alimentação,
-                        Vale Transporte, Vale Alimentação</p>
+                    <ul>
+                    ${beneficios.split(",").map(beneficio => `<li>${beneficio}</li>`).join('')}
+                    </ul>
                 </span>
                 <span>
-                    <h5>Horarios:</h5>
-                    <p> 08:00 ás 17:00 Seg a Sex
-                        <br> 08:00 ás 16:00 Sábado
-                    </p>
+                    <h5>Periodo:</h5>
+                    <p>${periodo}</p>
                 </span>
 
             </div>
+            <span>
+                    <h5>Descriçao:</h5>
+                    <p>${descricao}</p>
+                </span>
         </div>
     </div>`
-    })
+  })
 
   principal.appendChild(div);
   const div2 = document.createElement('div');
@@ -128,21 +192,12 @@ function criaVaga(vaga, empresa, local, salario, descricao, requisitos, benefici
     </span>
 </div>`
   div.appendChild(div2);
-
-
-  
-  
- 
-
 }
 
 
 
 
-criaVaga(vaga = "Atendente", empresa = 'Casa de Massagens', local = 'Rua Algusta', salario = '12200R$', requisitos = 'Excel', beneficios = 'dasdsa', contato = 'dsds' );
-criaVaga();
-criaVaga();
-criaVaga();
+
 
 //função para abrir a modal
 
@@ -168,3 +223,25 @@ abas.forEach((aba) =>
 });
 
  */
+
+
+
+/*modal para criar vagas  */
+
+const adiconaVaga = document.getElementById('adiconaVaga');
+
+var addVaga = new bootstrap.Modal(document.getElementById('modalAddVaga1'));
+var addVaga2 = new bootstrap.Modal(document.getElementById('modalAddVaga2'));
+
+adiconaVaga.addEventListener('click', function () {
+  addVaga.show();
+
+  document.getElementById('proximoVaga').addEventListener('click', function () {
+    addVaga.hide();
+    addVaga2.show();
+    document.getElementById('salvarVaga').addEventListener('click', function () {
+      addVaga2.hide();
+      /*      criaVaga(); */
+    })
+  })
+})

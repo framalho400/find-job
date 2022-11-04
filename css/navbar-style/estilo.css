@@ -23,6 +23,25 @@
 }
 
 
+body::-webkit-scrollbar {
+    width: 12px; 
+
+
+    }
+  
+  body::-webkit-scrollbar-track {
+    background: transparent;
+    opacity: 0.5;    
+
+    /* color of the tracking area */
+  }
+  
+  body::-webkit-scrollbar-thumb {
+
+    background-color:#bbbbbbc2 ;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 2px solid var(--body-color) ;  /* creates padding around scroll thumb */
+  }
 
 
 

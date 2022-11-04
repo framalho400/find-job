@@ -100,6 +100,9 @@ a {
 .card{
     width: 100%;
     position: absolute !important; 
+    padding: 20px;
+  
+    border-bottom: 11px solid #427AAA !important;
 
 }
 .card.usuario{
@@ -155,7 +158,9 @@ a {
    
 }
 
-
+table{
+   padding: 10px;
+}
 
 thead th{
     padding: 2%;
@@ -167,7 +172,7 @@ tbody img{
 }
 
 tbody th{
-    padding: 10px;
+    
     text-align: center;
     display: table-cell;
     vertical-align: middle
@@ -216,3 +221,48 @@ tbody td button i{
     height: 100%;
     cursor: pointer;
 }
+/* 
+.active>.page-link, .page-link.active {
+    z-index: 3;
+    color: var(--bs-pagination-active-color);
+    background-color: var(--orange-color) !important;
+    border-color: var(--orange-color) !important;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
+    font-size: var(--bs-pagination-font-size);
+    color: black !important;
+    text-decoration: none;
+    background-color: var(--bs-pagination-bg);
+    border:none !important;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.pagination {
+    --bs-pagination-padding-x: 0.75rem;
+    --bs-pagination-padding-y: 0.375rem;
+    --bs-pagination-font-size: 1rem;
+    --bs-pagination-color: var(--orange-color)  !important;
+    --bs-pagination-bg: #fff;
+    --bs-pagination-border-width: 1px;
+    --bs-pagination-border-color: #dee2e6;
+    --bs-pagination-border-radius: 0.375rem;
+    --bs-pagination-hover-color: var(--orange-color) !important;
+    --bs-pagination-hover-bg: #e9ecef;
+    --bs-pagination-hover-border-color: #dee2e6;
+    --bs-pagination-focus-color: var(--orange-color) !important;
+    --bs-pagination-focus-bg: #e9ecef;
+    --bs-pagination-focus-box-shadow: 0 0 0 0.25remrgba(13, 110, 253, 0.25);
+    --bs-pagination-active-color: #fff;
+    --bs-pagination-active-bg: #c9c9c9;
+    --bs-pagination-active-border-color: #a7aaae !important;
+    --bs-pagination-disabled-color: #6c757d !important;
+    --bs-pagination-disabled-bg: #fff;
+    --bs-pagination-disabled-border-color: #dee2e6;
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+} */

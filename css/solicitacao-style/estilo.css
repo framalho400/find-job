@@ -96,10 +96,32 @@ img::selection {
     display: block;
     width: 100%;
     position: absolute  !important;
-    overflow: scroll  !important;
+    overflow-y: scroll  !important;
     height: 80vh  !important;
     scroll-behavior: smooth  !important;
 }
+.card::-webkit-scrollbar {
+    width: 12px; 
+    ;
+
+    }
+  
+  .card::-webkit-scrollbar-track {
+    background: transparent;
+    opacity: 0.5;    
+
+    /* color of the tracking area */
+  }
+  
+  .card::-webkit-scrollbar-thumb {
+
+    background-color:#ED7A11 ;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 2px solid var(--body-color) ;  /* creates padding around scroll thumb */
+  }
+
+
+
 
 .card.empresa.close{
     display: none;

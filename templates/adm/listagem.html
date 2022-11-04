@@ -18,6 +18,13 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 
+
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="
+  https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
+  <script src="../../js/listagem-js/script.js" defer></script>
   <title>Find Job | Listagem</title>
 </head>
 
@@ -25,12 +32,12 @@
   <div class="todo">
     <nav class="nav-top">
 
-      <div class="buscar" id="divbuscar">
+     <!--  <div class="buscar" id="divbuscar">
         <input class="buscar" type="text" placeholder="Buscar" id="buscar">
         <div type="button" class="icone">
           <i class='bx bx-search icon'></i>
         </div>
-      </div>
+      </div> -->
       <div class="user" href="perfil.html">
 
         <div class="user-text">
@@ -121,7 +128,7 @@
 
 
           <div class="card usuario" id="usuariosListagem">
-            <table id="myTable">
+            <table id="tableUser" class="table table-striped" style="width:100%">
 
               <thead>
                 <tr>
@@ -137,21 +144,14 @@
 
               </tbody>
             </table>
-            <nav class="listagem">
-              <div class="first">&#171;</div>
-              <div class="prev">&lt;</div>
-              <div class="numbers">
-                <div>1</div>
-              </div>
-              <div class="next">&gt;</div>
-              <div class="last">&#187;</div>
-            </nav>
+
           </div>
 
 
 
           <div class="card administrador close" id="administradoresListagem">
-            <table>
+            <table id="tableAdm" class="table table-striped" style="width:100%">
+
 
               <thead>
                 <tr>
@@ -164,26 +164,16 @@
 
               <tbody id="bodyAdm">
 
+                
+
               </tbody>
-            </table>
-            <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center" id="demo">
-                <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1">&laquo;</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">&raquo;</a>
-                </li>
-              </ul>
-            </nav>
+            </table> 
+
           </div>
 
 
           <div class="card empresa close" id="empresasListagem">
-            <table>
+            <table id="tableEmpresa" class="table table-striped" style="width:100%">
 
               <thead>
                 <tr>
@@ -198,19 +188,7 @@
 
               </tbody>
             </table>
-            <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center" id="demo">
-                <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1">&laquo;</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">&raquo;</a>
-                </li>
-              </ul>
-            </nav>
+
           </div>
 
         </div>
@@ -223,24 +201,15 @@
             <div class="modal-body" id="text">
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" style="background-color: rgb(149, 193, 231) !important;" data-bs-dismiss="modal" id="cancelar">Cancelar</button>
-              <button type="button" class="btn btn-danger" style="background-color: red !important;"  id="deletConfirm">Excluir</button>
+              <button type="button" class="btn btn-secondary" style="background-color: rgb(149, 193, 231) !important;"
+                data-bs-dismiss="modal" id="cancelar">Cancelar</button>
+              <button type="button" class="btn btn-danger" style="background-color: red !important;"
+                id="deletConfirm">Excluir</button>
             </div>
           </div>
         </div>
       </div>
 
-
-      <!--   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-
-      <script>
-
-        $(document).ready(function () {
-          $('#myTable').DataTable();
-        }); 
-
-      </script>
- -->
 
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
@@ -253,8 +222,76 @@
         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
         crossorigin="anonymous"></script>
 
-      <script src="../../js/navbar-js/script.js"></script>
-      <script src="../../js/listagem-js/script.js"></script>
+     
+
+      <script type="text/javascript" charset="utf8" src="
+      https://code.jquery.com/jquery-3.5.1.js"></script>
+      <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+      <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+      <script>
+        $(document).ready(function () {
+          $('#tableUser').DataTable({
+            "language": {
+              "lengthMenu": "Exibir _MENU_ por pagina",
+
+              "info": "Mostrando pagina _PAGE_ de _PAGES_",
+              "infoEmpty": "No records available",
+              "infoFiltered": "(filtered from _MAX_ total records)",
+              "search": "Buscar:",
+              "paginate": {
+                "first": "First",
+                "last": "Last",
+                "next": "Proximo",
+                "previous": "Voltar"
+                
+              }
+            }
+          });
+        });
+      </script>
+      <script>
+        $(document).ready(function () {
+          $('#tableEmpresa').DataTable({
+            "language": {
+              "lengthMenu": "Exibir _MENU_ por pagina",
+              "zeroRecords": "Nothing found - sorry",
+              "info": "Mostrando pagina _PAGE_ de _PAGES_",
+              "infoEmpty": "No records available",
+              "infoFiltered": "(filtered from _MAX_ total records)",
+              "search": "Buscar:",
+              "paginate": {
+                "first": "First",
+                "last": "Last",
+                "next": "Proximo",
+                "previous": "Voltar"
+              }
+            }
+          });
+        });
+      </script>
+      <script>
+        $(document).ready(function () {
+          $('#tableAdm').DataTable({
+            "language": {
+              "lengthMenu": "Exibir _MENU_ por pagina",
+              "zeroRecords": "Não Encontrado - Desculpe",
+              "info": "Mostrando pagina _PAGE_ de _PAGES_",
+              "infoEmpty": "Nenhum administrador cadastrado",
+              "infoFiltered": "(filtered from _MAX_ total records)",
+              "search": "Buscar:",
+              "paginate": {
+                "first": "First",
+                "last": "Last",
+                "next": "Proximo",
+                "previous": "Voltar"
+              }
+            }
+          });
+        });
+      </script>
+ <script src="../../js/navbar-js/script.js"></script>
 
 </body>
 
