@@ -1,24 +1,25 @@
-/* const url = 'https://api.github.com/users/luizotavio/repos';
+function getVaga() {
+  /* 10.92.198.40 */
+  axios.get("http://localhost:8080/api/empresa/vaga", {
 
-function getVagas() {
-  axios.get(url, {
-    headers: {
-      'Accept': 'application/vnd.github.v3+json'
-    }
-
-  }).then(response => {
-    console.log(response.data);
-    response.data.forEach(vaga => {
-      console.log(vaga.name);
-      CriaVaga();
-    });
-
-  }).catch(error => {
-    console.log(error);
-
-    
   })
-} */
+      .then((response) => {
+          const data = response.data;
+
+          //popula a tabela com os dados do servidor
+          data.map((data) => {
+              titula = data.nome;
+              id = data.id;
+              email = data.email;
+              criarlinhaVaga(id, nome, email);
+
+          });
+
+
+      })
+      .catch((error) => console.log(error));
+}
+getVaga();
 
 
 
@@ -37,15 +38,63 @@ data = {
       "data": "Data 2",
       "uf": "SP",
       "requisitos": "Requisitos 1, Requisitos 2, Requisitos 3",
-      "requisitos": "Desejaveis 1, Desejaveis 2, Desejaveis 3",
+      "desejaveis": "Desejaveis 1, Desejaveis 2, Desejaveis 3",
+      "contratacao": "CLT",
+      "descricao": "Descricao Descricao Descricao Descricao Descricao Descricao Descricao",
+      "salario": "2.000",
+      "periodo": "manhã",
       "contato": "Telefone 2",
-      "link": "Link 2",
+      "email": "Email",
       "wpp": "wpp 2",
-      "beneficios": "Beneficios 1, Beneficios 2, Beneficios 3, Beneficios 4"
+      "beneficios": "Beneficio 1, Beneficio 2, Beneficios 3, Beneficios 4"
+
+    },
+    {
+      "id": 2,
+      "vaga": "Vaga 2",
+      "empresa": "Empresa 2",
+      "endereco": "Rua roque soares",
+      "n": "163",
+      "cep": "06730-000",
+      "cidade": "VGP",
+      "data": "Data 2",
+      "uf": "SP",
+      "requisitos": "Requisitos 1, Requisitos 2, Requisitos 3",
+      "desejaveis": "Desejaveis 1, Desejaveis 2, Desejaveis 3",
+      "contratacao": "CLT",
+      "descricao": "Descricao Descricao Descricao Descricao Descricao Descricao Descricao",
+      "salario": "2.000",
+      "periodo": "manhã",
+      "contato": "Telefone 2",
+      "email": "Email",
+      "wpp": "wpp 2",
+      "beneficios": "Beneficio 1, Beneficio 2, Beneficios 3, Beneficios 4"
+
+    },
+    {
+      "id": 3,
+      "vaga": "Vaga 3",
+      "empresa": "Empresa 3",
+      "endereco": "Rua roque soares",
+      "n": "163",
+      "cep": "06730-000",
+      "cidade": "VGP",
+      "data": "Data 2",
+      "uf": "SP",
+      "requisitos": "Requisitos 1, Requisitos 2, Requisitos 3",
+      "desejaveis": "Desejaveis 1, Desejaveis 2, Desejaveis 3",
+      "contratacao": "CLT",
+      "descricao": "Descricao Descricao Descricao Descricao Descricao Descricao Descricao",
+      "salario": "2.000",
+      "periodo": "manhã",
+      "contato": "Telefone 2",
+      "email": "Email",
+      "wpp": "wpp 2",
+      "beneficios": "Beneficio 1, Beneficio 2, Beneficios 3, Beneficios 4"
 
     },
   ]
-}
+} 
 
 vagas = data.vagas;
 vagas.sort(function (b, a) {
@@ -53,7 +102,8 @@ vagas.sort(function (b, a) {
 });
 
 vagas.forEach(vaga => {
-  criaVaga(vaga.nome, vaga.empresa, vaga.local, vaga.salario, vaga.requisitos, vaga.beneficios, vaga.contato, vaga.wpp, vaga.email);
+  criaVaga(vaga.vaga, vaga.empresa, vaga.endereco, vaga.n, vaga.cep, vaga.cidade, vaga.uf, vaga.requisitos, vaga.desejaveis, vaga.contratacao, vaga.descricao, vaga.salario, vaga.beneficios, vaga.periodo, vaga.contato, vaga.wpp, vaga.email)
+   
 
 });
 
@@ -67,7 +117,6 @@ const filterVagas = vagas.filter((valorAtual) => {
 //função para criar vaga
 function criaVaga(
 vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desejaveis, contratacao, descricao, salario, beneficios, periodo, contato, wpp, email,
-
 ) {
 
 
@@ -84,7 +133,7 @@ vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desejaveis, contratacao
     <div class="r">
     <div class="local">
         <h6>Local:</h6>
-        <p>${endereco}, ${n}, ${cep},${cidade}, ${uf} </p>
+        <p>${endereco}, ${n}, ${cep}, ${cidade}, ${uf} </p>
     </div>
     <div class="salario">
         <h6>Salario:</h6>
@@ -97,6 +146,7 @@ vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desejaveis, contratacao
        ${requisitos.split(",").map(requisito => `<li>${requisito}</li>`).join('')}
         </ul>
     </div>
+
 
 
     `;
@@ -116,6 +166,7 @@ vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desejaveis, contratacao
     modal.show();
 
     const conteudoModal = document.querySelector('#modalBody');
+
     conteudoModal.innerHTML = `<div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
@@ -144,6 +195,7 @@ vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desejaveis, contratacao
                     <p>${contratacao}</p>
                 </span>
                
+
             </div>
             <div class="col-md-4 ms-auto">
                 <span>
@@ -162,11 +214,13 @@ vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desejaveis, contratacao
                     <p>${periodo}</p>
                 </span>
 
+                
+                <span>
+                <h5>Descriçao:</h5>
+                <p>${descricao}</p>
+            </span>
             </div>
-            <span>
-                    <h5>Descriçao:</h5>
-                    <p>${descricao}</p>
-                </span>
+           
         </div>
     </div>`
   })
@@ -193,11 +247,6 @@ vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desejaveis, contratacao
 </div>`
   div.appendChild(div2);
 }
-
-
-
-
-
 
 //função para abrir a modal
 
@@ -229,7 +278,7 @@ abas.forEach((aba) =>
 /*modal para criar vagas  */
 
 const adiconaVaga = document.getElementById('adiconaVaga');
-
+var modalVaga = new bootstrap.Modal(document.getElementById('modalVaga'))
 var addVaga = new bootstrap.Modal(document.getElementById('modalAddVaga1'));
 var addVaga2 = new bootstrap.Modal(document.getElementById('modalAddVaga2'));
 
@@ -245,3 +294,59 @@ adiconaVaga.addEventListener('click', function () {
     })
   })
 })
+
+
+ const contatos = document.getElementById('contatos')
+
+var modalcontato = new bootstrap.Modal(document.getElementById('modalContato'));
+
+contatos.addEventListener('click', function (){
+  modalVaga.hide()
+  modalcontato.show()
+  
+}) 
+
+
+function savePdf(vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desejaveis, contratacao, descricao, salario, beneficios, periodo, contato, wpp, email,
+  ){  var doc = new jsPDF()
+    var imgData = "../../img/logo_principal.png"
+    requisitos ="req 1"
+doc.text(`
+Empresa:
+Empresa 3
+
+Local:
+Rua roque soares, 163, 06730-000,VGP, SP
+
+Requisitos:
+${requisitos}
+Desejavel:
+
+Regime de Contratação:
+CLT`, 10, 10)
+
+
+doc.save('a4.pdf')
+doc.addImage(imgData, 'JPEG', 15, 40, 180, 180);
+
+}
+
+
+
+function msgErro(msgText, color) {
+
+  const div = document.createElement('div');
+  div.classList.add('msg');
+  div.style.borderLeft = `solid 10px ${color}`;
+  div.innerText = msgText;
+  document.body.appendChild(div);
+  
+  
+  setTimeout(function () {
+      div.classList.add('close')
+  }, 3000); // 5 segundos
+  setTimeout(function () {
+      div.remove();
+  }, 6000); // 6 segundos
+
+}

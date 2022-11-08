@@ -6,7 +6,7 @@ const Isenha = document.querySelector('#senha');
 
 
 
-function entrar() {
+/* function entrar() {
 
 
 
@@ -86,3 +86,43 @@ formulario.addEventListener('submit', function (event) {
 
     }
 });
+ */
+
+
+const url = 'http://localhost:8080/api/usuario/'
+function entrar() {
+    axios.post(url, {
+        cpf: Icpf.value,
+        senha: Isenha.value
+    })
+
+.then((resp) => {
+    resp.json().then((resposta) => {
+        sessionStorage.setItem("token", resposta.token);
+        const token = parseJwt(resposta.token);
+        if (token == null) {
+            window.location.href = "../prof/index.html";
+        } else {
+            window.location.href = "../prof/index.html";
+        }
+        
+    }).catch((error) => {
+        window.location.href = "../suporte/index.html";
+        console.log(error)
+    /*     if (resp.status == 401) {
+            msg = "Usuário ou senha incorretos"
+            exibeErro(msg)
+        } */
+    })
+})
+}
+
+function parseJwt(token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+};

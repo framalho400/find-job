@@ -10,7 +10,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
-
   <link rel="stylesheet" href="../../css/listagem-style/estilo.css" />
   <link rel="stylesheet" href="../../css/navbar-style/estilo.css">
   <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
@@ -18,13 +17,14 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 
-
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="
   https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 
+
   <script src="../../js/listagem-js/script.js" defer></script>
+
   <title>Find Job | Listagem</title>
 </head>
 
@@ -32,12 +32,7 @@
   <div class="todo">
     <nav class="nav-top">
 
-     <!--  <div class="buscar" id="divbuscar">
-        <input class="buscar" type="text" placeholder="Buscar" id="buscar">
-        <div type="button" class="icone">
-          <i class='bx bx-search icon'></i>
-        </div>
-      </div> -->
+
       <div class="user" href="perfil.html">
 
         <div class="user-text">
@@ -124,6 +119,9 @@
             <div class="listaEmpresa close" id="empresa">
               <li>Empresas</li>
             </div>
+            <div class="listaVaga close" id="vaga">
+              <li>Vagas</li>
+            </div>
           </div>
 
 
@@ -164,10 +162,10 @@
 
               <tbody id="bodyAdm">
 
-                
+
 
               </tbody>
-            </table> 
+            </table>
 
           </div>
 
@@ -185,6 +183,25 @@
               </thead>
 
               <tbody id="bodyEmpresa">
+
+              </tbody>
+            </table>
+
+          </div>
+
+          <div class="card vaga close" id="vagasListagem">
+            <table id="tableVaga" class="table table-striped" style="width:100%">
+
+              <thead>
+                <tr>
+                  <th scope="col" class="col-1">ID</th>
+                  <th scope="col" class="col-2">Nome</th>
+                  <th scope="col" class="col-2">E-mail</th>
+                  <th scope="col" class="col-1">Excluir</th>
+                </tr>
+              </thead>
+
+              <tbody id="bodyVaga">
 
               </tbody>
             </table>
@@ -222,8 +239,10 @@
         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
         crossorigin="anonymous"></script>
 
-     
 
+
+
+      <script src="../../js/navbar-js/script.js"></script>
       <script type="text/javascript" charset="utf8" src="
       https://code.jquery.com/jquery-3.5.1.js"></script>
       <script type="text/javascript" charset="utf8"
@@ -235,7 +254,6 @@
           $('#tableUser').DataTable({
             "language": {
               "lengthMenu": "Exibir _MENU_ por pagina",
-
               "info": "Mostrando pagina _PAGE_ de _PAGES_",
               "infoEmpty": "No records available",
               "infoFiltered": "(filtered from _MAX_ total records)",
@@ -245,7 +263,7 @@
                 "last": "Last",
                 "next": "Proximo",
                 "previous": "Voltar"
-                
+    
               }
             }
           });
@@ -291,8 +309,6 @@
           });
         });
       </script>
- <script src="../../js/navbar-js/script.js"></script>
-
 </body>
 
 </html>

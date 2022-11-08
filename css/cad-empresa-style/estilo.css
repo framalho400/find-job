@@ -59,17 +59,15 @@ body {
   left: 10px;
   box-shadow: 2px 1px 5px rgba(70, 70, 70, 0.493);
   width: 80px;
-  border-radius: 35px;
+  border-radius: 45px;
   height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  
 }
 
 
 
 .logo .logo_principal {
-  width: 80%;
+  width: 90%;
 }
 
 

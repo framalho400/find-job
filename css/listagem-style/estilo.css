@@ -117,6 +117,9 @@ a {
 .card.empresa.close{
     display: none;
 }
+.card.vaga.close{
+    display: none;
+}
 .listaUser{
     display: flex !important;
     justify-content: center !important;
@@ -157,7 +160,19 @@ a {
     border-bottom: 0px !important;
    
 }
-
+.listaVaga{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    border-bottom: 5px solid #427AAA !important;
+    width: 20%  !important;
+    height: 35px;
+   
+}
+.listaVaga.close{
+    border-bottom: 0px !important;
+   
+}
 table{
    padding: 10px;
 }
