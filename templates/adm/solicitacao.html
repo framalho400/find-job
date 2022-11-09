@@ -177,35 +177,79 @@
                         <div class="modal-body">
                             <form class="row g-3">
                                 <div class="col-md-6">
-                                    <label class="form-label">NOME DA VAGA:</label>
-                                    <input type="text" class="form-control" placeholder="Nome da vaga">
+                                  <label class="form-label">NOME DA VAGA:</label>
+                                  <input type="text" class="form-control" placeholder="Nome da vaga" id="tituloVaga">
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">NOME DA EMPRESA:</label>
-                                    <input type="text" class="form-control" placeholder="Nome da empresa">
+                                  <label class="form-label">NOME DA EMPRESA:</label>
+                                  <input type="text" class="form-control" placeholder="Nome da empresa">
                                 </div>
                                 <div class="col-md-12">
-                                    <label class="form-label">DESCRIÇÃO DA VAGA:</label>
-                                    <textarea class="form-control" rows="2" placeholder="Descrição da vaga"></textarea>
-                                </div>
-                                <div class="col-md-12">
-                                    <label class="form-label">EXIGÊNCIAS:</label>
-                                    <textarea class="form-control" rows="3" placeholder="Exigências"></textarea>
-                                </div>
-                                <div class="col-md-12">
-                                    <label class="form-label">DESEJÁVEL:</label>
-                                    <textarea class="form-control" rows="2" placeholder="Desejável"></textarea>
+                                    <h5>Meios de contato:</h5>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">AOS CUIDADOS DE:</label>
-                                    <input type="text" class="form-control" placeholder="Nome do superior">
+                                    <label class="form-label">E-MAIL DA EMPRESA:</label>
+                                    <input type="email" class="form-control" placeholder="E-mail da empresa" id="emailContato">
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">DATA DE EXPIRAÇÃO:</label>
-                                    <input type="date" class="form-control">
+                                    <label class="form-label">WHATSAPP DA EMPRESA:</label>id 
+                                    <input type="text" class="form-control" placeholder="WhatsApp da empresa" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" />
                                 </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">TELEFONE DA EMPRESA:</label>
+                                    <input type="text" class="form-control" id="telefoneContato"placeholder="Telefone da empresa" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" />
+                                </div>
+                        
+                        
+                        
+                               <div class="col-md-6">
+                                    <label class="form-label">SITE DA EMPRESA:</label>
+                                    <input type="text" class="form-control" placeholder="Site da empresa" id="site">
+                                </div>
+                        
+                        
+                        
+                               <div class="col-md-12">
+                                    <h5>Endereço da vaga:</h5>
+                                </div>
+                        
+                        
+                        
+                               <div class="col-md-6">
+                                    <label class="form-label">ENDEREÇO:</label>
+                                    <input type="text" class="form-control" placeholder="Endereço" id="endereco">
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label">NÚMERO:</label>
+                                    <input type="text" class="form-control" placeholder="Número" id="numeroVaga" onkeypress="return onlynumber();" maxlength="5">
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">CEP:</label>
+                                    <input type="text" class="form-control" placeholder="CEP" id="cep" onblur="pesquisacep(this.value);">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">BAIRRO:</label>
+                                    <input type="text" class="form-control" placeholder="Bairro" id="bairro">
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">CIDADE:</label>
+                                    <input type="text" class="form-control" placeholder="Cidade" id="cidade">
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label">ESTADO:</label>
+                                    <input type="text" class="form-control" placeholder="Estado" id="uf">
+                                </div>
+                        
+                        
+                        
+                               
+                        
+                        
+                        
+                        
+                        
+                        
                             </form>
-
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-primary" id="proximoVaga">Proximo</button>
@@ -226,88 +270,98 @@
                         <div class="modal-body">
                             <form class="row g-3">
                                 <div class="col-md-6">
-                                    <label class="form-label">LINKEDIN:</label>
-                                    <input type="text" class="form-control" placeholder="Linkedin">
+                                    <label class="form-label">REGIME DE CONTRATAÇÃO:</label>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option disabled selected>Selecione uma opção</option>
+                                        <option value="efetivo">Efetivo</option>
+                                        <option value="tempoDeterminado">Por tempo determinado</option>
+                                        <option value="temporario">Temporário</option>
+                                        <option value="terceirizado">Terceirizado</option>
+                                        <option value="intermitente">Intermitente</option>
+                                        <option value="parcial">Parcial</option>         
+                                        <option value="homeOffice">Home-office</option>
+                                        <option value="autônomo">Autônomo</option>
+                                        <option value="prestacaoServiços">Prestação de serviços</option>
+                                        <option value="estagio">Estágio</option>
+                                        <option value="trainee">Trainee</option>
+                                        <option value="jovemAprendiz">Jovem aprendiz</option>
+                                        <option value="trabalhadorHipersuficiente">Trabalhador hipersuficiente</option>
+                        
+                        
+                        
+                                     </select>
                                 </div>
+                                
                                 <div class="col-md-6">
-                                    <label class="form-label">SITE DA EMPRESA:</label>
-                                    <input type="text" class="form-control" placeholder="Site da empresa">
+                                    <label class="form-label">PERÍODO DA VAGA:</label>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option disabled selected>Selecione uma opção</option>
+                                        <option value="diurno">Diurno</option>
+                                        <option value="noturno">Noturno</option>
+                                        <option value="matutino">Matutino</option>
+                                      </select>
                                 </div>
-                                <div class="col-md-12">
-                                    <h5 class="beneficiosEmpresa">Benefícios da empresa:</h5>
+                        
+                        
+                        
+                                 <div class="col-md-6">
+                                    <label class="form-label">ÁREA PROFISSIONAL:</label>
+                                    <input type="text" id="areaProfissional"class="form-control" placeholder="Área profissional">
+                                  </div>   
+                        
+                        
+                        
+                                 <div class="col-md-6">
+                                    <label class="form-label">SALÁRIO:</label>
+                                    <input type="text" class="form-control" placeholder="Salário" id="salario" maxlength="9" onkeyup="formatarMoeda()">
+                                  </div>   
+                                  
+                                  <div class="col-md-6">
+                                    <label class="form-label">AOS CUIDADOS DE:</label>
+                                    <input type="text" id="cuidados" class="form-control" placeholder="Pessoa que receberá os currículos">
+                                  </div>    
+                        
+                        
+                        
+                                 <div class="col-md-12">
+                                    <label class="form-label">REQUISITOS:</label>
+                                    <textarea class="form-control" rows="3" placeholder="Requisitos"id="requisitos"></textarea>
                                 </div>
-                                <div class="col-md-6">
-                                    <input type="checkbox" class="form-check-input" id="valeTransporte">
-                                    <label class="form-check-label" for="valeTransporte">Vale Transporte</label>
+                        
+                        
+                        
+                               <div class="col-md-12">
+                                    <label class="form-label">DESCRIÇÃO DA VAGA:</label>
+                                    <textarea class="form-control" rows="2" placeholder="Descrição da vaga"id ="descricao"></textarea>
                                 </div>
-                                <div class="col-md-6">
-                                    <input type="checkbox" class="form-check-input" id="valeCombustivel">
-                                    <label class="form-check-label" for="valeCombustivel">Vale Combustível</label>
+                        
+                        
+                        
+                               <div class="col-md-12">
+                                    <label class="form-label">DESEJÁVEL:</label>
+                                    <textarea class="form-control" rows="2" placeholder="Desejável" id="desejaveis"></textarea>
                                 </div>
-                                <div class="col-md-6">
-                                    <input type="checkbox" class="form-check-input" id="valeRefeicao">
-                                    <label class="form-check-label" for="valeRefeicao">Vale Refeição</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="checkbox" class="form-check-input" id="planoSaude">
-                                    <label class="form-check-label" for="planoSaude">Plano de Saúde</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="checkbox" class="form-check-input" id="valeAlimentacao">
-                                    <label class="form-check-label" for="valeAlimentacao">Vale Alimetação</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="Outros">
-                                </div>
-
-                                <div class="col-md-12">
-                                    <h5 class="facilidades">Facilidades:</h5>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="checkbox" class="form-check-input" id="habilitacao">
-                                    <label class="form-check-label" for="habilitacao">Habilitação</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="checkbox" class="form-check-input" id="bolsaEstudo">
-                                    <label class="form-check-label" for="bolsaEstudo">Bolsa de Estudos</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="checkbox" class="form-check-input" id="estacionamento">
-                                    <label class="form-check-label" for="estacionamento">Estacionamento</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="checkbox" class="form-check-input" id="bancoHoras">
-                                    <label class="form-check-label" for="bancoHoras">Banco de Horas Extras</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="checkbox" class="form-check-input" id="flexibilidadeHorario">
-                                    <label class="form-check-label" for="flexibilidadeHorario">Flexibilidade de
-                                        Horário</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="Outros">
-                                </div>
-
-                                <div class="col-md-12">
-                                    <h5 class="salario">Salário da vaga:</h5>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label class="form-label">SALÁRIO PRETENDIDO DA VAGA:</label>
-                                    <input type="text" class="form-control" placeholder="Salário pretendido da vaga"
-                                        id="salario" maxlength="9" onkeyup="formatarMoeda()">
-                                </div>
-                                <div class="col-md-6" style="display: flex; align-items: center;">
-                                    <input type="checkbox" class="form-check-input" id="combinar">
-                                    <label class="form-check-label" for="combinar" style="margin-left: 5px;">A
-                                        Combinar</label>
-                                </div>
-
-
-
-
-
-
+                        
+                        
+                        
+                               <div class="col-md-6">
+                                    <label class="form-label">DATA DA PUBLICAÇÃO:</label>
+                                    <input type="date" class="form-control data" id="publicacao" onkeydown="return false"/>
+                                  </div>   
+                        
+                        
+                        
+                                 <div class="col-md-6">
+                                    <label class="form-label">DATA DE EXPIRAÇÃO:</label>
+                                    <input type="date" class="form-control data" id="expiracao" onkeydown="return false"/>
+                                  </div>  
+                                  
+                                  
+                                  <div class="col-md-12">
+                                    <label class="form-label">BENEFÍCIOS:</label>
+                                    <textarea class="form-control" id="beneficios" rows="2" placeholder="Ex: Vale Refeição, Vale Alimentação, Vale Transporte, etc..."></textarea>
+                                </div>   
+                            
                             </form>
                         </div>
                         <div class="modal-footer">

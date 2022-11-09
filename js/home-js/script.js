@@ -1,5 +1,5 @@
-function getVaga() {
-  /* 10.92.198.40 */
+/* function getVaga() {
+  
   axios.get("http://localhost:8080/api/empresa/vaga", {
 
   })
@@ -20,11 +20,42 @@ function getVaga() {
       .catch((error) => console.log(error));
 }
 getVaga();
+ */
+
+function getVagas() {
+  axios.get('http://localhost:8080/api/empresa/vaga')
+      .then((response) => {
+          console.log(JSON.stringify(response.data));
+          data = response.data;
+        
+          data.sort(function (b, a) {
+              return a.id - b.id;
+          });
+          
+          
+          data.forEach(vaga => {
+            if(vaga.ativo == false){
+              criaVaga(vaga.tituloVaga, vaga.cep, vaga.endereco, vaga.complemento, vaga.bairro, vaga.cidade, vaga.uf, vaga.emailContato, vaga.whatsapp, vaga.contato, vaga.exigencias, vaga.desejavel, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.ativo, vaga.areaProfissional);
+            }
+            else{
+              console.log("Vaga inativa");
+            }
+          
+          }); 
+      }
+      )
+      .catch((error) => {
+          console.log(error);
+      })
+          
+}
+  
 
 
+getVagas();
 
 
-
+/* 
 data = {
   "vagas": [
     {
@@ -105,7 +136,7 @@ vagas.forEach(vaga => {
   criaVaga(vaga.vaga, vaga.empresa, vaga.endereco, vaga.n, vaga.cep, vaga.cidade, vaga.uf, vaga.requisitos, vaga.desejaveis, vaga.contratacao, vaga.descricao, vaga.salario, vaga.beneficios, vaga.periodo, vaga.contato, vaga.wpp, vaga.email)
    
 
-});
+}); */
 
 /* 
 const filterVagas = vagas.filter((valorAtual) => {
@@ -116,7 +147,7 @@ const filterVagas = vagas.filter((valorAtual) => {
 
 //função para criar vaga
 function criaVaga(
-vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desejaveis, contratacao, descricao, salario, beneficios, periodo, contato, wpp, email,
+  tituloVaga, cep, endereco, complemento, bairro, cidade, uf, emailContato, whatsapp, contato, exigencias, desejavel, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, ativo, areaProfissional
 ) {
 
 
@@ -125,15 +156,15 @@ vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desejaveis, contratacao
   div.classList.add('div');
   div.innerHTML = `
     <div class="vaga">
-        <h3>${vaga}</h3>
+        <h3>${tituloVaga}</h3>
     </div>
     <div class="empresa">
-        <h4>${empresa}</h4>
+        <h4></h4>
     </div>
     <div class="r">
     <div class="local">
         <h6>Local:</h6>
-        <p>${endereco}, ${n}, ${cep}, ${cidade}, ${uf} </p>
+        <p>${endereco}, , ${cep}, ${cidade}, ${uf} </p>
     </div>
     <div class="salario">
         <h6>Salario:</h6>
@@ -172,11 +203,11 @@ vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desejaveis, contratacao
             <div class="col-md-4">
             <span>
                     <h4>Empresa:</h4>
-                    <p>${empresa}</p>
+                    <p>${tituloVaga}</p>
                 </span>    
             <span>
                     <h5>Local:</h5>
-                    <p>${endereco}, ${n}, ${cep},${cidade}, ${uf} </p>
+                    <p>${endereco}, ${cep},${cidade}, ${uf} </p>
                 </span>
                 <span>
                     <h5>Requisitos:</h5>
@@ -187,12 +218,12 @@ vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desejaveis, contratacao
                 <span>
                     <h5>Desejavel:</h5>
                     <ul>
-                    ${desejaveis.split(",").map(desejavel => `<li>${desejavel}</li>`).join('')}
+                    ${desejavel.split(",").map(desejavel => `<li>${desejavel}</li>`).join('')}
                     </ul>
                 </span>
                 <span>
                     <h5>Regime de Contratação:</h5>
-                    <p>${contratacao}</p>
+                    <p></p>
                 </span>
                
 
@@ -238,11 +269,11 @@ vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desejaveis, contratacao
     </span>
     <span>
         <label>Whatsapp</label>
-        <p>${wpp}</p>
+        <p>${whatsapp}</p>
     </span>
     <span>
         <label>Email</label>
-        <p>${email}</p>
+        <p>${emailContato}</p>
     </span>
 </div>`
   div.appendChild(div2);

@@ -25,91 +25,183 @@ clickVaga.addEventListener('click', function () {
 
 const groupVagas = document.getElementById('vagasGroup');
 
-
+/* 
 
 data = {
     "vagas": [
         {
             "id": 1,
-            "vaga": "Vaga 1",
-            "empresa": "Empresa 1",
-            "endereco": "Rua roque soares",
-            "n": "163",
-            "cep": "06730-000",
-            "cidade": "VGP",
-            "data": "Data 2",
-            "uf": "SP",
-            "requisitos": "Requisitos 1, Requisitos 2, Requisitos 3",
-            "desejaveis": "Desejaveis 1, Desejaveis 2, Desejaveis 3",
-            "contratacao": "CLT",
-            "descricao": "Descricao Descricao Descricao Descricao Descricao Descricao Descricao",
-            "salario": "2.000",
-            "periodo": "manhã",
-            "contato": "Telefone 2",
-            "email": "Email",
-            "wpp": "wpp 2",
-            "beneficios": "Beneficio 1, Beneficio 2, Beneficios 3, Beneficios 4"
-
+            "tituloVaga": "Vaga 1",
+            "cep": "12345678",
+            "endereco": "Rua 1",
+            "complemento": "Casa 1",
+            "bairro": "Bairro 1",
+            "cidade": "Cidade 1",
+            "uf": "UF 1",
+            "emailContato": "framalho400@gmail.com",
+            "telefoneContato": "123456789",
+            "exigencias": "Exigencia 1",
+            "desejaveis": "Desejavel 1",
+            "descricao": "Descrição 1",
+            "requisitos": "Requisito 1",
+            "cuidados": "Cuidado 1",
+            "expiracao": "2021-09-01",
+            "publicacao": "2021-08-01",
+            "beneficios": "Beneficio 1",
+            "site": "Site 1",
+            "salario": "Salario 1",
+            "ativo": true,
+            "areaProfissional": "Area 1"
         },
         {
             "id": 2,
-            "vaga": "Vaga 2",
-            "empresa": "Empresa 2",
-            "endereco": "Rua roque soares",
-            "n": "163",
-            "cep": "06730-000",
-            "cidade": "VGP",
-            "data": "Data 2",
-            "uf": "SP",
-            "requisitos": "Requisitos 1, Requisitos 2, Requisitos 3",
-            "desejaveis": "Desejaveis 1, Desejaveis 2, Desejaveis 3",
-            "contratacao": "CLT",
-            "descricao": "Descricao Descricao Descricao Descricao Descricao Descricao Descricao",
-            "salario": "2.000",
-            "periodo": "manhã",
-            "contato": "Telefone 2",
-            "email": "Email",
-            "wpp": "wpp 2",
-            "beneficios": "Beneficio 1, Beneficio 2, Beneficios 3, Beneficios 4"
-
+            "tituloVaga": "Vaga 2",
+            "cep": "12345678",
+            "endereco": "Rua 2",
+            "complemento": "Casa 2",
+            "bairro": "Bairro 2",
+            "cidade": "Cidade 2",
+            "uf": "UF 2",
+            "emailContato": "",
+            "telefoneContato": "123456789",
+            "exigencias": "Exigencia 2",
+            "desejaveis": "Desejavel 2",
+            "descricao": "Descrição 2",
+            "requisitos": "Requisito 2",
+            "cuidados": "Cuidado 2",
+            "expiracao": "2021-09-01",
+            "publicacao": "2021-08-01",
+            "beneficios": "Beneficio 2",
+            "site": "Site 2",
+            "salario": "Salario 2",
+            "ativo": true,
+            "areaProfissional": "Area 2"
         },
-        {
-            "id": 3,
-            "vaga": "Vaga 3",
-            "empresa": "Empresa 3",
-            "endereco": "Rua roque soares",
-            "n": "163",
-            "cep": "06730-000",
-            "cidade": "VGP",
-            "data": "Data 2",
-            "uf": "SP",
-            "requisitos": "Requisitos 1, Requisitos 2, Requisitos 3",
-            "desejaveis": "Desejaveis 1, Desejaveis 2, Desejaveis 3",
-            "contratacao": "CLT",
-            "descricao": "Descricao Descricao Descricao Descricao Descricao Descricao Descricao",
-            "salario": "2.000",
-            "periodo": "manhã",
-            "contato": "Telefone 2",
-            "email": "Email",
-            "wpp": "wpp 2",
-            "beneficios": "Beneficio 1, Beneficio 2, Beneficios 3, Beneficios 4"
+        ]
+}
+ */
+const url = "http://localhost:8080/api/empresa/vaga";
 
-        },
-    ]
+function cadastraVagas() {
+    const tituloVaga = document.getElementById('tituloVaga');
+    const cep = document.getElementById('cep');
+    const endereco = document.getElementById('endereco');
+    /*    const complemento = document.getElementById('complemento').value; */
+    const bairro = document.getElementById('bairro');
+    const cidade = document.getElementById('cidade');
+    const uf = document.getElementById('uf');
+    const emailContato = document.getElementById('emailContato');
+    const telefoneContato = document.getElementById('telefoneContato');
+    /*     const exigencias = document.getElementById('exigencias').value; */
+    const desejaveis = document.getElementById('desejaveis');
+    const descricao = document.getElementById('descricao');
+    const requisitos = document.getElementById('requisitos');
+    const cuidados = document.getElementById('cuidados');
+    const expiracao = document.getElementById('expiracao');
+    const publicacao = document.getElementById('publicacao');
+    const beneficios = document.getElementById('beneficios');
+    const site = document.getElementById('site');
+    const salario = document.getElementById('salario');
+    /*     const ativo = document.getElementById('ativo').value; */
+    const areaProfissional = document.getElementById('areaProfissional');
+
+    axios.post(url, {
+        tituloVaga: tituloVaga.value,
+        cep: cep.value,
+        endereco: endereco.value,
+/*         complemento: complemento.value, */
+        bairro: bairro.value,
+        cidade: cidade.value,
+        uf: uf.value,
+        emailContato: emailContato.value,
+        contato: telefoneContato.value,
+/*         exigencias: exigencias.value, */
+        desejaveis: desejaveis.value,
+        descricao: descricao.value,
+        requisitos: requisitos.value,
+        cuidados: cuidados.value,
+        expiracao: expiracao.value,
+        publicacao: publicacao.value,
+        beneficios: beneficios.value,
+        site: site.value,
+        salario: salario.value,
+        ativo: true,
+       
+       
+/*         ativo: ativo.value, */
+        
+
+    })
+        .then(function (response) {
+            console.log(response);
+            location.reload();
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }
 
-vagas = data.vagas;
-vagas.sort(function (b, a) {
-    return a.id - b.id;
-});
+function getVagas() {
+    axios.get(url)
+        .then((response) => {
+            console.log(JSON.stringify(response.data));
+            data = response.data;
+          
+            data.sort(function (b, a) {
+                return a.id - b.id;
+            });
+            
+            data.forEach(vaga => {
+                if(vaga.ativo == true){
+                criaVaga(vaga.id, vaga.tituloVaga, vaga.cep, vaga.endereco, vaga.complemento, vaga.bairro, vaga.cidade, vaga.uf, vaga.emailContato, vaga.whatsapp, vaga.contato, vaga.exigencias, vaga.desejaveis, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.ativo, vaga.areaProfissional);
+                }else{
+                    console.log("Vaga inativa");    
+                }
+                
+            }); 
+        }
+        )
+        .catch((error) => {
+            console.log(error);
+        })
+            
+}
+    
+getVagas();
 
-vagas.forEach(vaga => {
-    criaVaga(vaga.vaga, vaga.empresa, vaga.endereco, vaga.n, vaga.cep, vaga.cidade, vaga.uf, vaga.requisitos, vaga.desejaveis, vaga.contratacao, vaga.descricao, vaga.salario, vaga.beneficios, vaga.periodo, vaga.contato, vaga.wpp, vaga.email)
+//Aprovação de vagas
+function aprovaVaga(id){
+   
+    axios.put(`http://localhost:8080/api/empresa/vaga/editavaga/${id}`, {ativo: false})
+
+    .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        
+        
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+}
+
+//Reprovação de vagas 
+function deleteVaga(id) {
+    axios.put( `http://localhost:8080/api/empresa/vaga/excluir/${id}`)
+        .then((response) => {
+            const data = response.data;
+            console.log(data);
+            location.reload();
+            msgErro(msgText = "Aprovada com sucesso!!", color = "green");
+        })
+        .catch((error) => {
+            msgErro(msgText = "Erro ao recusar!", color = "red")
+            console.log(error)});
+}
 
 
-});
+
 //Paginação das vagas
-function criaVaga(vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desejaveis, contratacao, descricao, salario, beneficios, periodo, contato, wpp, email,) {
+function criaVaga(id,tituloVaga, cep, endereco, complemento, bairro, cidade, uf, emailContato, whatsapp, contato, exigencias, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, ativo, areaProfissional) {
     const sVaga = document.createElement('div');
     sVaga.classList.add('card-body');
     groupVagas.appendChild(sVaga);
@@ -163,7 +255,8 @@ function criaVaga(vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desej
     divAprovar.appendChild(btnAprovar)
     btnAprovar.addEventListener('click', function () {
         msgErro(msgText="Vaga Aprovada", color="green")
-        sVaga.remove()
+        console.log(id);
+        aprovaVaga(id);
         
     })
 
@@ -178,8 +271,9 @@ function criaVaga(vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desej
     divRecusar.appendChild(btnRecusar) 
 
     btnRecusar.addEventListener('click', function () {
-        msgErro(msgText="Vaga Recusada", color="green")
-        sVaga.remove()
+        console.log(id)
+        deleteVaga(id)
+        
     })
     
     
@@ -196,11 +290,11 @@ function criaVaga(vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desej
             <div class="col-md-4">
             <span>
                     <h4>Empresa:</h4>
-                    <p>${empresa}</p>
+                    <p></p>
                 </span>    
             <span>
                     <h5>Local:</h5>
-                    <p>${endereco}, ${n}, ${cep},${cidade}, ${uf} </p>
+                    <p>${endereco},  ${cep},${cidade}, ${uf} </p>
                 </span>
                 <span>
                     <h5>Requisitos:</h5>
@@ -211,12 +305,11 @@ function criaVaga(vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desej
                 <span>
                     <h5>Desejavel:</h5>
                     <ul>
-                    ${desejaveis.split(",").map(desejavel => `<li>${desejavel}</li>`).join('')}
-                    </ul>
+                               </ul>
                 </span>
                 <span>
                     <h5>Regime de Contratação:</h5>
-                    <p>${contratacao}</p>
+                    <p></p>
                 </span>
                
 
@@ -235,7 +328,7 @@ function criaVaga(vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desej
                 </span>
                 <span>
                     <h5>Periodo:</h5>
-                    <p>${periodo}</p>
+                    <p></p>
                 </span>
 
                 
@@ -278,6 +371,7 @@ adicionaVaga.forEach(function (adicionaVaga) {
             addVaga.hide();
             addVaga2.show();
             document.getElementById('salvarVaga').addEventListener('click', function () {
+                cadastraVagas()
                 addVaga2.hide();
                 /*      criaVaga(); */
             })
@@ -361,6 +455,7 @@ adiconaEmpresa.forEach(function (adiconaEmpresa) {
             addEmpresa2.show();
             document.getElementById('salvarEmpresa').addEventListener('click', function () {
                 addEmpresa2.hide();
+                
             /*     criaEmpresa();
  */            })
             document.getElementById('voltarEmpresa').addEventListener('click', function () {
@@ -418,6 +513,8 @@ function cadEmpresa() {
 salvarEmpresa.addEventListener('click', function () {
     cadEmpresa();
 });
+
+
 
 
 

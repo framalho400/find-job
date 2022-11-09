@@ -124,9 +124,9 @@ function getUser() {
 getUser();
 
 //função para deletar o usuario
-const urlDel = "http://192.168.3.106/api/usuario/excluir/";
+const urlDel = "http://localhost:8080/api/usuario/excluir/";
 function deleteUser(id) {
-    axios.delete(urlDel + id, {
+    axios.put(urlDel + id, {
 
     })
         .then((response) => {
@@ -274,7 +274,6 @@ function criarlinhaEmpresa(id, nome, email) {
     tr.appendChild(tdEmail);
     tr.appendChild(tdExcluir);
     tdExcluir.appendChild(tdButton);
-d(tdButton);
 
 }
 function getEmpresa() {
@@ -300,7 +299,24 @@ function getEmpresa() {
 }
 getEmpresa();
 
-const urlDelEmpresa = "http://localhost:8080/api/empresa/excluir/";
+const urlDelEmpresa = "http://localhost:8080/api/empresa/desativar/id";
+function deleteEmpresa(id) {
+    axios.put(urlDelEmpresa + id, {
+
+    })
+        .then((response) => {
+            const data = response.data;
+            console.log(data);
+            location.reload();
+            msgErro(msgText = "Empresa deletada com sucesso", color = "green");
+        })
+        .catch((error) => {
+            msgErro(msgText = "Erro !", color = "red")
+            console.log(error)});
+}
+
+
+/* const urlDelEmpresa = "http://localhost:8080/api/empresa/excluir/";
 function deleteEmpresa(id) {
     axios.delete(urlDelEmpresa + id, {
 
@@ -313,7 +329,7 @@ function deleteEmpresa(id) {
         .catch((error) => console.log(error));
 }
 
-
+ */
 
 //================================================ Vaga ================================================= //
 
@@ -357,7 +373,7 @@ function criarlinhaVaga(id, nome, email) {
     tr.appendChild(tdEmail);
     tr.appendChild(tdExcluir);
     tdExcluir.appendChild(tdButton);
-d(tdButton);
+
 
 }
 function getVaga() {
