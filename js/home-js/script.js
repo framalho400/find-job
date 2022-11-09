@@ -1,26 +1,4 @@
-/* function getVaga() {
-  
-  axios.get("http://localhost:8080/api/empresa/vaga", {
 
-  })
-      .then((response) => {
-          const data = response.data;
-
-          //popula a tabela com os dados do servidor
-          data.map((data) => {
-              titula = data.nome;
-              id = data.id;
-              email = data.email;
-              criarlinhaVaga(id, nome, email);
-
-          });
-
-
-      })
-      .catch((error) => console.log(error));
-}
-getVaga();
- */
 
 function getVagas() {
   axios.get('http://localhost:8080/api/empresa/vaga')
@@ -55,96 +33,6 @@ function getVagas() {
 getVagas();
 
 
-/* 
-data = {
-  "vagas": [
-    {
-      "id": 1,
-      "vaga": "Vaga 1",
-      "empresa": "Empresa 1",
-      "endereco": "Rua roque soares",
-      "n": "163",
-      "cep": "06730-000",
-      "cidade": "VGP",
-      "data": "Data 2",
-      "uf": "SP",
-      "requisitos": "Requisitos 1, Requisitos 2, Requisitos 3",
-      "desejaveis": "Desejaveis 1, Desejaveis 2, Desejaveis 3",
-      "contratacao": "CLT",
-      "descricao": "Descricao Descricao Descricao Descricao Descricao Descricao Descricao",
-      "salario": "2.000",
-      "periodo": "manhã",
-      "contato": "Telefone 2",
-      "email": "Email",
-      "wpp": "wpp 2",
-      "beneficios": "Beneficio 1, Beneficio 2, Beneficios 3, Beneficios 4"
-
-    },
-    {
-      "id": 2,
-      "vaga": "Vaga 2",
-      "empresa": "Empresa 2",
-      "endereco": "Rua roque soares",
-      "n": "163",
-      "cep": "06730-000",
-      "cidade": "VGP",
-      "data": "Data 2",
-      "uf": "SP",
-      "requisitos": "Requisitos 1, Requisitos 2, Requisitos 3",
-      "desejaveis": "Desejaveis 1, Desejaveis 2, Desejaveis 3",
-      "contratacao": "CLT",
-      "descricao": "Descricao Descricao Descricao Descricao Descricao Descricao Descricao",
-      "salario": "2.000",
-      "periodo": "manhã",
-      "contato": "Telefone 2",
-      "email": "Email",
-      "wpp": "wpp 2",
-      "beneficios": "Beneficio 1, Beneficio 2, Beneficios 3, Beneficios 4"
-
-    },
-    {
-      "id": 3,
-      "vaga": "Vaga 3",
-      "empresa": "Empresa 3",
-      "endereco": "Rua roque soares",
-      "n": "163",
-      "cep": "06730-000",
-      "cidade": "VGP",
-      "data": "Data 2",
-      "uf": "SP",
-      "requisitos": "Requisitos 1, Requisitos 2, Requisitos 3",
-      "desejaveis": "Desejaveis 1, Desejaveis 2, Desejaveis 3",
-      "contratacao": "CLT",
-      "descricao": "Descricao Descricao Descricao Descricao Descricao Descricao Descricao",
-      "salario": "2.000",
-      "periodo": "manhã",
-      "contato": "Telefone 2",
-      "email": "Email",
-      "wpp": "wpp 2",
-      "beneficios": "Beneficio 1, Beneficio 2, Beneficios 3, Beneficios 4"
-
-    },
-  ]
-} 
-
-vagas = data.vagas;
-vagas.sort(function (b, a) {
-  return a.id - b.id;
-});
-
-vagas.forEach(vaga => {
-  criaVaga(vaga.vaga, vaga.empresa, vaga.endereco, vaga.n, vaga.cep, vaga.cidade, vaga.uf, vaga.requisitos, vaga.desejaveis, vaga.contratacao, vaga.descricao, vaga.salario, vaga.beneficios, vaga.periodo, vaga.contato, vaga.wpp, vaga.email)
-   
-
-}); */
-
-/* 
-const filterVagas = vagas.filter((valorAtual) => {
-  return valorAtual.nome.includes('Vaga 1'); 
-});
- */
-
-
 //função para criar vaga
 function criaVaga(
   tituloVaga, cep, endereco, complemento, bairro, cidade, uf, emailContato, whatsapp, contato, exigencias, desejavel, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, ativo, areaProfissional
@@ -164,7 +52,7 @@ function criaVaga(
     <div class="r">
     <div class="local">
         <h6>Local:</h6>
-        <p>${endereco}, , ${cep}, ${cidade}, ${uf} </p>
+        <p>${endereco}, , ${cep}, ${cidade}, ${uf}, ${bairro}</p>
     </div>
     <div class="salario">
         <h6>Salario:</h6>
@@ -176,11 +64,7 @@ function criaVaga(
         <ul>
        ${requisitos.split(",").map(requisito => `<li>${requisito}</li>`).join('')}
         </ul>
-    </div>
-
-
-
-    `;
+    </div>`;
 
 
   /* ${requisitos.map(requisito => `<li>${requisito}</li>`).join('')} */
@@ -218,7 +102,7 @@ function criaVaga(
                 <span>
                     <h5>Desejavel:</h5>
                     <ul>
-                    ${desejavel.split(",").map(desejavel => `<li>${desejavel}</li>`).join('')}
+                 
                     </ul>
                 </span>
                 <span>
@@ -242,7 +126,7 @@ function criaVaga(
                 </span>
                 <span>
                     <h5>Periodo:</h5>
-                    <p>${periodo}</p>
+                    <p></p>
                 </span>
 
                 

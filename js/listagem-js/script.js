@@ -188,7 +188,7 @@ function criarlinhaAdm(id, nome, email) {
 }
 function getAdm() {
     /* 10.92.198.40 */
-    axios.get("http://localhost:8080/administrador", {
+    axios.get("http://localhost:8080/api/adm", {
 
     })
         .then((response) => {
@@ -198,7 +198,6 @@ function getAdm() {
             data.map((data) => {
                 nome = data.nome;
                 id = data.id;
-                foto = data.foto;
                 email = data.email;
 
                 criarlinhaAdm(id, nome, email);
@@ -253,7 +252,8 @@ function criarlinhaEmpresa(id, nome, email) {
         /*   text.innerHTML = `Deseja excluir o usuário ${nome}?`; */
         text.innerHTML = `<h4>Deseja mesmo excluir o usuário ${nome}?</h4>`;
         document.getElementById('deletConfirm').addEventListener('click', function () {
-            deleteEmpresa(id);
+            console.log(id);
+            desativaEmpresa(id);
             modalDelete.hide();
         })
     })
@@ -298,10 +298,10 @@ function getEmpresa() {
         .catch((error) => console.log(error));
 }
 getEmpresa();
-
-const urlDelEmpresa = "http://localhost:8080/api/empresa/desativar/id";
+/* 
+const urlDesativaEmpresa = "http://localhost:8080/api/empresa/desativar/id";
 function deleteEmpresa(id) {
-    axios.put(urlDelEmpresa + id, {
+    axios.put(urlDesativaEmpresa + id, {
 
     })
         .then((response) => {
@@ -313,7 +313,22 @@ function deleteEmpresa(id) {
         .catch((error) => {
             msgErro(msgText = "Erro !", color = "red")
             console.log(error)});
+} */
+
+function desativaEmpresa(id){
+   
+    axios.put(`http://localhost:8080/api/empresa/desativar/${id}`, {ativo: false})
+
+    .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        
+        
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
 }
+
 
 
 /* const urlDelEmpresa = "http://localhost:8080/api/empresa/excluir/";
@@ -335,7 +350,7 @@ function deleteEmpresa(id) {
 
 /* função de listagem de vaga */
 function criarlinhaVaga(id, nome, email) {
-    const tbody = document.querySelector('#bodyEmpresa');
+    const tbody = document.querySelector('#bodyVaga');
     let tr = document.createElement('tr');
     tr.id = id;
     let tdID = document.createElement('td');
@@ -376,6 +391,7 @@ function criarlinhaVaga(id, nome, email) {
 
 
 }
+
 function getVaga() {
     /* 10.92.198.40 */
     axios.get("http://localhost:8080/api/empresa/vaga", {

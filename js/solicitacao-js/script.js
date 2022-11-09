@@ -125,7 +125,7 @@ function cadastraVagas() {
         beneficios: beneficios.value,
         site: site.value,
         salario: salario.value,
-        ativo: true,
+        ativo: false,
        
        
 /*         ativo: ativo.value, */
@@ -201,7 +201,7 @@ function deleteVaga(id) {
 
 
 //Paginação das vagas
-function criaVaga(id,tituloVaga, cep, endereco, complemento, bairro, cidade, uf, emailContato, whatsapp, contato, exigencias, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, ativo, areaProfissional) {
+function criaVaga(id, tituloVaga, cep, endereco, complemento, bairro, cidade, uf, emailContato, whatsapp, contato, exigencias, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, ativo, areaProfissional) {
     const sVaga = document.createElement('div');
     sVaga.classList.add('card-body');
     groupVagas.appendChild(sVaga);
@@ -209,10 +209,10 @@ function criaVaga(id,tituloVaga, cep, endereco, complemento, bairro, cidade, uf,
     <div class="vaga">
     <div class="header-vaga">
     <div class="nome-vaga">
-        <h4>Nome da vaga</h4>
+        <h4>${tituloVaga}</h4>
     </div>
     <div class="nome-empresa">
-        <h4>Nome da empresa</h4>
+        <h4></h4>
     </div>
     <div class="descircao">
         <h5>Descrição:</h5>
@@ -387,7 +387,40 @@ adicionaVaga.forEach(function (adicionaVaga) {
 
 //================================================================ Empresa ==============================================================================================//
 
+
+
+
+
+function getEmpresa() {
+    axios.get(url)
+        .then((response) => {
+            console.log(JSON.stringify(response.data));
+            data = response.data;
+          
+            data.sort(function (b, a) {
+                return a.id - b.id;
+            });
+            
+            data.forEach(empresa => {
+                
+                    criaEmpresa();
+         
+
+                
+            }); 
+        }
+        )
+        .catch((error) => {
+            console.log(error);
+        })
+            
+}
+    
+getVagas();
+
+
 const empresas = document.getElementById('empresaGroup')
+
 function criaEmpresa() {
     const empresa = document.createElement('div')
     empresa.classList.add('card-body');
@@ -433,9 +466,6 @@ function criaEmpresa() {
             </div>`
 
 }
-criaEmpresa();
-criaEmpresa();
-criaEmpresa();
 
 
 
@@ -481,13 +511,15 @@ const IsenhaEmpresa = document.getElementById('senhaEmpresa');
 const IconfSenhaEmpresa = document.getElementById('confSenhaEmpresa');
 const salvarEmpresa = document.getElementById('salvarEmpresa');
 
-url = 'http://localhost:8080/api/empresa/vaga'
+
+
+urlEmpresa = 'http://localhost:8080/api/empresa'
 function cadEmpresa() {
-    axios.post(url, {
+    axios.post(urlEmpresa, {
         nome: InomeEmpresa.value,
-        email: IemailEmpresa.value,
-        telefone: ItelEmpresa.value,
-        cnpj: IcnpjEmpresa.value,
+        email: "framalho400@gmail.com",
+        contato:/*  ItelEmpresa.value */ "123456789",
+        cnpj: "",
         cep: IcepEmpresa.value,
         endereco: Iendereco.value,
         cidade: IcidadeEmpresa.value,
