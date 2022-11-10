@@ -23,7 +23,6 @@ clickVaga.addEventListener('click', function () {
 
 
 
-const groupVagas = document.getElementById('vagasGroup');
 
 /* 
 
@@ -77,9 +76,9 @@ data = {
             "ativo": true,
             "areaProfissional": "Area 2"
         },
-        ]
+    ]
 }
- */
+*/
 const url = "http://localhost:8080/api/empresa/vaga";
 
 function cadastraVagas() {
@@ -109,13 +108,13 @@ function cadastraVagas() {
         tituloVaga: tituloVaga.value,
         cep: cep.value,
         endereco: endereco.value,
-/*         complemento: complemento.value, */
+        /*         complemento: complemento.value, */
         bairro: bairro.value,
         cidade: cidade.value,
         uf: uf.value,
         emailContato: emailContato.value,
         contato: telefoneContato.value,
-/*         exigencias: exigencias.value, */
+        /*         exigencias: exigencias.value, */
         desejaveis: desejaveis.value,
         descricao: descricao.value,
         requisitos: requisitos.value,
@@ -126,10 +125,10 @@ function cadastraVagas() {
         site: site.value,
         salario: salario.value,
         ativo: false,
-       
-       
-/*         ativo: ativo.value, */
-        
+
+
+        /*         ativo: ativo.value, */
+
 
     })
         .then(function (response) {
@@ -146,47 +145,46 @@ function getVagas() {
         .then((response) => {
             console.log(JSON.stringify(response.data));
             data = response.data;
-          
+
             data.sort(function (b, a) {
                 return a.id - b.id;
             });
-            
+
             data.forEach(vaga => {
-                if(vaga.ativo == true){
-                criaVaga(vaga.id, vaga.tituloVaga, vaga.cep, vaga.endereco, vaga.complemento, vaga.bairro, vaga.cidade, vaga.uf, vaga.emailContato, vaga.whatsapp, vaga.contato, vaga.exigencias, vaga.desejaveis, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.ativo, vaga.areaProfissional);
-                }else{
-                    console.log("Vaga inativa");    
+                if (vaga.ativo == true) {
+                    criaVaga(vaga.id, vaga.tituloVaga, vaga.cep, vaga.endereco, vaga.complemento, vaga.bairro, vaga.cidade, vaga.uf, vaga.emailContato, vaga.whatsapp, vaga.contato, vaga.exigencias, vaga.desejaveis, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.ativo, vaga.areaProfissional);
+                } else {
+                    console.log("Vaga inativa");
                 }
-                
-            }); 
+            });
         }
         )
         .catch((error) => {
             console.log(error);
         })
-            
+
 }
-    
+
 getVagas();
 
 //Aprovação de vagas
-function aprovaVaga(id){
-   
-    axios.put(`http://localhost:8080/api/empresa/vaga/editavaga/${id}`, {ativo: false})
+function aprovaVaga(id) {
 
-    .then(function (response) {
-        console.log(JSON.stringify(response.data));
-        
-        
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
+    axios.put(`http://localhost:8080/api/empresa/vaga/editavaga/${id}`, { ativo: false })
+
+        .then(function (response) {
+            console.log(JSON.stringify(response.data));
+
+
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }
 
 //Reprovação de vagas 
 function deleteVaga(id) {
-    axios.put( `http://localhost:8080/api/empresa/vaga/excluir/${id}`)
+    axios.put(`http://localhost:8080/api/empresa/vaga/excluir/${id}`)
         .then((response) => {
             const data = response.data;
             console.log(data);
@@ -195,10 +193,12 @@ function deleteVaga(id) {
         })
         .catch((error) => {
             msgErro(msgText = "Erro ao recusar!", color = "red")
-            console.log(error)});
+            console.log(error)
+        });
 }
 
 
+const groupVagas = document.getElementById('vagasGroup');
 
 //Paginação das vagas
 function criaVaga(id, tituloVaga, cep, endereco, complemento, bairro, cidade, uf, emailContato, whatsapp, contato, exigencias, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, ativo, areaProfissional) {
@@ -219,7 +219,7 @@ function criaVaga(id, tituloVaga, cep, endereco, complemento, bairro, cidade, uf
         <p>${descricao}</p>
     </div>
 
-
+    
 </div>
 <div class="body-vaga"></div>
 `
@@ -237,7 +237,7 @@ function criaVaga(id, tituloVaga, cep, endereco, complemento, bairro, cidade, uf
     verMais.classList.add('btn-verMais');
     verMais.innerHTML = 'Ver Mais..';
     divVerMais.appendChild(verMais)
-    
+
 
 
     const divbButton = document.createElement('div')
@@ -251,13 +251,13 @@ function criaVaga(id, tituloVaga, cep, endereco, complemento, bairro, cidade, uf
     const btnAprovar = document.createElement('button')
     btnAprovar.classList.add('btn')
     btnAprovar.classList.add('btn-success')
-    btnAprovar.innerHTML ="Aprovar"
+    btnAprovar.innerHTML = "Aprovar"
     divAprovar.appendChild(btnAprovar)
     btnAprovar.addEventListener('click', function () {
-        msgErro(msgText="Vaga Aprovada", color="green")
+        msgErro(msgText = "Vaga Aprovada", color = "green")
         console.log(id);
         aprovaVaga(id);
-        
+
     })
 
     const divRecusar = document.createElement('div')
@@ -267,16 +267,16 @@ function criaVaga(id, tituloVaga, cep, endereco, complemento, bairro, cidade, uf
     const btnRecusar = document.createElement('button')
     btnRecusar.classList.add('btn')
     btnRecusar.classList.add('btn-danger')
-    btnRecusar.innerHTML ="Recusar"
-    divRecusar.appendChild(btnRecusar) 
+    btnRecusar.innerHTML = "Recusar"
+    divRecusar.appendChild(btnRecusar)
 
     btnRecusar.addEventListener('click', function () {
         console.log(id)
         deleteVaga(id)
-        
+
     })
-    
-    
+
+
     const closeModal = document.querySelectorAll('#closeModal')
     var modalV = new bootstrap.Modal(document.getElementById("modalVaga"));
 
@@ -351,10 +351,10 @@ function criaVaga(id, tituloVaga, cep, endereco, complemento, bairro, cidade, uf
             modalV.hide()
         })
     })
-/* 
-    const aceitar = document.getElementById("aceitar")
-    aceitar.addEventListener("click", function () {
-    }) */
+    /* 
+        const aceitar = document.getElementById("aceitar")
+        aceitar.addEventListener("click", function () {
+        }) */
 }
 
 
@@ -386,53 +386,44 @@ adicionaVaga.forEach(function (adicionaVaga) {
 
 
 //================================================================ Empresa ==============================================================================================//
-
-
-
-
+urlEmpresa = "http://localhost:8080/api/empresa/"
 
 function getEmpresa() {
-    axios.get(url)
+    axios.get(urlEmpresa)
         .then((response) => {
             console.log(JSON.stringify(response.data));
             data = response.data;
-          
+
             data.sort(function (b, a) {
                 return a.id - b.id;
             });
-            
-            data.forEach(empresa => {
-                
-                    criaEmpresa();
-         
 
-                
-            }); 
+            data.forEach(empresa => {
+                criaEmpresa(empresa.id, empresa.nome, empresa.cnpj, empresa.email, empresa.telefone, empresa.endereco, empresa.cidade, empresa.uf, empresa.cep, empresa.senha)
+            });
         }
         )
         .catch((error) => {
             console.log(error);
         })
-            
+
 }
-    
-getVagas();
 
+getEmpresa();
 
-const empresas = document.getElementById('empresaGroup')
-
-function criaEmpresa() {
-    const empresa = document.createElement('div')
-    empresa.classList.add('card-body');
-    empresas.appendChild(empresa);
-    empresa.innerHTML = `
+const groupEmpresa = document.getElementById('empresaGroup')
+function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep, senha) {
+    const sEmpresa = document.createElement('div');
+    sEmpresa.classList.add('card-body');
+    groupEmpresa.appendChild(sEmpresa);
+    sEmpresa.innerHTML = `
     <div class="empresa">
     <div class="header-empresa">
         <div class="nome-empresa">
-            <h4>Nome da Empresa</h4>
+            <h4>${nome}</h4>
         </div>
         <div class="cnpj">
-            <h4>CNPJ: 07.271.850/0001-73</h4>
+            <h4>CNPJ: ${cnpj}</h4>
         </div>
         <div class="descricao">
             <h5>Descrição:</h5>
@@ -444,131 +435,291 @@ function criaEmpresa() {
             </p>
         </div>
 
+</div>
+<div class="body-vaga"></div>
+`
+    const footerEmpresa = document.createElement('div')
+    footerEmpresa.classList.add('footer-empresa')
+    sEmpresa.appendChild(footerEmpresa)
 
-    </div>
-    <div class="body-vaga"></div>
-    <div class="footer-vaga">
-        <div class="btn-verMais">
-            <button type="button" class="btn btn-primary " data-bs-toggle="modal"
-                data-bs-target="#exampleModal">
-                Ver mais
-            </button>
-        </div>
-        <div class="button">
-            <div class="btn-aceitar">
-                <button type="button" class="btn btn-success">Aceitar</button>
-            </div>
-            <div class="btn-recusar">
-            <button type="button" class="btn btn-danger">Recusar</button>
-            </div>
-            </div>
-            </div>
-            </div>`
+    const divVerMais = document.createElement('div')
+    divVerMais.classList.add('btn-verMais')
+    footerEmpresa.appendChild(divVerMais)
 
-}
+    const verMais = document.createElement("button")
+    verMais.classList.add('btn');
+    verMais.classList.add('btn-primary');
+    verMais.classList.add('btn-verMais');
+    verMais.innerHTML = 'Ver Mais..';
+    divVerMais.appendChild(verMais)
 
 
 
+    const divbButton = document.createElement('div')
+    divbButton.classList.add("button")
+    footerEmpresa.appendChild(divbButton)
+
+    const divAprovar = document.createElement('div')
+    divAprovar.classList.add("btn-aceitar")
+    divbButton.appendChild(divAprovar)
+
+    const btnAprovar = document.createElement('button')
+    btnAprovar.classList.add('btn')
+    btnAprovar.classList.add('btn-success')
+    btnAprovar.innerHTML = "Aprovar"
+    divAprovar.appendChild(btnAprovar)
+    btnAprovar.addEventListener('click', function () {
+        msgErro(msgText = "Vaga Aprovada", color = "green")
+        console.log(id);
+        aprovaVaga(id);
+
+    })
+
+    const divRecusar = document.createElement('div')
+    divRecusar.classList.add("btn-recusar")
+    divbButton.appendChild(divRecusar)
+
+    const btnRecusar = document.createElement('button')
+    btnRecusar.classList.add('btn')
+    btnRecusar.classList.add('btn-danger')
+    btnRecusar.innerHTML = "Recusar"
+    divRecusar.appendChild(btnRecusar)
+
+    btnRecusar.addEventListener('click', function () {
+        console.log(id)
+        deleteVaga(id)
+
+    })
 
 
-const adiconaEmpresa = document.querySelectorAll('#adiconaEmpresa')
+    const closeModal = document.querySelectorAll('#closeModal')
+    var modalV = new bootstrap.Modal(document.getElementById("modalVaga"));
 
-var addEmpresa = new bootstrap.Modal(document.getElementById('modalAddEmpresa1'));
-var addEmpresa2 = new bootstrap.Modal(document.getElementById('modalAddEmpresa2'));
+    const conteudoModal = document.querySelector('#modalBody');
 
-adiconaEmpresa.forEach(function (adiconaEmpresa) {
-    adiconaEmpresa.addEventListener('click', function () {
-        addEmpresa.show();
 
-        document.getElementById('proximoEmpresa').addEventListener('click', function () {
-            addEmpresa.hide();
-            addEmpresa2.show();
-            document.getElementById('salvarEmpresa').addEventListener('click', function () {
-                addEmpresa2.hide();
+    verMais.addEventListener("click", function () {
+
+        conteudoModal.innerHTML = `<div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+            <span>
+                    <h4>Empresa:</h4>
+                    <p></p>
+                </span>    
+            <span>
+                    <h5>Local:</h5>
+                    <p> </p>
+                </span>
+                <span>
+                    <h5>Requisitos:</h5>
+                    <ul> 
                 
+                    </ul>
+                </span>
+                <span>
+                    <h5>Desejavel:</h5>
+                    <ul>
+                               </ul>
+                </span>
+                <span>
+                    <h5>Regime de Contratação:</h5>
+                    <p></p>
+                </span>
+               
+
+            </div>
+            <div class="col-md-4 ms-auto">
+                <span>
+                    <h5>Salario:</h5>
+                    <p></p>
+
+                </span>
+                <span>
+                    <h5>Beneficios:</h5>
+                    <ul>
+                   
+                    </ul>
+                </span>
+                <span>
+                    <h5>Periodo:</h5>
+                    <p></p>
+                </span>
+
+                
+                <span>
+                <h5>Descriçao:</h5>
+                <p></p>
+            </span>
+            </div>
+           
+        </div>
+    </div>`
+        modalV.show()
+    })
+
+
+
+
+    closeModal.forEach(close => {
+        close.addEventListener("click", function () {
+            modalV.hide()
+        })
+    })
+
+
+
+    /* 
+    function criaEmpresa() {
+        const empresa = document.createElement('div')
+        empresa.classList.add('card-body');
+        empresas.appendChild(empresa);
+        empresa.innerHTML = `
+        <div class="empresa">
+        <div class="header-empresa">
+            <div class="nome-empresa">
+                <h4>Nome da Empresa</h4>
+            </div>
+            <div class="cnpj">
+                <h4>CNPJ: 07.271.850/0001-73</h4>
+            </div>
+            <div class="descricao">
+                <h5>Descrição:</h5>
+                <p>Um é pouco, dois é bom e três é ímpar.. O povo unido é gente pra
+                    caramba.. A
+                    vida é uma vai e vem que não tem volta.. Cemeteries are just garbage
+                    dumps
+                    filled with humans. Pobre só enche a barriga quando morre afogado..
+                </p>
+            </div>
+    
+    
+        </div>
+        <div class="body-vaga"></div>
+        <div class="footer-vaga">
+            <div class="btn-verMais">
+                <button type="button" class="btn btn-primary " data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Ver mais
+                </button>
+            </div>
+            <div class="button">
+                <div class="btn-aceitar">
+                    <button type="button" class="btn btn-success">Aceitar</button>
+                </div>
+                <div class="btn-recusar">
+                <button type="button" class="btn btn-danger">Recusar</button>
+                </div>
+                </div>
+                </div>
+                </div>`
+    
+    } */
+
+
+
+
+
+    const adiconaEmpresa = document.querySelectorAll('#adiconaEmpresa')
+
+    var addEmpresa = new bootstrap.Modal(document.getElementById('modalAddEmpresa1'));
+    var addEmpresa2 = new bootstrap.Modal(document.getElementById('modalAddEmpresa2'));
+
+    adiconaEmpresa.forEach(function (adiconaEmpresa) {
+        adiconaEmpresa.addEventListener('click', function () {
+            addEmpresa.show();
+
+            document.getElementById('proximoEmpresa').addEventListener('click', function () {
+                addEmpresa.hide();
+                addEmpresa2.show();
+                document.getElementById('salvarEmpresa').addEventListener('click', function () {
+                    cadEmpresa();
+                    addEmpresa2.hide();
+
             /*     criaEmpresa();
  */            })
-            document.getElementById('voltarEmpresa').addEventListener('click', function () {
-                addEmpresa2.hide();
-                addEmpresa.show();
+                document.getElementById('voltarEmpresa').addEventListener('click', function () {
+                    addEmpresa2.hide();
+                    addEmpresa.show();
+                })
             })
         })
     })
-})
 
 
-const InomeEmpresa = document.getElementById('nomeEmpresa');
-const IemailEmpresa = document.getElementById('emailEmpresa');
-const ItelEmpresa = document.getElementById('telEmpresa');
-const IcnpjEmpresa = document.getElementById('cnpjEmpresa');
-const IcepEmpresa = document.getElementById('cepEmpresa')
-const Iendereco = document.getElementById('ruaEmpresa')
-const IcidadeEmpresa = document.getElementById('cidadeEmpresa')
-const IbairroEmpresa = document.getElementById('bairroEmpresa')
-const IufEmpresa = document.getElementById('ufEmpresa')
-const InEmpresa = document.getElementById('nEmpresa')
-const IsenhaEmpresa = document.getElementById('senhaEmpresa');
-const IconfSenhaEmpresa = document.getElementById('confSenhaEmpresa');
-const salvarEmpresa = document.getElementById('salvarEmpresa');
-
-
-
-urlEmpresa = 'http://localhost:8080/api/empresa'
-function cadEmpresa() {
-    axios.post(urlEmpresa, {
-        nome: InomeEmpresa.value,
-        email: "framalho400@gmail.com",
-        contato:/*  ItelEmpresa.value */ "123456789",
-        cnpj: "",
-        cep: IcepEmpresa.value,
-        endereco: Iendereco.value,
-        cidade: IcidadeEmpresa.value,
-        bairro: IbairroEmpresa.value,
-        uf: IufEmpresa.value,
-        senha: IsenhaEmpresa.value,
+    const InomeEmpresa = document.getElementById('nomeEmpresa');
+    const IemailEmpresa = document.getElementById('emailEmpresa');
+    const ItelEmpresa = document.getElementById('telEmpresa');
+    const IcnpjEmpresa = document.getElementById('cnpjEmpresa');
+    const IcepEmpresa = document.getElementById('cepEmpresa')
+    const Iendereco = document.getElementById('ruaEmpresa')
+    const IcidadeEmpresa = document.getElementById('cidadeEmpresa')
+    const IbairroEmpresa = document.getElementById('bairroEmpresa')
+    const IufEmpresa = document.getElementById('ufEmpresa')
+    const InEmpresa = document.getElementById('nEmpresa')
+    const IsenhaEmpresa = document.getElementById('senhaEmpresa');
+    const IconfSenhaEmpresa = document.getElementById('confSenhaEmpresa');
+    const salvarEmpresa = document.getElementById('salvarEmpresa');
 
 
 
-    })
-        .then((response) => {
-            console.log(JSON.stringify(response.data));
-            msgErro(msgText = "Cadastrada com Sucesso !!", color = "green");
+    urlEmpresa = 'http://localhost:8080/api/empresa'
+    function cadEmpresa() {
+        axios.post(urlEmpresa, {
+            nome: InomeEmpresa.value,
+            email: "framalho400@gmail.com",
+            contato:/*  ItelEmpresa.value */ "123456789",
+            cnpj: "",
+            cep: IcepEmpresa.value,
+            endereco: Iendereco.value,
+            cidade: IcidadeEmpresa.value,
+            bairro: IbairroEmpresa.value,
+            uf: IufEmpresa.value,
+            senha: IsenhaEmpresa.value,
+
+
+
         })
-        .catch((error) => {
-            console.log(error)
-            msgErro(msgText = "Empresa não Cadastrada!", color = "red");
-        });
+            .then((response) => {
+                console.log(JSON.stringify(response.data));
+                msgErro(msgText = "Cadastrada com Sucesso !!", color = "green");
+            })
+            .catch((error) => {
+                console.log(error)
+                msgErro(msgText = "Empresa não Cadastrada!", color = "red");
+            });
 
 
-}
+    }
 
-salvarEmpresa.addEventListener('click', function () {
-    cadEmpresa();
-});
-
-
+    salvarEmpresa.addEventListener('click', function () {
+        cadEmpresa();
+    });
 
 
 
 
 
-//=========================================================== Menssagem de erro =============================================================================//
 
-function msgErro(msgText, color) {
-    
-    const div = document.createElement('div');
-    
-    div.classList.add('msg');
-    div.style.borderLeft = `solid 10px ${color}`;
-    div.innerText = msgText;
-    document.body.appendChild(div);
-    
-    
-    setTimeout(function () {
-        div.classList.add('close')
-    }, 3000); // 5 segundos
-    setTimeout(function () {
-        div.remove();
-    }, 6000); // 6 segundos
 
+    //=========================================================== Menssagem de erro =============================================================================//
+
+    function msgErro(msgText, color) {
+
+        const div = document.createElement('div');
+
+        div.classList.add('msg');
+        div.style.borderLeft = `solid 10px ${color}`;
+        div.innerText = msgText;
+        document.body.appendChild(div);
+
+
+        setTimeout(function () {
+            div.classList.add('close')
+        }, 3000); // 5 segundos
+        setTimeout(function () {
+            div.remove();
+        }, 6000); // 6 segundos
+
+    }
 }
