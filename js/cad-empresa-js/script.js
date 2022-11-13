@@ -8,7 +8,7 @@ const cadastro_empresa2 = document.querySelector(".cadastro_empresa2");
 const cadastro_empresa3 = document.querySelector(".cadastro_empresa3");
 
 
-const url = 'http://10.92.198.19:8080/empresa';
+const url = 'http://localhost:8080/api/empresa';
 
 const formulario = document.querySelector('form');
 const nome_Empresa = document.querySelector('#nome_Empresa');

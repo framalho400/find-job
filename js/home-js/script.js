@@ -1,148 +1,52 @@
-/* const url = 'https://api.github.com/users/luizotavio/repos';
+
 
 function getVagas() {
-  axios.get(url, {
-    headers: {
-      'Accept': 'application/vnd.github.v3+json'
+  axios.get('http://localhost:8080/api/empresa/vaga')
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+      data = response.data;
+
+      data.sort(function (b, a) {
+        return a.id - b.id;
+      });
+
+
+      data.forEach(vaga => {
+        if (vaga.ativo == false) {
+          criaVaga(vaga.tituloVaga, vaga.cep, vaga.endereco, vaga.complemento, vaga.bairro, vaga.cidade, vaga.uf, vaga.emailContato, vaga.whatsapp, vaga.contato, vaga.exigencias, vaga.desejavel, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.ativo, vaga.areaProfissional);
+        }
+        else {
+          console.log("Vaga inativa");
+        }
+
+      });
+
+   
+      const aba = document.querySelectorAll('.aba');
+      aba.forEach(abas => {
+        abas.addEventListener('click', function () {
+       
+            abas.classList.toggle('close');
+       
+        });
+      });
     }
+    )
+    .catch((error) => {
+      console.log(error);
+    })
 
-  }).then(response => {
-    console.log(response.data);
-    response.data.forEach(vaga => {
-      console.log(vaga.name);
-      CriaVaga();
-    });
-
-  }).catch(error => {
-    console.log(error);
-
-    
-  })
-} */
-
-
-
-data = {
-  "vagas": [
-    {
-      "id": 2,
-      "nome": "Vaga 2",
-      "requisitos": ["Descrição da vaga 1", "Descrição da vaga 2", "Descrição da vaga 3"],
-      "empresa": "Empresa 2",
-      "local": "Local 2",
-      "salario": "Salário 2",
-      "tipo": "Tipo 2",
-      "data": "Data 2",
-      "email": "Email 2",
-      "contato": "Telefone 2",
-      "link": "Link 2",
-      "wpp": "wpp 2",
-      "beneficios":["Beneficios 1", "Beneficios 2", "Beneficios 3", "Beneficios 4"] 
-      
-    },
-    {
-      "id": 1,
-      "nome": "Vaga 1",
-      "requisitos": ["Descrição da vaga 1", "Descrição da vaga 2", "Descrição da vaga 3"],
-      "empresa": "Empresa 1",
-      "local": "Local 1",
-      "salario": "Salário 1",
-      "tipo": "Tipo 1",
-      "data": "Data 1",
-      "email": "Email 1",
-      "contato": "Telefone 1",
-      "link": "Link 1",
-      "wpp": "wpp 1",
-        "beneficios":["Beneficios 1", "Beneficios 2", "Beneficios 3", "Beneficios 4"] 
-    },
-    
-    {
-      "id": 3,
-      "nome": "Vaga 3",
-      "requisitos": ["Descrição da vaga 1", "Descrição da vaga 2", "Descrição da vaga 3"],
-      "empresa": "Empresa 3",
-      "local": "Local 3",
-      "salario": "Salário 3",
-      "tipo": "Tipo 3",
-      "data": "Data 3",
-      "email": "Email 3",
-      "contato": "Telefone 3",
-      "link": "Link 3",
-      "wpp": "wpp 3",
-      "beneficios":["Beneficios 1", "Beneficios 2", "Beneficios 3", "Beneficios 4"] 
-    },
-    {
-      "id": 4,
-      "nome": "Vaga 4",
-      "requisitos": ["Descrição da vaga 1", "Descrição da vaga 2", "Descrição da vaga 3"],
-      "empresa": "Empresa 4",
-      "local": "Local 4",
-      "salario": "Salário 4",
-      "tipo": "Tipo 4",
-      "data": "Data 4",
-      "email": "Email 4",
-      "contato": "Telefone 4",
-      "link": "Link 4",
-      "wpp": "wpp 4",
-      "beneficios":["Beneficios 1", "Beneficios 2", "Beneficios 3", "Beneficios 4"] 
-    },
-    {
-      "id": 5,
-      "nome": "Vaga 5",
-      "requisitos": ["Descrição da vaga 1", "Descrição da vaga 2", "Descrição da vaga 3"],
-      "empresa": "Empresa 5",
-      "local": "Local 5",
-      "salario": "Salário 5",
-      "tipo": "Tipo 5",
-      "data": "Data 5",
-      "email": "Email 5",
-      "contato": "Telefone 5",
-      "link": "Link 5",
-      "wpp": "wpp 5", 
-      "beneficios":["Beneficios 1", "Beneficios 2", "Beneficios 3", "Beneficios 4"] 
-    },
-    {
-      "id": 6,
-      "nome": "Vaga 6",
-      "requisitos": ["Descrição da vaga 1", "Descrição da vaga 2", "Descrição da vaga 3"],
-      "empresa": "Empresa 6",
-      "local": "Local 5",
-      "salario": "Salário 5",
-      "tipo": "Tipo 5",
-      "data": "Data 5",
-      "email": "Email 5",
-      "contato": "Telefone 5",
-      "link": "Link 5",
-      "wpp": "wpp 5", 
-      "beneficios":["Beneficios 1", "Beneficios 2", "Beneficios 3", "Beneficios 4"] 
-    }
-
-
-
-
-
-  ]
 }
 
-vagas = data.vagas;
-vagas.sort(function (b, a) {
-  return a.id - b.id;
-});
 
-vagas.forEach(vaga => {
-    criaVaga(vaga.nome, vaga.empresa, vaga.local, vaga.salario, vaga.requisitos, vaga.beneficios, vaga.contato, vaga.wpp, vaga.email); 
- 
-});
 
-/* 
-const filterVagas = vagas.filter((valorAtual) => {
-  return valorAtual.nome.includes('Vaga 1'); 
-});
- */
+getVagas();
 
 
 //função para criar vaga
-function criaVaga(vaga, empresa, local, salario, requisitos, beneficios, contato, wpp, email) {
+function criaVaga(
+  tituloVaga, cep, endereco, complemento, bairro, cidade, uf, emailContato, whatsapp, contato, exigencias, desejavel, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, ativo, areaProfissional
+) {
 
 
   const principal = document.querySelector('.principal');
@@ -150,15 +54,15 @@ function criaVaga(vaga, empresa, local, salario, requisitos, beneficios, contato
   div.classList.add('div');
   div.innerHTML = `
     <div class="vaga">
-        <h3>${vaga}</h3>
+        <h3>${tituloVaga}</h3>
     </div>
     <div class="empresa">
-        <h4>${empresa}</h4>
+        <h4></h4>
     </div>
     <div class="r">
     <div class="local">
         <h6>Local:</h6>
-        <p>${local}</p>
+        <p>${endereco}, , ${cep}, ${cidade}, ${uf}, ${bairro}</p>
     </div>
     <div class="salario">
         <h6>Salario:</h6>
@@ -168,12 +72,12 @@ function criaVaga(vaga, empresa, local, salario, requisitos, beneficios, contato
     <div class="requisitos">
         <h6>Requisitos:</h6>
         <ul>
-         ${requisitos.map(requisito => `<li>${requisito}</li>`).join('')}
+       ${requisitos.split(",").map(requisito => `<li>${requisito}</li>`).join('')}
         </ul>
-    </div>
+    </div>`;
 
 
-    `;
+  /* ${requisitos.map(requisito => `<li>${requisito}</li>`).join('')} */
   button = document.createElement('button');
   button.classList.add('btn');
   button.classList.add('btn-primary');
@@ -187,23 +91,36 @@ function criaVaga(vaga, empresa, local, salario, requisitos, beneficios, contato
     modal.show();
 
     const conteudoModal = document.querySelector('#modalBody');
+
     conteudoModal.innerHTML = `<div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
-                <span>
+            <span>
+                    <h4>Empresa:</h4>
+                    <p>${tituloVaga}</p>
+                </span>    
+            <span>
                     <h5>Local:</h5>
-                    <p>${local}</p>
+                    <p>${endereco}, ${cep},${cidade}, ${uf} </p>
                 </span>
                 <span>
                     <h5>Requisitos:</h5>
                     <ul> 
-                    ${requisitos.map(requisito => `<li>${requisito}</li>`).join('')}
+                    ${requisitos.split(",").map(requisito => `<li>${requisito}</li>`).join('')}
+                    </ul>
+                </span>
+                <span>
+                    <h5>Desejavel:</h5>
+                    <ul>
+                 
                     </ul>
                 </span>
                 <span>
                     <h5>Regime de Contratação:</h5>
-                    <p>CLT (efetivo), prestador de serviços (PJ)</p>
+                    <p></p>
                 </span>
+               
+
             </div>
             <div class="col-md-4 ms-auto">
                 <span>
@@ -214,26 +131,32 @@ function criaVaga(vaga, empresa, local, salario, requisitos, beneficios, contato
                 <span>
                     <h5>Beneficios:</h5>
                     <ul>
-                    ${beneficios.map(beneficio => `<li>${beneficio}</li>`).join('')}
+                    ${beneficios.split(",").map(beneficio => `<li>${beneficio}</li>`).join('')}
                     </ul>
                 </span>
                 <span>
-                    <h5>Horarios:</h5>
-                    <p> 08:00 ás 17:00 Seg a Sex
-                        <br> 08:00 ás 16:00 Sábado
-                    </p>
+                    <h5>Periodo:</h5>
+                    <p></p>
                 </span>
 
+                
+                <span>
+                <h5>Descriçao:</h5>
+                <p>${descricao}</p>
+            </span>
             </div>
+           
         </div>
     </div>`
   })
+  //função para abrir a aba da contatos
+
 
   principal.appendChild(div);
   const div2 = document.createElement('div');
   div2.classList.add('aba');
   div2.innerHTML = `
-    <i class='bx bx-chevron-left contats ' id="contats"></i>
+    <i class='bx bx-chevron-left contats ' id="contatos"></i>
   <div class="contatos ">
     <h4>Entre em contato conosco:</h4>
     <span>
@@ -242,36 +165,16 @@ function criaVaga(vaga, empresa, local, salario, requisitos, beneficios, contato
     </span>
     <span>
         <label>Whatsapp</label>
-        <p>${wpp}</p>
+        <p>${whatsapp}</p>
     </span>
     <span>
         <label>Email</label>
-        <p>${email}</p>
+        <p>${emailContato}</p>
     </span>
 </div>`
   div.appendChild(div2);
 }
 
-
-
-
-
-
-//função para abrir a modal
-
-
-//função para abrir a aba da contatos
-const abas = document.querySelectorAll('.aba');
-const div = document.querySelectorAll('.div');
-const modalLocal = document.querySelector('.modalLocal');
-
-
-
-abas.forEach((aba) =>
-  aba.addEventListener('click', (event) => {
-    aba.classList.toggle('close')
-  })
-);
 
 /* div.forEach((div) => {
   div.addEventListener('click', (e) => {
@@ -287,7 +190,7 @@ abas.forEach((aba) =>
 /*modal para criar vagas  */
 
 const adiconaVaga = document.getElementById('adiconaVaga');
-
+var modalVaga = new bootstrap.Modal(document.getElementById('modalVaga'))
 var addVaga = new bootstrap.Modal(document.getElementById('modalAddVaga1'));
 var addVaga2 = new bootstrap.Modal(document.getElementById('modalAddVaga2'));
 
@@ -303,3 +206,60 @@ adiconaVaga.addEventListener('click', function () {
     })
   })
 })
+
+
+const contatos = document.getElementById('contatos')
+
+var modalcontato = new bootstrap.Modal(document.getElementById('modalContato'));
+
+contatos.addEventListener('click', function () {
+  modalVaga.hide()
+  modalcontato.show()
+
+})
+
+
+function savePdf(vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desejaveis, contratacao, descricao, salario, beneficios, periodo, contato, wpp, email,
+) {
+  var doc = new jsPDF()
+  var imgData = "../../img/logo_principal.png"
+  requisitos = "req 1"
+  doc.text(`
+Empresa:
+Empresa 3
+
+Local:
+Rua roque soares, 163, 06730-000,VGP, SP
+
+Requisitos:
+${requisitos}
+Desejavel:
+
+Regime de Contratação:
+CLT`, 10, 10)
+
+
+  doc.save('a4.pdf')
+  doc.addImage(imgData, 'JPEG', 15, 40, 180, 180);
+
+}
+
+
+
+function msgErro(msgText, color) {
+
+  const div = document.createElement('div');
+  div.classList.add('msg');
+  div.style.borderLeft = `solid 10px ${color}`;
+  div.innerText = msgText;
+  document.body.appendChild(div);
+
+
+  setTimeout(function () {
+    div.classList.add('close')
+  }, 3000); // 5 segundos
+  setTimeout(function () {
+    div.remove();
+  }, 6000); // 6 segundos
+
+}

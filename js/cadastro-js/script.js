@@ -112,26 +112,18 @@ formulario.addEventListener('submit', function (event) {
 
 function msgErro(msgText, color) {
 
-  div = document.createElement('div');
+  const div = document.createElement('div');
   div.classList.add('msg');
   div.style.borderLeft = `solid 10px ${color}`;
   div.innerText = msgText;
   document.body.appendChild(div);
-
-
-
+  
+  
   setTimeout(function () {
-    div.classList.add('close')
+      div.classList.add('close')
   }, 3000); // 5 segundos
   setTimeout(function () {
-    div.remove();
+      div.remove();
   }, 6000); // 6 segundos
-  
-  div.forEach(element => {
-    element.addEventListener('click', function () {
-      element.remove();
-    })
-  });
+
 }
-  
-  
