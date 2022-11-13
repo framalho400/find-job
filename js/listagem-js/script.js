@@ -1,9 +1,19 @@
 
 
-/* var token = sessionStorage.getItem("token")
-if (token == null) {
-    window.location.replace('../login/login/login.html')
-} */
+function logado() {
+   /*  var token = sessionStorage.getItem("token")
+    if (token == null) {
+        window.location.replace('../login/login/login.html')
+    } */
+
+    const nameUser = document.getElementById('nameUser');
+
+    const nome = localStorage.getItem('nome');
+    
+    nameUser.innerHTML = `Olá, ${nome.split(' ')[0]}`;
+}
+logado();
+
 
 //paginas do user para o admin e do empresa
 const user = document.getElementById('user');

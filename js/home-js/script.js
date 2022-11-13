@@ -1,3 +1,35 @@
+const user = document.getElementById('user');
+
+const nome = localStorage.getItem('nome');
+
+user.innerHTML = `Olá, ${nome.split(' ')[0]}`;
+
+
+const buscar = document.getElementById('buscar');
+
+const getSearchedTodos = (search) => {
+  const todos = document.querySelectorAll(".div");
+
+  todos.forEach((todo) => {
+    const todoTitle = todo.querySelector("h3").innerText.toLowerCase();
+
+    todo.style.display = "flex";
+
+    console.log(todoTitle);
+
+    if (!todoTitle.includes(search)) {
+      todo.style.display = "none";
+    }
+  });
+};
+
+
+buscar.addEventListener("keyup", (e) => {
+  const search = e.target.value;
+
+  getSearchedTodos(search);
+});
+
 
 
 function getVagas() {
@@ -13,7 +45,7 @@ function getVagas() {
 
       data.forEach(vaga => {
         if (vaga.ativo == false) {
-          criaVaga(vaga.tituloVaga, vaga.cep, vaga.endereco, vaga.complemento, vaga.bairro, vaga.cidade, vaga.uf, vaga.emailContato, vaga.whatsapp, vaga.contato, vaga.exigencias, vaga.desejavel, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.ativo, vaga.areaProfissional);
+          criaVaga(vaga.id, vaga.tituloVaga, vaga.emailContato, vaga.contato, vaga.whatsapp, vaga.desejaveis, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.contratacao, vaga.periodo, vaga.ativo);
         }
         else {
           console.log("Vaga inativa");
@@ -21,14 +53,18 @@ function getVagas() {
 
       });
 
-   
+
       const aba = document.querySelectorAll('.aba');
-      aba.forEach(abas => {
-        abas.addEventListener('click', function () {
-       
-            abas.classList.toggle('close');
-       
-        });
+
+      document.addEventListener('click', function (e) {
+        const el = e.target;
+        const parentEl = el.closest('div');
+
+        if (el.classList.contains('contats')) {
+          parentEl.classList.toggle('close');
+          localStorage.setItem('nome', "Felipe de jesus Ramalho");
+        }
+
       });
     }
     )
@@ -44,9 +80,7 @@ getVagas();
 
 
 //função para criar vaga
-function criaVaga(
-  tituloVaga, cep, endereco, complemento, bairro, cidade, uf, emailContato, whatsapp, contato, exigencias, desejavel, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, ativo, areaProfissional
-) {
+function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, contratacao, periodo, ativo) {
 
 
   const principal = document.querySelector('.principal');
@@ -62,11 +96,7 @@ function criaVaga(
     <div class="r">
     <div class="local">
         <h6>Local:</h6>
-        <p>${endereco}, , ${cep}, ${cidade}, ${uf}, ${bairro}</p>
-    </div>
-    <div class="salario">
-        <h6>Salario:</h6>
-        <p>${salario}</p>
+        <p></p>
     </div>
     </div>
     <div class="requisitos">
@@ -101,7 +131,7 @@ function criaVaga(
                 </span>    
             <span>
                     <h5>Local:</h5>
-                    <p>${endereco}, ${cep},${cidade}, ${uf} </p>
+                    <p></p>
                 </span>
                 <span>
                     <h5>Requisitos:</h5>
@@ -112,12 +142,12 @@ function criaVaga(
                 <span>
                     <h5>Desejavel:</h5>
                     <ul>
-                 
+                   
                     </ul>
                 </span>
                 <span>
                     <h5>Regime de Contratação:</h5>
-                    <p></p>
+                    <p>${contratacao}</p>
                 </span>
                
 
@@ -263,3 +293,5 @@ function msgErro(msgText, color) {
   }, 6000); // 6 segundos
 
 }
+
+

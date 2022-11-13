@@ -249,8 +249,8 @@ button {
     display: flex;
     flex-direction: column;
     position: relative;
-    width: auto;
-    max-width: 20%;
+    width: 100%;
+    
 
 }
 .vaga p,

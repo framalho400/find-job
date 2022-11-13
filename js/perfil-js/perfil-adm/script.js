@@ -4,6 +4,9 @@ const nif = document.getElementById('nif');
 const senha = document.getElementById('senha');
 const confirmaSenha = document.getElementById('confirmaSenha');
 
+
+
+
 url = "http://localhost:8080/api/adm";
 function criaAdm() {
 axios.post(url, {

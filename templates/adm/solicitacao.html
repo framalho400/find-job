@@ -182,9 +182,12 @@
                                   <label class="form-label">NOME DA VAGA:</label>
                                   <input type="text" class="form-control" placeholder="Nome da vaga" id="tituloVaga">
                                 </div>
+                                
                                 <div class="col-md-6">
-                                  <label class="form-label">NOME DA EMPRESA:</label>
-                                  <input type="text" class="form-control" placeholder="Nome da empresa">
+                                    <label class="form-label">NOME DA EMPRESA:</label>
+                                    <select class="form-select" aria-label="Default select example" id="nomeEmpresa">
+                                        <option disabled selected>Selecione uma opção</option>
+                                     </select>
                                 </div>
                                 <div class="col-md-12">
                                     <h5>Meios de contato:</h5>
@@ -212,7 +215,7 @@
                         
                                 <div class="col-md-6">
                                     <label class="form-label">REGIME DE CONTRATAÇÃO:</label>
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" aria-label="Default select example" id="contratacao">
                                         <option disabled selected>Selecione uma opção</option>
                                         <option value="efetivo">Efetivo</option>
                                         <option value="tempoDeterminado">Por tempo determinado</option>
@@ -235,7 +238,7 @@
                                 
                                 <div class="col-md-6">
                                     <label class="form-label">PERÍODO DA VAGA:</label>
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" aria-label="Default select example" id="periodo">
                                         <option disabled selected>Selecione uma opção</option>
                                         <option value="diurno">Diurno</option>
                                         <option value="noturno">Noturno</option>
@@ -247,7 +250,14 @@
                         
                                  <div class="col-md-6">
                                     <label class="form-label">ÁREA PROFISSIONAL:</label>
-                                    <input type="text" id="areaProfissional"class="form-control" placeholder="Área profissional">
+                                    <select class="form-select" aria-label="Default select example" id="areaProfissional">
+                                        <option disabled selected>Selecione uma opção</option>
+                                        <option value="adiministrador">Adiministrador</option>
+                                        <option value="logistica">Logistica</option>
+                                        
+                        
+                        
+                                     </select>
                                   </div>   
                         
                         
