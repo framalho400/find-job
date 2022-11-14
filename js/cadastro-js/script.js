@@ -28,19 +28,18 @@ function sendEmail() {
     email: document.getElementById("email").value
 
   };
-  const serviceId = 'service_mzgb15l';
-  const templateId = 'template_zht1pmg';
+  const serviceId = 'service_78e3oad';
+  const templateId = 'template_bg0kdir';
 
   emailjs
     .send(serviceId, templateId, params)
-    .then(
-      res => {
+    .then((res) => {
         document.getElementById("nome").value = "";
         document.getElementById("email").value = "";
         alert("Email enviado com sucesso!");
 
-      }
-    )
+      })
+    
     .catch(function (err) {
 
       console.log('failed', err);
