@@ -122,6 +122,18 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
 
     const conteudoModal = document.querySelector('#modalBody');
 
+    document.getElementById('pdf').addEventListener('click', function () {
+
+      var doc = new jsPDF()
+      /* var imgData = "../../img/logo_principal.png" */
+      
+      doc.text(` ${tituloVaga}`, 10, 10)
+    
+    
+      doc.save(`Vaga_${tituloVaga}.pdf`)
+    /*   doc.addImage(imgData, 'JPEG', 15, 40, 180, 180); */
+  
+    })
     conteudoModal.innerHTML = `<div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
@@ -203,7 +215,7 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
     </span>
 </div>`
   div.appendChild(div2);
-}
+
 
 
 /* div.forEach((div) => {
@@ -249,31 +261,7 @@ contatos.addEventListener('click', function () {
 })
 
 
-function savePdf(vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desejaveis, contratacao, descricao, salario, beneficios, periodo, contato, wpp, email,
-) {
-  var doc = new jsPDF()
-  var imgData = "../../img/logo_principal.png"
-  requisitos = "req 1"
-  doc.text(`
-Empresa:
-Empresa 3
-
-Local:
-Rua roque soares, 163, 06730-000,VGP, SP
-
-Requisitos:
-${requisitos}
-Desejavel:
-
-Regime de Contratação:
-CLT`, 10, 10)
-
-
-  doc.save('a4.pdf')
-  doc.addImage(imgData, 'JPEG', 15, 40, 180, 180);
-
 }
-
 
 
 function msgErro(msgText, color) {
