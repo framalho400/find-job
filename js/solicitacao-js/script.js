@@ -39,15 +39,15 @@ function cadastraVagas() {
     const salario = document.getElementById('salario');
     const areaProfissional = document.getElementById('areaProfissional');
 
-   /*  var opcaoTextoAreaProfissional = areaProfissional.options[areaProfissional.selectedIndex].text; */
+    /*  var opcaoTextoAreaProfissional = areaProfissional.options[areaProfissional.selectedIndex].text; */
     const contratacao = document.getElementById('contratacao');
-    
+
     var opcaoTextoContratacao = contratacao.options[contratacao.selectedIndex].text;
 
     const periodo = document.getElementById('periodo');
-    
-    var opcaoTextoPeriodo = periodo.options[periodo.selectedIndex].text;
-    
+
+    var opcaoTextoPeriodo = periodo.options[periodo.selectedIndex].text;selectedIndex
+
     axios.post(url, {
         tituloVaga: tituloVaga.value,
         emailContato: emailContato.value,
@@ -65,8 +65,8 @@ function cadastraVagas() {
         contratacao: opcaoTextoContratacao,
         periodo: opcaoTextoPeriodo,
         ativo: false,
-       
-       
+
+
 
 
     })
@@ -97,28 +97,7 @@ function getVagas() {
                 }
             });
 
-            axios.get("http://localhost:8080/api/empresa")
-                .then((response) => {
-                    console.log(JSON.stringify(response.data));
-                    data = response.data;
-         
-            data.forEach(empresa => {
-                const nomeEmpresa = document.getElementById('nomeEmpresa');
-                const option = document.createElement('option')
-                option.innerHTML = empresa.nome
-                option.value = empresa.id
-                nomeEmpresa.appendChild(option)
-
-          
-                const optionValue = nomeEmpresa.options[nomeEmpresa.selectedIndex].value;
-
-                console.log(optionValue);
-            }); 
-        })
-        .catch(function (error) {
-            console.log(error);
-
-        });
+           
         }
         )
         .catch((error) => {
@@ -383,11 +362,12 @@ function cadEmpresa() {
     })
         .then((response) => {
             console.log(JSON.stringify(response.data));
-            msgErro(msgText = "Cadastrada com Sucesso !!", color = "green");
+            
+         
         })
         .catch((error) => {
             console.log(error)
-            msgErro(msgText = "Empresa não Cadastrada!", color = "red");
+         
         });
 
 
@@ -408,10 +388,8 @@ adiconaEmpresa.forEach(function (adiconaEmpresa) {
             document.getElementById('salvarEmpresa').addEventListener('click', function () {
                 cadEmpresa()
                 addEmpresa2.hide();
-
-
-        /*     criaEmpresa();
-*/            })
+                location.reload();
+            } )           
             document.getElementById('voltarEmpresa').addEventListener('click', function () {
                 addEmpresa2.hide();
                 addEmpresa.show();
@@ -420,6 +398,9 @@ adiconaEmpresa.forEach(function (adiconaEmpresa) {
     })
 })
 
+
+/*     criaEmpresa();
+*/           
 const closeModal = document.querySelectorAll('#closeModal')
 var modalV = new bootstrap.Modal(document.getElementById("modalVaga"));
 closeModal.forEach(close => {
@@ -444,7 +425,7 @@ function getEmpresa() {
 
             data.forEach(empresa => {
                 criaEmpresa(empresa.id, empresa.nome, empresa.cnpj, empresa.email, empresa.telefone, empresa.endereco, empresa.cidade, empresa.uf, empresa.cep, empresa.numero, empresa.bairro)
-              
+
             });
 
         }
@@ -574,26 +555,6 @@ function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep,
 
 
 
-
-    function selectEmpresa() {
-        axios.get(urlEmpresa)
-            .then((response) => {
-                console.log(JSON.stringify(response.data));
-                data = response.data;
-
-                data.forEach(empresa => {
-
-                });
-
-            }
-            )
-
-            .catch((error) => {
-                console.log(error);
-            })
-
-    }
-    selectEmpresa()
 
 
 
