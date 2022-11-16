@@ -155,7 +155,7 @@ getUser();
 //função para deletar o usuario
 const urlDel = "http://localhost:8080/api/usuario/excluir/";
 function deleteUser(id) {
-    axios.put(urlDel + id, {
+    axios.delete(urlDel + id, {
 
     })
         .then((response) => {
@@ -258,7 +258,7 @@ function getAdm() {
 }
 getAdm();
 //função para deletar o adm
-const urlDelAdm = "http://192.168.3.106/api/administrador/excluir/";
+const urlDelAdm = "http://localhost:8080/api/adm/excluir/";
 function deleteAdm(id) {
     axios.delete(urlDelAdm + id, {
 

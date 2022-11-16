@@ -1,3 +1,27 @@
+
+
+
+
+
+function msgErro(msgText, color) {
+
+  const div = document.createElement('div');
+  div.classList.add('msg');
+  div.style.borderLeft = `solid 10px ${color}`;
+  div.innerText = msgText;
+  document.body.appendChild(div);
+  
+  
+  setTimeout(function () {
+      div.classList.add('close')
+  }, 3000); // 5 segundos
+  setTimeout(function () {
+      div.remove();
+  }, 6000); // 6 segundos
+
+}
+
+
 //paginação
 const proximo = document.querySelector("#proximo");
 const proximo2 = document.querySelector("#proximo2");
@@ -8,7 +32,12 @@ const cadastro_empresa2 = document.querySelector(".cadastro_empresa2");
 const cadastro_empresa3 = document.querySelector(".cadastro_empresa3");
 
 
-const url = 'http://localhost:8080/api/empresa';
+
+
+
+
+
+
 
 const formulario = document.querySelector('form');
 const nome_Empresa = document.querySelector('#nome_Empresa');
@@ -22,36 +51,105 @@ const cidade_Empresa = document.querySelector('#cidade_Empresa');
 const uf_Empresa = document.querySelector('#uf_Empresa');
 const senha_Empresa = document.querySelector('#senha_Empresa');
 const confirmarSenha_empresa = document.querySelector('#confirmarSenha_empresa');
+const salvar = document.querySelector('#salvar');
+
+const url = 'http://localhost:8080/api/empresa';
+
+function cadastrar() {
+  axios.post(url, {
+    nome: nome_Empresa.value,
+    cnpj: cnpj.value,
+    telefone: telefone_Empresa.value,
+    email: email_Empresa.value,
+    cep: cep_Empresa.value,
+    endereco: rua_Empresa.value,
+    bairro: bairro_Empresa.value,
+    cidade: cidade_Empresa.value,
+    uf: uf_Empresa.value,
+    senha : senha_Empresa.value,
+    ativo: false,
+    
+  })
+  .then((response) => {
+    alert(JSON.stringify(response.data));
+    msgErro('Cadastro realizado com sucesso!', '#00FF00');
+})
+.catch((error) => console.log(error));
+};
+
+function limpar() {
+  nome_Empresa.value = '';
+  cnpj.value = '';
+  telefone_Empresa.value = '';
+  email_Empresa.value = '';
+  cep_Empresa.value = '';
+  rua_Empresa.value = '';
+  bairro_Empresa.value = '';
+  cidade_Empresa.value = '';
+  uf_Empresa.value = '';
+  senha_Empresa.value = '';
+  confirmarSenha_empresa.value = '';
+}
+
+ salvar.addEventListener('click', function (event) {
+  event.preventDefault();
+/*   if (nome_Empresa == '' || cnpj.value == '' || telefone_Empresa == '' || 
+  email_Empresa == '' || cep_Empresa == '' || rua_Empresa == '' || 
+  bairro_Empresa == '' || cidade_Empresa == '' || uf_Empresa == '' || 
+  senha_Empresa == '') {
+    let msgText = "Preencha todos os campos!";
+    alert(msgText);    
+  }
+  else if (senha_Empresa != confirmarSenha_empresa.value) {
+    let msgText = "As senhas não coincidem!";
+    alert(msgText);
+  }
+  else {
+    let msgText = "Cadastrado com sucesso!";
+    let color = "green";
+    alert(msgText, color);
+    cadastrar();
+    limpar();
+  }
+  alert(msgText); */
+  cadastrar();
+
+}); 
+
+
+
+
+
 
 
 proximo.addEventListener("click", () => {
-  if (
+/*   if (
     nome_Empresa.value == "" ||
     cnpj.value == "" ||
     telefone_Empresa.value == "" ||
     email_Empresa.value == ""
   ) {
     alert(msgText = "Preencha todos os campos!")
-  } else {
+  } else { */
     cadastro_empresa.classList.add("close");
     cadastro_empresa2.classList.remove("close");
-  }
+/*   } */
 });
 
 proximo2.addEventListener("click", () => {
-  if (
+/*   if (
     cep_Empresa.value ==  "" ||
     rua_Empresa.value ==  "" ||
     bairro_Empresa.value == "" ||
     cidade_Empresa.value == "" ||
     uf_Empresa.value == ""
-  ) {
+  ) { 
     alert(msgText = "Preencha todos os campos!")
 
-  } else {
+  } else { */
     cadastro_empresa2.classList.add("close");
     cadastro_empresa3.classList.remove("close");
-  }  
+ /*  }  */ 
 });
 
 voltar.addEventListener("click", () => {
@@ -189,7 +287,7 @@ nomeEmpresa.addEventListener("keyup", function () {
   }
 });
 
-cnpj = document.getElementById("cnpj");
+
 cnpj.addEventListener("keyup", function () {
   if (cnpj.value.length < 18) {
     cnpj.style.borderBottom = "solid 5px red";
@@ -198,7 +296,7 @@ cnpj.addEventListener("keyup", function () {
   }
 });
 
-telefone_Empresa = document.getElementById("telefone_Empresa");
+
 telefone_Empresa.addEventListener("keyup", function () {
   if (telefone_Empresa.value.length <= 13) {
     telefone_Empresa.style.borderBottom = "solid 5px red";
@@ -225,11 +323,10 @@ function validacaoEmail(field) {
     dominio.indexOf(".") >= 1 &&
     dominio.lastIndexOf(".") < dominio.length - 1
   ) {
-    const email_Empresa = document.getElementById("email_Empresa");
-
+   
     email_Empresa.style.borderBottom = "solid 5px green";
   } else {
-    const email_Empresa = document.getElementById("email_Empresa");
+   
 
     email_Empresa.style.borderBottom = "solid 5px red";
   }
@@ -237,7 +334,7 @@ function validacaoEmail(field) {
 
 // Segundo form
 
-cep_Empresa = document.getElementById("cep_Empresa");
+
 cep_Empresa.addEventListener("keyup", function () {
   if (cep_Empresa.value.length < 7) {
     cep_Empresa.style.borderBottom = "solid 5px red";
@@ -245,66 +342,6 @@ cep_Empresa.addEventListener("keyup", function () {
     cep_Empresa.style.borderBottom = "solid 5px green";
   }
 });
-
-
-
-function cadastrar() {
-  axios.post(url, {
-    nome: nome_Empresa.value,
-    cnpj: cnpj.value,
-    telefone: telefone_Empresa.value,
-    email: email_Empresa.value,
-    cep: cep_Empresa.value,
-    endereco: rua_Empresa.value,
-    bairro: bairro_Empresa.value,
-    cidade: cidade_Empresa.value,
-    uf: uf_Empresa.value,
-    senha: senha_Empresa.value
-  })
-  .then((response) => {
-    alert(JSON.stringify(response.data));
-})
-.catch((error) => console.log(error));
-};
-
-function limpar() {
-  nome_Empresa.value = '';
-  cnpj.value = '';
-  telefone_Empresa.value = '';
-  email_Empresa.value = '';
-  cep_Empresa.value = '';
-  rua_Empresa.value = '';
-  bairro_Empresa.value = '';
-  cidade_Empresa.value = '';
-  uf_Empresa.value = '';
-  senha_Empresa.value = '';
-  confirmarSenha_empresa.value = '';
-}
-
-formulario.addEventListener('submit', function (event) {
-  if (nome_Empresa == '' || cnpj.value == '' || telefone_Empresa == '' || 
-  email_Empresa == '' || cep_Empresa == '' || rua_Empresa == '' || 
-  bairro_Empresa == '' || cidade_Empresa == '' || uf_Empresa == '' || 
-  senha_Empresa == '') {
-    let msgText = "Preencha todos os campos!";
-    alert(msgText);    
-  }
-  else if (senha_Empresa != confirmarSenha_empresa.value) {
-    let msgText = "As senhas não coincidem!";
-    alert(msgText);
-  }
-  else {
-    let msgText = "Cadastrado com sucesso!";
-    let color = "green";
-    alert(msgText, color);
-    cadastrar();
-    limpar();
-  }
-  alert(msgText);
-}); 
-
-
-
 
 
 

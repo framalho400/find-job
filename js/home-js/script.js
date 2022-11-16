@@ -44,7 +44,7 @@ function getVagas() {
 
 
       data.forEach(vaga => {
-        if (vaga.ativo == false) {
+        if (vaga.ativo == true) {
           criaVaga(vaga.id, vaga.tituloVaga, vaga.emailContato, vaga.contato, vaga.whatsapp, vaga.desejaveis, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.contratacao, vaga.periodo, vaga.ativo);
         }
         else {

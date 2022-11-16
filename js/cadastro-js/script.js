@@ -1,3 +1,9 @@
+
+
+
+
+
+
 //paginação
 const proximo = document.querySelector('#proximo')
 const voltar = document.querySelector('#voltar')

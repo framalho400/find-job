@@ -1,4 +1,5 @@
 
+
 //Paginação das vagas
 const clickVaga = document.getElementById('vaga');
 const clickEmpresa = document.getElementById('empresa');
@@ -93,7 +94,7 @@ function getVagas() {
                 if (vaga.ativo == false) {
                     criaVaga(vaga.id, vaga.tituloVaga, vaga.emailContato, vaga.contato, vaga.whatsapp, vaga.desejaveis, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.contratacao, vaga.periodo, vaga.ativo);
                 } else {
-                    console.log("Vaga inativa");
+                    console.log("Vaga inativa"+ vaga.id);
                 }
             });
 
@@ -109,19 +110,6 @@ function getVagas() {
 getVagas();
 
 //Aprovação de vagas
-function aprovaVaga(id) {
-
-    axios.put(`http://localhost:8080/api/empresa/vaga/editavaga/${id}`, { ativo: false })
-
-        .then(function (response) {
-            console.log(JSON.stringify(response.data));
-
-
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-}
 
 //Reprovação de vagas 
 function deleteVaga(id) {
@@ -135,6 +123,23 @@ function deleteVaga(id) {
         .catch((error) => {
             msgErro(msgText = "Erro ao recusar!", color = "red")
             console.log(error)
+        });
+}
+
+
+
+function aprovaVaga(id) {
+
+    urlAtivaVaga   = "http://localhost:8080/api/empresa/vaga/ativar/"
+    axios.put(urlAtivaVaga + id)
+
+        .then(function (response) {
+            console.log(JSON.stringify(response.data));
+            location.reload();
+
+        })
+        .catch(function (error) {
+            console.log(error);
         });
 }
 
@@ -193,7 +198,7 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
     btnAprovar.innerHTML = "Aprovar"
     divAprovar.appendChild(btnAprovar)
     btnAprovar.addEventListener('click', function () {
-        msgErro(msgText = "Vaga Aprovada", color = "green")
+       
         console.log(id);
         aprovaVaga(id);
 
@@ -322,7 +327,6 @@ adicionaVaga.forEach(function (adicionaVaga) {
 
 
 
-
 //================================================================ Empresa ==============================================================================================//
 
 
@@ -356,6 +360,7 @@ function cadEmpresa() {
         numero: InEmpresa.value,
         bairro: IbairroEmpresa.value,
         senha: IsenhaEmpresa.value,
+        ativo: false
 
 
 
@@ -424,8 +429,14 @@ function getEmpresa() {
             });
 
             data.forEach(empresa => {
+                if(empresa.ativo ==
+                    false){ 
+            
                 criaEmpresa(empresa.id, empresa.nome, empresa.cnpj, empresa.email, empresa.telefone, empresa.endereco, empresa.cidade, empresa.uf, empresa.cep, empresa.numero, empresa.bairro)
-
+                }
+            else{
+                console.log("Empresa ativa")
+            }
             });
 
         }
@@ -437,6 +448,19 @@ function getEmpresa() {
 }
 
 getEmpresa();
+
+
+function aprovaEmpresa(id) {
+    urlAprovaEmpresa = "http://localhost:8080/api/empresa/ativa/"
+    axios.put(urlAprovaEmpresa + id)
+        .then((response) => {
+            console.log(JSON.stringify(response.data));
+            location.reload();
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+}
 
 const groupEmpresa = document.getElementById('empresaGroup')
 
@@ -490,7 +514,8 @@ function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep,
     btnAprovar.innerHTML = "Aprovar"
     divAprovar.appendChild(btnAprovar)
     btnAprovar.addEventListener('click', function () {
-        msgErro(msgText = "Vaga Aprovada", color = "green")
+
+        aprovaEmpresa(id)
         console.log(id);
 
 
@@ -569,22 +594,218 @@ function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep,
 
     //=========================================================== Menssagem de erro =============================================================================//
 
-    function msgErro(msgText, color) {
-
-        const div = document.createElement('div');
-
-        div.classList.add('msg');
-        div.style.borderLeft = `solid 10px ${color}`;
-        div.innerText = msgText;
-        document.body.appendChild(div);
+    
+}
 
 
-        setTimeout(function () {
-            div.classList.add('close')
-        }, 3000); // 5 segundos
-        setTimeout(function () {
-            div.remove();
-        }, 6000); // 6 segundos
+function msgErro(msgText, color) {
 
+    const div = document.createElement('div');
+
+    div.classList.add('msg');
+    div.style.borderLeft = `solid 10px ${color}`;
+    div.innerText = msgText;
+    document.body.appendChild(div);
+
+
+    setTimeout(function () {
+        div.classList.add('close')
+    }, 3000); // 5 segundos
+    setTimeout(function () {
+        div.remove();
+    }, 6000); // 6 segundos
+
+}
+
+
+function limpa_formulário_cep() {
+    //Limpa valores do formulário de cep.
+    document.getElementById('ruaEmpresa').value=("");
+    document.getElementById('bairroEmpresa').value=("");
+    document.getElementById('cidadeEmpresa').value=("");
+    document.getElementById('ufEmpresa').value=("");
+}
+
+
+
+function meu_callback(conteudo) {
+if (!("erro" in conteudo)) {
+    //Atualiza os campos com os valores.
+    document.getElementById('ruaEmpresa').value=(conteudo.logradouro);
+    document.getElementById('bairroEmpresa').value=(conteudo.bairro);
+    document.getElementById('cidadeEmpresa').value=(conteudo.localidade);
+    document.getElementById('ufEmpresa').value=(conteudo.uf);
+} //end if.
+else {
+    //CEP não Encontrado.
+    limpa_formulário_cep();
+    alert("CEP não encontrado.");
+}
+}
+
+
+
+function pesquisacep(valor) {
+
+
+
+//Nova variável "cep" somente com dígitos.
+var cep = valor.replace(/\D/g, '');
+
+
+
+//Verifica se campo cep possui valor informado.
+if (cep != "") {
+
+
+
+   //Expressão regular para validar o CEP.
+    var validacep = /^[0-9]{8}$/;
+
+
+
+   //Valida o formato do CEP.
+    if(validacep.test(cep)) {
+
+
+
+       //Preenche os campos com "..." enquanto consulta webservice.
+        document.getElementById('ruaEmpresa').value="...";
+        document.getElementById('bairroEmpresa').value="...";
+        document.getElementById('cidadeEmpresa').value="...";
+        document.getElementById('ufEmpresa').value="...";
+
+
+
+       //Cria um elemento javascript.
+        var script = document.createElement('script');
+
+
+
+       //Sincroniza com o callback.
+        script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+
+
+       //Insere script no documento e carrega o conteúdo.
+        document.body.appendChild(script);
+
+
+
+   } //end if.
+    else {
+        //cep é inválido.
+        limpa_formulário_cep();
+        alert("Formato de CEP inválido.");
+    }
+} //end if.
+else {
+    //cep sem valor, limpa formulário.
+    limpa_formulário_cep();
+}
+
+
+
+};
+
+
+
+
+// Formatar Salário
+
+
+
+function formatarMoeda() {
+    var elemento = document.getElementById('salario');
+    var valor = elemento.value;
+
+
+
+   valor = valor + '';
+    valor = parseInt(valor.replace(/[\D]+/g, ''));
+    valor = valor + '';
+    valor = valor.replace(/([0-9]{2})$/g, ",$1");
+
+
+
+   if (valor.length > 6) {
+        valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+    }
+
+
+
+   elemento.value = valor;
+    if(valor == 'NaN') elemento.value = '';
+}
+
+
+
+
+// Formatar Telefone
+
+
+
+function mask(o, f) {
+    setTimeout(function() {
+      var v = mphone(o.value);
+      if (v != o.value) {
+        o.value = v;
+      }
+    }, 1);
+  }
+  
+  function mphone(v) {
+    var r = v.replace(/\D/g, "");
+    r = r.replace(/^0/, "");
+    if (r.length > 10) {
+      r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+    } else if (r.length > 5) {
+      r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");  
+    } else if (r.length > 2) {
+      r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
+    } else {
+      r = r.replace(/^(\d*)/, "($1");
+    }
+    return r;
+  }
+
+
+
+
+    // Formatar Dia
+
+
+
+ const dataPublicacao = document.getElementById('publicacao');
+  const dataExpiracao = document.getElementById('expiracao');
+
+
+
+ dataExpiracao.min = new Date().toISOString().split("T")[0];
+  dataPublicacao.min = new Date().toISOString().split("T")[0];
+
+
+
+
+
+ 
+// JavaScript para que o input text receba apenas números
+
+
+
+function onlynumber(evt) {
+    var theEvent = evt || window.event;
+    var key = theEvent.keyCode || theEvent.which;
+    key = String.fromCharCode( key );
+    //var regex = /^[0-9.,]+$/;
+    var regex = /^[0-9.]+$/;
+    if( !regex.test(key) ) {
+       theEvent.returnValue = false;
+       if(theEvent.preventDefault) theEvent.preventDefault();
     }
 }
+
+
+
+
+
