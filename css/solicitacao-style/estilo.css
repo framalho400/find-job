@@ -203,8 +203,16 @@ a {
     justify-content: flex-end;
     margin-bottom: 10px;
     width: 100%;
+    
 }
-
+.a{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    width: 40%;
+    
+}
 .btn.solicitEmpresa {
     background-color: #427AAA !important;
     margin-bottom: 3%;
@@ -213,10 +221,12 @@ a {
 
 button {
     color: #ffffff !important;
+    margin: 1px;
 }
 
 .btn-aceitar button {
     background-color: green !important;
+
 }
 
 .btn-recusar button {
@@ -232,5 +242,28 @@ button {
 }
 #vagasGroup{
     height: 500px   !important;
+
+}
+
+.descricao{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    
+
+}
+.vaga p,
+h4 {
+
+    overflow: hidden !important;
+    /* // Removendo barra de rolagem */
+    text-overflow: ellipsis !important;
+    /* // Adicionando "..." ao final */
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    /*  // Quantidade de linhas */
+    -webkit-box-orient: vertical !important;
+    margin-right: 30px !important;
 
 }

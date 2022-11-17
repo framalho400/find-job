@@ -1,15 +1,25 @@
 
+/* 
+function logado() { */
+   /*  var token = sessionStorage.getItem("token")
+    if (token == null) {
+        window.location.replace('../login/login/login.html')
+    } */
 
-/* var token = sessionStorage.getItem("token")
-if (token == null) {
-    window.location.replace('../login/login/login.html')
-} */
+/*     const nameUser = document.getElementById('nameUser');
+
+    const nome = localStorage.getItem('nome');
+    
+    nameUser.innerHTML = `Olá, ${nome.split(' ')[0]}`;
+}
+logado();
+ */
 
 //paginas do user para o admin e do empresa
 const user = document.getElementById('user');
 const adm = document.getElementById('adm');
 const empresa = document.getElementById('empresa');
-const vaga  = document.getElementById('vaga');
+const vaga = document.getElementById('vaga');
 const usuariosListagem = document.getElementById('usuariosListagem');
 const administradoresListagem = document.getElementById('administradoresListagem');
 const empresasListagem = document.getElementById('empresasListagem');
@@ -103,7 +113,7 @@ function criarlinha(id, nome, email) {
 }
 
 //Pega o usuario e chama a função para criar a linha da tabela
-const url = "http://localhost:8080/api/usuario/";
+const url = "http://10.92.198.40:8080/api/usuario/";
 function getUser() {
     axios.get(url, {
     })
@@ -115,18 +125,37 @@ function getUser() {
                 id = data.id;
                 email = data.email;
                 criarlinha(id, nome, email);
+
+
+
             });
-
-
+            $(document).ready(function () {
+                $('#tableUser').DataTable({
+                    "language": {
+                        "lengthMenu": "Exibir _MENU_ por pagina",
+                        "zeroRecords": "Nada encontrado - desculpe",
+                        "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                        "infoEmpty": "No records available",
+                        "infoFiltered": "(filtered from _MAX_ total records)",
+                        "search": "Buscar:",
+                        "paginate": {
+                            "first": "First",
+                            "last": "Last",
+                            "next": "Proximo",
+                            "previous": "Voltar"
+                        }
+                    }
+                });
+            });
         })
         .catch((error) => console.log(error));
 }
 getUser();
 
 //função para deletar o usuario
-const urlDel = "http://localhost:8080/api/usuario/excluir/";
+const urlDel = "http://10.92.198.40:8080/api/usuario/excluir/";
 function deleteUser(id) {
-    axios.put(urlDel + id, {
+    axios.delete(urlDel + id, {
 
     })
         .then((response) => {
@@ -188,7 +217,7 @@ function criarlinhaAdm(id, nome, email) {
 }
 function getAdm() {
     /* 10.92.198.40 */
-    axios.get("http://localhost:8080/api/adm", {
+    axios.get("http://10.92.198.40:8080/api/adm", {
 
     })
         .then((response) => {
@@ -206,13 +235,30 @@ function getAdm() {
 
             });
 
-
+            $(document).ready(function () {
+                $('#tableAdm').DataTable({
+                    "language": {
+                        "lengthMenu": "Exibir _MENU_ por pagina",
+                        "zeroRecords": "Nada encontrado - desculpe",
+                        "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                        "infoEmpty": "No records available",
+                        "infoFiltered": "(filtered from _MAX_ total records)",
+                        "search": "Buscar:",
+                        "paginate": {
+                            "first": "First",
+                            "last": "Last",
+                            "next": "Proximo",
+                            "previous": "Voltar"
+                        }
+                    }
+                });
+            });
         })
         .catch((error) => console.log(error));
 }
 getAdm();
 //função para deletar o adm
-const urlDelAdm = "http://192.168.3.106/api/administrador/excluir/";
+const urlDelAdm = "http://10.92.198.40:8080/api/adm/excluir/";
 function deleteAdm(id) {
     axios.delete(urlDelAdm + id, {
 
@@ -278,7 +324,7 @@ function criarlinhaEmpresa(id, nome, email) {
 }
 function getEmpresa() {
     /* 10.92.198.40 */
-    axios.get("http://localhost:8080/api/empresa", {
+    axios.get("http://10.92.198.40:8080/api/empresa", {
 
     })
         .then((response) => {
@@ -292,14 +338,31 @@ function getEmpresa() {
                 criarlinhaEmpresa(id, nome, email);
 
             });
-
+            $(document).ready(function () {
+                $('#tableEmpresa').DataTable({
+                    "language": {
+                        "lengthMenu": "Exibir _MENU_ por pagina",
+                        "zeroRecords": "Nada encontrado - desculpe",
+                        "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                        "infoEmpty": "No records available",
+                        "infoFiltered": "(filtered from _MAX_ total records)",
+                        "search": "Buscar:",
+                        "paginate": {
+                            "first": "First",
+                            "last": "Last",
+                            "next": "Proximo",
+                            "previous": "Voltar"
+                        }
+                    }
+                });
+            });
 
         })
         .catch((error) => console.log(error));
 }
 getEmpresa();
 /* 
-const urlDesativaEmpresa = "http://localhost:8080/api/empresa/desativar/id";
+const urlDesativaEmpresa = "http://10.92.198.40:8080/api/empresa/desativar/id";
 function deleteEmpresa(id) {
     axios.put(urlDesativaEmpresa + id, {
 
@@ -315,23 +378,23 @@ function deleteEmpresa(id) {
             console.log(error)});
 } */
 
-function desativaEmpresa(id){
-   
-    axios.put(`http://localhost:8080/api/empresa/desativar/${id}`, {ativo: false})
+function desativaEmpresa(id) {
 
-    .then(function (response) {
-        console.log(JSON.stringify(response.data));
-        
-        
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
+    axios.put(`http://10.92.198.40:8080/api/empresa/desativar/${id}`, { ativo: false })
+
+        .then(function (response) {
+            console.log(JSON.stringify(response.data));
+
+
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }
 
 
 
-/* const urlDelEmpresa = "http://localhost:8080/api/empresa/excluir/";
+/* const urlDelEmpresa = "http://10.92.198.40:8080/api/empresa/excluir/";
 function deleteEmpresa(id) {
     axios.delete(urlDelEmpresa + id, {
 
@@ -394,7 +457,7 @@ function criarlinhaVaga(id, nome, email) {
 
 function getVaga() {
     /* 10.92.198.40 */
-    axios.get("http://localhost:8080/api/empresa/vaga", {
+    axios.get("http://10.92.198.40:8080/api/empresa/vaga", {
 
     })
         .then((response) => {
@@ -409,13 +472,30 @@ function getVaga() {
 
             });
 
-
+            $(document).ready(function () {
+                $('#tableVaga').DataTable({
+                    "language": {
+                        "lengthMenu": "Exibir _MENU_ por pagina",
+                        "zeroRecords": "Nada encontrado - desculpe",
+                        "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                        "infoEmpty": "No records available",
+                        "infoFiltered": "(filtered from _MAX_ total records)",
+                        "search": "Buscar:",
+                        "paginate": {
+                            "first": "First",
+                            "last": "Last",
+                            "next": "Proximo",
+                            "previous": "Voltar"
+                        }
+                    }
+                });
+            });
         })
         .catch((error) => console.log(error));
 }
 getVaga();
 
-const urlDelVaga = "http://localhost:8080/api/vaga/excluir/";
+const urlDelVaga = "http://10.92.198.40:8080/api/vaga/excluir/";
 function deleteVaga(id) {
     axios.delete(urlDelVaga + id, {
 
@@ -433,22 +513,21 @@ function deleteVaga(id) {
 
 //================================================ Menssagem de Sucesso/Erro ================================================= //
 function msgErro(msgText, color) {
-  
+
     div = document.createElement('div');
     div.classList.add('msg');
-    div.style.borderLeft  = `solid 10px ${color}`;
+    div.style.borderLeft = `solid 10px ${color}`;
     div.innerText = msgText;
-    document.body.appendChild(div); 
-  
-  
-    
-  setTimeout(function () {
-      div.classList.add('close')
-  }, 3000); // 5 segundos
-  setTimeout(function () {
-    div.remove();
-  }, 6000); // 6 segundos
-    
-  
-  }
-  
+    document.body.appendChild(div);
+
+
+
+    setTimeout(function () {
+        div.classList.add('close')
+    }, 3000); // 5 segundos
+    setTimeout(function () {
+        div.remove();
+    }, 6000); // 6 segundos
+
+
+}

@@ -1,42 +1,89 @@
+/* 
+localStorage.setItem('nome', "Felipe de jesus Ramalho");
+
+ const user = document.getElementById('user');
+
+const nome = localStorage.getItem('nome');
+
+user.innerHTML = `Olá, ${nome.split(' ')[0]}`;
+ */
+
+const buscar = document.getElementById('buscar');
+
+const getSearchedTodos = (search) => {
+  const todos = document.querySelectorAll(".div");
+
+  todos.forEach((todo) => {
+    const todoTitle = todo.querySelector("h3").innerText.toLowerCase();
+
+    todo.style.display = "flex";
+
+    console.log(todoTitle);
+
+    if (!todoTitle.includes(search)) {
+      todo.style.display = "none";
+    }
+  });
+};
+
+
+buscar.addEventListener("keyup", (e) => {
+  const search = e.target.value;
+
+  getSearchedTodos(search);
+});
+
 
 
 function getVagas() {
-  axios.get('http://localhost:8080/api/empresa/vaga')
-      .then((response) => {
-          console.log(JSON.stringify(response.data));
-          data = response.data;
-        
-          data.sort(function (b, a) {
-              return a.id - b.id;
-          });
+  axios.get('http://10.92.198.40:8080/api/empresa/vaga')
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+      data = response.data;
+
+      data.sort(function (b, a) {
+        return a.id - b.id;
+      });
+
+
+      data.forEach(vaga => {
+        if (vaga.ativo == false) {
+          criaVaga(vaga.id, vaga.tituloVaga, vaga.emailContato, vaga.contato, vaga.whatsapp, vaga.desejaveis, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.contratacao, vaga.periodo, vaga.ativo);
+        }
+        else {
+          console.log("Vaga inativa");
+        }
+
+      });
+
+
+      const aba = document.querySelectorAll('.aba');
+
+      document.addEventListener('click', function (e) {
+        const el = e.target;
+        const parentEl = el.closest('div');
+
+        if (el.classList.contains('contats')) {
+          parentEl.classList.toggle('close');
           
-          
-          data.forEach(vaga => {
-            if(vaga.ativo == false){
-              criaVaga(vaga.tituloVaga, vaga.cep, vaga.endereco, vaga.complemento, vaga.bairro, vaga.cidade, vaga.uf, vaga.emailContato, vaga.whatsapp, vaga.contato, vaga.exigencias, vaga.desejavel, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.ativo, vaga.areaProfissional);
-            }
-            else{
-              console.log("Vaga inativa");
-            }
-          
-          }); 
-      }
-      )
-      .catch((error) => {
-          console.log(error);
-      })
-          
+        }
+
+      });
+    }
+    )
+    .catch((error) => {
+      console.log(error);
+    })
+
 }
-  
+
 
 
 getVagas();
 
 
 //função para criar vaga
-function criaVaga(
-  tituloVaga, cep, endereco, complemento, bairro, cidade, uf, emailContato, whatsapp, contato, exigencias, desejavel, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, ativo, areaProfissional
-) {
+function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, contratacao, periodo, ativo) {
 
 
   const principal = document.querySelector('.principal');
@@ -52,11 +99,7 @@ function criaVaga(
     <div class="r">
     <div class="local">
         <h6>Local:</h6>
-        <p>${endereco}, , ${cep}, ${cidade}, ${uf}, ${bairro}</p>
-    </div>
-    <div class="salario">
-        <h6>Salario:</h6>
-        <p>${salario}</p>
+        <p></p>
     </div>
     </div>
     <div class="requisitos">
@@ -82,6 +125,18 @@ function criaVaga(
 
     const conteudoModal = document.querySelector('#modalBody');
 
+    document.getElementById('pdf').addEventListener('click', function () {
+
+      var doc = new jsPDF()
+      /* var imgData = "../../img/logo_principal.png" */
+      
+      doc.text(` ${tituloVaga}`, 10, 10)
+    
+    
+      doc.save(`Vaga_${tituloVaga}.pdf`)
+    /*   doc.addImage(imgData, 'JPEG', 15, 40, 180, 180); */
+  
+    })
     conteudoModal.innerHTML = `<div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
@@ -91,7 +146,7 @@ function criaVaga(
                 </span>    
             <span>
                     <h5>Local:</h5>
-                    <p>${endereco}, ${cep},${cidade}, ${uf} </p>
+                    <p></p>
                 </span>
                 <span>
                     <h5>Requisitos:</h5>
@@ -102,12 +157,12 @@ function criaVaga(
                 <span>
                     <h5>Desejavel:</h5>
                     <ul>
-                 
+                   
                     </ul>
                 </span>
                 <span>
                     <h5>Regime de Contratação:</h5>
-                    <p></p>
+                    <p>${contratacao}</p>
                 </span>
                
 
@@ -139,12 +194,14 @@ function criaVaga(
         </div>
     </div>`
   })
+  //função para abrir a aba da contatos
+
 
   principal.appendChild(div);
   const div2 = document.createElement('div');
   div2.classList.add('aba');
   div2.innerHTML = `
-    <i class='bx bx-chevron-left contats ' id="contats"></i>
+    <i class='bx bx-chevron-left contats ' id="contatos"></i>
   <div class="contatos ">
     <h4>Entre em contato conosco:</h4>
     <span>
@@ -161,23 +218,8 @@ function criaVaga(
     </span>
 </div>`
   div.appendChild(div2);
-}
-
-//função para abrir a modal
 
 
-//função para abrir a aba da contatos
-const abas = document.querySelectorAll('.aba');
-const div = document.querySelectorAll('.div');
-const modalLocal = document.querySelector('.modalLocal');
-
-
-
-abas.forEach((aba) =>
-  aba.addEventListener('click', (event) => {
-    aba.classList.toggle('close')
-  })
-);
 
 /* div.forEach((div) => {
   div.addEventListener('click', (e) => {
@@ -211,41 +253,18 @@ adiconaVaga.addEventListener('click', function () {
 })
 
 
- const contatos = document.getElementById('contatos')
+const contatos = document.getElementById('contatos')
 
 var modalcontato = new bootstrap.Modal(document.getElementById('modalContato'));
 
-contatos.addEventListener('click', function (){
+contatos.addEventListener('click', function () {
   modalVaga.hide()
   modalcontato.show()
-  
-}) 
 
+})
 
-function savePdf(vaga, empresa, endereco, n, cep, cidade, uf, requisitos, desejaveis, contratacao, descricao, salario, beneficios, periodo, contato, wpp, email,
-  ){  var doc = new jsPDF()
-    var imgData = "../../img/logo_principal.png"
-    requisitos ="req 1"
-doc.text(`
-Empresa:
-Empresa 3
-
-Local:
-Rua roque soares, 163, 06730-000,VGP, SP
-
-Requisitos:
-${requisitos}
-Desejavel:
-
-Regime de Contratação:
-CLT`, 10, 10)
-
-
-doc.save('a4.pdf')
-doc.addImage(imgData, 'JPEG', 15, 40, 180, 180);
 
 }
-
 
 
 function msgErro(msgText, color) {
@@ -255,13 +274,15 @@ function msgErro(msgText, color) {
   div.style.borderLeft = `solid 10px ${color}`;
   div.innerText = msgText;
   document.body.appendChild(div);
-  
-  
+
+
   setTimeout(function () {
-      div.classList.add('close')
+    div.classList.add('close')
   }, 3000); // 5 segundos
   setTimeout(function () {
-      div.remove();
+    div.remove();
   }, 6000); // 6 segundos
 
 }
+
+

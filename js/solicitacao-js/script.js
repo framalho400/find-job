@@ -1,4 +1,5 @@
 
+
 //Paginação das vagas
 const clickVaga = document.getElementById('vaga');
 const clickEmpresa = document.getElementById('empresa');
@@ -20,78 +21,14 @@ clickVaga.addEventListener('click', function () {
 
 
 
-
-
-
-
-/* 
-
-data = {
-    "vagas": [
-        {
-            "id": 1,
-            "tituloVaga": "Vaga 1",
-            "cep": "12345678",
-            "endereco": "Rua 1",
-            "complemento": "Casa 1",
-            "bairro": "Bairro 1",
-            "cidade": "Cidade 1",
-            "uf": "UF 1",
-            "emailContato": "framalho400@gmail.com",
-            "telefoneContato": "123456789",
-            "exigencias": "Exigencia 1",
-            "desejaveis": "Desejavel 1",
-            "descricao": "Descrição 1",
-            "requisitos": "Requisito 1",
-            "cuidados": "Cuidado 1",
-            "expiracao": "2021-09-01",
-            "publicacao": "2021-08-01",
-            "beneficios": "Beneficio 1",
-            "site": "Site 1",
-            "salario": "Salario 1",
-            "ativo": true,
-            "areaProfissional": "Area 1"
-        },
-        {
-            "id": 2,
-            "tituloVaga": "Vaga 2",
-            "cep": "12345678",
-            "endereco": "Rua 2",
-            "complemento": "Casa 2",
-            "bairro": "Bairro 2",
-            "cidade": "Cidade 2",
-            "uf": "UF 2",
-            "emailContato": "",
-            "telefoneContato": "123456789",
-            "exigencias": "Exigencia 2",
-            "desejaveis": "Desejavel 2",
-            "descricao": "Descrição 2",
-            "requisitos": "Requisito 2",
-            "cuidados": "Cuidado 2",
-            "expiracao": "2021-09-01",
-            "publicacao": "2021-08-01",
-            "beneficios": "Beneficio 2",
-            "site": "Site 2",
-            "salario": "Salario 2",
-            "ativo": true,
-            "areaProfissional": "Area 2"
-        },
-    ]
-}
-*/
-const url = "http://localhost:8080/api/empresa/vaga";
+const url = "http://10.92.198.40:8080/api/empresa/vaga";
 
 function cadastraVagas() {
     const tituloVaga = document.getElementById('tituloVaga');
-    const cep = document.getElementById('cep');
-    const endereco = document.getElementById('endereco');
-    /*    const complemento = document.getElementById('complemento').value; */
-    const bairro = document.getElementById('bairro');
-    const cidade = document.getElementById('cidade');
-    const uf = document.getElementById('uf');
+
     const emailContato = document.getElementById('emailContato');
     const telefoneContato = document.getElementById('telefoneContato');
-    /*     const exigencias = document.getElementById('exigencias').value; */
+    const whatsapp = document.getElementById('wppVaga');
     const desejaveis = document.getElementById('desejaveis');
     const descricao = document.getElementById('descricao');
     const requisitos = document.getElementById('requisitos');
@@ -101,20 +38,22 @@ function cadastraVagas() {
     const beneficios = document.getElementById('beneficios');
     const site = document.getElementById('site');
     const salario = document.getElementById('salario');
-    /*     const ativo = document.getElementById('ativo').value; */
-    const areaProfissional = document.getElementById('areaProfissional');
+    /* const areaProfissional = document.getElementById('areaProfissional'); */
+
+    var opcaoTextoAreaProfissional = areaProfissional.options[areaProfissional.selectedIndex].text;
+    const contratacao = document.getElementById('contratacao');
+
+    var opcaoTextoContratacao = contratacao.options[contratacao.selectedIndex].text;
+
+    const periodo = document.getElementById('periodo');
+
+    var opcaoTextoPeriodo = periodo.options[periodo.selectedIndex].text;
 
     axios.post(url, {
         tituloVaga: tituloVaga.value,
-        cep: cep.value,
-        endereco: endereco.value,
-        /*         complemento: complemento.value, */
-        bairro: bairro.value,
-        cidade: cidade.value,
-        uf: uf.value,
         emailContato: emailContato.value,
+        whatsapp: whatsapp.value,
         contato: telefoneContato.value,
-        /*         exigencias: exigencias.value, */
         desejaveis: desejaveis.value,
         descricao: descricao.value,
         requisitos: requisitos.value,
@@ -124,10 +63,11 @@ function cadastraVagas() {
         beneficios: beneficios.value,
         site: site.value,
         salario: salario.value,
+        contratacao: opcaoTextoContratacao,
+        periodo: opcaoTextoPeriodo,
         ativo: false,
 
 
-        /*         ativo: ativo.value, */
 
 
     })
@@ -151,12 +91,14 @@ function getVagas() {
             });
 
             data.forEach(vaga => {
-                if (vaga.ativo == true) {
-                    criaVaga(vaga.id, vaga.tituloVaga, vaga.cep, vaga.endereco, vaga.complemento, vaga.bairro, vaga.cidade, vaga.uf, vaga.emailContato, vaga.whatsapp, vaga.contato, vaga.exigencias, vaga.desejaveis, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.ativo, vaga.areaProfissional);
+                if (vaga.ativo == false) {
+                    criaVaga(vaga.id, vaga.tituloVaga, vaga.emailContato, vaga.contato, vaga.whatsapp, vaga.desejaveis, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.contratacao, vaga.periodo, vaga.ativo);
                 } else {
-                    console.log("Vaga inativa");
+                    console.log("Vaga inativa" + vaga.id);
                 }
             });
+
+
         }
         )
         .catch((error) => {
@@ -168,23 +110,10 @@ function getVagas() {
 getVagas();
 
 //Aprovação de vagas
-function aprovaVaga(id) {
-
-    axios.put(`http://localhost:8080/api/empresa/vaga/editavaga/${id}`, { ativo: false })
-
-        .then(function (response) {
-            console.log(JSON.stringify(response.data));
-
-
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-}
 
 //Reprovação de vagas 
 function deleteVaga(id) {
-    axios.put(`http://localhost:8080/api/empresa/vaga/excluir/${id}`)
+    axios.put(`http://10.92.198.40:8080/api/empresa/vaga/excluir/${id}`)
         .then((response) => {
             const data = response.data;
             console.log(data);
@@ -198,30 +127,64 @@ function deleteVaga(id) {
 }
 
 
+
+function aprovaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, contratacao, periodo, ativo) {
+
+    urlAtivaVaga = "http://10.92.198.40:8080/api/empresa/vaga/editavaga/"
+    axios.put(urlAtivaVaga + id, {
+
+        id: id,
+        tituloVaga: tituloVaga,
+        emailContato: emailContato,
+        contato: contato,
+        whatsapp: whatsapp,
+        desejaveis: desejaveis,
+        descricao: descricao,
+        requisitos: requisitos,
+        cuidados: cuidados,
+        expiracao: expiracao,
+        publicacao: publicacao,
+        beneficios: beneficios,
+        site: site,
+        salario: salario,
+        contratacao: contratacao,
+        periodo: periodo,
+        ativo: true,
+
+    })
+
+        .then(function (response) {
+            console.log(JSON.stringify(response.data));
+            location.reload();
+
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
 const groupVagas = document.getElementById('vagasGroup');
 
 //Paginação das vagas
-function criaVaga(id, tituloVaga, cep, endereco, complemento, bairro, cidade, uf, emailContato, whatsapp, contato, exigencias, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, ativo, areaProfissional) {
+function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, contratacao, periodo, ativo) {
     const sVaga = document.createElement('div');
     sVaga.classList.add('card-body');
     groupVagas.appendChild(sVaga);
     sVaga.innerHTML = `
-    <div class="vaga">
-    <div class="header-vaga">
+<div class="vaga">
+<div class="header-vaga">
     <div class="nome-vaga">
         <h4>${tituloVaga}</h4>
     </div>
-    <div class="nome-empresa">
-        <h4></h4>
-    </div>
-    <div class="descircao">
+</div>
+<div class="body-vaga">
+    <div class="descricao">
         <h5>Descrição:</h5>
         <p>${descricao}</p>
     </div>
-
-    
+    </div>
 </div>
-<div class="body-vaga"></div>
+
 `
     const footerVaga = document.createElement('div')
     footerVaga.classList.add('footer-vaga')
@@ -254,9 +217,9 @@ function criaVaga(id, tituloVaga, cep, endereco, complemento, bairro, cidade, uf
     btnAprovar.innerHTML = "Aprovar"
     divAprovar.appendChild(btnAprovar)
     btnAprovar.addEventListener('click', function () {
-        msgErro(msgText = "Vaga Aprovada", color = "green")
+
+        aprovaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, contratacao, periodo, ativo);
         console.log(id);
-        aprovaVaga(id);
 
     })
 
@@ -294,45 +257,44 @@ function criaVaga(id, tituloVaga, cep, endereco, complemento, bairro, cidade, uf
                 </span>    
             <span>
                     <h5>Local:</h5>
-                    <p>${endereco},  ${cep},${cidade}, ${uf} </p>
+                    <p> </p>
                 </span>
                 <span>
                     <h5>Requisitos:</h5>
                     <ul> 
-                    ${requisitos.split(",").map(requisito => `<li>${requisito}</li>`).join('')}
+                    ${requisitos.split(",").map(requisito => `<p>${requisito}</p>`).join('')}
                     </ul>
                 </span>
                 <span>
                     <h5>Desejavel:</h5>
-                    <ul>
-                               </ul>
+                    <ul> </ul>
                 </span>
                 <span>
                     <h5>Regime de Contratação:</h5>
-                    <p></p>
+                    <p>${contratacao}</p>
                 </span>
                
 
             </div>
-            <div class="col-md-4 ms-auto">
+            <div class="col-md-4 ms-auto" >
                 <span>
                     <h5>Salario:</h5>
-                    <p>${salario}</p>
+                    <p>${salario}R$</p>
 
                 </span>
                 <span>
                     <h5>Beneficios:</h5>
                     <ul>
-                    ${beneficios.split(",").map(beneficio => `<li>${beneficio}</li>`).join('')}
+                    ${beneficios.split(",").map(beneficio => `<p>${beneficio}</p>`).join('')}
                     </ul>
                 </span>
                 <span>
                     <h5>Periodo:</h5>
-                    <p></p>
+                    <p>${periodo}</p>
                 </span>
 
                 
-                <span>
+                <span class="descricao">
                 <h5>Descriçao:</h5>
                 <p>${descricao}</p>
             </span>
@@ -384,9 +346,96 @@ adicionaVaga.forEach(function (adicionaVaga) {
 
 
 
-
 //================================================================ Empresa ==============================================================================================//
-urlEmpresa = "http://localhost:8080/api/empresa/"
+
+
+const InomeEmpresa = document.getElementById('nomeEmpresa');
+const IemailEmpresa = document.getElementById('emailEmpresa');
+const ItelEmpresa = document.getElementById('telEmpresa');
+const IcnpjEmpresa = document.getElementById('cnpjEmpresa');
+const IcepEmpresa = document.getElementById('cepEmpresa')
+const Iendereco = document.getElementById('ruaEmpresa')
+const IcidadeEmpresa = document.getElementById('cidadeEmpresa')
+const IbairroEmpresa = document.getElementById('bairroEmpresa')
+const IufEmpresa = document.getElementById('ufEmpresa')
+const InEmpresa = document.getElementById('nEmpresa')
+const IsenhaEmpresa = document.getElementById('senhaEmpresa');
+const IconfSenhaEmpresa = document.getElementById('confSenhaEmpresa');
+const salvarEmpresa = document.getElementById('salvarEmpresa');
+
+
+
+urlEmpresa = 'http://10.92.198.40:8080/api/empresa'
+function cadEmpresa() {
+    axios.post(urlEmpresa, {
+        nome: InomeEmpresa.value,
+        cnpj: IcnpjEmpresa.value,
+        email: IemailEmpresa.value,
+        telefone: ItelEmpresa.value,
+        endereco: Iendereco.value,
+        cidade: IcidadeEmpresa.value,
+        uf: IufEmpresa.value,
+        cep: IcepEmpresa.value,
+        numero: InEmpresa.value,
+        bairro: IbairroEmpresa.value,
+        senha: IsenhaEmpresa.value,
+        ativo: false
+
+
+
+    })
+        .then((response) => {
+            console.log(JSON.stringify(response.data));
+
+
+        })
+        .catch((error) => {
+            console.log(error)
+
+        });
+
+
+}
+
+const adiconaEmpresa = document.querySelectorAll('#adiconaEmpresa')
+
+var addEmpresa = new bootstrap.Modal(document.getElementById('modalAddEmpresa1'));
+var addEmpresa2 = new bootstrap.Modal(document.getElementById('modalAddEmpresa2'));
+
+adiconaEmpresa.forEach(function (adiconaEmpresa) {
+    adiconaEmpresa.addEventListener('click', function () {
+        addEmpresa.show();
+
+        document.getElementById('proximoEmpresa').addEventListener('click', function () {
+            addEmpresa.hide();
+            addEmpresa2.show();
+            document.getElementById('salvarEmpresa').addEventListener('click', function () {
+                cadEmpresa()
+                addEmpresa2.hide();
+                location.reload();
+            })
+            document.getElementById('voltarEmpresa').addEventListener('click', function () {
+                addEmpresa2.hide();
+                addEmpresa.show();
+            })
+        })
+    })
+})
+
+
+/*     criaEmpresa();
+*/
+const closeModal = document.querySelectorAll('#closeModal')
+var modalV = new bootstrap.Modal(document.getElementById("modalVaga"));
+closeModal.forEach(close => {
+    close.addEventListener("click", function () {
+        modalV.hide()
+    })
+})
+
+
+
+urlEmpresa = "http://10.92.198.40:8080/api/empresa/"
 
 function getEmpresa() {
     axios.get(urlEmpresa)
@@ -399,8 +448,16 @@ function getEmpresa() {
             });
 
             data.forEach(empresa => {
-                criaEmpresa(empresa.id, empresa.nome, empresa.cnpj, empresa.email, empresa.telefone, empresa.endereco, empresa.cidade, empresa.uf, empresa.cep, empresa.senha)
+                if (empresa.ativo ==
+                    false) {
+
+                    criaEmpresa(empresa.id, empresa.nome, empresa.cnpj, empresa.email, empresa.telefone, empresa.endereco, empresa.cidade, empresa.uf, empresa.cep, empresa.numero, empresa.bairro)
+                }
+                else {
+                    console.log("Empresa ativa")
+                }
             });
+
         }
         )
         .catch((error) => {
@@ -411,11 +468,54 @@ function getEmpresa() {
 
 getEmpresa();
 
+
+function aprovaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep, numero, bairro) {
+    urlAprovaEmpresa = "http://10.92.198.40:8080/api/empresa/"
+    axios.put(urlAprovaEmpresa + id, {
+        id: id,
+        nome: nome,
+        email: email,
+        telefone: telefone,
+        cnpj: cnpj,
+        endereco: endereco,
+        cidade: cidade,
+        uf: uf,
+        cep: cep,
+        numero: numero,
+        bairro: bairro,
+        ativo: true
+
+
+    })
+        .then((response) => {
+            console.log(JSON.stringify(response.data));
+            location.reload();
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+}
+
+
+function reprovaEmpresa(id) {
+    urlReprovaEmpresa = "http://http://10.92.198.40:8080/api/empresa/excluirEmpresa/"
+    axios.delete(urlReprovaEmpresa + id)
+
+        .then((response) => {
+            console.log(JSON.stringify(response.data));
+            location.reload();
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
 const groupEmpresa = document.getElementById('empresaGroup')
-function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep, senha) {
+
+function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep, numero, bairro) {
     const sEmpresa = document.createElement('div');
     sEmpresa.classList.add('card-body');
     groupEmpresa.appendChild(sEmpresa);
+
     sEmpresa.innerHTML = `
     <div class="empresa">
     <div class="header-empresa">
@@ -425,15 +525,7 @@ function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep,
         <div class="cnpj">
             <h4>CNPJ: ${cnpj}</h4>
         </div>
-        <div class="descricao">
-            <h5>Descrição:</h5>
-            <p>Um é pouco, dois é bom e três é ímpar.. O povo unido é gente pra
-                caramba.. A
-                vida é uma vai e vem que não tem volta.. Cemeteries are just garbage
-                dumps
-                filled with humans. Pobre só enche a barriga quando morre afogado..
-            </p>
-        </div>
+       
 
 </div>
 <div class="body-vaga"></div>
@@ -469,9 +561,9 @@ function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep,
     btnAprovar.innerHTML = "Aprovar"
     divAprovar.appendChild(btnAprovar)
     btnAprovar.addEventListener('click', function () {
-        msgErro(msgText = "Vaga Aprovada", color = "green")
+        aprovaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep, numero, bairro)
         console.log(id);
-        aprovaVaga(id);
+
 
     })
 
@@ -486,14 +578,12 @@ function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep,
     divRecusar.appendChild(btnRecusar)
 
     btnRecusar.addEventListener('click', function () {
+        reprovaEmpresa(id)
         console.log(id)
-        deleteVaga(id)
+
 
     })
 
-
-    const closeModal = document.querySelectorAll('#closeModal')
-    var modalV = new bootstrap.Modal(document.getElementById("modalVaga"));
 
     const conteudoModal = document.querySelector('#modalBody');
 
@@ -505,52 +595,26 @@ function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep,
             <div class="col-md-4">
             <span>
                     <h4>Empresa:</h4>
-                    <p></p>
+                    <p>${nome}</p>
                 </span>    
             <span>
                     <h5>Local:</h5>
-                    <p> </p>
-                </span>
-                <span>
-                    <h5>Requisitos:</h5>
-                    <ul> 
-                
-                    </ul>
-                </span>
-                <span>
-                    <h5>Desejavel:</h5>
-                    <ul>
-                               </ul>
-                </span>
-                <span>
-                    <h5>Regime de Contratação:</h5>
-                    <p></p>
+                    <p>${endereco}, ${bairro}, ${numero}, ${cep}</p>
                 </span>
                
 
             </div>
             <div class="col-md-4 ms-auto">
                 <span>
-                    <h5>Salario:</h5>
-                    <p></p>
+                    <h5>Email:</h5>
+                    <p>${email}</p>
 
                 </span>
                 <span>
-                    <h5>Beneficios:</h5>
-                    <ul>
-                   
-                    </ul>
+                    <h5>Telefone:</h5>
+                    <p>${telefone}</p>
                 </span>
-                <span>
-                    <h5>Periodo:</h5>
-                    <p></p>
-                </span>
-
-                
-                <span>
-                <h5>Descriçao:</h5>
-                <p></p>
-            </span>
+              
             </div>
            
         </div>
@@ -561,140 +625,13 @@ function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep,
 
 
 
-    closeModal.forEach(close => {
-        close.addEventListener("click", function () {
-            modalV.hide()
-        })
-    })
-
-
-
-    /* 
-    function criaEmpresa() {
-        const empresa = document.createElement('div')
-        empresa.classList.add('card-body');
-        empresas.appendChild(empresa);
-        empresa.innerHTML = `
-        <div class="empresa">
-        <div class="header-empresa">
-            <div class="nome-empresa">
-                <h4>Nome da Empresa</h4>
-            </div>
-            <div class="cnpj">
-                <h4>CNPJ: 07.271.850/0001-73</h4>
-            </div>
-            <div class="descricao">
-                <h5>Descrição:</h5>
-                <p>Um é pouco, dois é bom e três é ímpar.. O povo unido é gente pra
-                    caramba.. A
-                    vida é uma vai e vem que não tem volta.. Cemeteries are just garbage
-                    dumps
-                    filled with humans. Pobre só enche a barriga quando morre afogado..
-                </p>
-            </div>
-    
-    
-        </div>
-        <div class="body-vaga"></div>
-        <div class="footer-vaga">
-            <div class="btn-verMais">
-                <button type="button" class="btn btn-primary " data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
-                    Ver mais
-                </button>
-            </div>
-            <div class="button">
-                <div class="btn-aceitar">
-                    <button type="button" class="btn btn-success">Aceitar</button>
-                </div>
-                <div class="btn-recusar">
-                <button type="button" class="btn btn-danger">Recusar</button>
-                </div>
-                </div>
-                </div>
-                </div>`
-    
-    } */
 
 
 
 
 
-    const adiconaEmpresa = document.querySelectorAll('#adiconaEmpresa')
-
-    var addEmpresa = new bootstrap.Modal(document.getElementById('modalAddEmpresa1'));
-    var addEmpresa2 = new bootstrap.Modal(document.getElementById('modalAddEmpresa2'));
-
-    adiconaEmpresa.forEach(function (adiconaEmpresa) {
-        adiconaEmpresa.addEventListener('click', function () {
-            addEmpresa.show();
-
-            document.getElementById('proximoEmpresa').addEventListener('click', function () {
-                addEmpresa.hide();
-                addEmpresa2.show();
-                document.getElementById('salvarEmpresa').addEventListener('click', function () {
-                    cadEmpresa();
-                    addEmpresa2.hide();
-
-            /*     criaEmpresa();
- */            })
-                document.getElementById('voltarEmpresa').addEventListener('click', function () {
-                    addEmpresa2.hide();
-                    addEmpresa.show();
-                })
-            })
-        })
-    })
 
 
-    const InomeEmpresa = document.getElementById('nomeEmpresa');
-    const IemailEmpresa = document.getElementById('emailEmpresa');
-    const ItelEmpresa = document.getElementById('telEmpresa');
-    const IcnpjEmpresa = document.getElementById('cnpjEmpresa');
-    const IcepEmpresa = document.getElementById('cepEmpresa')
-    const Iendereco = document.getElementById('ruaEmpresa')
-    const IcidadeEmpresa = document.getElementById('cidadeEmpresa')
-    const IbairroEmpresa = document.getElementById('bairroEmpresa')
-    const IufEmpresa = document.getElementById('ufEmpresa')
-    const InEmpresa = document.getElementById('nEmpresa')
-    const IsenhaEmpresa = document.getElementById('senhaEmpresa');
-    const IconfSenhaEmpresa = document.getElementById('confSenhaEmpresa');
-    const salvarEmpresa = document.getElementById('salvarEmpresa');
-
-
-
-    urlEmpresa = 'http://localhost:8080/api/empresa'
-    function cadEmpresa() {
-        axios.post(urlEmpresa, {
-            nome: InomeEmpresa.value,
-            email: "framalho400@gmail.com",
-            contato:/*  ItelEmpresa.value */ "123456789",
-            cnpj: "",
-            cep: IcepEmpresa.value,
-            endereco: Iendereco.value,
-            cidade: IcidadeEmpresa.value,
-            bairro: IbairroEmpresa.value,
-            uf: IufEmpresa.value,
-            senha: IsenhaEmpresa.value,
-
-
-
-        })
-            .then((response) => {
-                console.log(JSON.stringify(response.data));
-                msgErro(msgText = "Cadastrada com Sucesso !!", color = "green");
-            })
-            .catch((error) => {
-                console.log(error)
-                msgErro(msgText = "Empresa não Cadastrada!", color = "red");
-            });
-
-
-    }
-
-    salvarEmpresa.addEventListener('click', function () {
-        cadEmpresa();
-    });
 
 
 
@@ -704,22 +641,218 @@ function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep,
 
     //=========================================================== Menssagem de erro =============================================================================//
 
-    function msgErro(msgText, color) {
 
-        const div = document.createElement('div');
-
-        div.classList.add('msg');
-        div.style.borderLeft = `solid 10px ${color}`;
-        div.innerText = msgText;
-        document.body.appendChild(div);
+}
 
 
-        setTimeout(function () {
-            div.classList.add('close')
-        }, 3000); // 5 segundos
-        setTimeout(function () {
-            div.remove();
-        }, 6000); // 6 segundos
+function msgErro(msgText, color) {
 
+    const div = document.createElement('div');
+
+    div.classList.add('msg');
+    div.style.borderLeft = `solid 10px ${color}`;
+    div.innerText = msgText;
+    document.body.appendChild(div);
+
+
+    setTimeout(function () {
+        div.classList.add('close')
+    }, 3000); // 5 segundos
+    setTimeout(function () {
+        div.remove();
+    }, 6000); // 6 segundos
+
+}
+
+
+function limpa_formulário_cep() {
+    //Limpa valores do formulário de cep.
+    document.getElementById('ruaEmpresa').value = ("");
+    document.getElementById('bairroEmpresa').value = ("");
+    document.getElementById('cidadeEmpresa').value = ("");
+    document.getElementById('ufEmpresa').value = ("");
+}
+
+
+
+function meu_callback(conteudo) {
+    if (!("erro" in conteudo)) {
+        //Atualiza os campos com os valores.
+        document.getElementById('ruaEmpresa').value = (conteudo.logradouro);
+        document.getElementById('bairroEmpresa').value = (conteudo.bairro);
+        document.getElementById('cidadeEmpresa').value = (conteudo.localidade);
+        document.getElementById('ufEmpresa').value = (conteudo.uf);
+    } //end if.
+    else {
+        //CEP não Encontrado.
+        limpa_formulário_cep();
+        alert("CEP não encontrado.");
     }
 }
+
+
+
+function pesquisacep(valor) {
+
+
+
+    //Nova variável "cep" somente com dígitos.
+    var cep = valor.replace(/\D/g, '');
+
+
+
+    //Verifica se campo cep possui valor informado.
+    if (cep != "") {
+
+
+
+        //Expressão regular para validar o CEP.
+        var validacep = /^[0-9]{8}$/;
+
+
+
+        //Valida o formato do CEP.
+        if (validacep.test(cep)) {
+
+
+
+            //Preenche os campos com "..." enquanto consulta webservice.
+            document.getElementById('ruaEmpresa').value = "...";
+            document.getElementById('bairroEmpresa').value = "...";
+            document.getElementById('cidadeEmpresa').value = "...";
+            document.getElementById('ufEmpresa').value = "...";
+
+
+
+            //Cria um elemento javascript.
+            var script = document.createElement('script');
+
+
+
+            //Sincroniza com o callback.
+            script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+
+
+            //Insere script no documento e carrega o conteúdo.
+            document.body.appendChild(script);
+
+
+
+        } //end if.
+        else {
+            //cep é inválido.
+            limpa_formulário_cep();
+            alert("Formato de CEP inválido.");
+        }
+    } //end if.
+    else {
+        //cep sem valor, limpa formulário.
+        limpa_formulário_cep();
+    }
+
+
+
+};
+
+
+
+
+// Formatar Salário
+
+
+
+function formatarMoeda() {
+    var elemento = document.getElementById('salario');
+    var valor = elemento.value;
+
+
+
+    valor = valor + '';
+    valor = parseInt(valor.replace(/[\D]+/g, ''));
+    valor = valor + '';
+    valor = valor.replace(/([0-9]{2})$/g, ",$1");
+
+
+
+    if (valor.length > 6) {
+        valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+    }
+
+
+
+    elemento.value = valor;
+    if (valor == 'NaN') elemento.value = '';
+}
+
+
+
+
+// Formatar Telefone
+
+
+
+function mask(o, f) {
+    setTimeout(function () {
+        var v = mphone(o.value);
+        if (v != o.value) {
+            o.value = v;
+        }
+    }, 1);
+}
+
+function mphone(v) {
+    var r = v.replace(/\D/g, "");
+    r = r.replace(/^0/, "");
+    if (r.length > 10) {
+        r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+    } else if (r.length > 5) {
+        r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+    } else if (r.length > 2) {
+        r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
+    } else {
+        r = r.replace(/^(\d*)/, "($1");
+    }
+    return r;
+}
+
+
+
+
+// Formatar Dia
+
+
+
+const dataPublicacao = document.getElementById('publicacao');
+const dataExpiracao = document.getElementById('expiracao');
+
+
+
+dataExpiracao.min = new Date().toISOString().split("T")[0];
+dataPublicacao.min = new Date().toISOString().split("T")[0];
+
+
+
+
+
+
+// JavaScript para que o input text receba apenas números
+
+
+
+function onlynumber(evt) {
+    var theEvent = evt || window.event;
+    var key = theEvent.keyCode || theEvent.which;
+    key = String.fromCharCode(key);
+    //var regex = /^[0-9.,]+$/;
+    var regex = /^[0-9.]+$/;
+    if (!regex.test(key)) {
+        theEvent.returnValue = false;
+        if (theEvent.preventDefault) theEvent.preventDefault();
+    }
+}
+
+
+
+
+

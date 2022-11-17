@@ -36,7 +36,7 @@
       <div class="user" href="perfil.html">
 
         <div class="user-text">
-          <label>Olá, Luccas Mello</label>
+          <label id="nameUser" >Olá</label>
         </div>
       </div>
 
@@ -248,65 +248,9 @@
       <script type="text/javascript" charset="utf8"
         src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
       <script>
-        $(document).ready(function () {
-          $('#tableUser').DataTable({
-            "language": {
-              "lengthMenu": "Exibir _MENU_ por pagina",
-              "info": "Mostrando pagina _PAGE_ de _PAGES_",
-              "infoEmpty": "No records available",
-              "infoFiltered": "(filtered from _MAX_ total records)",
-              "search": "Buscar:",
-              "paginate": {
-                "first": "First",
-                "last": "Last",
-                "next": "Proximo",
-                "previous": "Voltar"
-    
-              }
-            }
-          });
-        });
+       
       </script>
-      <script>
-        $(document).ready(function () {
-          $('#tableEmpresa').DataTable({
-            "language": {
-              "lengthMenu": "Exibir _MENU_ por pagina",
-              "zeroRecords": "Nothing found - sorry",
-              "info": "Mostrando pagina _PAGE_ de _PAGES_",
-              "infoEmpty": "No records available",
-              "infoFiltered": "(filtered from _MAX_ total records)",
-              "search": "Buscar:",
-              "paginate": {
-                "first": "First",
-                "last": "Last",
-                "next": "Proximo",
-                "previous": "Voltar"
-              }
-            }
-          });
-        });
-      </script>
-      <script>
-        $(document).ready(function () {
-          $('#tableAdm').DataTable({
-            "language": {
-              "lengthMenu": "Exibir _MENU_ por pagina",
-              "zeroRecords": "Não Encontrado - Desculpe",
-              "info": "Mostrando pagina _PAGE_ de _PAGES_",
-              "infoEmpty": "Nenhum administrador cadastrado",
-              "infoFiltered": "(filtered from _MAX_ total records)",
-              "search": "Buscar:",
-              "paginate": {
-                "first": "First",
-                "last": "Last",
-                "next": "Proximo",
-                "previous": "Voltar"
-              }
-            }
-          });
-        });
-      </script>
+     
 </body>
 
 </html>
