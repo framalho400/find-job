@@ -5,18 +5,28 @@ const clickVaga = document.getElementById('vaga');
 const clickEmpresa = document.getElementById('empresa');
 const cardVagas = document.getElementById('cardVagas');
 const cardEmpresa = document.getElementById('cardEmpresa');
-clickEmpresa.addEventListener('click', function () {
+
+function abaEmpresa() {
     vaga.classList.add('close');
     cardVagas.classList.add('close');
     cardEmpresa.classList.remove('close');
     empresa.classList.remove('close');
 
+
+}
+clickEmpresa.addEventListener('click', function () {
+    abaEmpresa();
 })
-clickVaga.addEventListener('click', function () {
+
+function abaVaga() {
     vaga.classList.remove('close');
     cardVagas.classList.remove('close');
     cardEmpresa.classList.add('close');
     empresa.classList.add('close');
+}
+clickVaga.addEventListener('click', function () {
+    abaVaga();
+
 })
 
 
@@ -113,7 +123,7 @@ getVagas();
 
 //Reprovação de vagas 
 function deleteVaga(id) {
-    axios.put(`http://10.92.198.40:8080/api/empresa/vaga/excluir/${id}`)
+    axios.delete(`http://10.92.198.40:8080/api/empresa/vaga/excluir/${id}`)
         .then((response) => {
             const data = response.data;
             console.log(data);
@@ -129,10 +139,8 @@ function deleteVaga(id) {
 
 
 function aprovaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, contratacao, periodo, ativo) {
-
     urlAtivaVaga = "http://10.92.198.40:8080/api/empresa/vaga/editavaga/"
     axios.put(urlAtivaVaga + id, {
-
         id: id,
         tituloVaga: tituloVaga,
         emailContato: emailContato,
@@ -149,8 +157,7 @@ function aprovaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis,
         salario: salario,
         contratacao: contratacao,
         periodo: periodo,
-        ativo: true,
-
+        ativo: true
     })
 
         .then(function (response) {
@@ -184,7 +191,6 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
     </div>
     </div>
 </div>
-
 `
     const footerVaga = document.createElement('div')
     footerVaga.classList.add('footer-vaga')
@@ -490,6 +496,8 @@ function aprovaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, ce
         .then((response) => {
             console.log(JSON.stringify(response.data));
             location.reload();
+
+            abaEmpresa();
         })
         .catch((error) => {
             console.log(error);
@@ -497,18 +505,56 @@ function aprovaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, ce
 }
 
 
+
+function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep, numero, bairro) {
+    urlAprovaEmpresa = "http://10.92.198.40:8080/api/empresa/"
+    axios.put(urlAprovaEmpresa + id, {
+        id: id,
+        nome: nome,
+        email: email,
+        telefone: telefone,
+        cnpj: cnpj,
+        endereco: endereco,
+        cidade: cidade,
+        uf: uf,
+        cep: cep,
+        numero: numero,
+        bairro: bairro,
+        ativo: true
+
+    })
+        .then((response) => {
+            console.log(JSON.stringify(response.data));
+            location.reload();
+
+            abaEmpresa();
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+}
+
+
+
 function reprovaEmpresa(id) {
-    urlReprovaEmpresa = "http://http://10.92.198.40:8080/api/empresa/excluirEmpresa/"
+    urlReprovaEmpresa = "http://10.92.198.40:8080/api/empresa/excluirEmpresa/"
     axios.delete(urlReprovaEmpresa + id)
 
         .then((response) => {
             console.log(JSON.stringify(response.data));
             location.reload();
+
+            vaga.classList.add('close');
+            cardVagas.classList.add('close');
+            cardEmpresa.classList.remove('close');
+            empresa.classList.remove('close');
+
+
         })
         .catch((error) => {
             console.log(error);
         })
-    }
+}
 const groupEmpresa = document.getElementById('empresaGroup')
 
 function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep, numero, bairro) {
