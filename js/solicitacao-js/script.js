@@ -508,7 +508,7 @@ function aprovaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, ce
 
 function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep, numero, bairro) {
     urlAprovaEmpresa = "http://10.92.198.40:8080/api/empresa/"
-    axios.put(urlAprovaEmpresa + id, {
+    axios.put(urlAprovaEmpresa + id, {  
         id: id,
         nome: nome,
         email: email,

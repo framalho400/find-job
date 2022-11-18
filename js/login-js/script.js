@@ -6,7 +6,7 @@ const logar = document.querySelector('#entrar').addEventListener('click', entrar
 
 
 
-const url = 'http://localhost:8080/api/usuario/login'
+const url = 'http://10.92.198.19:8080/api/usuario/login'
 function entrar() {
     axios.post(url, {
         cpf: Icpf.value,
@@ -18,6 +18,8 @@ function entrar() {
         sessionStorage.setItem("token", resposta.token);
         const token = parseJwt(resposta.token);
         alert(token);
+        
+        window.location.href = "../../template/usuario/home.html"; 
         
     }).catch((error) => {
         alert("Erro ao fazer login");

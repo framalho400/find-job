@@ -457,9 +457,9 @@ function getVaga() {
 
             //popula a tabela com os dados do servidor
             data.map((data) => {
-                nome = data.nome;
+                nome = data.tituloVaga;
                 id = data.id;
-                email = data.email;
+                email = data.emailContato;
                 criarlinhaVaga(id, nome, email);
 
             });
