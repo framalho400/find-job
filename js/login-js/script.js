@@ -1,20 +1,22 @@
 const formulario = document.querySelector('form');
-const Icpf = document.querySelector('#cpf');
-const Isenha = document.querySelector('#senha');
-
-const logar = document.querySelector('#entrar').addEventListener('click', entrar)
+const Icpf = document.getElementById('cpf');
+const Isenha = document.getElementById('senha');
 
 
 
-const url = 'http://10.92.198.19:8080/api/usuario/login'
+
+const url = 'http://10.92.198.40:8080/api/usuario/login'
+
 function entrar() {
-    axios.post(url, {
+    usuario =
+    {
         cpf: Icpf.value,
         senha: Isenha.value
-    })
+    }
+    axios.post(url, usuario).then((resp) => {
 
-.then((resp) => {
     resp.json().then((resposta) => {
+        onsole.log(JSON.stringify(response.data));
         sessionStorage.setItem("token", resposta.token);
         const token = parseJwt(resposta.token);
         alert(token);
@@ -32,6 +34,8 @@ function entrar() {
     })
 })
 }
+
+
 function parseJwt(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -41,3 +45,10 @@ function parseJwt(token) {
 
     return JSON.parse(jsonPayload);
 };
+
+const logar = document.querySelector('#entrar').addEventListener('click',
+function (e) {
+
+    e.preventDefault();
+    entrar();
+})
