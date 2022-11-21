@@ -1,9 +1,12 @@
-const user = document.getElementById('user');
+/* 
+localStorage.setItem('nome', "Felipe de jesus Ramalho");
+
+ const user = document.getElementById('user');
 
 const nome = localStorage.getItem('nome');
 
 user.innerHTML = `Olá, ${nome.split(' ')[0]}`;
-
+ */
 
 const buscar = document.getElementById('buscar');
 
@@ -62,7 +65,7 @@ function getVagas() {
 
         if (el.classList.contains('contats')) {
           parentEl.classList.toggle('close');
-          localStorage.setItem('nome', "Felipe de jesus Ramalho");
+          
         }
 
       });

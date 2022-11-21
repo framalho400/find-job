@@ -175,8 +175,9 @@
                 <tr>
                   <th scope="col" class="col-1">ID</th>
                   <th scope="col" class="col-2">Nome</th>
-                  <th scope="col" class="col-2">E-mail</th>
-                  <th scope="col" class="col-1">Excluir</th>
+                  <th scope="col" class="col-2">CNPJ</th>
+                  <th scope="col" class="col-1">Ver Mais</th>
+                  <th scope="col" class="col-1">Desativar</th>
                 </tr>
               </thead>
 
@@ -224,7 +225,26 @@
           </div>
         </div>
       </div>
-
+      
+      <div class="modal fade" id="modalVaga" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" id="nomeVaga">Nome da Vaga</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close" id="closeModal"></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    
+                </div>
+                <div class="modal-footer">
+                    
+              
+                    <button type="button" class="btn btn-secondary" id="closeModal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"

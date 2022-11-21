@@ -1,19 +1,19 @@
 
-
-function logado() {
+/* 
+function logado() { */
    /*  var token = sessionStorage.getItem("token")
     if (token == null) {
         window.location.replace('../login/login/login.html')
     } */
 
-    const nameUser = document.getElementById('nameUser');
+/*     const nameUser = document.getElementById('nameUser');
 
     const nome = localStorage.getItem('nome');
     
     nameUser.innerHTML = `Olá, ${nome.split(' ')[0]}`;
 }
 logado();
-
+ */
 
 //paginas do user para o admin e do empresa
 const user = document.getElementById('user');
@@ -184,14 +184,16 @@ function criarlinhaAdm(id, nome, email) {
     let tdExcluir = document.createElement('td');
     let tdButton = document.createElement('button');
 
+    document.getElementById('deletConfirm').innerHTML="Desativar";
     //abre a modal de deletar
     var modalDelete = new bootstrap.Modal(document.querySelector('#deleteModal'));
     tdButton.addEventListener('click', function () {
         modalDelete.show(nome);
         const text = document.querySelector('#text');
         /*   text.innerHTML = `Deseja excluir o usuário ${nome}?`; */
-        text.innerHTML = `<h4>Deseja mesmo excluir o usuário ${nome}?</h4>`;
+        text.innerHTML = `<h4>Deseja mesmo Desativar o usuário ${nome}?</h4>`;
         document.getElementById('deletConfirm').addEventListener('click', function () {
+            
             deleteAdm(id);
             modalDelete.hide();
         })
@@ -204,7 +206,7 @@ function criarlinhaAdm(id, nome, email) {
     tdID.innerHTML = id;
     tdNome.innerHTML = nome;
     tdEmail.innerHTML = email;
-    tdButton.innerHTML = `<i class='bx bx-trash icon'></i>`;
+    tdButton.innerHTML = `<i class='bx bx-power-off'></i>`;
 
 
     tbody.appendChild(tr);
@@ -216,7 +218,7 @@ function criarlinhaAdm(id, nome, email) {
 
 }
 function getAdm() {
-    /* 10.92.198.40 */
+    /* localhost */
     axios.get("http://localhost:8080/api/adm", {
 
     })
@@ -278,25 +280,39 @@ function deleteAdm(id) {
 
 //================================================ Empresa ================================================= //
 
+const closeModal = document.querySelectorAll('#closeModal')
+var modalV = new bootstrap.Modal(document.getElementById("modalVaga"));
+closeModal.forEach(close => {
+    close.addEventListener("click", function () {
+        modalV.hide()
+    })
+})
+
 
 /* função de listagem de empresa */
-function criarlinhaEmpresa(id, nome, email) {
+function criarlinhaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep, numero, bairro, ativo) {
     const tbody = document.querySelector('#bodyEmpresa');
     let tr = document.createElement('tr');
-    tr.id = id;
+   
     let tdID = document.createElement('td');
     let tdNome = document.createElement('td');
-    let tdEmail = document.createElement('td');
+    let tdCnpj = document.createElement('td');
+    let tdVerMais = document.createElement('td');
     let tdExcluir = document.createElement('td');
+    let verMais = document.createElement('button');
+        verMais.style.backgroundColor = "#427AAA";
+      
     let tdButton = document.createElement('button');
-
+    if(ativo == false){
+        tdButton.style.backgroundColor = "#427AAA";
+    }
     //abre a modal de deletar
     var modalDelete = new bootstrap.Modal(document.querySelector('#deleteModal'));
     tdButton.addEventListener('click', function () {
         modalDelete.show(nome);
         const text = document.querySelector('#text');
         /*   text.innerHTML = `Deseja excluir o usuário ${nome}?`; */
-        text.innerHTML = `<h4>Deseja mesmo excluir o usuário ${nome}?</h4>`;
+        text.innerHTML = `<h4>Deseja mesmo Desativar o usuário ${nome}?</h4>`;
         document.getElementById('deletConfirm').addEventListener('click', function () {
             console.log(id);
             desativaEmpresa(id);
@@ -310,20 +326,71 @@ function criarlinhaEmpresa(id, nome, email) {
 
     tdID.innerHTML = id;
     tdNome.innerHTML = nome;
-    tdEmail.innerHTML = email;
-    tdButton.innerHTML = `<i class='bx bx-trash icon'></i>`;
-
-
+    tdCnpj.innerHTML = cnpj;
+    verMais.innerHTML = `Ver mais`;
+    tdButton.innerHTML = `<i class='bx bx-power-off'></i>`;
+    
     tbody.appendChild(tr);
     tr.appendChild(tdID);
     tr.appendChild(tdNome);
-    tr.appendChild(tdEmail);
+    tr.appendChild(tdCnpj);
+    tr.appendChild(tdVerMais);
     tr.appendChild(tdExcluir);
+
+    tdVerMais.appendChild(verMais);
     tdExcluir.appendChild(tdButton);
+
+
+
+
+    const conteudoModal = document.querySelector('#modalBody');
+
+
+    verMais.addEventListener("click", function () {
+
+        conteudoModal.innerHTML = `<div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+            <span>
+                    <h4>Empresa:</h4>
+                    <p>${nome}</p>
+                </span>    
+            <span>
+                    <h5>Local:</h5>
+                    <p>${cidade}-${uf}</p>
+                    <p>${endereco}, ${bairro}, ${numero}, ${cep}</p>
+                </span>
+               
+
+            </div>
+            <div class="col-md-4 ms-auto">
+            <span>
+            <h4>CNPJ:</h4>
+            <p>${cnpj}</p>
+        </span>    
+    <span>
+                <span>
+                    <h5>Email:</h5>
+                    <p>${email}</p>
+
+                </span>
+                <span>
+                    <h5>Telefone:</h5>
+                    <p>${telefone}</p>
+                </span>
+              
+            </div>
+           
+        </div>
+    </div>`
+        modalV.show()
+    })
+
+
 
 }
 function getEmpresa() {
-    /* 10.92.198.40 */
+    /* localhost */
     axios.get("http://localhost:8080/api/empresa", {
 
     })
@@ -335,9 +402,23 @@ function getEmpresa() {
                 nome = data.nome;
                 id = data.id;
                 email = data.email;
-                criarlinhaEmpresa(id, nome, email);
+                telefone = data.telefone;
+                cnpj = data.cnpj;
+                endereco = data.endereco;
+                cidade = data.cidade;
+                uf = data.uf;
+                cep = data.cep;
+                numero = data.numero;
+                bairro = data.bairro;
+                ativo = data.ativo;
+                
+                //if (data.ativo == true) {
+                    criarlinhaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep, numero, bairro, ativo);
+                //}
+                
 
             });
+            //inicializa o datatable
             $(document).ready(function () {
                 $('#tableEmpresa').DataTable({
                     "language": {
@@ -361,22 +442,6 @@ function getEmpresa() {
         .catch((error) => console.log(error));
 }
 getEmpresa();
-/* 
-const urlDesativaEmpresa = "http://localhost:8080/api/empresa/desativar/id";
-function deleteEmpresa(id) {
-    axios.put(urlDesativaEmpresa + id, {
-
-    })
-        .then((response) => {
-            const data = response.data;
-            console.log(data);
-            location.reload();
-            msgErro(msgText = "Empresa deletada com sucesso", color = "green");
-        })
-        .catch((error) => {
-            msgErro(msgText = "Erro !", color = "red")
-            console.log(error)});
-} */
 
 function desativaEmpresa(id) {
 
@@ -384,8 +449,7 @@ function desativaEmpresa(id) {
 
         .then(function (response) {
             console.log(JSON.stringify(response.data));
-
-
+            location.reload();
         })
         .catch(function (error) {
             console.log(error);
@@ -456,7 +520,7 @@ function criarlinhaVaga(id, nome, email) {
 }
 
 function getVaga() {
-    /* 10.92.198.40 */
+    /* localhost */
     axios.get("http://localhost:8080/api/empresa/vaga", {
 
     })
@@ -465,9 +529,9 @@ function getVaga() {
 
             //popula a tabela com os dados do servidor
             data.map((data) => {
-                nome = data.nome;
+                nome = data.tituloVaga;
                 id = data.id;
-                email = data.email;
+                email = data.emailContato;
                 criarlinhaVaga(id, nome, email);
 
             });
@@ -495,7 +559,7 @@ function getVaga() {
 }
 getVaga();
 
-const urlDelVaga = "http://localhost:8080/api/vaga/excluir/";
+const urlDelVaga = "http://localhost:8080/api/empresa/vaga/excluir/";
 function deleteVaga(id) {
     axios.delete(urlDelVaga + id, {
 

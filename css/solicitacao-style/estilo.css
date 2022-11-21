@@ -208,7 +208,7 @@ a {
 .a{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+
     margin-bottom: 10px;
     width: 40%;
     
@@ -240,10 +240,7 @@ button {
 .btn-verMais button {
     background-color: var(--blue-color) !important;
 }
-#vagasGroup{
-    height: 500px   !important;
 
-}
 
 .descricao{
     display: flex;
