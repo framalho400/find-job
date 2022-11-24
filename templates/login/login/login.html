@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <script src="../../../js/login-js/script.js" defer></script>
+
   <link rel="stylesheet" href="../../css/login-style/estilo.css" />
 
   <!----===== Bootstrap ===== -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="../../../css/login-style/estilo.css" />
+  <link  href="../../../css/login-style/estilo.css" rel="stylesheet"/>
 
   <!-- Boxicons CDN Link -->
   <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
@@ -42,8 +42,7 @@
         <div class="inputs">
           <span class="cpf">
             <label for="">CPF:</label>
-            <input placeholder="CPF" id="cpf" type="text" onkeyup="cpfCheck(this)" maxlength="18"
-              onkeydown="javascript: fMasc( this, mCPF );">
+            <input placeholder="CPF" id="cpf" type="text">
             <!--   <span id="cpfResponse"></span> -->
           </span>
           <span class="senha">
@@ -56,7 +55,7 @@
         </span>
         <span class="entrar">
           <a >
-            <input type="submit" value="Entrar" id="entrar" />
+            <input type="submit" value="Entrar" id="entrar"  />
           </a>
 
         </span>
@@ -74,7 +73,7 @@
     </div>
 
    
-    
+    <script src="../../../js/login-js/script.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
     crossorigin="anonymous"></script>
