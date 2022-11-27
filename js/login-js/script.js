@@ -6,54 +6,59 @@ const Isenha = document.getElementById('senha');
 const logar = document.querySelector('#entrar').addEventListener('click',
     function (e) {
         e.preventDefault();
-    entrar();
-})
+        entrar();
+    })
 
 
 
-const url = 'http://localhost:8080/api/usuario/login'
+const url = 'http://192.168.3.106:8080/api/usuario/login'
 
 usuario =
 {
-    cpf: Icpf.value,
-    senha: Isenha.value
+
+
 }
 
 
 function entrar() {
-    axios.post(url, usuario, {
-             
-    headers: {
-        'Content-Type': 'application/json',
-        'accept': 'application/json',
-        Authorization: `Bearer ${token}` }
-}
+    axios.post(url, {
+
+        cpf: Icpf.value,
+        senha: Isenha.value
+
+    }, {
+        headers: {
+            'Content-Type': 'application/json',
+            'accept': 'application/json'
+    
+        }
+    }
     )
-    .then((resp) => {
+        .then((resp) => {
 
-    resp.json()
-    .then((resposta) => {
-        msgErro(msgText="Erro ao logar", color= "red");
-        sessionStorage.setItem("token", resposta.token);
-        const token = resposta.token;
-        console.log(JSON.stringify(response.data));
-        window.location.href = "../../templates/usuario/home.html"; 
-        
-    }).catch((error) => {
-        alert("Erro ao fazer login");
-        /*  window.location.href = "../suporte/index.html"; */
-        console.log(error)
-        msgErro(msgText="Erro ao logar", color= "red");
-        if (resp.status == 401) {
-            msgErro(msgText="Erro ao logar", color= "red");
-            
-        } 
-    })
-})
+            resp.json()
+                .then((resposta) => {
+                    msgErro(msgText = "Erro ao logar", color = "red");
+                    sessionStorage.setItem("token", resposta.token);
+                    const token = resposta.token;
+                    console.log(JSON.stringify(response.data));
+                    window.location.href = "../../templates/usuario/home.html";
+
+                }).catch((error) => {
+                    alert("Erro ao fazer login");
+
+                    console.log(error)
+                    msgErro(msgText = "Erro ao logar", color = "red");
+                    if (resp.status == 401) {
+                        msgErro(msgText = "Erro ao logar", color = "red");
+
+                    }
+                })
+        })
 }
 
 
- function parseJwt(token) {
+function parseJwt(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
@@ -61,7 +66,7 @@ function entrar() {
     }).join(''));
 
     return JSON.parse(jsonPayload);
-}; 
+};
 
 function msgErro(msgText, color) {
 

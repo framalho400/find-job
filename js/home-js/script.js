@@ -204,22 +204,35 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
     <i class='bx bx-chevron-left contats ' id="contatos"></i>
   <div class="contatos ">
     <h4>Entre em contato conosco:</h4>
-    <span>
+    <span id="copia-contato">
         <label>Contato</label>
-        <p>${contato}</p>
+        <p id="copy-c">${contato}</p>
+        
     </span>
     <span>
         <label>Whatsapp</label>
         <p>${whatsapp}</p>
+        
     </span>
     <span>
         <label>Email</label>
         <p>${emailContato}</p>
+        
     </span>
 </div>`
   div.appendChild(div2);
 
-
+  const copy = document.querySelector('#copy-c');
+  copy.select();
+    document.execCommand('copy');
+    alert('Copiado com sucesso!');
+  const btnContato = document.getElementById('#copia-contato');
+  btnContato.addEventListener('click', function () {
+      alert("Contato copiado com sucesso!");
+    
+    /* 
+   */
+  })
 
 /* div.forEach((div) => {
   div.addEventListener('click', (e) => {

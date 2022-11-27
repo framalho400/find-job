@@ -1,5 +1,4 @@
 
-
 //Paginação das vagas
 const clickVaga = document.getElementById('vaga');
 const clickEmpresa = document.getElementById('empresa');
@@ -29,6 +28,36 @@ clickVaga.addEventListener('click', function () {
 
 })
 
+const empresaSelect = document.getElementById('empresaSelect');
+//Selecionando empresa
+function criaOptionEmpresa(id, nomeEmpresa) {
+    const optionEmpresa = document.createElement('option');
+    optionEmpresa.setAttribute('value', id);
+    optionEmpresa.innerHTML = nomeEmpresa;
+    empresaSelect.appendChild(optionEmpresa);
+}
+
+function selecionaEmpresa() {
+    axios.get(`http://localhost:8080/api/empresa/`)
+
+        .then((response) => {
+            console.log(JSON.stringify(response.data));
+            data = response.data;
+            
+          
+            data.forEach(empresa => {
+                if (empresa.ativo == false) {
+                    criaOptionEmpresa(empresa.id, empresa.nome, empresa.cnpj);
+                } else {
+                    console.log("Empresa inativa" + empresa.id);
+                }
+            });
+        })
+
+}
+
+selecionaEmpresa();
+ 
 
 
 const url = "http://localhost:8080/api/empresa/vaga";
@@ -48,17 +77,21 @@ function cadastraVagas() {
     const beneficios = document.getElementById('beneficios');
     const site = document.getElementById('site');
     const salario = document.getElementById('salario');
+
     /* const areaProfissional = document.getElementById('areaProfissional'); */
-
     var opcaoTextoAreaProfissional = areaProfissional.options[areaProfissional.selectedIndex].text;
+    
     const contratacao = document.getElementById('contratacao');
-
     var opcaoTextoContratacao = contratacao.options[contratacao.selectedIndex].text;
 
     const periodo = document.getElementById('periodo');
-
     var opcaoTextoPeriodo = periodo.options[periodo.selectedIndex].text;
 
+    var opcaoSelectID = empresaSelect.options[empresaSelect.selectedIndex].value;
+    var opcaoSelectEmpresa = empresaSelect.options[empresaSelect.selectedIndex].text;
+
+
+    alert(`${opcaoSelectID}  ${opcaoSelectEmpresa}`);
     axios.post(url, {
         tituloVaga: tituloVaga.value,
         emailContato: emailContato.value,
@@ -76,8 +109,14 @@ function cadastraVagas() {
         contratacao: opcaoTextoContratacao,
         periodo: opcaoTextoPeriodo,
         ativo: false,
+        empresa: [{
+            id: opcaoSelectID,
+            name: opcaoSelectEmpresa
 
+        }
+        ]
 
+        
 
 
     })
@@ -102,7 +141,7 @@ function getVagas() {
 
             data.forEach(vaga => {
                 if (vaga.ativo == false) {
-                    criaVaga(vaga.id, vaga.tituloVaga, vaga.emailContato, vaga.contato, vaga.whatsapp, vaga.desejaveis, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.contratacao, vaga.periodo, vaga.ativo);
+                    criaVaga(vaga.id, vaga.tituloVaga, vaga.emailContato, vaga.contato, vaga.whatsapp, vaga.desejaveis, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.contratacao, vaga.periodo, vaga.ativo, vaga.empresa);
                 } else {
                     console.log("Vaga inativa" + vaga.id);
                 }
@@ -123,6 +162,8 @@ getVagas();
 
 //Reprovação de vagas 
 function deleteVaga(id) {
+  
+  
     axios.delete(`http://localhost:8080/api/empresa/vaga/excluir/${id}`)
         .then((response) => {
             const data = response.data;
@@ -173,7 +214,7 @@ function aprovaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis,
 const groupVagas = document.getElementById('vagasGroup');
 
 //Paginação das vagas
-function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, contratacao, periodo, ativo) {
+function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, contratacao, periodo, ativo, empresa) {
     const sVaga = document.createElement('div');
     sVaga.classList.add('card-body');
     groupVagas.appendChild(sVaga);
@@ -259,7 +300,7 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
             <div class="col-md-4">
             <span>
                     <h4>Empresa:</h4>
-                    <p></p>
+                    <p>${empresa}</p>
                 </span>    
             <span>
                     <h5>Local:</h5>
@@ -278,6 +319,7 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
                 <span>
                     <h5>Regime de Contratação:</h5>
                     <p>${contratacao}</p>
+                    
                 </span>
                
 

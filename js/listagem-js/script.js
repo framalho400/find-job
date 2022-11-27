@@ -113,7 +113,7 @@ function criarlinha(id, nome, email) {
 }
 
 //Pega o usuario e chama a função para criar a linha da tabela
-const url = "http://localhost:8080/api/usuario/";
+const url = "http://192.168.3.106:8080/api/usuario/";
 function getUser() {
     axios.get(url, {
     })
@@ -153,7 +153,7 @@ function getUser() {
 getUser();
 
 //função para deletar o usuario
-const urlDel = "http://localhost:8080/api/usuario/excluir/";
+const urlDel = "http://192.168.3.106:8080/api/usuario/excluir/";
 function deleteUser(id) {
     axios.delete(urlDel + id, {
 
@@ -218,8 +218,8 @@ function criarlinhaAdm(id, nome, email) {
 
 }
 function getAdm() {
-    /* localhost */
-    axios.get("http://localhost:8080/api/adm", {
+    /* 192.168.3.106 */
+    axios.get("http://192.168.3.106:8080/api/adm", {
 
     })
         .then((response) => {
@@ -260,7 +260,7 @@ function getAdm() {
 }
 getAdm();
 //função para deletar o adm
-const urlDelAdm = "http://localhost:8080/api/adm/excluir/";
+const urlDelAdm = "http://192.168.3.106:8080/api/adm/excluir/";
 function deleteAdm(id) {
     axios.delete(urlDelAdm + id, {
 
@@ -390,8 +390,8 @@ function criarlinhaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf
 
 }
 function getEmpresa() {
-    /* localhost */
-    axios.get("http://localhost:8080/api/empresa", {
+    /* 192.168.3.106 */
+    axios.get("http://192.168.3.106:8080/api/empresa", {
 
     })
         .then((response) => {
@@ -445,7 +445,7 @@ getEmpresa();
 
 function desativaEmpresa(id) {
 
-    axios.put(`http://localhost:8080/api/empresa/desativar/${id}`, { ativo: false })
+    axios.put(`http://192.168.3.106:8080/api/empresa/desativar/${id}`, { ativo: false })
 
         .then(function (response) {
             console.log(JSON.stringify(response.data));
@@ -458,7 +458,7 @@ function desativaEmpresa(id) {
 
 
 
-/* const urlDelEmpresa = "http://localhost:8080/api/empresa/excluir/";
+/* const urlDelEmpresa = "http://192.168.3.106:8080/api/empresa/excluir/";
 function deleteEmpresa(id) {
     axios.delete(urlDelEmpresa + id, {
 
@@ -520,8 +520,8 @@ function criarlinhaVaga(id, nome, email) {
 }
 
 function getVaga() {
-    /* localhost */
-    axios.get("http://localhost:8080/api/empresa/vaga", {
+    /* 192.168.3.106 */
+    axios.get("http://192.168.3.106:8080/api/empresa/vaga", {
 
     })
         .then((response) => {
@@ -559,7 +559,7 @@ function getVaga() {
 }
 getVaga();
 
-const urlDelVaga = "http://localhost:8080/api/empresa/vaga/excluir/";
+const urlDelVaga = "http://192.168.3.106:8080/api/empresa/vaga/excluir/";
 function deleteVaga(id) {
     axios.delete(urlDelVaga + id, {
 

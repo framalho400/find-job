@@ -56,7 +56,7 @@ function sendEmail() {
 
 
 
-const url = "http://localhost:8080/api/usuario/";
+const url = "http://192.168.3.106:8080/api/usuario/";
 
 const formulario = document.querySelector('form');
 const Icpf = document.querySelector('#cpf');
@@ -77,8 +77,15 @@ function cadastrar() {
       console.log(JSON.stringify(response.data));
       msgErro(msgText = "Cadastrado com sucesso!", color = "green");
     })
-    .catch((error) => console.log(error) + msgErro(msgText = "Erro ao cadastrar!", color = "red"));
-
+    .catch((error) => { console.log(error)
+      if (error.response.status == 400) {
+        msgErro(msgText = "Erro ao cadastrar!", color = "red");
+      }
+    else if (error.response.status == 422) {
+      msgErro(msgText = "Usuario já cadastrados!", color = "red");
+    }
+     
+    })
 };
 
 function limpar() {
@@ -107,7 +114,7 @@ formulario.addEventListener('submit', function (event) {
 
     cadastrar();
     limpar();
-    sendEmail();
+  /*   sendEmail(); */
 
   }
 
