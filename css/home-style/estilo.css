@@ -262,7 +262,13 @@ h4 {
     font-size: 8px;
 
 }
-
+.title{
+    width: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--tran-05);
+    margin-bottom: 10px;
+}
 @-webkit-keyframes fade-in {
     0% {
         opacity: 0;

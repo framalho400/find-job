@@ -93,6 +93,7 @@ function cadastraVagas() {
 
     alert(`${opcaoSelectID}  ${opcaoSelectEmpresa}`);
     axios.post(url, {
+        
         tituloVaga: tituloVaga.value,
         emailContato: emailContato.value,
         whatsapp: whatsapp.value,
@@ -108,13 +109,18 @@ function cadastraVagas() {
         salario: salario.value,
         contratacao: opcaoTextoContratacao,
         periodo: opcaoTextoPeriodo,
-        ativo: false,
-        empresa: [{
+        ativo: true,
+      /*   empresa: [{
             id: opcaoSelectID,
-            name: opcaoSelectEmpresa
+            nome: opcaoSelectEmpresa
 
         }
-        ]
+        ], 
+        header : {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+ */
 
         
 

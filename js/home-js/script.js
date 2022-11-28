@@ -34,6 +34,26 @@ buscar.addEventListener("keyup", (e) => {
 });
 
 
+const adiconaVaga = document.getElementById('adiconaVaga');
+
+var addVaga = new bootstrap.Modal(document.getElementById('modalAddVaga1'));
+var addVaga2 = new bootstrap.Modal(document.getElementById('modalAddVaga2'));
+
+adiconaVaga.addEventListener('click', function () {
+  addVaga.show();
+
+  document.getElementById('proximoVaga').addEventListener('click', function () {
+    addVaga.hide();
+    addVaga2.show();
+    document.getElementById('salvarVaga').addEventListener('click', function () {
+      addVaga2.hide();
+      /*      criaVaga(); */
+    })
+  })
+})
+
+
+
 
 function getVagas() {
   axios.get('http://localhost:8080/api/empresa/vaga')
@@ -50,9 +70,8 @@ function getVagas() {
         if (vaga.ativo == true) {
           criaVaga(vaga.id, vaga.tituloVaga, vaga.emailContato, vaga.contato, vaga.whatsapp, vaga.desejaveis, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.contratacao, vaga.periodo, vaga.ativo);
         }
-        else {
-          console.log("Vaga inativa");
-        }
+
+
 
       });
 
@@ -65,7 +84,7 @@ function getVagas() {
 
         if (el.classList.contains('contats')) {
           parentEl.classList.toggle('close');
-          
+
         }
 
       });
@@ -125,18 +144,71 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
 
     const conteudoModal = document.querySelector('#modalBody');
 
-    document.getElementById('pdf').addEventListener('click', function () {
-
-      var doc = new jsPDF()
-      /* var imgData = "../../img/logo_principal.png" */
-      
-      doc.text(` ${tituloVaga}`, 10, 10)
-    
-    
-      doc.save(`Vaga_${tituloVaga}.pdf`)
-    /*   doc.addImage(imgData, 'JPEG', 15, 40, 180, 180); */
-  
+    document.getElementById('close').addEventListener('click', function () {
+      modal.hide();
     })
+    document.querySelector('.btn-close').addEventListener('click', function () {
+      modal.hide();
+    })
+    const contatos = document.getElementById('contatos')
+
+    var modalcontato = new bootstrap.Modal(document.getElementById('modalContato'));
+
+    contatos.addEventListener('click', function () {
+      modal.hide()
+      modalcontato.show()
+      document.getElementById('closeContato').addEventListener('click', function () {
+        modalcontato.hide()
+        modal.show()
+      })
+
+    })
+    const conteudoContato = document.getElementById('conteudoContato');
+
+    conteudoContato.innerHTML = `
+    <div class="row g-1" >
+    <div class="col-md-12">
+        <label for="inputDate4" class="form-label">Contato:</label>
+        <p>${contato}</p>
+    </div>
+    <div class="col-md-12">
+    <label for="inputDate4" class="form-label">Whatsapp:</label>
+    <p>${whatsapp}</p>
+    </div>
+<div class="col-md-12">
+<label for="inputDate4" class="form-label">Email:</label>
+<p>${emailContato}</p>
+
+</div>
+    </div>`
+
+
+    const editVaga = document.getElementById('editVaga');
+
+
+
+    editVaga.addEventListener('click', function () {
+      addVaga.show();
+      modal.hide();
+    
+      document.getElementById('proximoVaga').addEventListener('click', function () {
+        addVaga.hide();
+        addVaga2.show();
+      })
+        document.getElementById('salvarVaga').addEventListener('click', function () {
+          addVaga2.hide();
+          modal.show();
+          /*      criaVaga(); */
+          
+        })
+    
+      document.getElementById('voltarVaga').addEventListener('click', function () {
+        addVaga2.hide();
+        addVaga.show();
+      })
+    })
+    
+
     conteudoModal.innerHTML = `<div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
@@ -201,7 +273,7 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
   const div2 = document.createElement('div');
   div2.classList.add('aba');
   div2.innerHTML = `
-    <i class='bx bx-chevron-left contats ' id="contatos"></i>
+    <i class='bx bx-chevron-left contats ' ></i>
   <div class="contatos ">
     <h4>Entre em contato conosco:</h4>
     <span id="copia-contato">
@@ -220,61 +292,35 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
         
     </span>
 </div>`
+
   div.appendChild(div2);
 
-  const copy = document.querySelector('#copy-c');
-  copy.select();
-    document.execCommand('copy');
-    alert('Copiado com sucesso!');
-  const btnContato = document.getElementById('#copia-contato');
-  btnContato.addEventListener('click', function () {
-      alert("Contato copiado com sucesso!");
-    
-    /* 
-   */
-  })
+  /*   const copy = document.querySelector('#copy-c');
+    copy.select();
+      document.execCommand('copy');
+      alert('Copiado com sucesso!');
+    const btnContato = document.getElementById('#copia-contato');
+    btnContato.addEventListener('click', function () {
+        alert("Contato copiado com sucesso!");
+      
+  
+    })  */
 
-/* div.forEach((div) => {
-  div.addEventListener('click', (e) => {
-
-
-  })
-});
-
- */
-
-
-
-/*modal para criar vagas  */
-
-const adiconaVaga = document.getElementById('adiconaVaga');
-var modalVaga = new bootstrap.Modal(document.getElementById('modalVaga'))
-var addVaga = new bootstrap.Modal(document.getElementById('modalAddVaga1'));
-var addVaga2 = new bootstrap.Modal(document.getElementById('modalAddVaga2'));
-
-adiconaVaga.addEventListener('click', function () {
-  addVaga.show();
-
-  document.getElementById('proximoVaga').addEventListener('click', function () {
-    addVaga.hide();
-    addVaga2.show();
-    document.getElementById('salvarVaga').addEventListener('click', function () {
-      addVaga2.hide();
-      /*      criaVaga(); */
+  /* div.forEach((div) => {
+    div.addEventListener('click', (e) => {
+  
+  
     })
-  })
-})
+  });
+  
+   */
 
 
-const contatos = document.getElementById('contatos')
 
-var modalcontato = new bootstrap.Modal(document.getElementById('modalContato'));
+  /*modal para criar vagas  */
 
-contatos.addEventListener('click', function () {
-  modalVaga.hide()
-  modalcontato.show()
 
-})
+
 
 
 }
