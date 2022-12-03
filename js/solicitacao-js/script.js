@@ -5,7 +5,9 @@ const clickEmpresa = document.getElementById('empresa');
 const cardVagas = document.getElementById('cardVagas');
 const cardEmpresa = document.getElementById('cardEmpresa');
 
+
 function abaEmpresa() {
+    paginaEmpresa = localStorage.setItem('pagina', 'empresa');
     vaga.classList.add('close');
     cardVagas.classList.add('close');
     cardEmpresa.classList.remove('close');
@@ -18,6 +20,7 @@ clickEmpresa.addEventListener('click', function () {
 })
 
 function abaVaga() {
+    paginaEmpresa = localStorage.setItem('pagina', 'vaga');
     vaga.classList.remove('close');
     cardVagas.classList.remove('close');
     cardEmpresa.classList.add('close');
@@ -27,6 +30,13 @@ clickVaga.addEventListener('click', function () {
     abaVaga();
 
 })
+paginaEmpresa = localStorage.getItem('pagina');
+if (paginaEmpresa == 'empresa') {
+    abaEmpresa();
+}
+if (paginaEmpresa == 'vaga') {
+    abaVaga();
+}
 
 const empresaSelect = document.getElementById('empresaSelect');
 //Selecionando empresa
@@ -43,10 +53,10 @@ function selecionaEmpresa() {
         .then((response) => {
             console.log(JSON.stringify(response.data));
             data = response.data;
-            
-          
+
+
             data.forEach(empresa => {
-                if (empresa.ativo == false) {
+                if (empresa.aprova == true) {
                     criaOptionEmpresa(empresa.id, empresa.nome, empresa.cnpj);
                 } else {
                     console.log("Empresa inativa" + empresa.id);
@@ -57,7 +67,6 @@ function selecionaEmpresa() {
 }
 
 selecionaEmpresa();
- 
 
 
 const url = "http://localhost:8080/api/empresa/vaga";
@@ -80,7 +89,7 @@ function cadastraVagas() {
 
     /* const areaProfissional = document.getElementById('areaProfissional'); */
     var opcaoTextoAreaProfissional = areaProfissional.options[areaProfissional.selectedIndex].text;
-    
+
     const contratacao = document.getElementById('contratacao');
     var opcaoTextoContratacao = contratacao.options[contratacao.selectedIndex].text;
 
@@ -91,9 +100,9 @@ function cadastraVagas() {
     var opcaoSelectEmpresa = empresaSelect.options[empresaSelect.selectedIndex].text;
 
 
-    alert(`${opcaoSelectID}  ${opcaoSelectEmpresa}`);
+    console.log(`${opcaoSelectID}  ${opcaoSelectEmpresa}`);
     axios.post(url, {
-        
+
         tituloVaga: tituloVaga.value,
         emailContato: emailContato.value,
         whatsapp: whatsapp.value,
@@ -109,25 +118,23 @@ function cadastraVagas() {
         salario: salario.value,
         contratacao: opcaoTextoContratacao,
         periodo: opcaoTextoPeriodo,
-        ativo: true,
-      /*   empresa: [{
+        ativo: false,
+
+        empresa: {
             id: opcaoSelectID,
-            nome: opcaoSelectEmpresa
-
+            nome: opcaoSelectEmpresa,
         }
-        ], 
-        header : {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-        }
- */
+    }
+        , {
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json'
 
-        
-
-
-    })
+            },
+        })
         .then(function (response) {
             console.log(response);
+            msgErro(msgText = "Cadastrado com sucesso!!", color = "green");
             location.reload();
         })
         .catch(function (error) {
@@ -147,10 +154,13 @@ function getVagas() {
 
             data.forEach(vaga => {
                 if (vaga.ativo == false) {
-                    criaVaga(vaga.id, vaga.tituloVaga, vaga.emailContato, vaga.contato, vaga.whatsapp, vaga.desejaveis, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.contratacao, vaga.periodo, vaga.ativo, vaga.empresa);
+                    criaVaga(vaga.id, vaga.tituloVaga, vaga.emailContato, vaga.contato, vaga.whatsapp, vaga.desejaveis, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios,
+                        vaga.site, vaga.salario, vaga.contratacao, vaga.periodo, vaga.ativo, vaga.empresa.nome, vaga.empresa.cnpj, vaga.empresa.cep, vaga.empresa.endereco,
+                        vaga.empresa.numero, vaga.empresa.complemento, vaga.empresa.bairro, vaga.empresa.cidade, vaga.empresa.uf);
                 } else {
                     console.log("Vaga inativa" + vaga.id);
                 }
+
             });
 
 
@@ -164,19 +174,22 @@ function getVagas() {
 
 getVagas();
 
-//Aprovação de vagas
+
 
 //Reprovação de vagas 
 function deleteVaga(id) {
-  
-  
-    axios.delete(`http://localhost:8080/api/empresa/vaga/excluir/${id}`)
+    const deleteVagar = 'http://localhost:8080/api/empresa/vaga/excluir/'
+    axios.delete(deleteVagar + id, {
+        headers: {
+            'Content-Type': 'application/json',
+            'accept': 'application/json'
+        }
+    })
         .then((response) => {
             const data = response.data;
             console.log(data);
-            location.reload();
-            msgErro(msgText = "Aprovada com sucesso!!", color = "green");
-        })  
+            msgErro(msgText = "Recusada com sucesso!!", color = "green");
+        })
         .catch((error) => {
             msgErro(msgText = "Erro ao recusar!", color = "red")
             console.log(error)
@@ -184,33 +197,12 @@ function deleteVaga(id) {
 }
 
 
-
-function aprovaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, contratacao, periodo, ativo) {
-    urlAtivaVaga = "http://localhost:8080/api/empresa/vaga/editavaga/"
-    axios.put(urlAtivaVaga + id, {
-        id: id,
-        tituloVaga: tituloVaga,
-        emailContato: emailContato,
-        contato: contato,
-        whatsapp: whatsapp,
-        desejaveis: desejaveis,
-        descricao: descricao,
-        requisitos: requisitos,
-        cuidados: cuidados,
-        expiracao: expiracao,
-        publicacao: publicacao,
-        beneficios: beneficios,
-        site: site,
-        salario: salario,
-        contratacao: contratacao,
-        periodo: periodo,
-        ativo: true
-    })
-
+//Aprovação de vagas
+urlAtivaVaga = "http://localhost:8080/api/empresa/vaga/ativar/"
+function aprovaVaga(id) {
+    axios.put(urlAtivaVaga + id)
         .then(function (response) {
             console.log(JSON.stringify(response.data));
-            location.reload();
-
         })
         .catch(function (error) {
             console.log(error);
@@ -220,7 +212,8 @@ function aprovaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis,
 const groupVagas = document.getElementById('vagasGroup');
 
 //Paginação das vagas
-function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, contratacao, periodo, ativo, empresa) {
+function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios,
+    site, salario, contratacao, periodo, ativo, empresa, cnpj, cep, endereco, numero, complemento, bairro, cidade, uf) {
     const sVaga = document.createElement('div');
     sVaga.classList.add('card-body');
     groupVagas.appendChild(sVaga);
@@ -271,7 +264,7 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
     divAprovar.appendChild(btnAprovar)
     btnAprovar.addEventListener('click', function () {
 
-        aprovaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, contratacao, periodo, ativo);
+        aprovaVaga(id);
         console.log(id);
 
     })
@@ -307,11 +300,9 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
             <span>
                     <h4>Empresa:</h4>
                     <p>${empresa}</p>
-                </span>    
-            <span>
-                    <h5>Local:</h5>
-                    <p> </p>
-                </span>
+                    <p>${cnpj}</p>
+                    </span>    
+        
                 <span>
                     <h5>Requisitos:</h5>
                     <ul> 
@@ -331,6 +322,12 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
 
             </div>
             <div class="col-md-4 ms-auto" >
+            <span>
+            <h5>Local:</h5>
+          <p>${endereco}, ${numero} - ${complemento}</p>
+            <p>${bairro} - ${cidade} - ${uf}</p>
+            <p>${cep}</p>   
+        </span>
                 <span>
                     <h5>Salario:</h5>
                     <p>${salario}R$</p>
@@ -347,13 +344,13 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
                     <p>${periodo}</p>
                 </span>
 
-                
-                <span class="descricao">
-                <h5>Descriçao:</h5>
-                <p>${descricao}</p>
-            </span>
+              
             </div>
-           
+             
+            <span class="descricao">
+            <h5>Descriçao:</h5>
+            <p>${descricao}</p>
+        </span>
         </div>
     </div>`
         modalV.show()
@@ -421,6 +418,7 @@ const salvarEmpresa = document.getElementById('salvarEmpresa');
 
 urlEmpresa = 'http://localhost:8080/api/empresa'
 function cadEmpresa() {
+
     axios.post(urlEmpresa, {
         nome: InomeEmpresa.value,
         cnpj: IcnpjEmpresa.value,
@@ -433,26 +431,17 @@ function cadEmpresa() {
         numero: InEmpresa.value,
         bairro: IbairroEmpresa.value,
         senha: IsenhaEmpresa.value,
-        ativo: false,
-        vagas: [
-            {
-                tituloVaga: "vaga1",
-                descricao: "descricao1",
-                requisitos: "requisitos1",
-                beneficios: "beneficios1",
-                salario: 1000,
-                periodo: "periodo1",
-                contratacao: "contratacao1",
-                ativo: true
-            },
+        tipoUsuario: "EMPRESA",
+        ativo: true,
+        aprova: false
 
-        ]
+
 
 
     })
         .then((response) => {
             console.log(JSON.stringify(response.data));
-
+            location.reload();
 
         })
         .catch((error) => {
@@ -478,7 +467,7 @@ adiconaEmpresa.forEach(function (adiconaEmpresa) {
             document.getElementById('salvarEmpresa').addEventListener('click', function () {
                 cadEmpresa()
                 addEmpresa2.hide();
-                location.reload();
+
             })
             document.getElementById('voltarEmpresa').addEventListener('click', function () {
                 addEmpresa2.hide();
@@ -489,8 +478,6 @@ adiconaEmpresa.forEach(function (adiconaEmpresa) {
 })
 
 
-/*     criaEmpresa();
-*/
 const closeModal = document.querySelectorAll('#closeModal')
 var modalV = new bootstrap.Modal(document.getElementById("modalVaga"));
 closeModal.forEach(close => {
@@ -514,8 +501,7 @@ function getEmpresa() {
             });
 
             data.forEach(empresa => {
-                if (empresa.ativo ==
-                    false) {
+                if (empresa.aprova == false) {
 
                     criaEmpresa(empresa.id, empresa.nome, empresa.cnpj, empresa.email, empresa.telefone, empresa.endereco, empresa.cidade, empresa.uf, empresa.cep, empresa.numero, empresa.bairro)
                 }
@@ -535,29 +521,15 @@ function getEmpresa() {
 getEmpresa();
 
 
-function aprovaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep, numero, bairro) {
-    urlAprovaEmpresa = "http://localhost:8080/api/empresa/"
+function aprovaEmpresa(id) {
+    urlAprovaEmpresa = "http://localhost:8080/api/empresa/aprovar/"
     axios.put(urlAprovaEmpresa + id, {
-        id: id,
-        nome: nome,
-        email: email,
-        telefone: telefone,
-        cnpj: cnpj,
-        endereco: endereco,
-        cidade: cidade,
-        uf: uf,
-        cep: cep,
-        numero: numero,
-        bairro: bairro,
-        ativo: true
-
 
     })
         .then((response) => {
             console.log(JSON.stringify(response.data));
             location.reload();
 
-            abaEmpresa();
         })
         .catch((error) => {
             console.log(error);
@@ -567,8 +539,8 @@ function aprovaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, ce
 
 
 function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep, numero, bairro) {
-    urlAprovaEmpresa = "http://localhost:8080/api/empresa/"
-    axios.put(urlAprovaEmpresa + id, {  
+    urlEmpresa = "http://localhost:8080/api/empresa/"
+    axios.put(urlEmpresa + id, {
         id: id,
         nome: nome,
         email: email,
@@ -597,7 +569,7 @@ function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep,
 
 
 function reprovaEmpresa(id) {
-    urlReprovaEmpresa = "http://localhost:8080/api/empresa/excluirEmpresa/"
+    urlReprovaEmpresa = "http://localhost:8080/api/empresa/excluir/"
     axios.delete(urlReprovaEmpresa + id)
 
         .then((response) => {

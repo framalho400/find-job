@@ -18,6 +18,10 @@
 
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- validação do token-->
+    <script src="../../js/token/empresa/script.js" defer></script>
+
 </head>
 
 <body>
@@ -32,7 +36,7 @@
         <div class="user" href="perfil.html" style="display:none">
 
             <div class="user-text">
-                <label>Olá, Luccas Mello</label>
+                
             </div>
         </div>
 
@@ -109,7 +113,7 @@
                         <span></span>
                     </div>
                     <div class="footer-p">
-                        <button class="btn btn-primary" id="addAdm">+</button>
+                        <button class="btn btn-primary" id="addEmpresa">+</button>
                     </div>
                 </div>
 
@@ -122,19 +126,19 @@
                 <div class="body-d">
                     <span>
                         <label>Empresa:</label>
-                        <p>Nome da Empresa</p>
+                        <p class="nomeEmpresa">Nome da Empresa</p>
                     </span>
                     <span>
                         <label>E-mail:</label>
-                        <p>isabel@gmail.com</p>
+                        <p class="emailEmpresa">isabel@gmail.com</p>
                     </span>
                     <span>
                         <label>CNPJ:</label>
-                        <p>493.155.177-08</p>
+                        <p class="cnpjEmpresa">493.155.177-08</p>
                     </span>
                 </div>
                 <div class="footer-d">
-                    <button class="btn btn-primary" data-bs-toggle="modal"  id="editAdm" role="button">Editar</button>
+                    <button class="btn btn-primary" data-bs-toggle="modal"  id="editEmpresa">Editar</button>
                 </div>
             </div>
 
@@ -154,23 +158,49 @@
                     <div class="modal-body">
                         <form class="row g-1" id="FormfromaAcad">
                             <div class="col-md-12">
-                                <label for="inputDate4" class="form-label">Email</label>
-                                <input type="text" class="form-control" id="nomeCurso">
+                                <label for="inputDate4" class="form-label">Nome da Empresa:</label>
+                                <input type="text" class="form-control" id="nomeEmpresa">
                             </div>
-                            <div class="col-12">
-                                <label for="inputAddress" class="form-label">Celular</label>
-                                <input type="text" class="form-control" id="nomeInstituicao" placeholder="">
+                            <div class="col-md-12">
+                                <label for="inputDate4" class="form-label">Email:</label>
+                                <input type="text" class="form-control" id="emailEmpresa">
                             </div>
-                            <div class="col-12">
-                                <label for="inputAddress" class="form-label">CPF:</label>
-                                <input type="text" class="form-control" id="CursoCidade" placeholder="">
+                            <div class="col-md-12">
+                                <label for="inputDate4" class="form-label">Telefone:</label>
+                                <input type="text" class="form-control" id="telEmpresa">
                             </div>
-                            <div class="col-12">
-                                <label for="inputAddress" class="form-label">Senha:</label>
-                                <input type="text" class="form-control" id="CursoCidade" placeholder="">
+                            <div class="col-md-12">
+                                <label for="inputDate4" class="form-label">CNPJ:</label>
+                                <input type="text" class="form-control" id="cnpjEmpresa">
                             </div>
-
-
+                            <div class="col-md-12">
+                                <label for="inputDate4" class="form-label">CEP:</label>
+                                <input type="text" class="form-control" id="cepEmpresa">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="inputDate4" class="form-label">Endereço:</label>
+                                <input type="text" class="form-control" id="enderecoEmpresa">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="inputDate4" class="form-label">N°</label>
+                                <input type="text" class="form-control" id="nEmpresa">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="inputDate4" class="form-label">Complemento:</label>
+                                <input type="text" class="form-control" id="complementoEmpresa">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="inputDate4" class="form-label">Bairro:</label>
+                                <input type="text" class="form-control" id="bairroEmpresa">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="inputDate4" class="form-label">Cidade:</label>
+                                <input type="text" class="form-control" id="cidadeEmpresa">
+                            </div>
+                             <div class="col-md-12">
+                                <label for="inputDate4" class="form-label">UF:</label>
+                                <input type="text" class="form-control" id="UfEmpresa">
+                            </div>
                         </form>
 
                     </div>
@@ -240,7 +270,7 @@
 
 
         <script src="../../js/navbar-js/script.js"></script>
-        <script src="../../js/perfil-js/perfil-adm/script.js"></script>
+        <script src="../../js/perfil-js/perfil-empresa/script.js"></script>
 </body>
 
 </html>

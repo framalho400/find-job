@@ -15,6 +15,7 @@ function logado() { */
 logado();
  */
 
+
 //paginas do user para o admin e do empresa
 const user = document.getElementById('user');
 const adm = document.getElementById('adm');
@@ -25,6 +26,7 @@ const administradoresListagem = document.getElementById('administradoresListagem
 const empresasListagem = document.getElementById('empresasListagem');
 const vagasListagem = document.getElementById('vagasListagem');
 adm.addEventListener('click', function () {
+    localLista = localStorage.setItem('lista', 'adm' );
     user.classList.add('close');
     usuariosListagem.classList.add('close');
     administradoresListagem.classList.remove('close');
@@ -35,6 +37,7 @@ adm.addEventListener('click', function () {
     vagasListagem.classList.add('close');
 })
 user.addEventListener('click', function () {
+    localLista = localStorage.setItem('lista', 'user' );
     user.classList.remove('close');
     usuariosListagem.classList.remove('close');
     administradoresListagem.classList.add('close');
@@ -45,6 +48,7 @@ user.addEventListener('click', function () {
     vagasListagem.classList.add('close');
 })
 empresa.addEventListener('click', function () {
+    localLista = localStorage.setItem('lista', 'empresa' );
     user.classList.add('close');
     usuariosListagem.classList.add('close');
     administradoresListagem.classList.add('close');
@@ -55,6 +59,7 @@ empresa.addEventListener('click', function () {
     vagasListagem.classList.add('close');
 })
 vaga.addEventListener('click', function () {
+    localLista = localStorage.setItem('lista', 'vaga' );
     user.classList.add('close');
     usuariosListagem.classList.add('close');
     administradoresListagem.classList.add('close');
@@ -64,6 +69,53 @@ vaga.addEventListener('click', function () {
     vaga.classList.remove('close');
     vagasListagem.classList.remove('close');
 })
+//metodo que verifica a lista que esta sendo exibida e a mantem a mesmo atualizando a pagina 
+localLista = localStorage.getItem('lista');
+
+if(localLista == 'user'){
+    localLista = localStorage.setItem('lista', 'user' );
+    user.classList.remove('close');
+    usuariosListagem.classList.remove('close');
+    administradoresListagem.classList.add('close');
+    adm.classList.add('close');
+    empresa.classList.add('close');
+    empresasListagem.classList.add('close');
+    vaga.classList.add('close');
+    vagasListagem.classList.add('close');
+}
+else if(localLista == 'adm'){
+    localLista = localStorage.setItem('lista', 'adm' );
+    user.classList.add('close');
+    usuariosListagem.classList.add('close');
+    administradoresListagem.classList.remove('close');
+    adm.classList.remove('close');
+    empresa.classList.add('close');
+    empresasListagem.classList.add('close');
+    vaga.classList.add('close');
+    vagasListagem.classList.add('close');
+}
+else if(localLista == 'empresa'){
+    localLista = localStorage.setItem('lista', 'empresa' );
+    user.classList.add('close');
+    usuariosListagem.classList.add('close');
+    administradoresListagem.classList.add('close');
+    adm.classList.add('close');
+    empresa.classList.remove('close');
+    empresasListagem.classList.remove('close');
+    vaga.classList.add('close');
+    vagasListagem.classList.add('close');
+}
+else if(localLista == 'vaga'){
+    localLista = localStorage.setItem('lista', 'vaga' );
+    user.classList.add('close');
+    usuariosListagem.classList.add('close');
+    administradoresListagem.classList.add('close');
+    adm.classList.add('close');
+    empresa.classList.add('close');
+    empresasListagem.classList.add('close');
+    vaga.classList.remove('close');
+    vagasListagem.classList.remove('close');
+}
 
 
 
@@ -83,6 +135,8 @@ function criarlinha(id, nome, email) {
     //abre a modal de deletar
     var modalDelete = new bootstrap.Modal(document.querySelector('#deleteModal'));
     tdButton.addEventListener('click', function () {
+        const deletConfirm = document.getElementById('deletConfirm');
+        deletConfirm.innerHTML = `Excluir`;
         modalDelete.show(nome);
         const text = document.querySelector('#text');
         /*   text.innerHTML = `Deseja excluir o usuário ${nome}?`; */
@@ -113,7 +167,7 @@ function criarlinha(id, nome, email) {
 }
 
 //Pega o usuario e chama a função para criar a linha da tabela
-const url = "http://192.168.3.106:8080/api/usuario/";
+const url = "http://localhost:8080/api/usuario/";
 function getUser() {
     axios.get(url, {
     })
@@ -153,7 +207,7 @@ function getUser() {
 getUser();
 
 //função para deletar o usuario
-const urlDel = "http://192.168.3.106:8080/api/usuario/excluir/";
+const urlDel = "http://localhost:8080/api/usuario/excluir/";
 function deleteUser(id) {
     axios.delete(urlDel + id, {
 
@@ -171,7 +225,7 @@ function deleteUser(id) {
 //================================================ Adminstrador ================================================= //
 
 
-
+document.getElementById('deletConfirm').innerHTML = `Excluir`;
 
 /* função de listagem de adm */
 function criarlinhaAdm(id, nome, email) {
@@ -218,8 +272,8 @@ function criarlinhaAdm(id, nome, email) {
 
 }
 function getAdm() {
-    /* 192.168.3.106 */
-    axios.get("http://192.168.3.106:8080/api/adm", {
+    /* localhost */
+    axios.get("http://localhost:8080/api/adm", {
 
     })
         .then((response) => {
@@ -260,7 +314,7 @@ function getAdm() {
 }
 getAdm();
 //função para deletar o adm
-const urlDelAdm = "http://192.168.3.106:8080/api/adm/excluir/";
+const urlDelAdm = "http://localhost:8080/api/adm/excluir/";
 function deleteAdm(id) {
     axios.delete(urlDelAdm + id, {
 
@@ -303,12 +357,24 @@ function criarlinhaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf
         verMais.style.backgroundColor = "#427AAA";
       
     let tdButton = document.createElement('button');
-    if(ativo == false){
-        tdButton.style.backgroundColor = "#427AAA";
-    }
+
+  
+    
     //abre a modal de deletar
     var modalDelete = new bootstrap.Modal(document.querySelector('#deleteModal'));
     tdButton.addEventListener('click', function () {
+        
+        
+        const deletConfirm = document.getElementById('deletConfirm');
+        if(ativo == false){
+            deletConfirm.innerText="Ativar";
+            tdButton.style.backgroundColor = "#427AAA";
+        }
+        else{
+            deletConfirm.innerText="Desativar";
+            tdButton.style.backgroundColor = "##EA5757";
+        }
+        
         modalDelete.show(nome);
         const text = document.querySelector('#text');
         /*   text.innerHTML = `Deseja excluir o usuário ${nome}?`; */
@@ -317,6 +383,7 @@ function criarlinhaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf
             console.log(id);
             desativaEmpresa(id);
             modalDelete.hide();
+            
         })
     })
     var cancel = document.querySelector('#cancelar');
@@ -390,8 +457,8 @@ function criarlinhaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf
 
 }
 function getEmpresa() {
-    /* 192.168.3.106 */
-    axios.get("http://192.168.3.106:8080/api/empresa", {
+    /* localhost */
+    axios.get("http://localhost:8080/api/empresa", {
 
     })
         .then((response) => {
@@ -445,7 +512,32 @@ getEmpresa();
 
 function desativaEmpresa(id) {
 
-    axios.put(`http://192.168.3.106:8080/api/empresa/desativar/${id}`, { ativo: false })
+    axios.put(`http://localhost:8080/api/empresa/desativar/${id}`)
+
+        .then(function (response) {
+            console.log(JSON.stringify(response.data));
+            location.reload();
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
+function desativaEmpresa(id) {
+
+    axios.put(`http://localhost:8080/api/empresa/ativar/${id}`)
+
+        .then(function (response) {
+            console.log(JSON.stringify(response.data));
+            location.reload();
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+function ativaEmpresa(id) {
+
+    axios.put(`http://localhost:8080/api/empresa/ativar/${id}`, { ativo: false })
 
         .then(function (response) {
             console.log(JSON.stringify(response.data));
@@ -457,8 +549,7 @@ function desativaEmpresa(id) {
 }
 
 
-
-/* const urlDelEmpresa = "http://192.168.3.106:8080/api/empresa/excluir/";
+/* const urlDelEmpresa = "http://localhost:8080/api/empresa/excluir/";
 function deleteEmpresa(id) {
     axios.delete(urlDelEmpresa + id, {
 
@@ -520,8 +611,8 @@ function criarlinhaVaga(id, nome, email) {
 }
 
 function getVaga() {
-    /* 192.168.3.106 */
-    axios.get("http://192.168.3.106:8080/api/empresa/vaga", {
+    /* localhost */
+    axios.get("http://localhost:8080/api/empresa/vaga", {
 
     })
         .then((response) => {
@@ -559,7 +650,7 @@ function getVaga() {
 }
 getVaga();
 
-const urlDelVaga = "http://192.168.3.106:8080/api/empresa/vaga/excluir/";
+const urlDelVaga = "http://localhost:8080/api/empresa/vaga/excluir/";
 function deleteVaga(id) {
     axios.delete(urlDelVaga + id, {
 

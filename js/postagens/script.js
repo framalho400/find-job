@@ -1,26 +1,29 @@
-var token = sessionStorage.getItem("token")
+/*   var token = sessionStorage.getItem("token")
+if (token == null) {
+    window.location.replace('/../../templates/login/login/login.html')
+} 
 
 function parseJwt(token) {
   var base64Url = token.split('.')[1];
   var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
   var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
-    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
   }).join(''));
 
   return JSON.parse(jsonPayload);
 };
-
-
 const payload = parseJwt(token)
 console.log(payload.id);
 console.log(payload.name);
 console.log(payload.TipoUser);
+const nomeUser  = payload.name;
 const userText = document.querySelector('.user-text');
-const userLogado = payload.name;
-userText.innerHTML = `Olá, ${userLogado.split(' ')[0]}`;
 
+userText.innerHTML = `Olá, ${nomeUser.split(' ')[0]}`;  
 
-
+ */
+ 
+ 
 const buscar = document.getElementById('buscar');
 
 const getSearchedTodos = (search) => {
@@ -69,7 +72,7 @@ adiconaVaga.addEventListener('click', function () {
 
 
 function getVagas() {
-  axios.get('http://localhost:8080/api/empresa/vaga')
+  axios.get('http://localhost:8080/api/empresa/vaga/buscaVaga/1')
     .then((response) => {
       console.log(JSON.stringify(response.data));
       data = response.data;
@@ -203,24 +206,24 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
     editVaga.addEventListener('click', function () {
       addVaga.show();
       modal.hide();
-
+    
       document.getElementById('proximoVaga').addEventListener('click', function () {
         addVaga.hide();
         addVaga2.show();
       })
-      document.getElementById('salvarVaga').addEventListener('click', function () {
-        addVaga2.hide();
-        modal.show();
-        /*      criaVaga(); */
-
-      })
-
+        document.getElementById('salvarVaga').addEventListener('click', function () {
+          addVaga2.hide();
+          modal.show();
+          /*      criaVaga(); */
+          
+        })
+    
       document.getElementById('voltarVaga').addEventListener('click', function () {
         addVaga2.hide();
         addVaga.show();
       })
     })
-
+    
 
     conteudoModal.innerHTML = `<div class="container-fluid">
         <div class="row">

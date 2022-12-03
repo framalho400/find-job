@@ -13,10 +13,11 @@ toggle.addEventListener("click", () => {
 })
 
 
+var token = sessionStorage.getItem("token")
 
-/* const buscar = document.getElementById('buscar');
-const divbuscar = document.getElementById('divbuscar');
-buscar.addEventListener('', function() {
-    divbuscar.classList.toggle('active');
-}) */
+deslogar = document.querySelector('.sair').addEventListener('click', function () {
+  sessionStorage.removeItem("token");
+}
+)
+
 

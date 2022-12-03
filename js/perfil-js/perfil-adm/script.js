@@ -14,7 +14,8 @@ nome: nome.value,
 email: email.value,
 nif: nif.value,
 senha: senha.value, 
-ativo: true
+ativo: true,
+tipoUsuario: "ADMINISTRADOR"
 })
 .then((response) => {
 console.log(JSON.stringify(response.data));

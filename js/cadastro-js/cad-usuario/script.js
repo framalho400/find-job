@@ -56,7 +56,7 @@ function sendEmail() {
 
 
 
-const url = "http://192.168.3.106:8080/api/usuario/";
+const url = "http://localhost:8080/api/usuario/";
 
 const formulario = document.querySelector('form');
 const Icpf = document.querySelector('#cpf');
@@ -71,7 +71,8 @@ function cadastrar() {
     nome: Inome.value,
     cpf: Icpf.value,
     email: Iemail.value,
-    senha: Isenha.value
+    senha: Isenha.value,
+    tipoUsuario: "USUARIO",
   })
     .then((response) => {
       console.log(JSON.stringify(response.data));

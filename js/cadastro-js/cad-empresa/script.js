@@ -67,7 +67,9 @@ function cadastrar() {
     cidade: cidade_Empresa.value,
     uf: uf_Empresa.value,
     senha : senha_Empresa.value,
-    ativo: false,
+    tipoUsuario : "EMPRESA",
+    ativo: true,
+    aprova: false,
     
   })
   .then((response) => {
@@ -89,6 +91,7 @@ function limpar() {
   uf_Empresa.value = '';
   senha_Empresa.value = '';
   confirmarSenha_empresa.value = '';
+
 }
 
  salvar.addEventListener('click', function (event) {
