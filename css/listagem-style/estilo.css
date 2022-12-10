@@ -72,7 +72,7 @@ img::selection {
     top: 5%;
     transition: var(--tran-05);
 
-}
+}.botao
 li,
 a {
     text-decoration: none;
@@ -242,6 +242,9 @@ tbody td button i{
     height: 100%;
     cursor: pointer;
 }
+
+
+
 /* 
 .active>.page-link, .page-link.active {
     z-index: 3;

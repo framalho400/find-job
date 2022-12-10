@@ -1,21 +1,25 @@
+ var token = sessionStorage.getItem("token")
 
-/* 
-function logado() { */
-   /*  var token = sessionStorage.getItem("token")
-    if (token == null) {
-        window.location.replace('../login/login/login.html')
-    } */
+function parseJwt(token) {
+  var base64Url = token.split('.')[1];
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
 
-/*     const nameUser = document.getElementById('nameUser');
+  return JSON.parse(jsonPayload);
+};
 
-    const nome = localStorage.getItem('nome');
-    
-    nameUser.innerHTML = `Olá, ${nome.split(' ')[0]}`;
+
+const payload = parseJwt(token)
+const userText = document.querySelector('.user-text');
+const userLogado = payload.name;
+userText.innerHTML = `Olá, ${userLogado.split(' ')[0]}`;
+
+if(payload.ativo == false){
+  window.location.replace('/../../../templates/login/login/login_empresa.html')
 }
-logado();
- */
-
-
+ 
 //paginas do user para o admin e do empresa
 const user = document.getElementById('user');
 const adm = document.getElementById('adm');
@@ -26,7 +30,7 @@ const administradoresListagem = document.getElementById('administradoresListagem
 const empresasListagem = document.getElementById('empresasListagem');
 const vagasListagem = document.getElementById('vagasListagem');
 adm.addEventListener('click', function () {
-    localLista = localStorage.setItem('lista', 'adm' );
+    localLista = localStorage.setItem('lista', 'adm');
     user.classList.add('close');
     usuariosListagem.classList.add('close');
     administradoresListagem.classList.remove('close');
@@ -37,7 +41,7 @@ adm.addEventListener('click', function () {
     vagasListagem.classList.add('close');
 })
 user.addEventListener('click', function () {
-    localLista = localStorage.setItem('lista', 'user' );
+    localLista = localStorage.setItem('lista', 'user');
     user.classList.remove('close');
     usuariosListagem.classList.remove('close');
     administradoresListagem.classList.add('close');
@@ -48,7 +52,7 @@ user.addEventListener('click', function () {
     vagasListagem.classList.add('close');
 })
 empresa.addEventListener('click', function () {
-    localLista = localStorage.setItem('lista', 'empresa' );
+    localLista = localStorage.setItem('lista', 'empresa');
     user.classList.add('close');
     usuariosListagem.classList.add('close');
     administradoresListagem.classList.add('close');
@@ -59,7 +63,7 @@ empresa.addEventListener('click', function () {
     vagasListagem.classList.add('close');
 })
 vaga.addEventListener('click', function () {
-    localLista = localStorage.setItem('lista', 'vaga' );
+    localLista = localStorage.setItem('lista', 'vaga');
     user.classList.add('close');
     usuariosListagem.classList.add('close');
     administradoresListagem.classList.add('close');
@@ -72,8 +76,8 @@ vaga.addEventListener('click', function () {
 //metodo que verifica a lista que esta sendo exibida e a mantem a mesmo atualizando a pagina 
 localLista = localStorage.getItem('lista');
 
-if(localLista == 'user'){
-    localLista = localStorage.setItem('lista', 'user' );
+if (localLista == 'user') {
+    localLista = localStorage.setItem('lista', 'user');
     user.classList.remove('close');
     usuariosListagem.classList.remove('close');
     administradoresListagem.classList.add('close');
@@ -83,8 +87,8 @@ if(localLista == 'user'){
     vaga.classList.add('close');
     vagasListagem.classList.add('close');
 }
-else if(localLista == 'adm'){
-    localLista = localStorage.setItem('lista', 'adm' );
+else if (localLista == 'adm') {
+    localLista = localStorage.setItem('lista', 'adm');
     user.classList.add('close');
     usuariosListagem.classList.add('close');
     administradoresListagem.classList.remove('close');
@@ -94,8 +98,8 @@ else if(localLista == 'adm'){
     vaga.classList.add('close');
     vagasListagem.classList.add('close');
 }
-else if(localLista == 'empresa'){
-    localLista = localStorage.setItem('lista', 'empresa' );
+else if (localLista == 'empresa') {
+    localLista = localStorage.setItem('lista', 'empresa');
     user.classList.add('close');
     usuariosListagem.classList.add('close');
     administradoresListagem.classList.add('close');
@@ -105,8 +109,8 @@ else if(localLista == 'empresa'){
     vaga.classList.add('close');
     vagasListagem.classList.add('close');
 }
-else if(localLista == 'vaga'){
-    localLista = localStorage.setItem('lista', 'vaga' );
+else if (localLista == 'vaga') {
+    localLista = localStorage.setItem('lista', 'vaga');
     user.classList.add('close');
     usuariosListagem.classList.add('close');
     administradoresListagem.classList.add('close');
@@ -225,30 +229,56 @@ function deleteUser(id) {
 //================================================ Adminstrador ================================================= //
 
 
-document.getElementById('deletConfirm').innerHTML = `Excluir`;
+
 
 /* função de listagem de adm */
-function criarlinhaAdm(id, nome, email) {
+function criarlinhaAdm(id, nome, email, ativo) {
     const tbody = document.querySelector('#bodyAdm');
     let tr = document.createElement('tr');
     tr.id = id;
-    let tdID = document.createElement('td');
+    let tdID = document.createElement('td');    
     let tdNome = document.createElement('td');
     let tdEmail = document.createElement('td');
     let tdExcluir = document.createElement('td');
     let tdButton = document.createElement('button');
 
-    document.getElementById('deletConfirm').innerHTML="Desativar";
+    if (ativo == true) {
+        tdButton.innerHTML = `<i class='bx bx-power-off'></i>`;
+        
+    }
+    else {
+        tdButton.innerHTML = `<i class='bx bx-power-off'></i>`;
+        tdButton.style.opacity = "0.5";
+    }
     //abre a modal de deletar
     var modalDelete = new bootstrap.Modal(document.querySelector('#deleteModal'));
     tdButton.addEventListener('click', function () {
+        if (ativo == true) {
+            tdButton.innerHTML = `<i class='bx bx-power-off'></i>`;
+            document.getElementById('deletConfirm').innerHTML = "Desativar";
+        }
+        else {
+            tdButton.innerHTML = `<i class='bx bx-power-off'></i>`;
+            document.getElementById('deletConfirm').innerHTML = "Ativar";
+            
+        }
+       
+
         modalDelete.show(nome);
         const text = document.querySelector('#text');
         /*   text.innerHTML = `Deseja excluir o usuário ${nome}?`; */
         text.innerHTML = `<h4>Deseja mesmo Desativar o usuário ${nome}?</h4>`;
         document.getElementById('deletConfirm').addEventListener('click', function () {
-            
-            deleteAdm(id);
+
+            if (ativo == true) {
+                desativaAdm(id)
+                location.reload();
+          
+            }
+            else if (ativo == false) {
+                ativaAdm(id)
+                location.reload();
+            }
             modalDelete.hide();
         })
     })
@@ -285,7 +315,7 @@ function getAdm() {
                 id = data.id;
                 email = data.email;
 
-                criarlinhaAdm(id, nome, email);
+                criarlinhaAdm(id, nome, email, data.ativo);
 
 
 
@@ -308,17 +338,26 @@ function getAdm() {
                         }
                     }
                 });
-            });
+            }); 
         })
         .catch((error) => console.log(error));
 }
 getAdm();
 //função para deletar o adm
-const urlDelAdm = "http://localhost:8080/api/adm/excluir/";
-function deleteAdm(id) {
-    axios.delete(urlDelAdm + id, {
 
-    })
+function ativaAdm(id) {
+    axios.put("http://localhost:8080/api/adm/ativar/" + id)
+        .then((response) => {
+            const data = response.data;
+            console.log(data);
+            location.reload();})
+     
+     
+            .catch((error) => console.log(error));
+}
+
+function desativaAdm(id) {
+    axios.put("http://localhost:8080/api/adm/desativar/" + id)
         .then((response) => {
             const data = response.data;
             console.log(data);
@@ -331,11 +370,10 @@ function deleteAdm(id) {
 
 
 
-
 //================================================ Empresa ================================================= //
 
 const closeModal = document.querySelectorAll('#closeModal')
-var modalV = new bootstrap.Modal(document.getElementById("modalVaga"));
+var modalV = new bootstrap.Modal(document.getElementById("modalEmpresa"));
 closeModal.forEach(close => {
     close.addEventListener("click", function () {
         modalV.hide()
@@ -347,43 +385,52 @@ closeModal.forEach(close => {
 function criarlinhaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep, numero, bairro, ativo) {
     const tbody = document.querySelector('#bodyEmpresa');
     let tr = document.createElement('tr');
-   
+
     let tdID = document.createElement('td');
     let tdNome = document.createElement('td');
     let tdCnpj = document.createElement('td');
     let tdVerMais = document.createElement('td');
     let tdExcluir = document.createElement('td');
     let verMais = document.createElement('button');
-        verMais.style.backgroundColor = "#427AAA";
-      
+    verMais.style.backgroundColor = "#427AAA";
+
     let tdButton = document.createElement('button');
 
-  
-    
+if (ativo == false) {   
+        tdButton.style.opacity = "0.5";
+}
+
     //abre a modal de deletar
     var modalDelete = new bootstrap.Modal(document.querySelector('#deleteModal'));
     tdButton.addEventListener('click', function () {
-        
-        
-        const deletConfirm = document.getElementById('deletConfirm');
-        if(ativo == false){
-            deletConfirm.innerText="Ativar";
-            tdButton.style.backgroundColor = "#427AAA";
+        if (ativo == true) {
+            tdButton.innerHTML = `<i class='bx bx-power-off'></i>`;
+    
+            document.getElementById('deletConfirm').innerHTML = "Desativar";
         }
-        else{
-            deletConfirm.innerText="Desativar";
-            tdButton.style.backgroundColor = "##EA5757";
+        else {
+            tdButton.innerHTML = `<i class='bx bx-power-off'></i>`;
+     
+            document.getElementById('deletConfirm').innerHTML = "Ativar";
         }
-        
+       
         modalDelete.show(nome);
         const text = document.querySelector('#text');
         /*   text.innerHTML = `Deseja excluir o usuário ${nome}?`; */
         text.innerHTML = `<h4>Deseja mesmo Desativar o usuário ${nome}?</h4>`;
         document.getElementById('deletConfirm').addEventListener('click', function () {
             console.log(id);
-            desativaEmpresa(id);
-            modalDelete.hide();
+            if (ativo == true) {
+                desativaEmpresa(id); 
+            }
+            else if (ativo == false) {
+                ativaEmpresa(id);
+            }
+          
             
+            modalDelete.hide();
+            location.reload();
+
         })
     })
     var cancel = document.querySelector('#cancelar');
@@ -396,7 +443,7 @@ function criarlinhaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf
     tdCnpj.innerHTML = cnpj;
     verMais.innerHTML = `Ver mais`;
     tdButton.innerHTML = `<i class='bx bx-power-off'></i>`;
-    
+
     tbody.appendChild(tr);
     tr.appendChild(tdID);
     tr.appendChild(tdNome);
@@ -478,11 +525,11 @@ function getEmpresa() {
                 numero = data.numero;
                 bairro = data.bairro;
                 ativo = data.ativo;
-                
+
                 //if (data.ativo == true) {
-                    criarlinhaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep, numero, bairro, ativo);
+                criarlinhaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep, numero, bairro, ativo);
                 //}
-                
+
 
             });
             //inicializa o datatable
@@ -523,8 +570,7 @@ function desativaEmpresa(id) {
         });
 }
 
-function desativaEmpresa(id) {
-
+function ativaEmpresa(id) {
     axios.put(`http://localhost:8080/api/empresa/ativar/${id}`)
 
         .then(function (response) {
@@ -535,51 +581,38 @@ function desativaEmpresa(id) {
             console.log(error);
         });
 }
-function ativaEmpresa(id) {
-
-    axios.put(`http://localhost:8080/api/empresa/ativar/${id}`, { ativo: false })
-
-        .then(function (response) {
-            console.log(JSON.stringify(response.data));
-            location.reload();
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-}
-
-
-/* const urlDelEmpresa = "http://localhost:8080/api/empresa/excluir/";
-function deleteEmpresa(id) {
-    axios.delete(urlDelEmpresa + id, {
-
-    })
-        .then((response) => {
-            const data = response.data;
-            console.log(data);
-            location.reload();
-        })
-        .catch((error) => console.log(error));
-}
-
- */
 
 //================================================ Vaga ================================================= //
 
 /* função de listagem de vaga */
-function criarlinhaVaga(id, nome, email) {
+
+const closeModalVaga = document.querySelectorAll('#closeModalVaga')
+var modalVaga = new bootstrap.Modal(document.getElementById("modalVaga"));
+closeModalVaga.forEach(close => {
+    close.addEventListener("click", function () {
+        modalVaga.hide()
+    })
+})
+
+
+function criarlinhaVaga(id, tituloVaga, emailContato, whatsapp, contato, requisitos, descricao, cuidados,  beneficios, site, salario, contratacao, periodo, ativo, areaProfissional, empresa, nomeEmpresa, cnpjEmpresa, emailEmpresa, telefoneEmpresa, enderecoEmpresa, cidadeEmpresa, ufEmpresa, cepEmpresa, numeroEmpresa, bairroEmpresa) {
     const tbody = document.querySelector('#bodyVaga');
     let tr = document.createElement('tr');
     tr.id = id;
     let tdID = document.createElement('td');
     let tdNome = document.createElement('td');
-    let tdEmail = document.createElement('td');
+    let tdEmpresa = document.createElement('td');
+    let tdVerMais = document.createElement('td');
     let tdExcluir = document.createElement('td');
+
+    let verMais = document.createElement('button');
+    verMais.style.backgroundColor = "#427AAA";
     let tdButton = document.createElement('button');
 
     //abre a modal de deletar
     var modalDelete = new bootstrap.Modal(document.querySelector('#deleteModal'));
     tdButton.addEventListener('click', function () {
+        deletConfirm.innerHTML = "Excluir";
         modalDelete.show(nome);
         const text = document.querySelector('#text');
         /*   text.innerHTML = `Deseja excluir o usuário ${nome}?`; */
@@ -595,18 +628,84 @@ function criarlinhaVaga(id, nome, email) {
     })
 
     tdID.innerHTML = id;
-    tdNome.innerHTML = nome;
-    tdEmail.innerHTML = email;
+    tdNome.innerHTML = tituloVaga;
+    tdEmpresa.innerHTML = nomeEmpresa;
+    verMais.innerHTML = `Ver mais`;
     tdButton.innerHTML = `<i class='bx bx-trash icon'></i>`;
 
 
     tbody.appendChild(tr);
     tr.appendChild(tdID);
     tr.appendChild(tdNome);
-    tr.appendChild(tdEmail);
+    tr.appendChild(tdEmpresa);
+    tr.appendChild(tdVerMais);
     tr.appendChild(tdExcluir);
+
+    tdVerMais.appendChild(verMais);
     tdExcluir.appendChild(tdButton);
 
+   const conteudoModal = document.querySelector('#modalBodyVaga');
+    verMais.addEventListener('click', function () {
+document.querySelector('#nomeVaga').innerText = `Nome da Vaga: ${tituloVaga}`;
+        conteudoModal.innerHTML = `<div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+            <span>
+                    <h4>Empresa:</h4>
+                    <p>${nomeEmpresa}</p>
+                </span>    
+            <span>
+                    <h5>Local:</h5>
+                    <p>${endereco}, ${numero}, ${bairro}, ${cep}, ${uf}</p>
+                </span>
+                <span>
+                    <h5>Requisitos:</h5>
+                    <ul> 
+                    ${requisitos.split(",").map(requisito => `<li>${requisito}</li>`).join('')}
+                    </ul>
+                </span>
+                <span>
+                    <h5>Desejavel:</h5>
+                    <ul>
+                   
+                    </ul>
+                </span>
+                <span>
+                    <h5>Regime de Contratação:</h5>
+                    <p>${contratacao}</p>
+                </span>
+               
+
+            </div>
+            <div class="col-md-4 ms-auto">
+                <span>
+                    <h5>Salario:</h5>
+                    <p>${salario}</p>
+
+                </span>
+                <span>
+                    <h5>Beneficios:</h5>
+                    <ul>
+                    ${beneficios.split(",").map(beneficio => `<li>${beneficio}</li>`).join('')}
+                    </ul>
+                </span>
+                <span>
+                    <h5>Periodo:</h5>
+                    <p></p>
+                </span>
+
+                
+                <span>
+                <h5>Descriçao:</h5>
+                <p>${descricao}</p>
+            </span>
+            </div>
+           
+        </div>
+    </div>`
+    modalVaga.show();
+    })
+   
 
 }
 
@@ -620,10 +719,8 @@ function getVaga() {
 
             //popula a tabela com os dados do servidor
             data.map((data) => {
-                nome = data.tituloVaga;
-                id = data.id;
-                email = data.emailContato;
-                criarlinhaVaga(id, nome, email);
+    
+                criarlinhaVaga(data.id, data.tituloVaga, data.emailContato, data.whatsapp, data.contato, data.requisitos, data.descricao, data.cuidados, data.beneficios, data.site, data.salario, data.contratacao, data.periodo, data.ativo, data.areaProfissional,data.empresa, data.empresa.nome, data.empresa.cnpj, data.empresa.endereco, data.empresa.numero, data.empresa.bairro, data.empresa.cep, data.empresa.uf, data.empresa.cidade, data.empresa.telefone, data.empresa.email, data.empresa.site, data.empresa.ativo);
 
             });
 
@@ -650,11 +747,9 @@ function getVaga() {
 }
 getVaga();
 
-const urlDelVaga = "http://localhost:8080/api/empresa/vaga/excluir/";
 function deleteVaga(id) {
-    axios.delete(urlDelVaga + id, {
 
-    })
+    axios.delete(`http://localhost:8080/api/empresa/vaga/excluir/${id}`)
         .then((response) => {
             const data = response.data;
             console.log(data);

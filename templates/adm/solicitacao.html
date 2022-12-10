@@ -19,7 +19,7 @@
 
     <!-- axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <title>Find Job | Home</title>
+    <title>Find Job | Solicitações</title>
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
@@ -42,8 +42,8 @@
             <div class="user" href="perfil.html">
 
                 <div class="user-text">
-                    
-                </div>
+                    <label id="nameUser" >Olá</label>
+                  </div>
             </div>
 
 
@@ -94,7 +94,7 @@
                         <li class="nav-link">
                             <a href="listagem.html">
                                 <i class='bx bx-spreadsheet icon'></i>
-                                <span class="text nav-text">Usuarios</span>
+                                <span class="text nav-text">Usuários</span>
                             </a>
                         </li>
                         <li class="sair">
@@ -257,11 +257,19 @@
                                     <label class="form-label">ÁREA PROFISSIONAL:</label>
                                     <select class="form-select" aria-label="Default select example" id="areaProfissional">
                                         <option disabled selected>Selecione uma opção</option>
-                                        <option value="adiministrador">Adiministrador</option>
-                                        <option value="logistica">Logistica</option>
-                                        
-                        
-                        
+                                        <option value="administracao">Administração</option>
+                                        <option value="alimentosBebidas">Alimentos e bebidas</option>
+                                        <option value="design">Design Gráfico</option>
+                                        <option value="eletrica">Elétrica</option>
+                                        <option value="empilhadeira">Empilhadeira</option>
+                                        <option value="logistica">Logística</option>
+                                        <option value="mecatronica">Mecatrônica</option>
+                                        <option value="mecanica">Mecânica</option>
+                                        <option value="MeioAmbiente">Meio Ambiente</option>
+                                        <option value="metalurgia">Metalurgia</option>
+                                        <option value="sisAutomacao">Sistema de automação</option>
+                                        <option value="soldagem">Soldagem</option>
+                                        <option value="TI">Tecnologia da Informação</option>                            
                                      </select>
                                   </div>   
                         
@@ -280,7 +288,7 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-primary" id="proximoVaga">Proximo</button>
+                            <button class="btn btn-primary" id="proximoVaga">Próximo</button>
 
 
                         </div>
@@ -303,7 +311,7 @@
                         
                                  <div class="col-md-12">
                                     <label class="form-label">REQUISITOS:</label>
-                                    <textarea class="form-control" rows="3" placeholder="Requisitos"id="requisitos"></textarea>
+                                    <textarea class="form-control" rows="3" placeholder="Ex: Ensino Médio, Ensino Superior, etc..."id="requisitos"></textarea>
                                 </div>
                         
                         
@@ -317,23 +325,9 @@
                         
                                <div class="col-md-12">
                                     <label class="form-label">DESEJÁVEL:</label>
-                                    <textarea class="form-control" rows="2" placeholder="Desejável" id="desejaveis"></textarea>
+                                    <textarea class="form-control" rows="2" placeholder="Ex: Excel, Word, PowerPoint, etc..." id="desejaveis"></textarea>
                                 </div>
-                        
-                        
-                        
-                               <div class="col-md-6">
-                                    <label class="form-label">DATA DA PUBLICAÇÃO:</label>
-                                    <input type="date" class="form-control data" id="publicacao" onkeydown="return false"/>
-                                  </div>   
-                        
-                        
-                        
-                                 <div class="col-md-6">
-                                    <label class="form-label">DATA DE EXPIRAÇÃO:</label>
-                                    <input type="date" class="form-control data" id="expiracao" onkeydown="return false"/>
-                                  </div>  
-                                  
+                
                                   
                                   <div class="col-md-12">
                                     <label class="form-label">BENEFÍCIOS:</label>
@@ -343,7 +337,9 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-primary" data-bs-target="#staticBackdrop3" data-bs-toggle="modal"
+                            <button class="btn btn-primary" 
+                            id="voltarVaga">Voltar</button>
+                            <button class="btn btn-primary" 
                                 id="salvarVaga">Salvar</button>
 
 
@@ -365,8 +361,7 @@
                             <form class="row g-3">
                                 <div class="col-md-6">
                                     <label class="form-label">NOME DA EMPRESA:</label>
-                                    <input type="text" class="form-control" placeholder="Nome da empresa"
-                                        id="nomeEmpresa">
+                                    <input type="text" class="form-control" placeholder="Nome da empresa" id="nomeEmpresa">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">E-MAIL:</label>
@@ -395,7 +390,7 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-primary" id="proximoEmpresa">Proximo</button>
+                            <button class="btn btn-primary" id="proximoEmpresa">Próximo</button>
 
 
                         </div>
@@ -435,7 +430,7 @@
                                     <input type="password" class="form-control" placeholder="Senha" id="senhaEmpresa">
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="inputState" class="form-label">CONFIRMAR SENHA:</label>
+                                    <label for="inputState" class="form-label">CONFIRME A SENHA:</label>
                                     <input type="password" class="form-control" placeholder="Confirmar senha"
                                         id="confSenhaEmpresa">
                                 </div>
@@ -466,7 +461,7 @@
                         <div class="modal-footer">
                             
                       
-                            <button type="button" class="btn btn-secondary" id="closeModal">Close</button>
+                            <button type="button" class="btn btn-secondary" id="closeModal">Fechar</button>
                         </div>
                     </div>
                 </div>

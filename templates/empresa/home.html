@@ -109,7 +109,7 @@
         <div class="home">
             <div class="principal">
                 <div class="col-12 b ">
-                    <button class="btn btn-primary" role="button" id="adiconaVaga">+</button>
+                    <button class="btn btn-primary" role="button" id="adiconaVaga" style="display:none ;">+</button>
                 </div>
 
 
@@ -119,7 +119,7 @@
                     <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel" id="nomeVaga">Nome da Vaga</h5>
+                                <h5 class="modal-title"  id="nomeVaga">Nome da Vaga</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
 
@@ -129,11 +129,10 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" id="editVaga">Editar</button>
-
+                          
                                 <button type="button" class="btn btn-secondary" id="pdf">PDF</button>
                                 <button type="button" class="btn btn-primary" id="contatos">Contatos</button>
-                                <button type="button" class="btn btn-secondary" id="close">Close</button>
+                                <button type="button" class="btn btn-secondary" id="close">Fechar</button>
                             </div>
                         </div>
                     </div>
@@ -183,7 +182,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" id="proximoVaga">Proximo</button>
+                    <button class="btn btn-primary" id="proximoVaga">Próximo</button>
 
 
                 </div>
@@ -287,7 +286,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" id="voltarVaga">Voltar</button>
-                    <button class="btn btn-primary" data-bs-target="#staticBackdrop3" data-bs-toggle="modal"
+                    <button class="btn btn-primary" 
                         id="salvarVaga">Salvar</button>
 
 
@@ -313,7 +312,10 @@
             </div>
         </div>
     </div>
-
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js"
+        integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs"
+        crossorigin="anonymous"></script>
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"

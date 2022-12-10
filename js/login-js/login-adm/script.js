@@ -30,10 +30,6 @@ function entrar() {
             console.log(resposta.data.token);
             sessionStorage.setItem("token", resposta.data.token);
             window.location.href = "/../../../templates/adm/home.html";
-       
-            
-         
-
         }).catch((error) => {
             console.log(error)
             if (resposta.status == 401) {

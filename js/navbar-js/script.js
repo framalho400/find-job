@@ -1,4 +1,5 @@
 
+
 //função para abrir a navbar
 sidebarLeft = document.querySelector('.nav-left')
 sidebarTop = document.querySelector('.nav-top')

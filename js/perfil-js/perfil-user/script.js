@@ -1,10 +1,7 @@
 
   var token = sessionStorage.getItem("token")
 
-  if (token == null) {
-    window.location.replace('/../../templates/login/login/login_user.html')
- 
-   } 
+
 function parseJwt(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -19,33 +16,89 @@ function parseJwt(token) {
 
 const nome = document.getElementById('nome');
 const email = document.getElementById('email');
-const celular = document.getElementById('celular');
 const cpf = document.getElementById('cpf');
 
 console.log(payload.nome);
 nome.innerHTML = payload.name;
 email.innerHTML = payload.email;
-celular.innerHTML = payload.celular;
 cpf.innerHTML = payload.cpf;
 
 
 
 
-
+//alterar dados
 var modalUser = new bootstrap.Modal(document.getElementById('modalEdit'));
 document.querySelector('#editUser').addEventListener('click', function () {
     modalUser.show();
     document.getElementById('salvarEdit').addEventListener('click', function () {
+        alteraDados(id = payload.id)
         modalUser.hide();
     });
 }
 )
-
-
 const emailUser = document.getElementById('emailUser').value = payload.email;
-const celularUser = document.getElementById('celularUser').value = payload.celular;
+const nomeUser = document.getElementById('nomeUser').value = payload.name;
 const cpfUser = document.getElementById('cpfUser').value = payload.cpf;
 
+userEdit = {
+    nome: nomeUser,
+    email: emailUser,
+    cpf: cpfUser
+}
+function alteraDados(id){
+    axios.put(`http://localhost:8080/api/usuario/editauser/${id}`, userEdit,
+         )
+        .then(function (response) {
+            console.log(response);
+            msgErro('Dados alterados com sucesso!', 'green')
+        }
+        ).catch(function (error) {
+            console.log(error);
+            msgErro('Erro ao alterar dados!', 'red')
+        }
+        );
+}
+
+//alterar senha
+const alteraSenha = document.getElementById('alteraSenha');
+const modalSenha = new bootstrap.Modal(document.getElementById('modalSenha'));
+alteraSenha.addEventListener('click', function () {
+    modalSenha.show();
+    document.getElementById('salvarSenha').addEventListener('click', function () {
+        modalSenha.hide();
+    });
+}
+)
+const senhaAtual = document.getElementById('senhaAtual').value = payload.senha;
+const novaSenha = document.getElementById('novaSenha').value = payload.senha;
+const confirmaNovaSenha = document.getElementById('confirmaNovaSenha')
+
+
+
+
+//excluir conta
+const excuirUser = document.getElementById('deleteUser')
+const modalExcluir = new bootstrap.Modal(document.getElementById('modalDelUser'));
+excuirUser.addEventListener('click', function () {
+    modalExcluir.show();
+    document.getElementById('excuirUser').addEventListener('click', function () {
+        deleteUser()
+        modalExcluir.hide();
+    });
+}
+)
+function deleteUser(){
+    axios.delete(`http://localhost:8080/api/usuario/excluir/${payload.id}`)
+    .then(function (response) {
+        console.log(response);
+        sessionStorage.clear();
+        location.reload();
+    }
+    ).catch(function (error) {
+        console.log(error);
+        
+    })
+}
 
 
 //=========================================================== Menssagem de erro =============================================================================//

@@ -19,4 +19,4 @@ function parseJwt(token) {
 const payload = parseJwt(token)
 console.log(payload.id);
 console.log(payload.name);
-console.log(payload.TipoUser); */
+ */

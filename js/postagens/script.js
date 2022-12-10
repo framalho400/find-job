@@ -1,29 +1,26 @@
-/*   var token = sessionStorage.getItem("token")
-if (token == null) {
-    window.location.replace('/../../templates/login/login/login.html')
-} 
+var token = sessionStorage.getItem("token")
 
 function parseJwt(token) {
   var base64Url = token.split('.')[1];
   var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
   var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
   }).join(''));
 
   return JSON.parse(jsonPayload);
 };
+
+
 const payload = parseJwt(token)
 console.log(payload.id);
 console.log(payload.name);
 console.log(payload.TipoUser);
-const nomeUser  = payload.name;
 const userText = document.querySelector('.user-text');
+const userLogado = payload.name;
+userText.innerHTML = `Olá, ${userLogado.split(' ')[0]}`;
 
-userText.innerHTML = `Olá, ${nomeUser.split(' ')[0]}`;  
 
- */
- 
- 
+
 const buscar = document.getElementById('buscar');
 
 const getSearchedTodos = (search) => {
@@ -72,7 +69,7 @@ adiconaVaga.addEventListener('click', function () {
 
 
 function getVagas() {
-  axios.get('http://localhost:8080/api/empresa/vaga/buscaVaga/1')
+  axios.get('http://localhost:8080/api/empresa/vaga')
     .then((response) => {
       console.log(JSON.stringify(response.data));
       data = response.data;
@@ -83,10 +80,11 @@ function getVagas() {
 
 
       data.forEach(vaga => {
-        if (vaga.ativo == true) {
-          criaVaga(vaga.id, vaga.tituloVaga, vaga.emailContato, vaga.contato, vaga.whatsapp, vaga.desejaveis, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.contratacao, vaga.periodo, vaga.ativo);
+        if(vaga.empresa.id == payload.id){
+        if (vaga.ativo == true ) {
+          criaVaga(vaga.id, vaga.tituloVaga, vaga.emailContato, vaga.contato, vaga.whatsapp, vaga.desejaveis, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.contratacao, vaga.periodo, vaga.ativo, vaga.empresa.id, vaga.empresa.nome, vaga.empresa.cnpj, vaga.empresa.email, vaga.empresa.telefone, vaga.empresa.whatsapp, vaga.empresa.site, vaga.empresa.endereco,vaga.empresa.numero, vaga.empresa.complemento,vaga.empresa.bairro, vaga.empresa.cidade, vaga.empresa.uf, vaga.empresa.cep, vaga.empresa.ativo,);
         }
-
+      }
 
 
       });
@@ -118,7 +116,7 @@ getVagas();
 
 
 //função para criar vaga
-function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, contratacao, periodo, ativo) {
+function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, contratacao, periodo, ativo, idEmpresa, nome, cnpj, email, telefone, whatsappEmpresa, siteEmpresa, endereco, numero, complemento, bairro, cidade, uf, cep, ativoEmpresa) {
 
 
   const principal = document.querySelector('.principal');
@@ -129,7 +127,7 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
         <h3>${tituloVaga}</h3>
     </div>
     <div class="empresa">
-        <h4></h4>
+        <h4>${nome}</h4>
     </div>
     <div class="r">
     <div class="local">
@@ -206,35 +204,35 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
     editVaga.addEventListener('click', function () {
       addVaga.show();
       modal.hide();
-    
+
       document.getElementById('proximoVaga').addEventListener('click', function () {
         addVaga.hide();
         addVaga2.show();
       })
-        document.getElementById('salvarVaga').addEventListener('click', function () {
-          addVaga2.hide();
-          modal.show();
-          /*      criaVaga(); */
-          
-        })
-    
+      document.getElementById('salvarVaga').addEventListener('click', function () {
+        addVaga2.hide();
+        modal.show();
+        /*      criaVaga(); */
+
+      })
+
       document.getElementById('voltarVaga').addEventListener('click', function () {
         addVaga2.hide();
         addVaga.show();
       })
     })
-    
+  document.getElementById('nomeVaga').innerHTML = tituloVaga;
 
     conteudoModal.innerHTML = `<div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
             <span>
                     <h4>Empresa:</h4>
-                    <p>${tituloVaga}</p>
+                    <p>${nome}</p>
                 </span>    
             <span>
                     <h5>Local:</h5>
-                    <p></p>
+                    <p>${endereco}, ${numero}, ${bairro}, ${cep}, ${uf}</p>
                 </span>
                 <span>
                     <h5>Requisitos:</h5>

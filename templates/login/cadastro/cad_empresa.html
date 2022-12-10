@@ -62,18 +62,21 @@
             <!-- type="text" onkeyup="cpfCheck(this)" maxlength="18"
               onkeydown="javascript: fMasc( this, mCPF );" -->
           </span>
-          <span class="telefone_Empresa">
+          <!-- <span class="telefone_Empresa">
             <label>TELEFONE:</label>
             <input type="text" placeholder="Telefone" id="telefone_Empresa" />
 
-          </span>
+          </span> -->
 
           <span class="email_Empresa">
             <label>E-MAIL:</label>
             <input type="email" placeholder="E-mail" id="email_Empresa" />
 
           </span>
-
+          <span class="cep_Empresa">
+            <label>CEP:</label>
+            <input type="text" placeholder="CEP" id="cep_Empresa" maxlength="9" onblur="pesquisacep(this.value);" />
+          </span>
         </div>
         <span class="proximo">
           <input type="button" value="Próximo" id="proximo" />
@@ -85,7 +88,7 @@
         </span>
 
         <span class="jaTem">
-          <a href="../login/login_empresa.html">Já possui uma conta ?</a>
+          <a href="../login/login_empresa.html">Já possui uma conta?</a>
         </span>
       </div>
 
@@ -102,14 +105,16 @@
           </div>
         </span>
         <div class="inputs">
-          <span class="cep_Empresa">
-            <label>CEP:</label>
-            <input type="text" placeholder="CEP" id="cep_Empresa" maxlength="9" onblur="pesquisacep(this.value);" />
-          </span>
+         
           <span class="endereco_Empresa">
             <label>ENDEREÇO:</label>
             <input type="text" placeholder="Endereço" id="rua_Empresa">
           </span>
+          <span class="n_Empresa">
+            <label>N°:</label>
+            <input type="text" id="n_Empresa" name="n" placeholder="Numero">
+          </span>
+         
           <span class="bairro_Empresa">
             <label>BAIRRO:</label>
             <input type="text" placeholder="Bairro" id="bairro_Empresa">
@@ -119,12 +124,7 @@
             <label>CIDADE:</label>
             <input type="text" placeholder="Cidade" id="cidade_Empresa">
           </span>
-
-          <span class="uf_Empresa">
-            <label>UF:</label>
-            <input type="text" id="uf_Empresa" name="uf" placeholder="Estado">
-          </span>
-
+         
         </div>
         <span class="proximo">
             <input type="button" value="Próximo" id="proximo2" />
@@ -137,7 +137,7 @@
         </span>
 
         <span class="jaTem">
-          <a href="../login/login_empresa.html">Já possui uma conta ?</a>
+          <a href="../login/login_empresa.html">Já possui uma conta?</a>
         </span>
       </div>
 
@@ -152,14 +152,19 @@
           </div>
         </span>
         <div class="inputs">
+         
+          <span class="uf_Empresa">
+            <label>UF:</label>
+            <input type="text" id="uf_Empresa" name="uf" placeholder="Estado">
+          </span>
           <span class="senha_Empresa">
             <label>SENHA:</label>
-            <input type="text" placeholder="Senha" id="senha_Empresa" />
+            <input type="password" placeholder="Senha" id="senha_Empresa" />
 
           </span>
           <span class="confirmarSenha_empresa">
-            <label>CONFIRMAR SENHA:</label>
-            <input type="text"  placeholder="Confirmar senha"  id="confirmarSenha_empresa" >
+            <label>CONFIRME A SENHA:</label>
+            <input type="password"  placeholder="Confirmar senha"  id="confirmarSenha_empresa" >
            
           </span>  
 
@@ -178,7 +183,7 @@
         </span>        
 
         <span class="jaTem">
-          <a href="../login/login_empresa.html">Já possui uma conta ?</a>
+          <a href="../login/login_empresa.html">Já possui uma conta?</a>
         </span>
       </div>
 

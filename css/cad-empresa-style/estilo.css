@@ -444,7 +444,19 @@ body {
   background-color: var(--orange-color);
 }
 
+.jaTem {
+  margin-top: 5%;
+  border-bottom: 1px solid var(--text-color);
+}
 
+
+
+.jaTem a {
+  color: var(--text-color);
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 10px;
+}
 @media (max-width: 1024px) {
   .container {
     justify-content: center;

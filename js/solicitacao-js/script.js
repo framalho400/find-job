@@ -1,3 +1,27 @@
+var token = sessionStorage.getItem("token")
+
+function parseJwt(token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+};
+
+
+const payload = parseJwt(token)
+const userText = document.querySelector('.user-text');
+const userLogado = payload.name;
+userText.innerHTML = `Olá, ${userLogado.split(' ')[0]}`;
+
+if (payload.ativo == false) {
+    window.location.replace('/../../../templates/login/login/login_adm.html')
+}
+
+
+
 
 //Paginação das vagas
 const clickVaga = document.getElementById('vaga');
@@ -81,15 +105,14 @@ function cadastraVagas() {
     const descricao = document.getElementById('descricao');
     const requisitos = document.getElementById('requisitos');
     const cuidados = document.getElementById('cuidados');
-    const expiracao = document.getElementById('expiracao');
-    const publicacao = document.getElementById('publicacao');
     const beneficios = document.getElementById('beneficios');
     const site = document.getElementById('site');
     const salario = document.getElementById('salario');
+  
 
     /* const areaProfissional = document.getElementById('areaProfissional'); */
-    var opcaoTextoAreaProfissional = areaProfissional.options[areaProfissional.selectedIndex].text;
-
+  /*   var opcaoTextoAreaProfissional = areaProfissional.options[areaProfissional.selectedIndex].text;
+ */
     const contratacao = document.getElementById('contratacao');
     var opcaoTextoContratacao = contratacao.options[contratacao.selectedIndex].text;
 
@@ -107,18 +130,18 @@ function cadastraVagas() {
         emailContato: emailContato.value,
         whatsapp: whatsapp.value,
         contato: telefoneContato.value,
-        desejaveis: desejaveis.value,
+        desejavel: desejaveis.value,
         descricao: descricao.value,
         requisitos: requisitos.value,
         cuidados: cuidados.value,
-        expiracao: expiracao.value,
-        publicacao: publicacao.value,
+        expiracao: "",
+        publicacao: "",
         beneficios: beneficios.value,
         site: site.value,
         salario: salario.value,
         contratacao: opcaoTextoContratacao,
         periodo: opcaoTextoPeriodo,
-        ativo: false,
+        ativo: true,
 
         empresa: {
             id: opcaoSelectID,
@@ -154,7 +177,7 @@ function getVagas() {
 
             data.forEach(vaga => {
                 if (vaga.ativo == false) {
-                    criaVaga(vaga.id, vaga.tituloVaga, vaga.emailContato, vaga.contato, vaga.whatsapp, vaga.desejaveis, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios,
+                    criaVaga(vaga.id, vaga.tituloVaga, vaga.emailContato, vaga.contato, vaga.whatsapp, vaga.desejavel, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios,
                         vaga.site, vaga.salario, vaga.contratacao, vaga.periodo, vaga.ativo, vaga.empresa.nome, vaga.empresa.cnpj, vaga.empresa.cep, vaga.empresa.endereco,
                         vaga.empresa.numero, vaga.empresa.complemento, vaga.empresa.bairro, vaga.empresa.cidade, vaga.empresa.uf);
                 } else {
@@ -179,28 +202,48 @@ getVagas();
 //Reprovação de vagas 
 function deleteVaga(id) {
     const deleteVagar = 'http://localhost:8080/api/empresa/vaga/excluir/'
-    axios.delete(deleteVagar + id, {
-        headers: {
-            'Content-Type': 'application/json',
-            'accept': 'application/json'
-        }
-    })
+    axios.delete(deleteVagar + id)
         .then((response) => {
             const data = response.data;
             console.log(data);
-            msgErro(msgText = "Recusada com sucesso!!", color = "green");
         })
         .catch((error) => {
-            msgErro(msgText = "Erro ao recusar!", color = "red")
             console.log(error)
         });
 }
 
 
 //Aprovação de vagas
-urlAtivaVaga = "http://localhost:8080/api/empresa/vaga/ativar/"
+urlAtivaVaga = "http://localhost:8080/api/empresa/vaga/editavaga/"
 function aprovaVaga(id) {
-    axios.put(urlAtivaVaga + id)
+    axios.put(urlAtivaVaga + id, {
+        id: id,
+        tituloVaga: "sdsd",
+        emailContato: "sdsd@gmail.com",
+        whatsapp: "sdsd",
+        contato: "sdsd",
+        desejavel: "sdsd",
+        descricao: "sdsd",
+        requisitos: "sdsd",
+        cuidados: "sdsd",
+        expiracao: "sdsd",
+        publicacao: "sdsd",
+        beneficios: "sdsd",
+        site: "sdsd",
+        salario: "sdsd",
+        contratacao: "sdsd",
+        periodo: "sdsd",
+        ativo: true,
+
+    },
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json'
+                
+                
+            },
+        })
         .then(function (response) {
             console.log(JSON.stringify(response.data));
         })
@@ -212,7 +255,7 @@ function aprovaVaga(id) {
 const groupVagas = document.getElementById('vagasGroup');
 
 //Paginação das vagas
-function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios,
+function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejavel, descricao, requisitos, cuidados, expiracao, publicacao, beneficios,
     site, salario, contratacao, periodo, ativo, empresa, cnpj, cep, endereco, numero, complemento, bairro, cidade, uf) {
     const sVaga = document.createElement('div');
     sVaga.classList.add('card-body');
@@ -383,6 +426,11 @@ adicionaVaga.forEach(function (adicionaVaga) {
         document.getElementById('proximoVaga').addEventListener('click', function () {
             addVaga.hide();
             addVaga2.show();
+            document.getElementById('voltarVaga').addEventListener('click', function () {
+                addVaga2.hide();
+                addVaga.show();
+            })
+
             document.getElementById('salvarVaga').addEventListener('click', function () {
                 cadastraVagas()
                 addVaga2.hide();
@@ -508,6 +556,7 @@ function getEmpresa() {
                 else {
                     console.log("Empresa ativa")
                 }
+
             });
 
         }
@@ -576,12 +625,6 @@ function reprovaEmpresa(id) {
             console.log(JSON.stringify(response.data));
             location.reload();
 
-            vaga.classList.add('close');
-            cardVagas.classList.add('close');
-            cardEmpresa.classList.remove('close');
-            empresa.classList.remove('close');
-
-
         })
         .catch((error) => {
             console.log(error);
@@ -639,7 +682,8 @@ function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep,
     btnAprovar.innerHTML = "Aprovar"
     divAprovar.appendChild(btnAprovar)
     btnAprovar.addEventListener('click', function () {
-        aprovaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep, numero, bairro)
+        aprovaEmpresa(id)
+        location.reload();
         console.log(id);
 
 
@@ -657,6 +701,7 @@ function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep,
 
     btnRecusar.addEventListener('click', function () {
         reprovaEmpresa(id)
+        location.reload();
         console.log(id)
 
 
@@ -698,6 +743,7 @@ function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep,
         </div>
     </div>`
         modalV.show()
+        location.reload();
     })
 
 
