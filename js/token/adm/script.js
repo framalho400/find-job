@@ -1,4 +1,4 @@
-/* var token = sessionStorage.getItem("token")
+ var token = sessionStorage.getItem("token")
  
 if (token == null) {
    window.location.replace('/../../../templates/login/login/login_adm.html')
@@ -15,8 +15,7 @@ function parseJwt(token) {
   return JSON.parse(jsonPayload);
 };
 
+if(payload.ativo == false){
+  window.location.replace('/../../../templates/login/login/login_adm.html')
 
-const payload = parseJwt(token)
-console.log(payload.id);
-console.log(payload.name);
- */
+}

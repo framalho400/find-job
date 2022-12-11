@@ -7,7 +7,7 @@
 }
 
 .msg{
-  z-index: 999;
+  z-index: 10000 !important;
   background-color: aliceblue;
   opacity: 0.5 !important;
   position: fixed;

@@ -1,3 +1,4 @@
+
  var token = sessionStorage.getItem("token")
 
 function parseJwt(token) {
@@ -16,9 +17,6 @@ const userText = document.querySelector('.user-text');
 const userLogado = payload.name;
 userText.innerHTML = `Olá, ${userLogado.split(' ')[0]}`;
 
-if(payload.ativo == false){
-  window.location.replace('/../../../templates/login/login/login_empresa.html')
-}
 
 
 const buscar = document.getElementById('buscar');
@@ -69,7 +67,7 @@ adiconaVaga.addEventListener('click', function () {
 
 
 function getVagas() {
-  axios.get('http://localhost:8080/api/empresa/vaga')
+  axios.get('http://192.168.3.106:8080/api/empresa/vaga')
     .then((response) => {
       console.log(JSON.stringify(response.data));
       data = response.data;

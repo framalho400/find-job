@@ -73,10 +73,12 @@
             <input type="email" placeholder="E-mail" id="email_Empresa" />
 
           </span>
-          <span class="cep_Empresa">
-            <label>CEP:</label>
-            <input type="text" placeholder="CEP" id="cep_Empresa" maxlength="9" onblur="pesquisacep(this.value);" />
+          <span class="telefone_Empresa">
+            <label>TELEFONE:</label>
+            <input type="text" placeholder="Telefone" id="telefone_Empresa" />
+
           </span>
+          
         </div>
         <span class="proximo">
           <input type="button" value="Próximo" id="proximo" />
@@ -105,14 +107,17 @@
           </div>
         </span>
         <div class="inputs">
-         
-          <span class="endereco_Empresa">
-            <label>ENDEREÇO:</label>
-            <input type="text" placeholder="Endereço" id="rua_Empresa">
+          <span class="cep_Empresa">
+            <label>CEP:</label>
+            <input type="text" placeholder="CEP" id="cep_Empresa" maxlength="9" onblur="pesquisacep(this.value);" />
           </span>
           <span class="n_Empresa">
             <label>N°:</label>
             <input type="text" id="n_Empresa" name="n" placeholder="Numero">
+          </span>
+          <span class="endereco_Empresa">
+            <label>ENDEREÇO:</label>
+            <input type="text" placeholder="Endereço" id="rua_Empresa">
           </span>
          
           <span class="bairro_Empresa">
@@ -120,10 +125,7 @@
             <input type="text" placeholder="Bairro" id="bairro_Empresa">
           </span>
 
-          <span class="cidade_Empresa">
-            <label>CIDADE:</label>
-            <input type="text" placeholder="Cidade" id="cidade_Empresa">
-          </span>
+          
          
         </div>
         <span class="proximo">
@@ -152,11 +154,15 @@
           </div>
         </span>
         <div class="inputs">
-         
+          <span class="cidade_Empresa">
+            <label>CIDADE:</label>
+            <input type="text" placeholder="Cidade" id="cidade_Empresa">
+          </span>
           <span class="uf_Empresa">
             <label>UF:</label>
             <input type="text" id="uf_Empresa" name="uf" placeholder="Estado">
           </span>
+         
           <span class="senha_Empresa">
             <label>SENHA:</label>
             <input type="password" placeholder="Senha" id="senha_Empresa" />

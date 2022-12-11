@@ -12,6 +12,15 @@ function parseJwt(token) {
 
 
 const payload = parseJwt(token)
+
+
+
+if(payload.aprova == false || payload.ativo == false){
+  window.location.replace('/../../../templates/login/login/login_empresa.html')
+}
+
+
+
 console.log(payload.id);
 console.log(payload.name);
 console.log(payload.TipoUser);
@@ -69,7 +78,7 @@ adiconaVaga.addEventListener('click', function () {
 
 
 function getVagas() {
-  axios.get('http://localhost:8080/api/empresa/vaga')
+  axios.get('http://192.168.3.106:8080/api/empresa/vaga')
     .then((response) => {
       console.log(JSON.stringify(response.data));
       data = response.data;
@@ -80,11 +89,11 @@ function getVagas() {
 
 
       data.forEach(vaga => {
-        if(vaga.empresa.id == payload.id){
-        if (vaga.ativo == true ) {
-          criaVaga(vaga.id, vaga.tituloVaga, vaga.emailContato, vaga.contato, vaga.whatsapp, vaga.desejaveis, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.contratacao, vaga.periodo, vaga.ativo, vaga.empresa.id, vaga.empresa.nome, vaga.empresa.cnpj, vaga.empresa.email, vaga.empresa.telefone, vaga.empresa.whatsapp, vaga.empresa.site, vaga.empresa.endereco,vaga.empresa.numero, vaga.empresa.complemento,vaga.empresa.bairro, vaga.empresa.cidade, vaga.empresa.uf, vaga.empresa.cep, vaga.empresa.ativo,);
+        if (vaga.empresa.id == payload.id) {
+          if (vaga.ativo == true) {
+            criaVaga(vaga.id, vaga.tituloVaga, vaga.emailContato, vaga.contato, vaga.whatsapp, vaga.desejavel, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.contratacao, vaga.periodo, vaga.ativo, vaga.areaProfissional, vaga.empresa.id, vaga.empresa.nome, vaga.empresa.cnpj, vaga.empresa.email, vaga.empresa.telefone, vaga.empresa.whatsapp, vaga.empresa.site, vaga.empresa.endereco, vaga.empresa.numero, vaga.empresa.complemento, vaga.empresa.bairro, vaga.empresa.cidade, vaga.empresa.uf, vaga.empresa.cep, vaga.empresa.ativo, );
+          }
         }
-      }
 
 
       });
@@ -102,8 +111,7 @@ function getVagas() {
         }
 
       });
-    }
-    )
+    })
     .catch((error) => {
       console.log(error);
     })
@@ -115,8 +123,46 @@ function getVagas() {
 getVagas();
 
 
+function deleteVaga(id) {
+  axios.delete('http://192.168.3.106:8080/api/empresa/vaga/excluir/' + id)
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+      data = response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+
+
+}
+const ItituloVaga = document.getElementById('tituloVaga');
+const IemailContato = document.getElementById('emailContato');
+const ItelefoneContato = document.getElementById('telefoneContato');
+const Iwhatsapp = document.getElementById('wppVaga');
+const Idesejaveis = document.getElementById('desejaveis');
+const Idescricao = document.getElementById('descricao');
+const Irequisitos = document.getElementById('requisitos');
+const Icuidados = document.getElementById('cuidados');
+const Ibeneficios = document.getElementById('beneficios');
+const Isite = document.getElementById('site');
+const Isalario = document.getElementById('salario');
+const IareaProfissional = document.getElementById('areaProfissional');
+const Icontratacao = document.getElementById('contratacao');
+const Iperiodo = document.getElementById('periodo');
+
+var opcaoTextoAreaProfissional = IareaProfissional.options[areaProfissional.selectedIndex].text
+var opcaoTextoContratacao = Icontratacao.options[contratacao.selectedIndex].text;
+var opcaoTextoPeriodo = Iperiodo.options[periodo.selectedIndex].text;
+
+
+
+
+
+
+
 //função para criar vaga
-function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, contratacao, periodo, ativo, idEmpresa, nome, cnpj, email, telefone, whatsappEmpresa, siteEmpresa, endereco, numero, complemento, bairro, cidade, uf, cep, ativoEmpresa) {
+function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejavel, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, contratacao, periodo, ativo, areaProfissional, idEmpresa, nome, cnpj, email, telefone, whatsappEmpresa, siteEmpresa, endereco, numero, complemento, bairro, cidade, uf, cep, ativoEmpresa) {
+ 
 
 
   const principal = document.querySelector('.principal');
@@ -139,11 +185,12 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
         <h6>Requisitos:</h6>
         <ul>
        ${requisitos.split(",").map(requisito => `<li>${requisito}</li>`).join('')}
-        </ul>
+       
     </div>`;
 
 
   /* ${requisitos.map(requisito => `<li>${requisito}</li>`).join('')} */
+
   button = document.createElement('button');
   button.classList.add('btn');
   button.classList.add('btn-primary');
@@ -189,11 +236,11 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
     <label for="inputDate4" class="form-label">Whatsapp:</label>
     <p>${whatsapp}</p>
     </div>
-<div class="col-md-12">
-<label for="inputDate4" class="form-label">Email:</label>
-<p>${emailContato}</p>
+  <div class="col-md-12">
+  <label for="inputDate4" class="form-label">Email:</label>
+  <p>${emailContato}</p>
 
-</div>
+  </div>
     </div>`
 
 
@@ -202,6 +249,21 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
 
 
     editVaga.addEventListener('click', function () {
+      ItituloVaga.value = tituloVaga;
+      IemailContato.value = emailContato;
+      ItelefoneContato.value = contato;
+      Iwhatsapp.value = whatsapp;
+      Idesejaveis.value = desejaveis;
+      Idescricao.value = descricao;
+      Irequisitos.value = requisitos;
+      Icuidados.value = cuidados;
+      Ibeneficios.value = beneficios;
+      Isite.value = site;
+      Isalario.value = salario;
+      IareaProfissional.value = areaProfissional;
+      Icontratacao.value = contratacao;
+      Iperiodo.value = periodo;
+    
       addVaga.show();
       modal.hide();
 
@@ -210,6 +272,42 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
         addVaga2.show();
       })
       document.getElementById('salvarVaga').addEventListener('click', function () {
+
+
+        axios.put('http://192.168.3.106:8080/api/empresa/vaga/editavaga/' + id, {
+            id: id,
+            tituloVaga: ItituloVaga.value,
+            emailContato: IemailContato.value,
+            contato: ItelefoneContato.value,
+            expiracao: "",
+            publicacao: "",
+            whatsapp: Iwhatsapp.value,
+            desejavel: Idesejaveis.value,
+            descricao: Idescricao.value,
+            requisitos: Irequisitos.value,
+            cuidados: Icuidados.value,
+            beneficios: Ibeneficios.value,
+            site: Isite.value,
+            salario: Isalario.value,
+            areaProfissional:areaProfissional,
+            contratacao: contratacao,
+            periodo: periodo,
+            ativo: true,
+            empresa: {
+              id: idEmpresa, 
+            }
+
+          })
+
+
+          .then((response) => {
+            console.log(JSON.stringify(response.data));
+            data = response.data;
+
+          })
+          .catch((error) => {
+            console.log(error);
+          })
         addVaga2.hide();
         modal.show();
         /*      criaVaga(); */
@@ -221,7 +319,18 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
         addVaga.show();
       })
     })
-  document.getElementById('nomeVaga').innerHTML = tituloVaga;
+
+    const buttonDeleteVaga = document.getElementById('buttonDeleteVaga');
+
+    buttonDeleteVaga.addEventListener('click', function () {
+      deleteVaga(id);
+      modal.hide();
+      location.reload();
+
+    })
+
+
+    document.getElementById('nomeVaga').innerHTML = tituloVaga;
 
     conteudoModal.innerHTML = `<div class="container-fluid">
         <div class="row">
@@ -243,7 +352,7 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
                 <span>
                     <h5>Desejavel:</h5>
                     <ul>
-                   
+                    ${desejavel.split(",").map(desejavel => `<li>${desejavel}</li>`).join('')}
                     </ul>
                 </span>
                 <span>
@@ -251,6 +360,10 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
                     <p>${contratacao}</p>
                 </span>
                
+                <span>
+                <h5>Descriçao:</h5>
+                <p>${descricao}</p>
+            </span>
 
             </div>
             <div class="col-md-4 ms-auto">
@@ -267,14 +380,12 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejaveis, d
                 </span>
                 <span>
                     <h5>Periodo:</h5>
-                    <p></p>
+                    <p>${periodo}</p>
                 </span>
-
-                
                 <span>
-                <h5>Descriçao:</h5>
-                <p>${descricao}</p>
-            </span>
+                    <h5>Área Profissional:</h5>
+                    <p>${areaProfissional}</p>
+                
             </div>
            
         </div>
@@ -357,5 +468,3 @@ function msgErro(msgText, color) {
   }, 6000); // 6 segundos
 
 }
-
-

@@ -56,7 +56,7 @@ function sendEmail() {
 
 
 
-const url = "http://localhost:8080/api/usuario/";
+const url = "http://192.168.3.106:8080/api/usuario/";
 
 const formulario = document.querySelector('form');
 const Icpf = document.querySelector('#cpf');

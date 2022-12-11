@@ -148,7 +148,7 @@ img::selection {
 .solicEmpresa.close{
     border-bottom: 0px ;
 }
-li,
+.group li,
 a {
     text-decoration: none;
     list-style: none;

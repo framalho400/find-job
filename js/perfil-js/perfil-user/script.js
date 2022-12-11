@@ -46,7 +46,7 @@ userEdit = {
     cpf: cpfUser
 }
 function alteraDados(id){
-    axios.put(`http://localhost:8080/api/usuario/editauser/${id}`, userEdit,
+    axios.put(`http://192.168.3.106:8080/api/usuario/${id}`, userEdit,
          )
         .then(function (response) {
             console.log(response);
@@ -88,7 +88,7 @@ excuirUser.addEventListener('click', function () {
 }
 )
 function deleteUser(){
-    axios.delete(`http://localhost:8080/api/usuario/excluir/${payload.id}`)
+    axios.delete(`http://192.168.3.106:8080/api/usuario/excluir/${payload.id}`)
     .then(function (response) {
         console.log(response);
         sessionStorage.clear();

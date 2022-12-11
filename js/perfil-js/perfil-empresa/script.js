@@ -36,7 +36,7 @@ document.querySelector('#editEmpresa').addEventListener('click', function () {
 )
 
 
-    const url = "http://localhost:8080/api/empresa/vaga";
+    const url = "http://192.168.3.106:8080/api/empresa/vaga";
 
     function cadastraVagas() {
       
@@ -53,7 +53,7 @@ document.querySelector('#editEmpresa').addEventListener('click', function () {
         const site = document.getElementById('site');
         const salario = document.getElementById('salario');
     
-        /* const areaProfissional = document.getElementById('areaProfissional'); */
+        const areaProfissional = document.getElementById('areaProfissional');
         var opcaoTextoAreaProfissional = areaProfissional.options[areaProfissional.selectedIndex].text;
     
         const contratacao = document.getElementById('contratacao');
@@ -81,6 +81,7 @@ document.querySelector('#editEmpresa').addEventListener('click', function () {
             contratacao: opcaoTextoContratacao,
             periodo: opcaoTextoPeriodo,
             ativo: false,
+            areaProfissional: opcaoTextoAreaProfissional,
     
             empresa: {
                 id: payload.id,

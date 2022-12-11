@@ -21,6 +21,7 @@ const nome_Empresa = document.querySelector('#nome_Empresa');
 const cnpj = document.querySelector('#cnpj');
 const n_Empresa = document.querySelector('#n_Empresa');
 const email_Empresa = document.querySelector('#email_Empresa');
+const telefone_Empresa = document.querySelector('#telefone_Empresa');
 const cep_Empresa = document.querySelector('#cep_Empresa');
 const rua_Empresa = document.querySelector('#rua_Empresa');
 const bairro_Empresa = document.querySelector('#bairro_Empresa');
@@ -30,13 +31,13 @@ const senha_Empresa = document.querySelector('#senha_Empresa');
 const confirmarSenha_empresa = document.querySelector('#confirmarSenha_empresa');
 const salvar = document.querySelector('#salvar');
 
-const url = 'http://localhost:8080/api/empresa';
+const url = 'http://192.168.3.106:8080/api/empresa';
 
 function cadastrar() {
   axios.post(url, {
     nome: nome_Empresa.value,
     cnpj: cnpj.value,
-    telefone:"",
+    telefone:telefone_Empresa.value,
     email: email_Empresa.value,
     cep: cep_Empresa.value,
     endereco: rua_Empresa.value,
@@ -78,21 +79,21 @@ function limpar() {
   email_Empresa == '' || cep_Empresa == '' || rua_Empresa == '' || 
   bairro_Empresa == '' || cidade_Empresa == '' || uf_Empresa == '' || 
   senha_Empresa == '') {
-    msgErro(msgText='Cadastro realizado com sucesso!', color='#00FF00');
-    limpar();
+    msgErro(msgText='Preencha todos os campos !', color='#00FF00');
+  
   }
-  else if (senha_Empresa != confirmarSenha_empresa.value) {
-
+  else if (senha_Empresa.value != confirmarSenha_empresa.value) {
+    msgErro(msgText='As senhas não coincidem!', color='red');
   
   }
   else {
-
-
     cadastrar();
     limpar();
+    window.location.replace('/../../../templates/login/login/login_empresa.html')
+ 
   }
 
-  cadastrar();
+
 
 }); 
 

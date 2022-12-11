@@ -16,10 +16,7 @@ const userText = document.querySelector('.user-text');
 const userLogado = payload.name;
 userText.innerHTML = `Olá, ${userLogado.split(' ')[0]}`;
 
-if(payload.ativo == false){
-  window.location.replace('/../../../templates/login/login/login_empresa.html')
-}
- 
+
 //paginas do user para o admin e do empresa
 const user = document.getElementById('user');
 const adm = document.getElementById('adm');
@@ -171,7 +168,7 @@ function criarlinha(id, nome, email) {
 }
 
 //Pega o usuario e chama a função para criar a linha da tabela
-const url = "http://localhost:8080/api/usuario/";
+const url = "http://192.168.3.106:8080/api/usuario/";
 function getUser() {
     axios.get(url, {
     })
@@ -211,7 +208,7 @@ function getUser() {
 getUser();
 
 //função para deletar o usuario
-const urlDel = "http://localhost:8080/api/usuario/excluir/";
+const urlDel = "http://192.168.3.106:8080/api/usuario/excluir/";
 function deleteUser(id) {
     axios.delete(urlDel + id, {
 
@@ -302,8 +299,8 @@ function criarlinhaAdm(id, nome, email, ativo) {
 
 }
 function getAdm() {
-    /* localhost */
-    axios.get("http://localhost:8080/api/adm", {
+    /* 192.168.3.106 */
+    axios.get("http://192.168.3.106:8080/api/adm", {
 
     })
         .then((response) => {
@@ -346,7 +343,7 @@ getAdm();
 //função para deletar o adm
 
 function ativaAdm(id) {
-    axios.put("http://localhost:8080/api/adm/ativar/" + id)
+    axios.put("http://192.168.3.106:8080/api/adm/ativar/" + id)
         .then((response) => {
             const data = response.data;
             console.log(data);
@@ -357,7 +354,7 @@ function ativaAdm(id) {
 }
 
 function desativaAdm(id) {
-    axios.put("http://localhost:8080/api/adm/desativar/" + id)
+    axios.put("http://192.168.3.106:8080/api/adm/desativar/" + id)
         .then((response) => {
             const data = response.data;
             console.log(data);
@@ -504,8 +501,8 @@ if (ativo == false) {
 
 }
 function getEmpresa() {
-    /* localhost */
-    axios.get("http://localhost:8080/api/empresa", {
+    /* 192.168.3.106 */
+    axios.get("http://192.168.3.106:8080/api/empresa", {
 
     })
         .then((response) => {
@@ -526,9 +523,9 @@ function getEmpresa() {
                 bairro = data.bairro;
                 ativo = data.ativo;
 
-                //if (data.ativo == true) {
+                if (data.aprova == true) {
                 criarlinhaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep, numero, bairro, ativo);
-                //}
+                }
 
 
             });
@@ -559,7 +556,7 @@ getEmpresa();
 
 function desativaEmpresa(id) {
 
-    axios.put(`http://localhost:8080/api/empresa/desativar/${id}`)
+    axios.put(`http://192.168.3.106:8080/api/empresa/desativar/${id}`)
 
         .then(function (response) {
             console.log(JSON.stringify(response.data));
@@ -571,7 +568,7 @@ function desativaEmpresa(id) {
 }
 
 function ativaEmpresa(id) {
-    axios.put(`http://localhost:8080/api/empresa/ativar/${id}`)
+    axios.put(`http://192.168.3.106:8080/api/empresa/ativar/${id}`)
 
         .then(function (response) {
             console.log(JSON.stringify(response.data));
@@ -710,8 +707,8 @@ document.querySelector('#nomeVaga').innerText = `Nome da Vaga: ${tituloVaga}`;
 }
 
 function getVaga() {
-    /* localhost */
-    axios.get("http://localhost:8080/api/empresa/vaga", {
+    /* 192.168.3.106 */
+    axios.get("http://192.168.3.106:8080/api/empresa/vaga", {
 
     })
         .then((response) => {
@@ -749,7 +746,7 @@ getVaga();
 
 function deleteVaga(id) {
 
-    axios.delete(`http://localhost:8080/api/empresa/vaga/excluir/${id}`)
+    axios.delete(`http://192.168.3.106:8080/api/empresa/vaga/excluir/${id}`)
         .then((response) => {
             const data = response.data;
             console.log(data);
