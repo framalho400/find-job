@@ -11,8 +11,26 @@ function parseJwt(token) {
   return JSON.parse(jsonPayload);
 };
 
-
 const payload = parseJwt(token)
+const tipoUser = payload.tipoUser;
+if (tipoUser == "administrador") {
+  if(payload.ativo == false){
+    window.location.replace('/../../../templates/login/login/login_adm.html')
+   
+  
+  }
+}
+if (tipoUser == "empresa") {
+  if(payload.ativo == false || payload.aprovado == false){
+    window.location.replace('/../../../templates/login/login/login_empresa.html')
+
+  
+  }
+}
+
+
+
+console.log(tipoUser);
 const userText = document.querySelector('.user-text');
 const userLogado = payload.name;
 userText.innerHTML = `Olá, ${userLogado.split(' ')[0]}`;

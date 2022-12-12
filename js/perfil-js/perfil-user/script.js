@@ -14,16 +14,13 @@ function parseJwt(token) {
   
   const payload = parseJwt(token)
 
-const nome = document.getElementById('nome');
-const email = document.getElementById('email');
-const cpf = document.getElementById('cpf');
 
-console.log(payload.nome);
-nome.innerHTML = payload.name;
-email.innerHTML = payload.email;
-cpf.innerHTML = payload.cpf;
-
-
+axios.get(`http://localhost:8080/api/usuario/especifico/${payload.id}`)
+    .then(function (response) {
+        console.log(response);
+        nome.innerHTML = response.data.nome;
+        email.innerHTML = response.data.email;
+        cpf.innerHTML = response.data.cpf;
 
 
 //alterar dados
@@ -31,26 +28,43 @@ var modalUser = new bootstrap.Modal(document.getElementById('modalEdit'));
 document.querySelector('#editUser').addEventListener('click', function () {
     modalUser.show();
     document.getElementById('salvarEdit').addEventListener('click', function () {
+        if (nomeUser.value == "" || emailUser.value == "" || cpfUser.value == "") {
+            msgErro('Preencha todos os campos!', 'red')
+        }
+        else {
         alteraDados(id = payload.id)
         modalUser.hide();
+        }
     });
 }
 )
-const emailUser = document.getElementById('emailUser').value = payload.email;
-const nomeUser = document.getElementById('nomeUser').value = payload.name;
-const cpfUser = document.getElementById('cpfUser').value = payload.cpf;
+nome = response.data.nome;
+email = response.data.email;
+cpf = response.data.cpf;
 
-userEdit = {
-    nome: nomeUser,
-    email: emailUser,
-    cpf: cpfUser
-}
-function alteraDados(id){
-    axios.put(`http://192.168.3.106:8080/api/usuario/${id}`, userEdit,
-         )
+
+
+const nomeUser = document.getElementById('nomeUser')
+const emailUser = document.getElementById('emailUser')
+const cpfUser = document.getElementById('cpfUser')
+
+nomeUser.value = nome
+emailUser.value = email;
+cpfUser.value = cpf;
+
+function alteraDados(){
+   
+    axios.put(`http://192.168.3.106:8080/api/usuario/editausuario/${payload.id}`, {
+        id: id,
+        nome: nomeUser.value,
+        email: emailUser.value,
+        cpf: cpfUser.value,
+        senha: payload.senha,
+    })
         .then(function (response) {
             console.log(response);
             msgErro('Dados alterados com sucesso!', 'green')
+            location.reload();
         }
         ).catch(function (error) {
             console.log(error);
@@ -60,21 +74,48 @@ function alteraDados(id){
 }
 
 //alterar senha
+
+/* const senhaAtual = document.getElementById('senhaAtual').value
+const novaSenha = document.getElementById('novaSenha')
+const confirmaNovaSenha = document.getElementById('confirmaNovaSenha')
+ 
+
+function alterarSenha(){
+    axios.put(`http://localhost:8080/api/usuario/editausuario/${payload.id}`, {
+        id: id,
+        nome: nomeUser.value,
+        email: emailUser.value,
+        cpf: cpfUser.value,
+        senha: confirmaNovaSenha.value,
+    })
+        .then(function (response) {
+            console.log(response);
+            msgErro('Dados alterados com sucesso!', 'green')
+        }
+        ).catch(function (error) {
+            console.log(error);
+            msgErro('Erro ao alterar dados!', 'red')
+        }
+        );
+    } 
+    */
 const alteraSenha = document.getElementById('alteraSenha');
 const modalSenha = new bootstrap.Modal(document.getElementById('modalSenha'));
 alteraSenha.addEventListener('click', function () {
     modalSenha.show();
     document.getElementById('salvarSenha').addEventListener('click', function () {
-        modalSenha.hide();
+       /*  if (senhaAtual == payload.senha) {
+            if (novaSenha.value == confirmaNovaSenha.value) {
+                alterarSenha()
+                modalSenha.hide();
+            } else {
+                msgErro('Senhas não conferem!', 'red')
+            }
+        } */
+     
     });
 }
 )
-const senhaAtual = document.getElementById('senhaAtual').value = payload.senha;
-const novaSenha = document.getElementById('novaSenha').value = payload.senha;
-const confirmaNovaSenha = document.getElementById('confirmaNovaSenha')
-
-
-
 
 //excluir conta
 const excuirUser = document.getElementById('deleteUser')
@@ -120,4 +161,7 @@ function msgErro(msgText, color) {
         div.remove();
     }, 6000); // 6 segundos
 
-}
+}  }
+).catch(function (error) {
+    console.log(error);
+})

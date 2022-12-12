@@ -33,6 +33,31 @@ const salvar = document.querySelector('#salvar');
 
 const url = 'http://192.168.3.106:8080/api/empresa';
 
+function sendEmail() {
+  var params = {
+    name: document.getElementById("nome_Empresa").value,
+    email: document.getElementById("email_Empresa").value
+
+  };
+  const serviceId = 'service_78e3oad';
+  const templateId = 'template_ido3cd9';
+
+  emailjs.send(serviceId, templateId, params)
+  .then((res) => {
+        document.getElementById("nome_Empresa").value = "";
+        document.getElementById("email_Empresa").value = "";
+  
+      })
+    .catch(function (err) {
+
+      console.log('failed', err);
+    }
+    );
+}
+
+
+
+
 function cadastrar() {
   axios.post(url, {
     nome: nome_Empresa.value,
@@ -88,9 +113,11 @@ function limpar() {
   }
   else {
     cadastrar();
+    sendEmail();
     limpar();
+    setTimeout(function () {
     window.location.replace('/../../../templates/login/login/login_empresa.html')
- 
+    }, 3000);
   }
 
 

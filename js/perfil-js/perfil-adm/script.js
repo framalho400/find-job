@@ -1,17 +1,27 @@
+
  var token = sessionStorage.getItem("token")
 
+ function parseJwt(token) {
+   var base64Url = token.split('.')[1];
+   var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+   var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+     return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+   }).join(''));
+ 
+   return JSON.parse(jsonPayload);
+ };
+ 
+ const payload = parseJwt(token)
+ const tipoUser = payload.tipoUser;
+ if (tipoUser == "administrador") {
+   if(payload.ativo == false){
+     window.location.replace('/../../../templates/login/login/login_adm.html')
+    
+   
+   }
+ }
 
-function parseJwt(token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-
-    return JSON.parse(jsonPayload);
-};
-
-const payload = parseJwt(token)
+ 
 const nomeSpan = document.getElementById('nomeSpan').innerHTML = payload.name;
 const emailSpan = document.getElementById('emailSpan').innerHTML = payload.email;
 const cpfSpan = document.getElementById('cpfSpan').innerHTML = payload.cpf;

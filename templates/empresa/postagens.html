@@ -92,7 +92,7 @@
                             </a>
                         </li>
                         <li class="sair">
-                            <a href="../login/login/login.html">
+                            <a href="../login/login/login_empresa.html">
                                 <i class='bx bx-log-out icon sair'></i>
                             </a>
                         </li>
@@ -150,8 +150,8 @@
         </div>
 
     </div>
-    <!-- ADICIONA VAGA-->
-    <div class="modal fade" id="modalAddVaga1" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+     <!-- ADICIONA VAGA-->
+     <div class="modal fade" id="modalAddVaga1" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
 
         <div class="modal-dialog modal-dialog modal-xl">
             <div class="modal-content">
@@ -166,7 +166,7 @@
                           <input type="text" class="form-control" placeholder="Nome da vaga" id="tituloVaga">
                         </div>
                         
-                     
+                   
                         <div class="col-md-12">
                             <h5>Meios de contato:</h5>
                         </div>
@@ -230,11 +230,19 @@
                             <label class="form-label">ÁREA PROFISSIONAL:</label>
                             <select class="form-select" aria-label="Default select example" id="areaProfissional">
                                 <option disabled selected>Selecione uma opção</option>
-                                <option value="adiministrador">Administração</option>
-                                <option value="logistica">Logistica</option>
-                                
-                
-                
+                                <option value="administracao">Administração</option>
+                                <option value="alimentosBebidas">Alimentos e bebidas</option>
+                                <option value="design">Design Gráfico</option>
+                                <option value="eletrica">Elétrica</option>
+                                <option value="empilhadeira">Empilhadeira</option>
+                                <option value="logistica">Logística</option>
+                                <option value="mecatronica">Mecatrônica</option>
+                                <option value="mecanica">Mecânica</option>
+                                <option value="MeioAmbiente">Meio Ambiente</option>
+                                <option value="metalurgia">Metalurgia</option>
+                                <option value="sisAutomacao">Sistema de automação</option>
+                                <option value="soldagem">Soldagem</option>
+                                <option value="TI">Tecnologia da Informação</option>                            
                              </select>
                           </div>   
                 
@@ -276,7 +284,7 @@
                 
                          <div class="col-md-12">
                             <label class="form-label">REQUISITOS:</label>
-                            <textarea class="form-control" rows="3" placeholder="Requisitos"id="requisitos"></textarea>
+                            <textarea class="form-control" rows="3" placeholder="Ex: Ensino Médio, Ensino Superior, etc..."id="requisitos"></textarea>
                         </div>
                 
                 
@@ -290,10 +298,9 @@
                 
                        <div class="col-md-12">
                             <label class="form-label">DESEJÁVEL:</label>
-                            <textarea class="form-control" rows="2" placeholder="Desejável" id="desejaveis"></textarea>
+                            <textarea class="form-control" rows="2" placeholder="Ex: Excel, Word, PowerPoint, etc..." id="desejaveis"></textarea>
                         </div>
-                
-                
+        
                           
                           <div class="col-md-12">
                             <label class="form-label">BENEFÍCIOS:</label>
@@ -303,8 +310,9 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" id="voltarVaga">Voltar</button>
-                    <button class="btn btn-primary"
+                    <button class="btn btn-primary" 
+                    id="voltarVaga">Voltar</button>
+                    <button class="btn btn-primary" 
                         id="salvarVaga">Salvar</button>
 
 
@@ -312,6 +320,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="modalContato" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog">
             <div class="modal-content">

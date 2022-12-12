@@ -10,13 +10,15 @@ function parseJwt(token) {
   return JSON.parse(jsonPayload);
 };
 
-
 const payload = parseJwt(token)
+const tipoUser = payload.tipoUser;
+
+if (tipoUser == "empresa") {
+  if (payload.ativo == false || payload.aprovado == false) {
+    window.location.replace('/../../../templates/login/login/login_empresa.html')
 
 
-
-if(payload.aprova == false || payload.ativo == false){
-  window.location.replace('/../../../templates/login/login/login_empresa.html')
+  }
 }
 
 
@@ -150,19 +152,16 @@ const IareaProfissional = document.getElementById('areaProfissional');
 const Icontratacao = document.getElementById('contratacao');
 const Iperiodo = document.getElementById('periodo');
 
-var opcaoTextoAreaProfissional = IareaProfissional.options[areaProfissional.selectedIndex].text
-var opcaoTextoContratacao = Icontratacao.options[contratacao.selectedIndex].text;
-var opcaoTextoPeriodo = Iperiodo.options[periodo.selectedIndex].text;
-
-
-
+var opcaoTextoAreaProfissional = IareaProfissional.options[IareaProfissional.selectedIndex].text
+var opcaoTextoContratacao = Icontratacao.options[Icontratacao.selectedIndex].text;
+var opcaoTextoPeriodo = Iperiodo.options[Iperiodo.selectedIndex].text;
 
 
 
 
 //função para criar vaga
 function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejavel, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, contratacao, periodo, ativo, areaProfissional, idEmpresa, nome, cnpj, email, telefone, whatsappEmpresa, siteEmpresa, endereco, numero, complemento, bairro, cidade, uf, cep, ativoEmpresa) {
- 
+
 
 
   const principal = document.querySelector('.principal');
@@ -253,17 +252,18 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejavel, de
       IemailContato.value = emailContato;
       ItelefoneContato.value = contato;
       Iwhatsapp.value = whatsapp;
-      Idesejaveis.value = desejaveis;
+      Idesejaveis.value = desejavel;
       Idescricao.value = descricao;
       Irequisitos.value = requisitos;
       Icuidados.value = cuidados;
       Ibeneficios.value = beneficios;
       Isite.value = site;
       Isalario.value = salario;
-      IareaProfissional.value = areaProfissional;
-      Icontratacao.value = contratacao;
-      Iperiodo.value = periodo;
-    
+      opcaoTextoAreaProfissional.value = areaProfissional;
+      opcaoTextoContratacao.value = contratacao;
+      opcaoTextoPeriodo.value = periodo;
+
+
       addVaga.show();
       modal.hide();
 
@@ -289,12 +289,12 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejavel, de
             beneficios: Ibeneficios.value,
             site: Isite.value,
             salario: Isalario.value,
-            areaProfissional:areaProfissional,
+            areaProfissional: areaProfissional,
             contratacao: contratacao,
             periodo: periodo,
             ativo: true,
             empresa: {
-              id: idEmpresa, 
+              id: idEmpresa,
             }
 
           })
@@ -303,6 +303,7 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejavel, de
           .then((response) => {
             console.log(JSON.stringify(response.data));
             data = response.data;
+            location.reload();
 
           })
           .catch((error) => {

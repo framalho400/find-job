@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- validação do token-->
+    <script src="../../js/token/adm/script.js" defer></script>
     <!----===== Bootstrap ===== -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -13,7 +15,7 @@
     <link rel="stylesheet" href="../../css/solicitacao-style/estilo.css">
     <link rel="stylesheet" href="../../css/navbar-style/estilo.css">
     <link rel="stylesheet" href="../../css/notifications-style/estilo.css">
-    
+
     <!--   <link rel="stylesheet" href="../../css/modal-style/estilo.css">
  -->
 
@@ -24,9 +26,14 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
 
-    <!-- validação do token-->
-    <script src="../../js/token/adm/script.js" defer></script>
-
+    <!-- Envio de email quando cadastrar -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("z7o4593zD739tQAdz");
+        })();
+    </script>
 </head>
 
 <body>
@@ -42,8 +49,8 @@
             <div class="user" href="perfil.html">
 
                 <div class="user-text">
-                    <label id="nameUser" >Olá</label>
-                  </div>
+                    <label id="nameUser">Olá</label>
+                </div>
             </div>
 
 
@@ -131,7 +138,7 @@
                             <h3 class="card-title">Solicitações de Vaga</h3>
                             <div class="btn-superior">
                                 <div class="add">
-                                   
+
                                     <div class="addVaga">
                                         <button type="button" class="btn addVaga" id="adiconaVaga">Adicionar Vaga
                                             +</button>
@@ -140,7 +147,7 @@
                                         <button type="button" class="btn addEmpresa" id="adiconaEmpresa">Adicionar
                                             Empresa +</button>
                                     </div>
-                               
+
                                 </div>
                             </div>
                             <div id="vagasGroup"></div>
@@ -184,40 +191,45 @@
                         <div class="modal-body">
                             <form class="row g-3">
                                 <div class="col-md-6">
-                                  <label class="form-label">NOME DA VAGA:</label>
-                                  <input type="text" class="form-control" placeholder="Nome da vaga" id="tituloVaga">
+                                    <label class="form-label">NOME DA VAGA:</label>
+                                    <input type="text" class="form-control" placeholder="Nome da vaga" id="tituloVaga">
                                 </div>
-                                
+
                                 <div class="col-md-6">
                                     <label class="form-label">NOME DA EMPRESA:</label>
-                                    <select class="form-select" aria-label="Default select example" id="empresaSelect" >
+                                    <select class="form-select" aria-label="Default select example" id="empresaSelect">
                                         <option disabled selected>Selecione uma opção</option>
-                                     </select>
+                                    </select>
                                 </div>
                                 <div class="col-md-12">
                                     <h5>Meios de contato:</h5>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">E-MAIL DA EMPRESA:</label>
-                                    <input type="email" class="form-control" placeholder="E-mail da empresa" id="emailContato">
+                                    <input type="email" class="form-control" placeholder="E-mail da empresa"
+                                        id="emailContato">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">WHATSAPP DA EMPRESA:</label>
-                                    <input type="text" class="form-control"id= "wppVaga" placeholder="WhatsApp da empresa" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" />
+                                    <input type="text" class="form-control" id="wppVaga"
+                                        placeholder="WhatsApp da empresa" onkeypress="mask(this, mphone);"
+                                        onblur="mask(this, mphone);" />
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">TELEFONE DA EMPRESA:</label>
-                                    <input type="text" class="form-control" id="telefoneContato"placeholder="Telefone da empresa" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" />
+                                    <input type="text" class="form-control" id="telefoneContato"
+                                        placeholder="Telefone da empresa" onkeypress="mask(this, mphone);"
+                                        onblur="mask(this, mphone);" />
                                 </div>
-                        
-                        
-                        
-                               <div class="col-md-6">
+
+
+
+                                <div class="col-md-6">
                                     <label class="form-label">SITE DA EMPRESA:</label>
                                     <input type="text" class="form-control" placeholder="Site da empresa" id="site">
                                 </div>
-                        
-                        
+
+
                                 <div class="col-md-6">
                                     <label class="form-label">REGIME DE CONTRATAÇÃO:</label>
                                     <select class="form-select" aria-label="Default select example" id="contratacao">
@@ -227,7 +239,7 @@
                                         <option value="temporario">Temporário</option>
                                         <option value="terceirizado">Terceirizado</option>
                                         <option value="intermitente">Intermitente</option>
-                                        <option value="parcial">Parcial</option>         
+                                        <option value="parcial">Parcial</option>
                                         <option value="homeOffice">Home-office</option>
                                         <option value="autônomo">Autônomo</option>
                                         <option value="prestacaoServiços">Prestação de serviços</option>
@@ -235,12 +247,12 @@
                                         <option value="trainee">Trainee</option>
                                         <option value="jovemAprendiz">Jovem aprendiz</option>
                                         <option value="trabalhadorHipersuficiente">Trabalhador hipersuficiente</option>
-                        
-                        
-                        
-                                     </select>
+
+
+
+                                    </select>
                                 </div>
-                                
+
                                 <div class="col-md-6">
                                     <label class="form-label">PERÍODO DA VAGA:</label>
                                     <select class="form-select" aria-label="Default select example" id="periodo">
@@ -248,14 +260,15 @@
                                         <option value="diurno">Diurno</option>
                                         <option value="noturno">Noturno</option>
                                         <option value="matutino">Matutino</option>
-                                      </select>
+                                    </select>
                                 </div>
-                        
-                        
-                        
-                                 <div class="col-md-6">
+
+
+
+                                <div class="col-md-6">
                                     <label class="form-label">ÁREA PROFISSIONAL:</label>
-                                    <select class="form-select" aria-label="Default select example" id="areaProfissional">
+                                    <select class="form-select" aria-label="Default select example"
+                                        id="areaProfissional">
                                         <option disabled selected>Selecione uma opção</option>
                                         <option value="administracao">Administração</option>
                                         <option value="alimentosBebidas">Alimentos e bebidas</option>
@@ -269,22 +282,24 @@
                                         <option value="metalurgia">Metalurgia</option>
                                         <option value="sisAutomacao">Sistema de automação</option>
                                         <option value="soldagem">Soldagem</option>
-                                        <option value="TI">Tecnologia da Informação</option>                            
-                                     </select>
-                                  </div>   
-                        
-                        
-                        
-                                 <div class="col-md-6">
+                                        <option value="TI">Tecnologia da Informação</option>
+                                    </select>
+                                </div>
+
+
+
+                                <div class="col-md-6">
                                     <label class="form-label">SALÁRIO:</label>
-                                    <input type="text" class="form-control" placeholder="Salário" id="salario" maxlength="9" onkeyup="formatarMoeda()">
-                                  </div>   
-                                  
-                                  <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Salário" id="salario"
+                                        maxlength="9" onkeyup="formatarMoeda()">
+                                </div>
+
+                                <div class="col-md-6">
                                     <label class="form-label">AOS CUIDADOS DE:</label>
-                                    <input type="text" id="cuidados" class="form-control" placeholder="Pessoa que receberá os currículos">
-                                  </div>    
-                              
+                                    <input type="text" id="cuidados" class="form-control"
+                                        placeholder="Pessoa que receberá os currículos">
+                                </div>
+
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -305,42 +320,45 @@
                         </div>
                         <div class="modal-body">
                             <form class="row g-3">
-                                
-                        
-                        
-                        
-                                 <div class="col-md-12">
+
+
+
+
+                                <div class="col-md-12">
                                     <label class="form-label">REQUISITOS:</label>
-                                    <textarea class="form-control" rows="3" placeholder="Ex: Ensino Médio, Ensino Superior, etc..."id="requisitos"></textarea>
+                                    <textarea class="form-control" rows="3"
+                                        placeholder="Ex: Ensino Médio, Ensino Superior, etc..."
+                                        id="requisitos"></textarea>
                                 </div>
-                        
-                        
-                        
-                               <div class="col-md-12">
+
+
+
+                                <div class="col-md-12">
                                     <label class="form-label">DESCRIÇÃO DA VAGA:</label>
-                                    <textarea class="form-control" rows="2" placeholder="Descrição da vaga"id ="descricao"></textarea>
+                                    <textarea class="form-control" rows="2" placeholder="Descrição da vaga"
+                                        id="descricao"></textarea>
                                 </div>
-                        
-                        
-                        
-                               <div class="col-md-12">
+
+
+
+                                <div class="col-md-12">
                                     <label class="form-label">DESEJÁVEL:</label>
-                                    <textarea class="form-control" rows="2" placeholder="Ex: Excel, Word, PowerPoint, etc..." id="desejaveis"></textarea>
+                                    <textarea class="form-control" rows="2"
+                                        placeholder="Ex: Excel, Word, PowerPoint, etc..." id="desejaveis"></textarea>
                                 </div>
-                
-                                  
-                                  <div class="col-md-12">
+
+
+                                <div class="col-md-12">
                                     <label class="form-label">BENEFÍCIOS:</label>
-                                    <textarea class="form-control" id="beneficios" rows="2" placeholder="Ex: Vale Refeição, Vale Alimentação, Vale Transporte, etc..."></textarea>
-                                </div>   
-                            
+                                    <textarea class="form-control" id="beneficios" rows="2"
+                                        placeholder="Ex: Vale Refeição, Vale Alimentação, Vale Transporte, etc..."></textarea>
+                                </div>
+
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-primary" 
-                            id="voltarVaga">Voltar</button>
-                            <button class="btn btn-primary" 
-                                id="salvarVaga">Salvar</button>
+                            <button class="btn btn-primary" id="voltarVaga">Voltar</button>
+                            <button class="btn btn-primary" id="salvarVaga">Salvar</button>
 
 
                         </div>
@@ -361,7 +379,8 @@
                             <form class="row g-3">
                                 <div class="col-md-6">
                                     <label class="form-label">NOME DA EMPRESA:</label>
-                                    <input type="text" class="form-control" placeholder="Nome da empresa" id="nomeEmpresa">
+                                    <input type="text" class="form-control" placeholder="Nome da empresa"
+                                        id="nomeEmpresa">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">E-MAIL:</label>
@@ -369,13 +388,12 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">TELEFONE:</label>
-                                    <input type="text" class="form-control"  maxlength="15"
+                                    <input type="text" class="form-control" maxlength="15"
                                         onkeypress="return onlynumber();" placeholder="Telefone" id="telEmpresa">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">CNPJ:</label>
-                                    <input type="text" class="form-control"  placeholder="CNPJ"
-                                        id="cnpjEmpresa">
+                                    <input type="text" class="form-control" placeholder="CNPJ" id="cnpjEmpresa">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">CEP:</label>
@@ -386,7 +404,7 @@
                                     <label class="form-label">ENDEREÇO:</label>
                                     <input type="text" class="form-control" id="ruaEmpresa" placeholder="Endereço">
                                 </div>
-                               
+
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -407,7 +425,7 @@
                         </div>
                         <div class="modal-body">
                             <form class="row g-3">
-                                
+
                                 <div class="col-md-6">
                                     <label class="form-label">CIDADE:</label>
                                     <input type="text" class="form-control" id="cidadeEmpresa" placeholder="Cidade">
@@ -449,18 +467,18 @@
             <!-- Modal Vaga -->
             <div class="modal fade" id="modalVaga" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
                 <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
-                    <div class="modal-content" >
+                    <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title"  id="nomeVaga">Nome da Vaga</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close" id="closeModal"></button>
+                            <h5 class="modal-title" id="nomeVaga">Nome da Vaga</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                id="closeModal"></button>
                         </div>
                         <div class="modal-body" id="modalBody">
-                            
+
                         </div>
                         <div class="modal-footer">
-                            
-                      
+
+
                             <button type="button" class="btn btn-secondary" id="closeModal">Fechar</button>
                         </div>
                     </div>

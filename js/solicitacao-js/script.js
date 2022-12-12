@@ -10,8 +10,23 @@ function parseJwt(token) {
     return JSON.parse(jsonPayload);
 };
 
-
 const payload = parseJwt(token)
+const tipoUser = payload.tipoUser;
+if (tipoUser == "administrador") {
+    if (payload.ativo == false) {
+        window.location.replace('/../../../templates/login/login/login_adm.html')
+
+
+    }
+}
+if (tipoUser == "empresa") {
+    if (payload.ativo == false || payload.aprovado == false) {
+        window.location.replace('/../../../templates/login/login/login_empresa.html')
+
+
+    }
+}
+
 const userText = document.querySelector('.user-text');
 const userLogado = payload.name;
 userText.innerHTML = `Olá, ${userLogado.split(' ')[0]}`;
@@ -209,12 +224,61 @@ function aprovaVaga(id) {
         });
 }
 
+
+
+function vagaAprovada(empresa, emailContato) {
+    var params = {
+        name: empresa,
+        email: emailContato,
+        message: 'Sua vaga foi aprovada !'
+    };
+    const serviceId = 'service_78e3oad';
+    const templateId = 'template_qawj4km';
+
+    emailjs.send(serviceId, templateId, params)
+        .then((res) => {
+            console.log('success', res.status);
+
+
+        })
+        .catch(function (err) {
+
+            console.log('failed', err);
+        });
+}
+function vagaReprovada(empresa, emailContato) {
+    var params = {
+        name: empresa,
+        email: emailContato,
+        message: 'Sua vaga foi reprovada, por favor entre em contato com o administrador do site para mais informações.'
+    };
+    const serviceId = 'service_78e3oad';
+    const templateId = 'template_qawj4km';
+
+    emailjs.send(serviceId, templateId, params)
+        .then((res) => {
+            console.log('success', res.status);
+
+
+        })
+        .catch(function (err) {
+
+            console.log('failed', err);
+        });
+}
+
+
+
+
+
 const groupVagas = document.getElementById('vagasGroup');
 
 //Paginação das vagas
 function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejavel, descricao, requisitos, cuidados, expiracao, publicacao, beneficios,
     site, salario, contratacao, periodo, ativo, areaProfissional, empresa, cnpj, cep, endereco, numero, complemento, bairro, cidade, uf) {
-    const sVaga = document.createElement('div');
+    
+    
+        const sVaga = document.createElement('div');
     sVaga.classList.add('card-body');
     groupVagas.appendChild(sVaga);
     sVaga.innerHTML = `
@@ -266,7 +330,10 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejavel, de
 
         aprovaVaga(id);
         console.log(id);
-        location.reload();
+        vagaAprovada(empresa, emailContato)
+
+
+       /*  location.reload(); */
 
     })
 
@@ -283,7 +350,12 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejavel, de
     btnRecusar.addEventListener('click', function () {
         console.log(id)
         deleteVaga(id)
-        location.reload();
+        vagaReprovada(empresa, emailContato)
+
+        vagaReprovada
+        setTimeout(() => {
+            location.reload();
+        }, 3000);
 
     })
 
@@ -394,18 +466,16 @@ adicionaVaga.forEach(function (adicionaVaga) {
             })
 
             document.getElementById('salvarVaga').addEventListener('click', function () {
-                
-                if (ItituloVaga.value  == "" || IemailContato.value == "" || ItelefoneContato.value == "" || Iwhatsapp.value == "" || Idesejaveis.value == "" || Idescricao.value == "" || Irequisitos.value == "" || Icuidados.value == "" || Ibeneficios.value == "" || Isite.value == "" || 
-                Isalario.value == "" || IareaProfissional.value == "" || Icontratacao.value == "" || Iperiodo.value == "" ) {
-                msgErro("Preencha todos os campos", "red")
-                }
 
-                else{
+                if (ItituloVaga.value == "" || IemailContato.value == "" || ItelefoneContato.value == "" || Iwhatsapp.value == "" || Idesejaveis.value == "" || Idescricao.value == "" || Irequisitos.value == "" || Icuidados.value == "" || Ibeneficios.value == "" || Isite.value == "" ||
+                    Isalario.value == "" || IareaProfissional.value == "" || Icontratacao.value == "" || Iperiodo.value == "") {
+                    msgErro("Preencha todos os campos", "red")
+                } else {
                     cadastraVagas()
                     addVaga2.hide();
-                
+
                 }
-            
+
             })
         })
     })
@@ -488,11 +558,9 @@ adiconaEmpresa.forEach(function (adiconaEmpresa) {
                 event.preventDefault()
                 if (InomeEmpresa.value == "" || IemailEmpresa.value == "" || ItelEmpresa.value == "" || IcnpjEmpresa.value == "" || IcepEmpresa.value == "" || Iendereco.value == "" || IcidadeEmpresa.value == "" || IbairroEmpresa.value == "" || IufEmpresa.value == "" || InEmpresa.value == "" || IsenhaEmpresa.value == "" || IconfSenhaEmpresa.value == "") {
                     msgErro("Preencha todos os campos", "red")
-                }
-                else if (IsenhaEmpresa.value != IconfSenhaEmpresa.value) {
+                } else if (IsenhaEmpresa.value != IconfSenhaEmpresa.value) {
                     msgErro("Senhas não conferem", "red")
-                }
-                else {
+                } else {
                     cadEmpresa()
                     addEmpresa2.hide();
                 }
@@ -721,7 +789,7 @@ function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep,
         </div>
     </div>`
         modalV.show()
-        location.reload();
+
     })
 
 

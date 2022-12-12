@@ -1,9 +1,3 @@
-
-
-
-
-
-
 //paginação
 const proximo = document.querySelector('#proximo')
 const voltar = document.querySelector('#voltar')
@@ -37,15 +31,13 @@ function sendEmail() {
   const serviceId = 'service_78e3oad';
   const templateId = 'template_bg0kdir';
 
-  emailjs
-    .send(serviceId, templateId, params)
-    .then((res) => {
+  emailjs.send(serviceId, templateId, params)
+  .then((res) => {
         document.getElementById("nome").value = "";
         document.getElementById("email").value = "";
-        alert("Email enviado com sucesso!");
+    
 
       })
-    
     .catch(function (err) {
 
       console.log('failed', err);
@@ -71,22 +63,15 @@ function cadastrar() {
     nome: Inome.value,
     cpf: Icpf.value,
     email: Iemail.value,
-    senha: Isenha.value,
-    tipoUsuario: "USUARIO",
+    senha: Isenha.value
   })
     .then((response) => {
       console.log(JSON.stringify(response.data));
       msgErro(msgText = "Cadastrado com sucesso!", color = "green");
+
     })
-    .catch((error) => { console.log(error)
-      if (error.response.status == 400) {
-        msgErro(msgText = "Erro ao cadastrar!", color = "red");
-      }
-    else if (error.response.status == 422) {
-      msgErro(msgText = "Usuario já cadastrados!", color = "red");
-    }
-     
-    })
+    .catch((error) => console.log(error) );
+
 };
 
 function limpar() {
@@ -112,11 +97,12 @@ formulario.addEventListener('submit', function (event) {
     msgErro(msgText = "As senhas não coincidem!");
   }
   else {
-
+    sendEmail()
     cadastrar();
     limpar();
-  /*   sendEmail(); */
-
+   setTimeout(function () {
+    window.location.replace('/../../../templates/login/login/login_user.html')
+  }, 3000); // 3 segundos
   }
 
 
@@ -130,13 +116,21 @@ function msgErro(msgText, color) {
   div.style.borderLeft = `solid 10px ${color}`;
   div.innerText = msgText;
   document.body.appendChild(div);
-  
-  
+
+
+
   setTimeout(function () {
-      div.classList.add('close')
+    div.classList.add('close')
   }, 3000); // 5 segundos
   setTimeout(function () {
-      div.remove();
+    div.remove();
   }, 6000); // 6 segundos
-
+  
+  div.forEach(element => {
+    element.addEventListener('click', function () {
+      element.remove();
+    })
+  });
 }
+  
+  
