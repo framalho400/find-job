@@ -54,12 +54,13 @@ cpfUser.value = cpf;
 
 function alteraDados(){
    
-    axios.put(`http://192.168.3.106:8080/api/usuario/editausuario/${payload.id}`, {
+    axios.put(`http://localhost:8080/api/usuario/editausuario/${payload.id}`, {
         id: id,
         nome: nomeUser.value,
         email: emailUser.value,
         cpf: cpfUser.value,
         senha: payload.senha,
+        tipoUsuario: "USUARIO"
     })
         .then(function (response) {
             console.log(response);
@@ -129,11 +130,11 @@ excuirUser.addEventListener('click', function () {
 }
 )
 function deleteUser(){
-    axios.delete(`http://192.168.3.106:8080/api/usuario/excluir/${payload.id}`)
+    axios.delete(`http://localhost:8080/api/usuario/excluir/${payload.id}`)
     .then(function (response) {
         console.log(response);
         sessionStorage.clear();
-        location.reload();
+        window.location.replace('/../../../templates/login/login/login_user.html')
     }
     ).catch(function (error) {
         console.log(error);

@@ -11,7 +11,7 @@ const logar = document.querySelector('#entrar').addEventListener('click',
 
 
 
-const url = 'http://192.168.3.106:8080/api/empresa/login'
+const url = 'http://localhost:8080/api/empresa/login'
 
 function entrar() {
     axios.post(url, {

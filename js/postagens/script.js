@@ -80,7 +80,7 @@ adiconaVaga.addEventListener('click', function () {
 
 
 function getVagas() {
-  axios.get('http://192.168.3.106:8080/api/empresa/vaga')
+  axios.get('http://localhost:8080/api/empresa/vaga')
     .then((response) => {
       console.log(JSON.stringify(response.data));
       data = response.data;
@@ -126,7 +126,7 @@ getVagas();
 
 
 function deleteVaga(id) {
-  axios.delete('http://192.168.3.106:8080/api/empresa/vaga/excluir/' + id)
+  axios.delete('http://localhost:8080/api/empresa/vaga/excluir/' + id)
     .then((response) => {
       console.log(JSON.stringify(response.data));
       data = response.data;
@@ -274,7 +274,7 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejavel, de
       document.getElementById('salvarVaga').addEventListener('click', function () {
 
 
-        axios.put('http://192.168.3.106:8080/api/empresa/vaga/editavaga/' + id, {
+        axios.put('http://localhost:8080/api/empresa/vaga/editavaga/' + id, {
             id: id,
             tituloVaga: ItituloVaga.value,
             emailContato: IemailContato.value,

@@ -85,7 +85,7 @@ adiconaVaga.addEventListener('click', function () {
 
 
 function getVagas() {
-  axios.get('http://192.168.3.106:8080/api/empresa/vaga')
+  axios.get('http://localhost:8080/api/empresa/vaga')
     .then((response) => {
       console.log(JSON.stringify(response.data));
       data = response.data;
@@ -97,10 +97,8 @@ function getVagas() {
 
       data.forEach(vaga => {
         if (vaga.ativo == true) {
-          criaVaga(vaga.id, vaga.tituloVaga, vaga.emailContato, vaga.contato, vaga.whatsapp, vaga.desejavel, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.contratacao, vaga.periodo, vaga.ativo, vaga.empresa.id, vaga.empresa.nome, vaga.empresa.cnpj, vaga.empresa.email, vaga.empresa.telefone, vaga.empresa.whatsapp, vaga.empresa.site, vaga.empresa.endereco,vaga.empresa.numero, vaga.empresa.complemento,vaga.empresa.bairro, vaga.empresa.cidade, vaga.empresa.uf, vaga.empresa.cep, vaga.empresa.ativo,);
+          criaVaga(vaga.id, vaga.tituloVaga, vaga.emailContato, vaga.contato, vaga.whatsapp, vaga.desejavel, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios, vaga.site, vaga.salario, vaga.contratacao, vaga.periodo, vaga.ativo,vaga.areaProfissional, vaga.empresa.id, vaga.empresa.nome, vaga.empresa.cnpj, vaga.empresa.email, vaga.empresa.telefone, vaga.empresa.whatsapp, vaga.empresa.site, vaga.empresa.endereco,vaga.empresa.numero, vaga.empresa.complemento,vaga.empresa.bairro, vaga.empresa.cidade, vaga.empresa.uf, vaga.empresa.cep, vaga.empresa.ativo);
         }
-
-
 
       });
     
@@ -131,7 +129,7 @@ getVagas();
 
 
 //função para criar vaga
-function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejavel, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, contratacao, periodo, ativo, idEmpresa, nome, cnpj, email, telefone, whatsappEmpresa, siteEmpresa, endereco, numero, complemento, bairro, cidade, uf, cep, ativoEmpresa) {
+function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejavel, descricao, requisitos, cuidados, expiracao, publicacao, beneficios, site, salario, contratacao, periodo, ativo,areaProfissional, idEmpresa, nome, cnpj, email, telefone, whatsappEmpresa, siteEmpresa, endereco, numero, complemento, bairro, cidade, uf, cep, ativoEmpresa) {
 
 
   const principal = document.querySelector('.principal');
@@ -147,7 +145,7 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejavel, de
     <div class="r">
     <div class="local">
         <h6>Local:</h6>
-        <p></p>
+        <p>${endereco}, ${numero}, ${bairro}, ${cep}, ${uf}</p>
     </div>
     </div>
     <div class="requisitos">
@@ -277,14 +275,17 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejavel, de
     })
     const contatos = document.getElementById('contatos')
 
-    var modalcontato = new bootstrap.Modal(document.getElementById('modalContato'));
+    var modalcontato = new bootstrap.Modal(document.querySelector('#modalContato'));
 
-    contatos.addEventListener('click', function () {
+    document.getElementById('contatos').addEventListener('click', function () {
       modal.hide()
       modalcontato.show()
       document.getElementById('closeContato').addEventListener('click', function () {
         modalcontato.hide()
-        modal.show()
+            
+        setTimeout(function () {
+        location.reload()
+        }, 1000); 
       })
 
     })
@@ -341,6 +342,11 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejavel, de
 
             </div>
             <div class="col-md-4 ms-auto">
+
+            <span>
+                <h5>Descriçao:</h5>
+                <p>${areaProfissional}</p>
+            </span>
                 <span>
                     <h5>Salario:</h5>
                     <p>${salario}</p>

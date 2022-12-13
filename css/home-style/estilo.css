@@ -315,15 +315,6 @@ h4 {
     border-bottom: solid 10px var(--blue-color);
 
 }
-#copia-contato:hover{
-    position: relative;
-    background-color: var(--blue-color);
-    opacity: 0.3;
-    color: var(--white-color);
-    cursor: pointer;
-    border-radius: 15px;
-}
-
 
 
 @media screen and (max-width: 1000px) {

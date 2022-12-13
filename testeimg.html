@@ -18,6 +18,8 @@
     <button onclick="open()">
 Mandar Imagem
     </button>
+
+    <span id="span"></span>
 </body>
   <script>
 let base64String = "";
@@ -47,10 +49,29 @@ let base64String = "";
         cpf: "29567739846",
         email: "framalhosdfs@gmail.com",
         senha: "123456",
-        imagem: base64String
+        tipoUsuario: "USUARIO",
+        foto: base64String
       })
   }
 
+    function open(){
+        axios.get('http://localhost:8080/api/usuario/especifico/1')
+        .then(function (response) {
+        foto = response.data[0].foto;
+        foto = "data:image/png;base64," + foto;
+       
+        var img = document.createElement("img");
+    const span = document.getElementById("span");
+    span.appendChild(img);
+        })
+        .catch(function (error) {
+        // handle error
+        console.log(error);
+        })
+        .then(function () {
+        // always executed
+        });
+    }
 
 
   </script>

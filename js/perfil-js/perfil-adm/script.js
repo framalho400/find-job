@@ -37,7 +37,7 @@ const confirmaSenha = document.getElementById('confirmaSenha');
 
 
 
-url = "http://192.168.3.106:8080/api/adm";
+url = "http://localhost:8080/api/adm";
 function criaAdm() {
     axios.post(url, {
         nome: nome.value,
@@ -68,7 +68,8 @@ document.querySelector('#editAdm').addEventListener('click', function () {
 var newAdm = new bootstrap.Modal(document.getElementById('newAdm'));
 document.querySelector('#addAdm').addEventListener('click', function () {
     newAdm.show();
-    document.getElementById('salvaAdm').addEventListener('click', function () {
+    document.getElementById('salvaAdm').addEventListener('click', function (e) {
+        e.preventDefault();
         criaAdm();
         newAdm.hide();
     });
@@ -77,7 +78,7 @@ document.querySelector('#addAdm').addEventListener('click', function () {
 
 
 function editaAdm(id = payload.id) {
-    axios.put(`http://192.168.3.106:8080/api/adm/editaadm/${id}`, {
+    axios.put(`http://localhost:8080/api/adm/editaadm/${id}`, {
         nome: nome.value,
         email: email.value,
         cpf: cpf.value,

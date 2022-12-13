@@ -84,7 +84,7 @@ function criaOptionEmpresa(id, nomeEmpresa) {
 }
 
 function selecionaEmpresa() {
-    axios.get(`http://192.168.3.106:8080/api/empresa/`)
+    axios.get(`http://localhost:8080/api/empresa/`)
 
         .then((response) => {
             console.log(JSON.stringify(response.data));
@@ -105,7 +105,7 @@ function selecionaEmpresa() {
 selecionaEmpresa();
 
 
-const url = "http://192.168.3.106:8080/api/empresa/vaga";
+const url = "http://localhost:8080/api/empresa/vaga";
 const ItituloVaga = document.getElementById('tituloVaga');
 const IemailContato = document.getElementById('emailContato');
 const ItelefoneContato = document.getElementById('telefoneContato');
@@ -177,7 +177,7 @@ function getVagas() {
             data.forEach(vaga => {
                 if (vaga.ativo == false) {
                     criaVaga(vaga.id, vaga.tituloVaga, vaga.emailContato, vaga.contato, vaga.whatsapp, vaga.desejavel, vaga.descricao, vaga.requisitos, vaga.cuidados, vaga.expiracao, vaga.publicacao, vaga.beneficios,
-                        vaga.site, vaga.salario, vaga.contratacao, vaga.periodo, vaga.ativo, vaga.areaProfissional, vaga.empresa.nome, vaga.empresa.cnpj, vaga.empresa.cep, vaga.empresa.endereco,
+                        vaga.site, vaga.salario, vaga.contratacao, vaga.periodo, vaga.ativo, vaga.areaProfissional, vaga.empresa.nome,vaga.empresa.email, vaga.empresa.cnpj, vaga.empresa.cep, vaga.empresa.endereco,
                         vaga.empresa.numero, vaga.empresa.complemento, vaga.empresa.bairro, vaga.empresa.cidade, vaga.empresa.uf);
                 } else {
                     console.log("Vaga inativa" + vaga.id);
@@ -199,7 +199,7 @@ getVagas();
 
 //Reprovação de vagas 
 function deleteVaga(id) {
-    const deleteVagar = 'http://192.168.3.106:8080/api/empresa/vaga/excluir/'
+    const deleteVagar = 'http://localhost:8080/api/empresa/vaga/excluir/'
     axios.delete(deleteVagar + id)
         .then((response) => {
             const data = response.data;
@@ -212,7 +212,7 @@ function deleteVaga(id) {
 
 
 //Aprovação de vagas
-urlAtivaVaga = "http://192.168.3.106:8080/api/empresa/vaga/ativar/"
+urlAtivaVaga = "http://localhost:8080/api/empresa/vaga/ativar/"
 
 function aprovaVaga(id) {
     axios.put(urlAtivaVaga + id)
@@ -230,7 +230,7 @@ function vagaAprovada(empresa, emailContato) {
     var params = {
         name: empresa,
         email: emailContato,
-        message: 'Sua vaga foi aprovada !'
+        message: 'aprovada'
     };
     const serviceId = 'service_78e3oad';
     const templateId = 'template_qawj4km';
@@ -250,7 +250,7 @@ function vagaReprovada(empresa, emailContato) {
     var params = {
         name: empresa,
         email: emailContato,
-        message: 'Sua vaga foi reprovada, por favor entre em contato com o administrador do site para mais informações.'
+        message: 'recusada'
     };
     const serviceId = 'service_78e3oad';
     const templateId = 'template_qawj4km';
@@ -275,7 +275,7 @@ const groupVagas = document.getElementById('vagasGroup');
 
 //Paginação das vagas
 function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejavel, descricao, requisitos, cuidados, expiracao, publicacao, beneficios,
-    site, salario, contratacao, periodo, ativo, areaProfissional, empresa, cnpj, cep, endereco, numero, complemento, bairro, cidade, uf) {
+    site, salario, contratacao, periodo, ativo, areaProfissional, empresa,email_Empresa, cnpj, cep, endereco, numero, complemento, bairro, cidade, uf) {
     
     
         const sVaga = document.createElement('div');
@@ -330,10 +330,12 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejavel, de
 
         aprovaVaga(id);
         console.log(id);
-        vagaAprovada(empresa, emailContato)
-
-
-       /*  location.reload(); */
+        vagaAprovada(empresa, email_Empresa)
+        sVaga.style.display = "none";
+        setTimeout(() => {
+            location.reload();
+        }, 4000);
+       
 
     })
 
@@ -350,12 +352,11 @@ function criaVaga(id, tituloVaga, emailContato, contato, whatsapp, desejavel, de
     btnRecusar.addEventListener('click', function () {
         console.log(id)
         deleteVaga(id)
-        vagaReprovada(empresa, emailContato)
-
-        vagaReprovada
+        vagaReprovada(empresa, email_Empresa)
+        sVaga.style.display = "none";
         setTimeout(() => {
             location.reload();
-        }, 3000);
+        }, 4000);
 
     })
 
@@ -465,8 +466,8 @@ adicionaVaga.forEach(function (adicionaVaga) {
                 addVaga.show();
             })
 
-            document.getElementById('salvarVaga').addEventListener('click', function () {
-
+            document.getElementById('salvarVaga').addEventListener('click', function (e) {
+                e.preventDefault();
                 if (ItituloVaga.value == "" || IemailContato.value == "" || ItelefoneContato.value == "" || Iwhatsapp.value == "" || Idesejaveis.value == "" || Idescricao.value == "" || Irequisitos.value == "" || Icuidados.value == "" || Ibeneficios.value == "" || Isite.value == "" ||
                     Isalario.value == "" || IareaProfissional.value == "" || Icontratacao.value == "" || Iperiodo.value == "") {
                     msgErro("Preencha todos os campos", "red")
@@ -505,7 +506,7 @@ const salvarEmpresa = document.getElementById('salvarEmpresa');
 
 
 
-urlEmpresa = 'http://192.168.3.106:8080/api/empresa'
+urlEmpresa = 'http://localhost:8080/api/empresa'
 
 function cadEmpresa() {
 
@@ -584,7 +585,7 @@ closeModal.forEach(close => {
 
 
 
-urlEmpresa = "http://192.168.3.106:8080/api/empresa/"
+urlEmpresa = "http://localhost:8080/api/empresa/"
 
 function getEmpresa() {
     axios.get(urlEmpresa)
@@ -617,7 +618,7 @@ getEmpresa();
 
 
 function aprovaEmpresa(id) {
-    urlAprovaEmpresa = "http://192.168.3.106:8080/api/empresa/aprovar/"
+    urlAprovaEmpresa = "http://localhost:8080/api/empresa/aprovar/"
     axios.put(urlAprovaEmpresa + id, {
 
         })
@@ -634,7 +635,7 @@ function aprovaEmpresa(id) {
 
 
 function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep, numero, bairro) {
-    urlEmpresa = "http://192.168.3.106:8080/api/empresa/"
+    urlEmpresa = "http://localhost:8080/api/empresa/"
     axios.put(urlEmpresa + id, {
             id: id,
             nome: nome,
@@ -664,7 +665,7 @@ function criaEmpresa(id, nome, cnpj, email, telefone, endereco, cidade, uf, cep,
 
 
 function reprovaEmpresa(id) {
-    urlReprovaEmpresa = "http://192.168.3.106:8080/api/empresa/excluir/"
+    urlReprovaEmpresa = "http://localhost:8080/api/empresa/excluir/"
     axios.delete(urlReprovaEmpresa + id)
 
         .then((response) => {

@@ -21,30 +21,50 @@ if (tipoUser == "empresa") {
     }
 }
 
+axios.get(`http://localhost:8080/api/empresa/buscaempresa/${payload.id}`)
+    .then(function (response) {
+        console.log(response);
+        nome = response.data[0].nome;
+        email = response.data[0].email;
+        cnpj = response.data[0].cnpj;
+        telefone = response.data[0].telefone;
+        endereco = response.data[0].endereco;
+        cidade = response.data[0].cidade;
+        uf = response.data[0].uf;
+        cep = response.data[0].cep;
+        bairro = response.data[0].bairro;
+        numero = response.data[0].numero;
+        complemento = response.data[0].complemento;
+
+        
+   
+console.log(cnpj);
+
+
+
 
 const nomeEmpresa = document.querySelector('.nomeEmpresa');
 const emailEmpresa = document.querySelector('.emailEmpresa');
 const cnpjEmpresa = document.querySelector('.cnpjEmpresa');
 
-nomeEmpresa.innerHTML = payload.name;
-emailEmpresa.innerHTML = payload.email;
-cnpjEmpresa.innerHTML = payload.CNPJ;
+nomeEmpresa.innerHTML = nome;
+emailEmpresa.innerHTML = email;
+cnpjEmpresa.innerHTML = cnpj;
 
 
 var modalEmpresa = new bootstrap.Modal(document.getElementById('modalEdit'));
 document.querySelector('#editEmpresa').addEventListener('click', function () {
     modalEmpresa.show();
     document.getElementById('salvarEdit').addEventListener('click', function () {
-        editaEmpresa(id = payload.id);
+        editaEmpresa();
         modalEmpresa.hide();
     });
 })
 console.log(payload.id);
 
-const url = "http://192.168.3.106:8080/api/empresa/vaga";
+const url = "http://localhost:8080/api/empresa/vaga";
 
 function cadastraVagas() {
-
     const tituloVaga = document.getElementById('tituloVaga');
     const emailContato = document.getElementById('emailContato');
     const telefoneContato = document.getElementById('telefoneContato');
@@ -122,8 +142,13 @@ adicionaVaga.addEventListener('click', function () {
             addVaga2.hide();
             addVaga.show();
         })
-        document.getElementById('salvarVaga').addEventListener('click', function () {
-                if (document.getElementById('tituloVaga').value == "" || document.getElementById('emailContato').value == "" || document.getElementById('telefoneContato').value == "" || document.getElementById('wppVaga').value == "" || document.getElementById('desejaveis').value == "" || document.getElementById('descricao').value == "" || document.getElementById('requisitos').value == "" || document.getElementById('cuidados').value == "" || document.getElementById('beneficios').value == "" || document.getElementById('site').value == "" || document.getElementById('salario').value == "" || document.getElementById('areaProfissional').value == "" || document.getElementById('contratacao').value == "" || document.getElementById('periodo').value == ""  ){
+        document.getElementById('salvarVaga').addEventListener('click', function (e) {
+            e.preventDefault();
+                if (document.getElementById('tituloVaga').value == "" || document.getElementById('emailContato').value == "" || document.getElementById('telefoneContato').value == "" 
+                || document.getElementById('wppVaga').value == "" || document.getElementById('desejaveis').value == "" || document.getElementById('descricao').value == "" 
+                || document.getElementById('requisitos').value == "" || document.getElementById('cuidados').value == "" || document.getElementById('beneficios').value == "" 
+                || document.getElementById('site').value == "" || document.getElementById('salario').value == "" || document.getElementById('areaProfissional').value == "" 
+                || document.getElementById('contratacao').value == "" || document.getElementById('periodo').value == ""  ){
                    msgErro(msgText = "Preencha todos os campos!!", color = "red");
 
             } else {
@@ -139,7 +164,7 @@ adicionaVaga.addEventListener('click', function () {
 const nomeInput = document.querySelector('#nomeInput');
 const emailInput = document.querySelector('#emailInput');
 const telefoneInput = document.querySelector('#telInput');
-const cnpjIn = document.querySelector('#cnpjInput');
+const cnpjInput = document.querySelector('#cnpjInput');
 const cepInput = document.querySelector('#cepInput');
 const enderecoInput = document.querySelector('#enderecoInput');
 const nInput = document.querySelector('#nInput');
@@ -150,40 +175,38 @@ const UfInput = document.querySelector('#UfInput');
 
 
 
-nomeInput.value = payload.name;
-emailInput.value = payload.email;
-telefoneInput.value = payload.telefone;
-cnpjIn.value = payload.CNPJ;
-cepInput.value = payload.cep;
-enderecoInput.value = payload.endereco;
-nInput.value = payload.numero;
-complementoInput.value = payload.complemento;
-bairroInput.value = payload.bairro;
-cidadeInput.value = payload.cidade;
-UfInput.value = payload.uf;
+nomeInput.value = nome
+emailInput.value = email;
+telefoneInput.value = telefone;
+cnpjInput.value = cnpj;
+cepInput.value = cep;
+enderecoInput.value = endereco;
+nInput.value = numero;
+complementoInput.value = complemento;
+bairroInput.value = bairro;
+cidadeInput.value = cidade;
+UfInput.value = uf;
 
 
 
-function editaEmpresa(id) {
-    axios.put('http://192.168.3.106:8080/empresa/editaempresa/' + id, {
-            id:id,
+function editaEmpresa() {
+    axios.put('http://localhost:8080/api/empresa/editaempresa/' + payload.id, {
+            id:payload.id,
             nome: nomeInput.value,
             email: emailInput.value,
-            CNPJ: cnpjIn.value,
+            cnpj: cnpjInput.value,
             cep: cepInput.value,
             endereco: enderecoInput.value,
             numero: nInput.value,
             bairro: bairroInput.value,
             cidade: cidadeInput.value,
             uf: UfInput.value,
-            telefone: "",
+            telefone: telefoneInput.value,
             complemento: "",
             tipoUsuario: "EMPRESA",
             ativo: payload.ativo,
             aprova: payload.aprova,
-            senha: payload.senha,
-
-
+            senha: payload.senha
         }, )
         .then(function (response) {
             console.log(response);
@@ -203,8 +226,18 @@ const modalExcluir = new bootstrap.Modal(document.getElementById('modalDelUser')
 desativaEmpresa.addEventListener('click', function () {
     modalExcluir.show();
     document.getElementById('excuirUser').addEventListener('click', function () {
-        deleteUser()
-        modalExcluir.hide();
+       axios.put('http://localhost:8080/api/empresa/desativar/' + payload.id)
+        .then(function (response) {
+            console.log(response);
+            location.reload();
+            window.location.replace('/../../../templates/login/login/login_empresa.html')
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+
+       modalExcluir.hide();
     });
 }
 )
@@ -231,3 +264,8 @@ function msgErro(msgText, color) {
     }, 6000); // 6 segundos
 
 }
+
+})
+.catch(function (error) {
+    console.log(error);
+})

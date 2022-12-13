@@ -31,7 +31,7 @@ const senha_Empresa = document.querySelector('#senha_Empresa');
 const confirmarSenha_empresa = document.querySelector('#confirmarSenha_empresa');
 const salvar = document.querySelector('#salvar');
 
-const url = 'http://192.168.3.106:8080/api/empresa';
+const url = 'http://localhost:8080/api/empresa';
 
 function sendEmail() {
   var params = {
